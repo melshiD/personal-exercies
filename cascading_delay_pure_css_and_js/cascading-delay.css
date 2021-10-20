@@ -14,4 +14,5 @@
 }
 [id*='index-']:hover{
     border-radius: 50%;
+    opacity: 1;
 }

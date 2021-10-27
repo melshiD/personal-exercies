@@ -2,6 +2,15 @@
     display: flex;
     flex-wrap: wrap;
 }
+
+[id*="fade-transform"]{
+    opacity: 1;
+}
+
+/*[id*="fade-transform"] */.fade-in{
+    opacity: 1;
+}
+
 [id*='index-']{
     width: 50px;
     height: 50px;
@@ -9,8 +18,8 @@
     border-radius: 5%;
     background-color: red;
     margin: 20px;
-    opacity: 0;
-    transition: border-radius 2s;
+    opacity: 1s;
+    transition: border-radius 0.5s;
 }
 [id*='index-']:hover{
     border-radius: 50%;

@@ -1,4 +1,4 @@
-var maxAreaOfIsland = function(grid) {
+var maxAreaOfIslandAttempt1 = function(grid) {
     //check that grid's size isn't out of bounds
 
     if(grid.length < 1 || grid.length > 50 || grid[0].length < 1 || grid[0].length > 50){
@@ -67,33 +67,91 @@ var maxAreaOfIsland = function(grid) {
     console.log(grid);
     return surveySizes(grid);
 }
-var grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,1,1,0,1,0,0,0,0,0,0,0,0],[0,1,0,0,1,1,0,0,1,0,1,0,0],[0,1,0,0,1,1,0,0,1,1,1,0,0],[0,0,0,0,0,0,0,0,0,0,1,0,0],[0,0,0,0,0,0,0,1,1,1,0,0,0],[0,0,0,0,0,0,0,1,1,0,0,0,0]];
 failingCase = [[0,1]];
 //console.log(maxAreaOfIsland(failingCase));
 //------------This code is SOOOOO long already.  It looks like my original shadow-grid to track
 //already visited spaces will be the way to go
-function maxAreaOfIsland2(grid){
-    var shadowGrid = Array(grid.length).fill(Array(grid[0].length).fill(0)),//shadow the area of grid, filled with 0's
-        islandSize = 0;
-        console.log(grid);
-        console.log(shadowGrid);
+function maxAreaOfIsland(grid){
+    var shadowGrid = Array(grid.length).fill(0).map(x => Array(grid[0].length).fill(0));
+    var islandSize = 0;
+
+    console.log(shadowGrid);
 
     function countLand(idR, idC){
+        console.log(`idR and idC in recursion pre-if: irR- ${idR} : idC- ${idC}`);
+        
         if(idR < 0 || idR >= grid.length || idC < 0 || idC >= grid[0].length || shadowGrid[idR][idC] == 1 || grid[idR][idC] == 0 ){
             return 0;
         }
+        
+        console.log(`idR and idC in recursion post-if: irR- ${idR} : idC- ${idC}`);
         shadowGrid[idR][idC] = 1;
-        return (1 + countLand(idR-1, idC) + countLand(idR+1, idC) + countLand(idR, idC-1) + countLand(idR, idC+1));
+        return 1 + countLand(idR-1, idC) + countLand(idR+1, idC) + countLand(idR, idC-1) + countLand(idR, idC+1);
     }
-
     for(let idR = 0; idR < grid.length; idR++){
         for(let idC = 0; idC < grid[0].length; idC++){
-            islandSize = Math.max(islandSize, countLand(idR, idC));
+            //console.log(`countLand: ${countLand(idR, idC)},  grid[idR][idC] = ${grid[idR][idC]},  islandSize : ${islandSize}`);
+            islandSize = Math.max((countLand(idR, idC)), islandSize);
+            console.log(`islandSize is as: ${islandSize}`);
         }
     }
+    console.log('islandSize at EOF: ' + islandSize);
+    //console.log(shadowGrid);
     return islandSize;
 }
 
+var grid = [[0,0,1,0,0,0,0,1,0,0,0,0,0],
+            [0,0,0,0,0,0,0,1,1,1,0,0,0],
+            [0,1,1,0,1,0,0,0,0,0,0,0,0],
+            [0,1,0,0,1,1,0,0,1,0,1,0,0],
+            [0,1,0,0,1,1,0,0,1,1,1,0,0],
+            [0,0,0,0,0,0,0,0,0,0,1,0,0],
+            [0,0,0,0,0,0,0,1,1,1,0,0,0],
+            [0,0,0,0,0,0,0,1,1,0,0,0,0]];
 
-var grid2 = [[0,1]];
-console.log(maxAreaOfIsland2(grid));
+var testShadowGrid = [[0,0,0,0,0,0,0,0,0,0,0,0,0],
+                  [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                  [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                  [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                  [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                  [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                  [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                  [0,0,0,0,0,0,0,0,0,0,0,0,0]];
+
+                  
+console.log(maxAreaOfIsland(failingCase));
+
+/*shadowGrid at end of execution:
+               [[0,1,1,0,1,1,0,1,1,1,1,0,0],
+                [0,1,1,0,1,1,0,1,1,1,1,0,0],
+                [0,1,1,0,1,1,0,1,1,1,1,0,0],
+                [0,1,1,0,1,1,0,1,1,1,1,0,0],
+                [0,1,1,0,1,1,0,1,1,1,1,0,0],
+                [0,1,1,0,1,1,0,1,1,1,1,0,0],
+                [0,1,1,0,1,1,0,1,1,1,1,0,0],
+                [0,1,1,0,1,1,0,1,1,1,1,0,0]];
+
+
+               [[0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0],
+                [0,0,0,0,0,0,0,0,0,0,0,0,0]];
+
+                with the .map method of populating shadowGrid:
+                [
+  [0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+  [0, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+  [0, 1, 0, 0, 1, 1, 0, 0, 1, 0, 1, 0, 0],
+  [0, 1, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0],
+  [0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0]]
+
+                */
+
+  //SUCCESS!  10/29/2021

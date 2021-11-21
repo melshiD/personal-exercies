@@ -1,0 +1,18 @@
+body{
+    --h: 10;
+    --s: 50%;
+    --l: 50%;
+    --arbVal: 51;
+}
+
+.color-changing-div{
+
+    background: hsl(var(--h) var(--s) var(--l));
+    width: 25vw;
+    height: 25vh;
+    border:dotted black 5px;
+
+}
+.color-changing-div:hover{
+    background:hsl(var(--arbVal) var(--s) var(--l))
+}

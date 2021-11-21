@@ -2,7 +2,7 @@ body{
     --h: 10;
     --s: 50%;
     --l: 50%;
-    --arbVal: 51;
+    --arb-val: 51;
 }
 
 .color-changing-div{
@@ -14,5 +14,5 @@ body{
 
 }
 .color-changing-div:hover{
-    background:hsl(var(--arbVal) var(--s) var(--l))
+    background:hsl(var(--arb-val) var(--s) var(--l))
 }

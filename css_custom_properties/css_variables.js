@@ -1,9 +1,9 @@
 var slider = document.querySelector('.arb-val-slider');
 console.log(slider);
 
-const addListenerToSlider = function (elementToListenTo){
+const addListenerToSlider = function (){
     
-    elementToListenTo.addEventListener('change', () => {
+    this.addEventListener('change', () => {
         setHoverColor(slider.value);
     });
 

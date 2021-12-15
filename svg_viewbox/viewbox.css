@@ -1,0 +1,35 @@
+body {
+    font-family: 'Source Sans Pro', sans-serif;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    background: #262626;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+  }
+  
+  svg {
+    height: calc(90vmin - 100px);
+    width: auto;
+    font-size: 54px;
+    font-weight: 700;
+    border: 5px solid pink;
+    border-radius: 2em;
+  }
+  
+  svg text {
+    fill: white;
+  }
+  
+  .buttonWrap {
+    padding: 10px 0;
+  }
+  
+  button {
+    padding: 10px;
+    cursor: pointer;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 0.8rem;
+  }

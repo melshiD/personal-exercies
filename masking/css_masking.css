@@ -1,0 +1,37 @@
+/* .masked-image{
+  background-image: url(https://images.unsplash.com/photo-1528287942171-fbe365d1d9ac?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&w=1200&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  mask-image: url(https://photoscissors.com/images/tutorials/pc/how-to-use-an-alpha-mask-2.png);
+  mask-size: 100vmin;
+  mask-type: alpha;
+  mask-repeat: no-repeat;
+  mask-position: center;
+} */
+
+* {
+    box-sizing: border-box;
+  }
+  body {
+    margin: 0;
+    background: #8f7a66;
+  }
+  
+  .el {
+    width: 100vw;
+    height: 100vh;
+    padding: 1rem;
+  
+    background-image: url(https://images.unsplash.com/photo-1528287942171-fbe365d1d9ac?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&w=1200&cs=srgb&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+  
+    /* mask-image: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/3/sun.svg); */
+    mask-image: url(https://media.gettyimages.com/videos/design-elements-white-paint-brush-ink-video-id666945782?s=640x640);
+    mask-size: 100vmin;
+    mask-repeat: no-repeat;
+    mask-position: center;
+  }

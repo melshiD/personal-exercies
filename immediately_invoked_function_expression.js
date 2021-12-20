@@ -16,7 +16,7 @@
         console.log(`printing ${i}`);
         i++;
     }
-})()
+}())
 
 
 

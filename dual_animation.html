@@ -6,71 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Two Ainimations for Tween</title>
     <style>
-        #ani1{
-            animation: animation-1 4s linear infinite,
-            animation-2 4s linear infinite,
-            animation-scale 4s linear infinite;
+        .ani1{            
+            animation:  animation-scale 4s linear infinite,
+                        animation-color 300ms linear infinite;
+
         }
-        /* #ani2{
-            animation: animation-1 4s linear infinite;
-        } */
-        @keyframes animation-1{
+        .ani2{
+            animation:  
+            animation-rotate 4s linear infinite,
+            animation-translate 4s linear infinite;
+                        
+        }
+        @keyframes animation-color{
             from{
-                transform: translateX(20);
+                fill: red;
             }
             to{
-                transform: translateX(10px);
+                fill: green;
+            }
+        }
+        @keyframes animation-translate{
+            from{
+                transform: translateX(0px);
+            }
+            to{
+                transform: translateX(1000px);
             }
         }
         @keyframes animation-scale{
             0%, 100%{
                 transform: scale(1);
+                transform-origin: center;
             }
             50%{
-                transform: scale(3);
+                transform: scale(1.8);
+                transform-origin: center;
+
             }
         }
-        @keyframes animation-2{
-            0%{
+        @keyframes animation-rotate{
+            0%, 100%{
                 transform: rotate(0);
                 transform-origin: center;
             }
-            10%{
-                /* transform: rotate(10000deg); */
+            45%{
                 transform: rotate(100deg);
                 transform-origin: center;
             }
-            40%{
-                /* transform: rotate(10000deg); */
-                transform: rotate(10deg);
-                transform-origin: center;
-            }
-            45%{
-                /* transform: rotate(10000deg); */
-                transform: rotate(-80deg);
-                transform-origin: center;
-            }
-            60%{
-                /* transform: rotate(10000deg); */
-                transform: rotate(130deg);
-                transform-origin: center;
-            }
-            90%{
-                /* transform: rotate(10000deg); */
-                transform: rotate(0deg);
-                transform-origin: top right;
-            }
             /* changing the transform origin greatly effects visual feel */
         }
+        /* keep in mind that we can only modify one css attribute per dom element  */
     </style>
 </head>
 <body>
     <svg width="700" height="500">
-        <g id="ani1">
-            <g id="ani2">
+        <g id="ani1" class="ani1">
+            <g id="ani2" class="ani2">
                 <rect class="rect" x="200" y="200" width="50" height="120"></rect>
             </g>
         </g>
     </svg>
+    <script>
+        let g2 = document.getElementById('ani2');
+        toggle2 = function(){
+            g2.classList.toggle('ani2');
+        }
+    </script>
 </body>
 </html>

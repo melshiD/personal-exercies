@@ -1,19 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Arrrr, lean into the Hunt</title>
-    <style>
-        
-    </style>
-</head>
-<body>
-    <h1>Arrrr, lean into the Hunt</h1>
-    <form action="">
-        <label for="Arlyn_name">Can you tell me?</label>
-            <input id="Arlyn_name" type="text" placeholder="What's the magic password?" />
-    </form>
-</body>
-</html>
+<!DOCTYPE="Html">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Fun Gift Hunt</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&family=Open+Sans:ital,wght@1,500&family=Pirata+One&family=Pushster&family=Raleway:wght@800&family=Roboto+Mono:ital@1&family=Spectral+SC:wght@300;500&display=swap"
+            rel="stylesheet">
+
+        <style>
+            body{
+                background-image: url('./images/background.jpg')
+            }
+            label {
+                display: inline-block;
+                font-family: 'Pirata One';
+                font-size: 2em;
+                font-weight: 500;
+                margin-bottom: 0.7em;
+
+            }
+
+            h1 {
+                font-family: Pushster;
+                font-size: 3em;
+                text-shadow: red 3px 3px;
+            }
+
+            .container {
+                background-image: url('./images/hunt_hero_2.PNG');
+                background-size: cover;
+                background-position: center center;
+                width: 40%;
+                height: 50vh;
+                border: solid rgb(160 127 83) 4px;
+                border-radius: 1.2em 0 1.2em 0;
+                margin: 3em 0 0 3em;
+                padding-left: 3em;
+                padding-right: 3em;
+            }
+
+            /* .container:hover {
+                transform: scale(1.2);
+            } */
+            input{
+                font-family: 'Pirata One';
+                letter-spacing: .05em; 
+                margin-left: 1em;
+                margin-top: 20px;
+                border-radius: 0.2em;
+                border-style: none;
+            }
+            #email{
+                width: 14em;
+            }
+            #pass_label{
+                margin-left: 1.5em;
+            }
+            .question{
+                font-size: 1em;
+            }
+            .question::-webkit-input-placeholder{
+                font-size: 0.8em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h1>Arlyn on the Hunt</h1>
+            <form action="#nowhere">
+                <div class="">
+                    <label for="email">Tell Me </label>
+                    <input type="email" class="question" id="email" placeholder="Can you figure out the password?">
+                </div>
+                <div class="password">
+                    <label id="pass_label" for="password">Then think... </label>
+                    <input type="password" class="form-control" id="password" placeholder="and enter it here">
+                </div>
+            </form>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    </body>
+
+    </html>

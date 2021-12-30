@@ -12,9 +12,10 @@
             rel="stylesheet">
 
         <style>
-            body{
+            body {
                 background-image: url('./images/background.jpg')
             }
+
             label {
                 display: inline-block;
                 font-family: 'Pirata One';
@@ -26,7 +27,7 @@
 
             h1 {
                 font-family: Pushster;
-                font-size: 3em;
+                font-size: 3.6em;
                 text-shadow: red 3px 3px;
             }
 
@@ -38,42 +39,59 @@
                 height: 50vh;
                 border: solid rgb(160 127 83) 4px;
                 border-radius: 1.2em 0 1.2em 0;
-                margin: 3em 0 0 3em;
+                margin: 5em 0 0 5em;
                 padding-left: 3em;
                 padding-right: 3em;
                 overflow: hidden;
                 position: relative;
             }
-            .inner-bkgd{
+            .form-content{
+                position: absolute;
+                top: 1px;
+            }
+            .inner-bkgd {
                 position: relative;
                 width: 100%;
                 height: 100%;
-                top: -200px;
-                background-image: url('./images/hunt_hero_2.PNG');
-
+                left: -300px;
+                top: -100px;
+                /* background-image: url('./images/hunt_hero_2.PNG'); */
 
             }
+
             /* .container:hover {
                 transform: scale(1.2);
             } */
-            input{
+            input {
                 font-family: 'Pirata One';
-                letter-spacing: .05em; 
+                letter-spacing: .05em;
                 margin-left: 1em;
                 margin-top: 20px;
                 border-radius: 0.2em;
                 border-style: none;
             }
-            #email{
+
+            #zoom-image {
+                transition: all 1s ease-in-out;
+            }
+
+            #zoom-image:hover {
+                transform: scale(1.2);
+            }
+
+            #email {
                 width: 14em;
             }
-            #pass_label{
+
+            #pass_label {
                 margin-left: 1.5em;
             }
-            .question{
+
+            .question {
                 font-size: 1em;
             }
-            .question::-webkit-input-placeholder{
+
+            .question::-webkit-input-placeholder {
                 font-size: 0.8em;
             }
         </style>
@@ -82,20 +100,21 @@
     <body>
         <div class="container">
             <div class="inner-bkgd">
-
+                <img id="zoom-image" src="./images/hunt_hero_2.PNG" />
             </div>
-            <h1>Arlyn on the Hunt</h1>
-            <form action="#nowhere">
-                <div class="">
-                    <label for="email">Tell Me </label>
-                    <input type="email" class="question" id="email" placeholder="Can you figure out the password?">
-                </div>
-                <div class="password">
-                    <label id="pass_label" for="password">Then think... </label>
-                    <input type="password" class="form-control" id="password" placeholder="and enter it here">
-                </div>
-            </form>
-
+            <div class="form-content">
+                <h1>Arlyn on the Hunt</h1>
+                <form action="#nowhere">
+                    <div class="">
+                        <label for="email">Tell Me </label>
+                        <input type="email" class="question" id="email" placeholder="Dare you seek the treasure?">
+                    </div>
+                    <div class="password">
+                        <label id="pass_label" for="password">Find the first clue... </label>
+                        <input type="password" class="form-control" id="password" placeholder="and enter it here">
+                    </div>
+                </form>
+            </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
     </body>

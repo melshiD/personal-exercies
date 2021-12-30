@@ -30,6 +30,16 @@
                 font-size: 3.6em;
                 text-shadow: red 3px 3px;
             }
+            h2{
+                font-family: 'Pirata One';
+                font-size: 5em;
+                font-weight: 300;
+                position: absolute;
+                top: 44;
+                left: 30;
+                opacity: 0;
+                z-index: -1;
+            }
 
             .container {
                 /* background-image: url('./images/hunt_hero_2.PNG'); */
@@ -71,6 +81,7 @@
                 border-style: none;
             }
 
+
             /* #zoom-image {
                 transition: all 1s ease-in-out;
             }
@@ -105,22 +116,24 @@
             <div class="form-content">
                 <h1>Arlyn on the Hunt</h1>
                 <form action="#nowhere">
-                    <div class="">
-                        <label for="email">Tell Me </label>
-                        <input type="email" class="question" id="email" placeholder="Dare you seek the treasure?">
+                    <div class="are-you-ready" >
+                        <label for="dare_you">Tell Me </label>
+                        <input type="text" class="question" id="dare_you" placeholder="Dare you seek the treasure?">
                     </div>
                     <div class="password">
                         <label id="pass_label" for="password">Find the first clue... </label>
                         <input type="password" class="form-control" id="password" placeholder="and enter it here">
                     </div>
                 </form>
+                <div class="very-good">
+                    <h2>Very Good</h2>
+                </div>
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
         <script>
             let container = document.querySelector('.container');
             let zoomImage = document.getElementById('zoom-image');
-
             container.addEventListener('mouseenter', () =>{
                 let zoomAnimation = anime({
                     targets: '#zoom-image',
@@ -133,12 +146,37 @@
             container.addEventListener('mouseleave', () =>{
                 let zoomAnimation = anime({
                     targets: '#zoom-image',
-                    duration: 1500,
+                    duration: 1900,
                     easing: 'linear',
                     scale: 1.0
-
                 })
             });
+
+            let formAction = document.getElementById('dare_you');
+            formAction.addEventListener('keyup', function(e){
+                if(formAction.value.toLowerCase() == 'yes') return veryGood();
+            });
+
+            function veryGood(input = 'yes'){
+                let inputToHide = document.querySelector('.are-you-ready');
+                let showGood = document.querySelector('h2');
+                let swapElements = anime.timeline({
+                    easing: 'linear'
+                });
+                swapElements.add({
+                    targets: inputToHide,
+                    duration: 200,
+                    opacity: 0
+                }).add({
+                    targets: showGood,
+                    duration: 1, 
+                    zIndex: 1
+                }).add({
+                    targets: showGood,
+                    duration: 3000, 
+                    opacity: 1
+                })
+            }
         </script>
     </body>
 

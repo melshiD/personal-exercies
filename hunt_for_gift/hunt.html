@@ -35,7 +35,7 @@
                 /* background-image: url('./images/hunt_hero_2.PNG'); */
                 background-size: cover;
                 background-position: center center;
-                width: 40%;
+                width: 60%;
                 height: 50vh;
                 border: solid rgb(160 127 83) 4px;
                 border-radius: 1.2em 0 1.2em 0;
@@ -71,13 +71,13 @@
                 border-style: none;
             }
 
-            #zoom-image {
+            /* #zoom-image {
                 transition: all 1s ease-in-out;
             }
 
             #zoom-image:hover {
                 transform: scale(1.2);
-            }
+            } */
 
             #email {
                 width: 14em;
@@ -117,6 +117,29 @@
             </div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script>
+            let container = document.querySelector('.container');
+            let zoomImage = document.getElementById('zoom-image');
+
+            container.addEventListener('mouseenter', () =>{
+                let zoomAnimation = anime({
+                    targets: '#zoom-image',
+                    duration: 1500,
+                    easing: 'linear',
+                    scale: 1.2
+
+                })
+            });
+            container.addEventListener('mouseleave', () =>{
+                let zoomAnimation = anime({
+                    targets: '#zoom-image',
+                    duration: 1500,
+                    easing: 'linear',
+                    scale: 1.0
+
+                })
+            });
+        </script>
     </body>
 
     </html>

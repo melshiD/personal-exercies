@@ -59,6 +59,12 @@
                 position: absolute;
                 top: 1px;
             }
+            .password{
+                opacity: 0;
+            }
+            #password{
+                opacity: 0;
+            }
             .inner-bkgd {
                 position: relative;
                 width: 100%;
@@ -118,11 +124,11 @@
                 <form action="#nowhere">
                     <div class="are-you-ready" >
                         <label for="dare_you">Tell Me </label>
-                        <input type="text" class="question" id="dare_you" placeholder="Dare you seek the treasure?">
+                        <input type="text" class="question" id="dare_you" autocomplete="off" placeholder="Dare you seek the treasure?">
                     </div>
                     <div class="password">
                         <label id="pass_label" for="password">Find the first clue... </label>
-                        <input type="password" class="form-control" id="password" placeholder="and enter it here">
+                        <input type="password" class="form-control" id="password" autocomplete="off" placeholder="and enter it here">
                     </div>
                 </form>
                 <div class="very-good">
@@ -173,9 +179,22 @@
                     zIndex: 1
                 }).add({
                     targets: showGood,
-                    duration: 3000, 
+                    duration: 2000, 
                     opacity: 1
-                })
+                }).add({
+                    targets: '.password',
+                    duration: 3000,
+                    opacity: 1
+                }, '-=600').add({
+                    targets: '.password',
+                    duration: 1000,
+                    scale: 1.2
+                }).add({
+                    targets: '#password',
+                    duration: 1000,
+                    delay: 400,
+                    opacity: 1
+                });
             }
         </script>
     </body>

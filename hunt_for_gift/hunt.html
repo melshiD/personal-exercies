@@ -55,15 +55,27 @@
                 overflow: hidden;
                 position: relative;
             }
+            .are-you-ready{
+                margin-left: 1em;
+                font-size: 1.3em;
+            }
+            #dare_you{
+                position: absolute;
+                top: 143;
+            }
             .form-content{
                 position: absolute;
                 top: 1px;
             }
             .password{
                 opacity: 0;
+
             }
             #password{
                 opacity: 0;
+                display: inline-block;
+                position: absolute;
+                top: -6;
             }
             .inner-bkgd {
                 position: relative;
@@ -136,6 +148,10 @@
                 </div>
             </div>
         </div>
+        <div class="check-candle">
+            <div >Check your Candle</div>
+            <div>Check your Stick</div>
+        </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
         <script>
             let container = document.querySelector('.container');
@@ -189,13 +205,26 @@
                     targets: '.password',
                     duration: 1000,
                     scale: 1.2
-                }).add({
+                });
+
+                swapElements.add({
                     targets: '#password',
                     duration: 1000,
-                    delay: 400,
                     opacity: 1
                 });
             }
+
+            let passwordTrack = document.getElementById('password');
+            passwordTrack.addEventListener('keyup', () =>{
+                if(passwordTrack.value.toLowerCase() == "lets_play") return letsPlay();
+            });
+
+            function letsPlay(){
+                console.log('its time');
+            }
+
+
+
         </script>
     </body>
 

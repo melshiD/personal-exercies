@@ -54,6 +54,7 @@
                 padding-right: 3em;
                 overflow: hidden;
                 position: relative;
+                opacity: 1;
             }
             .are-you-ready{
                 margin-left: 1em;
@@ -86,10 +87,6 @@
                 /* background-image: url('./images/hunt_hero_2.PNG'); */
 
             }
-
-            /* .container:hover {
-                transform: scale(1.2);
-            } */
             input {
                 font-family: 'Pirata One';
                 letter-spacing: .05em;
@@ -98,7 +95,18 @@
                 border-radius: 0.2em;
                 border-style: none;
             }
+            #check_candle{
+                font-family: "pirata one";
+                font-size: 6em;
+                margin: 0 0 0 10rem;
+                text-shadow: 4px -5px 12px rgba(218, 167, 0, 0.37);
+                position: absolute;
+                z-index: -2;
+                top: 20px;
+                opacity: 0;
 
+
+            }
 
             /* #zoom-image {
                 transition: all 1s ease-in-out;
@@ -148,9 +156,9 @@
                 </div>
             </div>
         </div>
-        <div class="check-candle">
+        <div id="check_candle">
             <div >Check your Candle</div>
-            <div>Check your Stick</div>
+            <div>Check your Sticks</div>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
         <script>
@@ -220,7 +228,20 @@
             });
 
             function letsPlay(){
-                console.log('its time');
+                // let checkCandle = document.getElementById('check_candle');
+                const callToAction = anime.timeline({
+                    easing: 'linear',
+                });
+
+                callToAction.add({
+                    targets: '.container',
+                    opacity: 0,
+                    duration: 500
+                }).add({
+                    targets: '#check_candle',
+                    opacity: 1,
+                    duration: 2000
+                }).play();
             }
 
 

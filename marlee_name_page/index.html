@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marlee Name Landing Page</title>
+    <link href="http://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
+    <style>
+        body {
+            background-color: pink;
+        }
+
+        .container {
+            animation: moveRight 40s linear infinite alternate;
+            display: flex;
+            width: 400px;
+            height: 400px;
+            flex-wrap: wrap;
+            margin: 10em auto;
+        }
+
+        .container div {
+            display: inline-block;
+            font-size: 10em;
+            font-family: 'Minecraft';
+            margin: 12px;
+        }
+
+        .container div:nth-of-type(2){
+            border: solid black 5px;
+        }
+
+        a {
+            color: black;
+            text-decoration: none;
+        }
+
+        @keyframes moveRight {
+            from {
+                transform: translateX(0);
+            }
+
+            to {
+                transform: translateX(400px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div>M</div>
+        <div>
+            <a href='http://www.google.com'>a</a>
+        </div>
+        <div>r</div>
+        <div>l</div>
+        <div>e</div>
+        <div>e</div>
+    </div>
+</body>
+
+</html>

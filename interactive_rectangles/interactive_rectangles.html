@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drag and Draw Rectangle</title>
+</head>
+<style>
+    html,
+    body {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .container {
+        box-sizing: border-box;
+        width: 98%;
+        height: 98%;
+        border: 3rem solid black;
+        overflow: hidden;
+        margin: 1em auto;
+    }
+    svg{
+        width: 100%;
+        height: 100%;
+        background-color: red;
+        stroke: black;
+        stroke-width: 4px;
+        fill: red;
+    }
+    rect{
+    }
+</style>
+
+<body>
+    <div class="container">
+        <svg>
+            <rect id="rect" x='200px' y='200px' width="200px" height="200px"></rect>
+        </svg>
+    </div>
+
+
+    <script>
+        let container = document.querySelector('.container');
+        let x = 0;
+        let y = 0;
+        let isDragging = false;
+
+        let rect = document.getElementById('rect');
+
+        container.addEventListener('mousedown', (e)=>{
+            x = e.offsetX;
+            y = e.offsetY;
+            rect.setAttribute('x', x);
+            rect.setAttribute('y', y);
+            isDragging = true;
+            
+        });
+
+        container.addEventListener('mousemove', (e)=>{
+            if(isDragging === true){
+                updateRect(e.offsetX-x, e.offsetY-y);
+            }
+        });
+
+        container.addEventListener('mouseup', (e)=>{
+            isDragging = false;
+            x = 0;
+            y = 0;
+        });
+
+        function updateRect(width, height){
+            rect.setAttribute('width', width);
+            rect.setAttribute('height', height);
+
+        }
+    </script>
+</body>
+
+</html>

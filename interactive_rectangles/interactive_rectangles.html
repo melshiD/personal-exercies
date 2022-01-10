@@ -19,6 +19,7 @@
         width: 98%;
         height: 98%;
         border: 3rem solid black;
+        border-radius: 2rem;
         overflow: hidden;
         margin: 1em auto;
     }
@@ -47,8 +48,7 @@
         let x = 0;
         let y = 0;
         let isDragging = false;
-
-        let rect = document.getElementById('rect');
+        let isInRect = false;
 
         container.addEventListener('mousedown', (e)=>{
             x = e.offsetX;
@@ -61,7 +61,7 @@
 
         container.addEventListener('mousemove', (e)=>{
             if(isDragging === true){
-                updateRect(e.offsetX-x, e.offsetY-y);
+                updateRect(e);
             }
         });
 
@@ -71,10 +71,14 @@
             y = 0;
         });
 
-        function updateRect(width, height){
+        function updateRect(e){
+
+            if(!isInRect){
+            let width = e.offsetX-x, 
+                height = e.offsetY-y
             rect.setAttribute('width', width);
             rect.setAttribute('height', height);
-
+            }
         }
     </script>
 </body>

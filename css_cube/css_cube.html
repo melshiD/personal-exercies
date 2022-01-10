@@ -9,6 +9,7 @@
     <style>
         * {
             --cube-edge: 8em;
+            scroll-behavior:;
         }
 
         body {
@@ -25,38 +26,49 @@
             top: 50%;
             left: 50%;
             transform-style: preserve-3d;
+            animation: ani 2s ease-in-out infinite;
         }
 
         .cube__face {
             margin: calc(-.5*var(--cube-edge));
             width: var(--cube-edge);
             height: var(--cube-edge);
-            box-shadow: 0 0 0 2px;
+            box-shadow: 0 0 0 1px;
+            --i: 0;
+            background-image: url('../hunt_for_gift/images/background.jpg');
+
+            transform: rotate3d(var(--i), calc(1 - var(--i)), 0, calc(var(--m, 0)*90deg)) translateZ(4em);
         }
 
-        .cube__face:nth-child(1) {
-            transform: rotateY(0deg) translateZ(calc(0.5*var(--cube-edge)))
+        .cube__face:nth-child(n + 5) {
+            --i: 1;
         }
 
         .cube__face:nth-child(2) {
-            transform: rotateY(90deg) translateZ(calc(0.5*var(--cube-edge)))
+            --m: 1;
         }
 
         .cube__face:nth-child(3) {
-            transform: rotateY(180deg) translateZ(calc(0.5*var(--cube-edge)))
+            --m: 2
         }
 
         .cube__face:nth-child(4) {
-            transform: rotateY(270deg) translateZ(calc(0.5*var(--cube-edge)))
+            --m: 3
         }
 
         .cube__face:nth-child(5) {
-            transform: rotateX(90deg) translateZ(calc(0.5*var(--cube-edge)))
+            --m: 1
         }
 
         .cube__face:nth-child(6) {
-            transform: rotateX(-90deg) translateZ(calc(0.5*var(--cube-edge)))
+            --m: -1
         }
+
+        @keyframes ani {
+          50% { transform: rotateY(90deg) rotateX(90deg) scale3d(3, 3, 3) }
+          100% { transform: rotateY(180deg) rotateX(180deg) }
+        }
+        
     </style>
 </head>
 

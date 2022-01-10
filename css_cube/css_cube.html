@@ -9,12 +9,15 @@
     <style>
         * {
             --cube-edge: 8em;
-            scroll-behavior:;
         }
 
         body {
             height: 100vh;
             perspective: 25em;
+            background-image: url('../hunt_for_gift/images/background.jpg');
+            /* animation: new-perspective 14s ease-in-out alternate infinite; */
+            overflow: hidden;
+
         }
 
         [class*='cube'] {
@@ -26,7 +29,7 @@
             top: 50%;
             left: 50%;
             transform-style: preserve-3d;
-            animation: ani 2s ease-in-out infinite;
+            animation: ani 2s ease-in-out alternate infinite;
         }
 
         .cube__face {
@@ -36,8 +39,11 @@
             box-shadow: 0 0 0 1px;
             --i: 0;
             background-image: url('../hunt_for_gift/images/background.jpg');
-
+            border-radius: 3em;
             transform: rotate3d(var(--i), calc(1 - var(--i)), 0, calc(var(--m, 0)*90deg)) translateZ(4em);
+            text-align: center;
+            text-justify: center;
+            color: pink;
         }
 
         .cube__face:nth-child(n + 5) {
@@ -65,16 +71,20 @@
         }
 
         @keyframes ani {
-          50% { transform: rotateY(90deg) rotateX(90deg) scale3d(3, 3, 3) }
+          50% { transform: rotateY(90deg) rotateX(90deg) scale3d(1, 1, 1) }
           100% { transform: rotateY(180deg) rotateX(180deg) }
         }
-        
+        @keyframes new-perspective{
+            to{
+                perspective: 2em;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div class="cube">
-        <div class="cube__face"></div>
+        <div class="cube__face">20</div>
         <div class="cube__face"></div>
         <div class="cube__face"></div>
         <div class="cube__face"></div>

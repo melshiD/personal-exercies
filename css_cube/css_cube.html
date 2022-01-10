@@ -14,7 +14,7 @@
         body {
             height: 100vh;
             perspective: 25em;
-            background-image: url('../hunt_for_gift/images/background.jpg');
+            background-image: url('background.jpg');
             /* animation: new-perspective 14s ease-in-out alternate infinite; */
             overflow: hidden;
 
@@ -25,9 +25,11 @@
         }
 
         .cube {
-            font-size: 4vmin;
+            font-size: 1vmin;
             top: 50%;
             left: 50%;
+            text-align: center;
+            line-height: var(--cube-edge);
             transform-style: preserve-3d;
             animation: ani 2s ease-in-out alternate infinite;
         }
@@ -41,14 +43,11 @@
             background-image: url('../hunt_for_gift/images/background.jpg');
             border-radius: 3em;
             transform: rotate3d(var(--i), calc(1 - var(--i)), 0, calc(var(--m, 0)*90deg)) translateZ(4em);
-            text-align: center;
-            text-justify: center;
+
             color: pink;
         }
 
-        .cube__face:nth-child(n + 5) {
-            --i: 1;
-        }
+
 
         .cube__face:nth-child(2) {
             --m: 1;
@@ -68,6 +67,9 @@
 
         .cube__face:nth-child(6) {
             --m: -1
+        }
+        .cube__face:nth-child(n + 5) {
+            --i: 1;
         }
 
         @keyframes ani {
@@ -94,3 +96,6 @@
 </body>
 
 </html>
+<!-- a combination of svg and css will be required to produce the die and experience
+we need for Rapture.  I suspect learning REACT will greatly aid in producing
+multitudes of die -->

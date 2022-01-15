@@ -10,6 +10,16 @@
 
 </head>
 <body>
+    <svg>
+        <symbol id="red_circle" width="500" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="22" fill="red"></circle>
+            <path transform="scale(10)" stroke="red" fill="none" d="M0 56.3s49.5-38.2 68.7-11.9 65.9 43.6 90.8 19.8 42.6-12.7 48.2-10.7c9.2 3.3 52.2 33.7 72.1-5.1 9.8-19 20.2-5.4 20.2-5.4" />
+        </symbol>
+        <symbol id="purple_circle" width="500" viewBox="0 0 100 100">
+            <circle cx="50" cy="50" r="22" fill="red"></circle>
+            <path transform="scale(10)" stroke="red" fill="none" d="M0 56.3s49.5-38.2 68.7-11.9 65.9 43.6 90.8 19.8 42.6-12.7 48.2-10.7c9.2 3.3 52.2 33.7 72.1-5.1 9.8-19 20.2-5.4 20.2-5.4" />
+        </symbol>
+    </svg>
     <style>
         [class*='box']{
             width: 90px;
@@ -19,13 +29,23 @@
             background-color: pink;
             border-radius: .3em;
         }
+        .box{
+            border: solid pink .25em;
+
+        }
     </style>
+    <svg id="main_svg">
+        <use id="use_box" href="#red_circle">
+    </svg>
     <div class="new-box"></div>
     <div class="box"></div>
     <div class="box"></div>
     <div class="box"></div>
     <div class="box"></div>
     <div class="box"></div>
+    <svg id="main_svg_2">
+        <use id="use_box_2" href="#purple_circle">
+    </svg>
     <script src="svg_followalong.js"></script>
 </body>
 </html>

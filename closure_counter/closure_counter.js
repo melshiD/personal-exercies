@@ -31,7 +31,7 @@ function counter() {
     // Returning to make it available
     // outside counter function
     return modify;
-  }
+}
     
   // Storing the closure modify
   const closure = counter();

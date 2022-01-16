@@ -1,7 +1,7 @@
 var pixelsPerSecond = 200;
 var animation = gsap.timeline();
 animation
-    .to("#star", {duration:2, x:1150})
+    .to("#star", {duration:4, x:1150})
     .to("#circle", {duration:1, x:1150})
     .to("#square", {duration:3, x:1150});
 
@@ -20,8 +20,8 @@ for(var i = 0; i < numChildren; i++){
   gsap.set("#rect" + i, {width:children[i].duration() * pixelsPerSecond})
 }
 
-var playHead = document.getElementById('timeline');
-playHead.addEventListener('mousedown', handleClick);
+var svgTimeline = document.getElementById('timeline');
+svgTimeline.addEventListener('mousedown', handleClick);
 
 var dragger = Draggable.create("#playhead", {
   type:"x", 
@@ -60,9 +60,14 @@ function handleClick(e){
         timelineWidth = document.getElementById('tween_x5F_bg').getBoundingClientRect().width,
         timelineOffset = document.getElementById('tween_x5F_bg').getBoundingClientRect().x;
     
+    let xIntoRect = e.offsetX - timelineOffset;
+    let percentIntoTimeline = xIntoRect/timelineWidth;
+    console.log(xIntoRect, percentIntoTimeline);
+    let newX = percentIntoTimeline*1200;
     console.log(timelineWidth, timelineOffset, e.offsetX);
     animation.pause();
-    gsap.set("#playhead", {x:`${(e.offsetX)}`});
+    gsap.set("#playhead", {x:newX});
+    // gsap.set("#playhead", {x:`${(e.offsetX)}`});
     // time.textContent=animation.time().toFixed(1); 
     // movePlayhead();
 }

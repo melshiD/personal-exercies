@@ -1,9 +1,9 @@
 var pixelsPerSecond = 200;
 var animation = gsap.timeline();
 animation
-    .to("#star", {duration:4, x:1150})
-    .to("#circle", {duration:1, x:1150})
-    .to("#square", {duration:3, x:1150});
+    .to("#star", {duration:4, x:1150}, 1)
+    .to("#circle", {duration:1, x:1150}, 1)
+    .to("#square", {duration:3, x:1150}, 1);
 
 
 
@@ -21,22 +21,21 @@ for(var i = 0; i < numChildren; i++){
 }
 
 var svgTimeline = document.getElementById('timeline');
-svgTimeline.addEventListener('mousedown', handleClick);
 
 var dragger = Draggable.create("#playhead", {
   type:"x", 
   cursor:"pointer",
-  trigger:"#timeline",
+  trigger:"#playhead",
   bounds: {minX:0, maxX:maxX},
   onDrag:function(){
     animation.pause();
-    // gsap.set("#playhead", {this * maxX});
-
     time.textContent=animation.time().toFixed(1);
     animation.progress(this.x/maxX);
   }
-
 });
+
+svgTimeline.addEventListener('mousedown', handleClick);
+
 
 function movePlayhead() {
   gsap.set("#playhead", {x:animation.progress() * maxX});
@@ -55,19 +54,17 @@ document.getElementById("reverse").onclick = function() {
   animation.reverse();
 }
 
-function handleClick(e){
-    let screenWidth = window.innerWidth,
-        timelineWidth = document.getElementById('tween_x5F_bg').getBoundingClientRect().width,
-        timelineOffset = document.getElementById('tween_x5F_bg').getBoundingClientRect().x;
-    
-    let xIntoRect = e.offsetX - timelineOffset;
-    let percentIntoTimeline = xIntoRect/timelineWidth;
-    console.log(xIntoRect, percentIntoTimeline);
-    let newX = percentIntoTimeline*1200;
-    console.log(timelineWidth, timelineOffset, e.offsetX);
-    animation.pause();
-    gsap.set("#playhead", {x:newX});
-    // gsap.set("#playhead", {x:`${(e.offsetX)}`});
-    // time.textContent=animation.time().toFixed(1); 
-    // movePlayhead();
+function handleClick(e) {
+  let newX = findPercentIntoTimeline(e.offsetX);
+  // animation.pause();
+  // gsap.set("#playhead", { x: newX*1200 });
+  animation.progress(newX);
+}
+
+function findPercentIntoTimeline(offsetX) {
+  let timelineWidth = document.getElementById('tween_x5F_bg').getBoundingClientRect().width,
+    timelineOffset = document.getElementById('tween_x5F_bg').getBoundingClientRect().x;
+  let xIntoRect = offsetX - timelineOffset;
+  let percentIntoTimeline = xIntoRect / timelineWidth;
+  return percentIntoTimeline;
 }

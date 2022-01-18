@@ -25,7 +25,9 @@ svg {
   fill:#ffd32e;
   cursor:pointer;
 }
-
+[id*='tween_x5F_bg']:hover{
+  stroke: rgb(138, 125, 236);
+}
 /* h1 {
   font-family:Kanit;
   font-weight:500;

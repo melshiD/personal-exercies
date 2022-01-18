@@ -2,20 +2,34 @@
 
 var pixelsPerSecond = 200;
 var animation = gsap.timeline();
-let bodyDeltaBackground = Math.floor(Math.abs((document.body.offsetWidth - 
+let bodyDeltaBackground = currentMargin();
+var duration = animation.duration() * pixelsPerSecond;
+var svgTimeline = document.getElementById('timeline');
+svgTimeline.addEventListener('mousedown', handleClick);
+svgTimeline.addEventListener('wheel', handleWheel, {passive: true});
+
+function currentMargin(){
+  //manages the margins that may be between the SVG background and the body as a whole
+  let currentMargin = Math.floor(Math.abs((document.body.offsetWidth - 
                                      document.getElementById('Layer_1')
                                      .getBoundingClientRect().width)/2));
-console.log("JHERE: " + bodyDeltaBackground);
+  return currentMargin;
+}
+
+window.addEventListener('resize', () =>{
+  bodyDeltaBackground = currentMargin();
+});
+
+console.log("HERE: " + bodyDeltaBackground);
 gsap.to("svg", {autoAlpha:1});
 animation
-    .to("#star", {duration:6, x:1150}, 0)
+    .to("#star", {duration:5, x:1150}, 0)
     .to("#circle", {duration:1, x:1150}, 1)
     .to("#square", {duration:1, x:1150}, 1);
 
 animation.eventCallback("onUpdate", movePlayhead).paused(true);
 
 var time = document.getElementById("time")
-var duration = animation.duration() * pixelsPerSecond;
 
 // let maxX = 1200; looked to work because 6 sec x 200 is 1200
 let maxX = document.getElementById('tween_x5F_bg').getBoundingClientRect().width;
@@ -29,7 +43,7 @@ for(var i = 0; i < numChildren; i++){
   gsap.set("#rect" + i, {width:children[i].duration() * pixelsPerSecond})
 }
 
-var svgTimeline = document.getElementById('timeline');
+
 
 var dragger = Draggable.create("#playhead", {
   type:"x", 
@@ -40,12 +54,10 @@ var dragger = Draggable.create("#playhead", {
   onDrag:function(){
     animation.pause();
     time.textContent=animation.time().toFixed(1);
-    animation.progress(this.x/maxX);
+    animation.progress(this.x/1000);
+    //use a 'playableWidth' variable?
   }
 });
-
-svgTimeline.addEventListener('mousedown', handleClick);
-
 
 function movePlayhead() {
   //multiplication factor needs to match the svg length of the playhead
@@ -70,7 +82,8 @@ document.getElementById("reverse").onclick = function() {
 function handleClick(e) {
   let newX = findPercentIntoTimeline(e.offsetX);
   let xOffset = document.getElementById('tween_x5F_bg').getBoundingClientRect().x
-  let percentIntoDuration =  (duration - xOffset) / e.offsetX;
+  let percentIntoDuration =  (duration - xOffset) - e.offsetX;
+  console.log()
   console.log('percent into timeline: ' + newX, 
               'times 1200: ' + newX*1200, 
               'timeline.boundingRect.x: ' + svgTimeline.getBoundingClientRect().x, 
@@ -83,6 +96,13 @@ function handleClick(e) {
   gsap.set("#playhead", { x: newX});
   animation.progress(newX);
   // movePlayhead();
+}
+
+function handleWheel(e){
+  let degree = - (e.deltaY * 0.0001);
+  console.log(degree);
+  animation.progress(animation.progress() + degree);
+  console.log(animation.progress());
 }
 
 function findPercentIntoTimeline(offsetX) {

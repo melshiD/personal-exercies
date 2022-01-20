@@ -53,7 +53,6 @@ const PubSub = (function(){
         plugSource(){
             console.log('Event feed attached!');
             setTimeout(__tickHandler.bind(this), 4000);
-            // __tick = window.setInterval(__tickHandler.bind(this), 4000);
         }
 
         unplugSource(){

@@ -4,6 +4,14 @@ const PubSub = (function(){
     let subscribers;
     let __tick;
 
+    // function __unplugSource(){
+    //     _setTickNull();
+    // }
+
+    // _setTickNull(){
+    //     __tick = null;
+    // }
+
     function __tickHandler(){
         _pushPayloadToSubscribers(new Date());
         __tick = setTimeout(__tickHandler.bind(this), 4000);
@@ -38,14 +46,18 @@ const PubSub = (function(){
             __tick = null;
         }
 
+        getTick(){
+            return __tick;
+        }
+
         plugSource(){
             console.log('Event feed attached!');
-            __tick = setTimeout(__tickHandler.bind(this), 4000);
+            setTimeout(__tickHandler.bind(this), 4000);
             // __tick = window.setInterval(__tickHandler.bind(this), 4000);
         }
 
         unplugSource(){
-            window.clearInterval(__tick);
+            window.clearTimeout(__tick);
             console.log('Event feed unplugged!');
         }
 

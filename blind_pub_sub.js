@@ -63,4 +63,11 @@ const PubSub = (function(){
     let subber1 = pubOne.subscribe( (title) => {
         console.log('subber1 received subscription of ' + title);
     });
+    let subber2 = pubOne.subscribe( (title) => {
+        console.log('subber2 received subscription of ' + title);
+    });
+    
+    let pubTwo = new PubSub('Second and BEST Periodical');
+    let subber3 = pubTwo.subscribe( () => {console.log("why an I receiving this?")});
+    console.log(subber3);
 

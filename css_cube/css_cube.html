@@ -13,11 +13,11 @@
 
         body {
             height: 100vh;
-            perspective: 25em;
-            background-image: url('background.jpg');
+            perspective: 25rem;
+            background-image: url('galaxy.png');
+            background-size: cover;
             /* animation: new-perspective 14s ease-in-out alternate infinite; */
             overflow: hidden;
-
         }
 
         [class*='cube'] {
@@ -25,13 +25,13 @@
         }
 
         .cube {
-            font-size: 1vmin;
+            font-size: 3vmin;
             top: 50%;
             left: 50%;
             text-align: center;
             line-height: var(--cube-edge);
             transform-style: preserve-3d;
-            animation: ani 2s ease-in-out alternate infinite;
+            animation: ani 20s ease-in-out alternate infinite;
         }
 
         .cube__face {
@@ -40,37 +40,49 @@
             height: var(--cube-edge);
             box-shadow: 0 0 0 1px;
             --i: 0;
-            background-image: url('../hunt_for_gift/images/background.jpg');
-            border-radius: 3em;
+            background-image: url('https://picsum.photos/200/303');
+            border-radius: 0.3em;
             transform: rotate3d(var(--i), calc(1 - var(--i)), 0, calc(var(--m, 0)*90deg)) translateZ(4em);
 
             color: pink;
         }
         .cube__face:nth-child(2) {
             --m: 1;
+            background-image: url('https://picsum.photos/200/300');
+            background-size: contain;
         }
 
         .cube__face:nth-child(3) {
-            --m: 2
+            --m: 2;
+            background-image: url('https://picsum.photos/201/300');
+            background-size: cover;
         }
 
         .cube__face:nth-child(4) {
-            --m: 3
+            --m: 3;
+            background-image: url('https://picsum.photos/200/301');
+            background-size: cover;
         }
 
         .cube__face:nth-child(5) {
-            --m: 1
+            --m: 1;
+            background-image: url('https://picsum.photos/202/300');
+            background-size: cover;
         }
 
         .cube__face:nth-child(6) {
-            --m: -1
+            --m: -1;
+            background-image: url('https://picsum.photos/200/302');
+            background-size: cover;
         }
         .cube__face:nth-child(n + 5) {
             --i: 1;
+            background-image: url('https://picsum.photos/202/302');
+            background-size: cover;
         }
 
         @keyframes ani {
-          50% { transform: rotateY(180deg) rotateX(180deg) scale3d(1, 1, 1) }
+          50% { transform: rotateY(180deg) rotateX(180deg) scale3d(1, 1, 1) translateX(200px) }
           100% { transform: rotateY(360deg) rotateX(1080deg) }
         }
         @keyframes new-perspective{
@@ -83,7 +95,7 @@
 
 <body>
     <div class="cube">
-        <div class="cube__face">20</div>
+        <div class="cube__face"></div>
         <div class="cube__face"></div>
         <div class="cube__face"></div>
         <div class="cube__face"></div>

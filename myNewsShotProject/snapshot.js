@@ -5,6 +5,7 @@ async function doScreenCapture(url, site_name) {
   const page = await browser.newPage();
   await page.goto(url, {waitUntil: 'networkidle0'});  
   await page.screenshot({
+    // fullPage: false,
     fullPage: true,
     path:`./images/${site_name}.png`
   });
@@ -19,17 +20,23 @@ const news_sites = [
       name: 'melshtastic',
       url: 'https://www.melshtastic.com/'
     }, {
-      name: 'frontendmasters',
-      url: 'https://frontendmasters.com/dashboard/'
+      name: 'coindesk',
+      url: 'https://www.coindesk.com/'
     }, {
-      name: 'themeroller',
-      url: 'https://themeroller.jquerymobile.com/'
+      name: 'cointelegraph',
+      url: 'https://cointelegraph.com/'
     }, {
       name: 'reuters_ara',
       url: 'https://ara.reuters.com/'
     }, {
-      name: 'empathy_mapping',
-      url: 'https://www.nngroup.com/articles/empathy-mapping/'
+      name: 'crypto',
+      url: 'https://coinmarketcap.com/'
+    }, {
+      name: 'reuters_ara',
+      url: 'https://ara.reuters.com/'
+    }, {
+      name: 'crypto',
+      url: 'https://coinmarketcap.com/'
     }
     //how can I limit the size/length what have you of the screenshot taken
   ];
@@ -43,3 +50,4 @@ const news_sites = [
 
 
     // WHEN YOU SIT BACK DOWN, GET A CLOUDINARY ACCOUNT AND AND COPY THE CLOUD NAME, API KEY AND API SECRET TO THE .ENV FILE AS :'
+    //also, read about avoiding detection to make scraping easier

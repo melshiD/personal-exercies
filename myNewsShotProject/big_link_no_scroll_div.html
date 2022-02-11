@@ -35,9 +35,9 @@
             overflow-y: hidden;
             border-left: 2px solid #2d354c;
             border-radius: 10px;
-            box-shadow: inset 60px 0 120px #f0f;
         }
         .img-wrapper>img {
+            transition: all 2s;
             position: relative;
             -ms-zoom: calc(var(--scale));
             -moz-transform: scale(calc(var(--scale)));
@@ -46,6 +46,17 @@
             -o-transform-origin: 0 0;
             -webkit-transform: scale(calc(var(--scale)));
             -webkit-transform-origin: 0 0;
+        }
+        .img-wrapper>img:hover{
+            /* trans-origin setting dependent on screen div size  */
+            transition: all 2s;
+            -ms-zoom: calc(var(--scale)*1.1);
+            -moz-transform: scale(calc(var(--scale)*1.1));
+            -moz-transform-origin: -.45%-.45%;
+            -o-transform: scale(calc(var(--scale)*1.1));
+            -o-transform-origin: -.45%-.45%;
+            -webkit-transform: scale(calc(var(--scale)*1.1));
+            -webkit-transform-origin: -.45%-.45%;
         }
     </style>
 </head>

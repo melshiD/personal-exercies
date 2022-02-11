@@ -7,15 +7,25 @@ async function doScreenCapture(url, site_name) {
   // const d = new Date();
   // const current_time = `${d.getFullYear()}_${d.getMonth() + 1}_${d.getDate()}_${d.getHours()}_${d.getMinutes()}`
 
-  const browser = await puppeteer.launch({ headless: true });
+  let windowWidth = 1920;
+  let windowHeight = 1080;
+  const browser = await puppeteer.launch({ 
+    headless: true,
+    args: [`--window-size=1920,1080`] 
+  });
+
   const page = await browser.newPage();
-  await page.goto(url, { waitUntil: 'networkidle2' });
+  await page._client.send('Emulation.clearDeviceMetricsOverride');
+
+//WHEN YOU SIT BACK DOWN return a list of any links that didn't make it
+
+  await page.goto(url, { waitUntil: 'networkidle2' }).catch( err => console.log(err));
 
   //   for local file storage
   await page.screenshot({
     fullPage: false,
     path: `./images/${site_name}.png`
-  });
+  }).catch( err => console.log(`trouble writing file`));
   console.log(`${(await browser.pages()).length}: NUMBER OF BROWSER WINDOWS OPEN`);
   browser.close();
 }
@@ -33,3 +43,8 @@ const loopAndGetSnapshot = async (siteList) => {
 }
 
 loopAndGetSnapshot(sitesByLine);
+
+//WHEN YOU SIT BACK DOWN, ADD ERROR HANDLING SO WE CAN MAKE IT THROUGH THE
+//WHOLE LIST
+
+//Need to address the size of the screenshots

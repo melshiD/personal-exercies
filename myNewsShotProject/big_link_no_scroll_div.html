@@ -10,13 +10,14 @@
         /* !!!! The "Unexplained extra padding on bottom of div" went away
         when I switched to overflow-y: hidden instead of scroll? */
         *{
-            --scale: 0.55;
-            --img-width: 800px;
-            --standard-screen-height: 640px;
+            --scale: 0.2;
+            --img-width: 1920px;
+            --standard-screen-height: 1082px;
         }
         body{
             display: flex;
             flex-wrap: wrap;
+            background-color: #2d353c;
         }
         .img-wrapper {
             /* i can NOT figure out how to fix the padding at the bottom of the divs */
@@ -31,7 +32,7 @@
             position: relative;
             overflow-x: hidden;
             overflow-y: hidden;
-            border: 2px solid darkblue;
+            border-left: 2px -5px -5px solid #2d354c;
             border-radius: 10px;
         }
         .img-wrapper>img {
@@ -48,33 +49,16 @@
 </head>
 
 <body>
-    <div class="img-wrapper">
-        <img src="./images/nasa.png" alt="image"></img>
-    </div>
-    <div class="img-wrapper">
-        <img src="./images/melshtastic.png" alt="image"></img>
-    </div>
-    <div class="img-wrapper">
-        <img src="./images/thispage.png" alt="image"></img>
-    </div>
-    <div class="img-wrapper">
-        <img src="./images/reuters_japan.png" alt="image"></img>
-    </div>
-    <div class="img-wrapper">
-        <img src="./images/empathy_mapping.png" alt="image"></img>
-    </div>
-    <div class="img-wrapper">
-        <img src="./images/cointelegraph.png" alt="image"></img>
-    </div>
-    <div class="img-wrapper">
-        <img src="./images/reuters_germany.png" alt="image"></img>
-    </div>
-    <div class="img-wrapper">
-        <img src="./images/coindesk.png" alt="image"></img>
-    </div>
-    <div class="img-wrapper">
-        <img src="./images/crypto.png" alt="image"></img>
-    </div>
+    <script>
+        for (let i = 1; i < 370; i ++){
+            let newDiv = document.createElement('div');
+            newDiv.setAttribute('class', 'img-wrapper');
+            let newImg = document.createElement('img');
+            newImg.setAttribute('src', `./images/${i}.png`);
+            newDiv.appendChild(newImg);
+            document.body.appendChild(newDiv);
+        }
+    </script>
 </body>
 
 </html>

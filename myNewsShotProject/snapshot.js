@@ -17,13 +17,12 @@ async function doScreenCapture(url, site_name) {
   const page = await browser.newPage();
   await page._client.send('Emulation.clearDeviceMetricsOverride');
 
-//WHEN YOU SIT BACK DOWN return a list of any links that didn't make it
-
   await page.goto(url, { waitUntil: 'networkidle2' }).catch( err => console.log(err));
 
   //   for local file storage
   await page.screenshot({
-    fullPage: false,
+    fullPage: true,
+    // fullPage: false,
     path: `./images/${site_name}.png`
   }).catch( err => console.log(`trouble writing file`));
   console.log(`${(await browser.pages()).length}: NUMBER OF BROWSER WINDOWS OPEN`);
@@ -41,10 +40,8 @@ const loopAndGetSnapshot = async (siteList) => {
     // console.log(site);
   }
 }
+//RUN THIS TO RUN THE MAIN SCRIPT
+// loopAndGetSnapshot(sitesByLine);
 
-loopAndGetSnapshot(sitesByLine);
-
-//WHEN YOU SIT BACK DOWN, ADD ERROR HANDLING SO WE CAN MAKE IT THROUGH THE
-//WHOLE LIST
-
-//Need to address the size of the screenshots
+//Need to return a list of any links that didn't make it
+doScreenCapture('C:/Users/davem/Coding/personal_exercises/myNewsShotProject/big_link_no_scroll_div.html', 'meta_divs_full');

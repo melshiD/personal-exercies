@@ -2,7 +2,7 @@ const svgns = "http://www.w3.org/2000/svg";
 const fullSvg = document.querySelector("svg");
 let count = 0;
 
-  for (let i = 0; i < 52; i++) {
+  for (let i = 0; i < 156; i++) {
     for (let j = 0; j < 7; j++) {
     count++;
 
@@ -86,4 +86,20 @@ function changePatternBelivably(){
   });
 }
 
-changePatternBelivably();
+async function changeOnAnInterval(){
+  const timeDelay = ms => new Promise(resolve => setTimeout(resolve, ms));
+  const patternKeys = [6, 7, 14, 0];
+  const patternKey = key => {
+    return timeDelay(800).then( () => {
+      changePatternVisually(key);
+    })
+  }
+  for(let i of patternKeys){
+    await patternKey(i);
+  }
+  changePatternBelivably();
+}
+let viewBox = document.querySelector('svg');
+viewBox.setAttribute('viewBox', '0 0 12480 560');
+changeOnAnInterval()
+// changePatternBelivably();

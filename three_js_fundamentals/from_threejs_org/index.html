@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>From ThreeJS.org</title>
+    <script src="./loaders/loaders.js"></script>
+    <script type="module">
+        import * as THREE from './node_modules/three/build/three.module.js';
+
+
+
+        function main() {
+            const canvas = document.querySelector('#c');
+            const renderer = new THREE.WebGLRenderer({ canvas });
+
+            const fov = 75,
+                aspect = 2,
+                near = 0.1,
+                far = 5;
+            const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
+            camera.position.z = 2;
+            const scene = new THREE.Scene();
+
+            {
+                const color = 0xFFFFF;
+                const intensity = 1;
+                const light = new THREE.DirectionalLight(color, intensity);
+                light.position.set(-11, 2, 4);
+                scene.add(light);
+            }
+            const boxWidth = 1,
+                boxHeight = 1,
+                boxDepth = 1;
+
+            //HOW DO I IMPORT THE MODEL HERE?
+            const geometry = new THREE.BoxGeometry(boxWidth, boxHeight, boxDepth);
+            const material = new THREE.MeshPhongMaterial();
+
+            function makeInstance(geometry, color, x) {
+                const material = new THREE.MeshPhongMaterial({ color });
+                const cube = new THREE.Mesh(geometry, material);
+                scene.add(cube);
+                cube.position.x = x;
+                return cube;
+            }
+            const cubes = [
+                makeInstance(geometry, 0x44aa88, 0),
+                makeInstance(geometry, 0x8844aa, -1),
+                makeInstance(geometry, '#39FF15', 1)
+            ];
+
+            function render(time) {
+                time *= 0.001; //convert to seconds
+                cubes.forEach((cube, ndx) => {
+                    const speed = 1 + ndx * .1;
+                    const rot = time * speed;
+                    cube.rotation.x = rot;
+                    cube.rotation.y = rot;
+                });
+                renderer.render(scene, camera);
+                requestAnimationFrame(render);
+            }
+            requestAnimationFrame(render);
+        }
+
+
+        main();
+
+    </script>
+</head>
+
+<body>
+    <canvas id="c"></canvas>
+</body>
+
+</html>

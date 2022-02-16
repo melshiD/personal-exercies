@@ -6,59 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git Grid Animation</title>
-    <style>
-        * {
-            --container-height: 30vh;
-            --day-height: calc(var(--container-height)/10);
-            --day-width: var(--day-height);
-            /* --day-width: 150px;
-            --day-height: 150px; */
-            --green-0: #0e1e1c;
-            --green-1: #0e4429;
-            --green-2: #006d32;
-            --green-3: #26a641;
-            --green-4: #39d353;
-        }
-
-        body{
-            background-color: #161b22;
-        }
-
-        .emptyDay {
-            width: var(--day-width);
-            height: var(--day-height);
-            border: solid rgb(27 31 35 / 6%) calc(var(--day-width)/20);
-            margin: calc(var(--day-width)/5.8);
-            border-radius: 10%;
-            background-color: #161b22;
-            box-sizing: border-box;
-            background-color: var(--green-0);
-        }
-        .emptyDay.commit-1{
-            background-color: var(--green-1);
-        }
-        .emptyDay.commit-2{
-            background-color: var(--green-2);
-        }
-        .emptyDay.commit-3{
-            background-color: var(--green-3);
-        }
-        .emptyDay.commit-4{
-            background-color: var(--green-4);
-        }
-        .calendar-container {
-            margin: 0 auto;
-            /* min-width: calc(var(--day-width)*52); */
-            min-width: 100vw;
-            height: 30vh;
-            position: absolute;
-            background-color: #010409;
-            display: flex;
-            flex-flow: column wrap;
-            align-items: baseline;
-            justify-content: space-around;
-        }
-    </style>
 </head>
 
 <body>

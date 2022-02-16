@@ -1,4 +1,3 @@
-console.clear();
 const svgns = "http://www.w3.org/2000/svg";
 const demo = document.querySelector("svg");
 let count = 0;
@@ -10,6 +9,7 @@ for (let j = 0; j < 8; j++) {
 
     let newSquare = document.createElementNS(svgns, "rect");
     let txt = document.createElementNS(svgns, "text");
+    
     demo.appendChild(newSquare);
     demo.appendChild(txt);
     txt.textContent = count;

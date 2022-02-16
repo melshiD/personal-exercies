@@ -6,7 +6,7 @@
     --green-4: #39d353;
     --stroke-width: 2%;
     --commit-border-opacity: 0.14;
-    --day-transition-duration: 1.2s;
+    --day-transition-duration: 750ms;
 }
 
 body{

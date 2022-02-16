@@ -77,20 +77,20 @@ function changePatternBelivably(){
     if(numberInput % 7 == 0 || numberInput % 7 == 1){
       let rand = Math.floor(Math.random()*2);
       // daySquare.classList.add(`commit-red`);
-      daySquare.classList.add(`commit-${rand}`);
+      daySquare.classList.add(`commit-${rand+1}`);
     }
     else{
       let rand = Math.floor(Math.random()*4);
-      daySquare.classList.add(`commit-${rand+1}`);
+      daySquare.classList.add(`commit-${rand+2}`);
     }
   });
 }
 
 async function changeOnAnInterval(){
   const timeDelay = ms => new Promise(resolve => setTimeout(resolve, ms));
-  const patternKeys = [6, 7, 14, 0];
+  const patternKeys = [6, 8, 0];
   const patternKey = key => {
-    return timeDelay(800).then( () => {
+    return timeDelay(500).then( () => {
       changePatternVisually(key);
     })
   }
@@ -102,4 +102,3 @@ async function changeOnAnInterval(){
 let viewBox = document.querySelector('svg');
 viewBox.setAttribute('viewBox', '0 0 12480 560');
 changeOnAnInterval()
-// changePatternBelivably();

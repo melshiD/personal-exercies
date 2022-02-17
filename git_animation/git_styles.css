@@ -7,6 +7,8 @@
     --stroke-width: 2%;
     --commit-border-opacity: 0.14;
     --day-transition-duration: 750ms;
+    --go-solid-fill-color: #39d353;
+    --go-solid-stroke-color: var(var(--go-solid-fill-color))
 }
 
 body{
@@ -17,8 +19,8 @@ body{
     overflow: hidden;
     border-top: #8b949e 5px solid;
     border-bottom: #8b949e 5px solid;
-    margin-top: 2em;
-    padding-top: 2px;
+    /* margin-top: 0.2em;
+    padding-top: 0; */
     background-color: black;
 }
 
@@ -28,7 +30,8 @@ svg{
 }
 
 .dayContainer{
-    fill: #0d1117;
+    /* fill: #0d1117; */
+    fill: rgba(13, 17, 23, 1);
 }
 
 .emptyDay {
@@ -73,4 +76,9 @@ svg{
     stroke: rgba(255, 255, 255, var(--commit-border-opacity));
     stroke-width: 2px;
     transition: all var(--day-transition-duration);
+}
+.emptyDay#go-solid{
+    transition: all 0.5;
+    fill: var(--go-solid-fill-color);
+    stroke: var(--go-solid-stroke-color);
 }

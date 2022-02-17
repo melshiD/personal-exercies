@@ -1,3 +1,5 @@
+
+
 const svgns = "http://www.w3.org/2000/svg";
 const fullSvg = document.querySelector("svg");
 let count = 0;
@@ -47,18 +49,6 @@ let count = 0;
     });
   }
 }
-let targets = gsap.utils.toArray("button");
-targets.forEach((obj) => {
-  obj.addEventListener("click", animateViewBox);
-});
-function animateViewBox() {
-  let moveTo = this.getAttribute("data-view");
-  gsap.to(demo, {
-    duration: 1,
-    attr: { viewBox: moveTo },
-    ease: "power3.inOut"
-  });
-}
 
 function changePatternVisually(patternSeed){
   let days = document.querySelectorAll('.emptyDay');
@@ -97,23 +87,41 @@ async function changeOnAnInterval(delayAmount){
   for(let i of patternKeys){
     await patternKey(i);
   }
-  changePatternBelivably();
+  await changePatternBelivably();
 }
+
 let viewBox = document.querySelector('svg');
 // viewBox.setAttribute('viewBox', '0 0 16640 560');
 // viewBox.setAttribute('viewBox', '0 0 12480 560');
 // viewBox.setAttribute('viewBox', '0 0 4160 560');
 viewBox.setAttribute('viewBox', '0 0 5500 560');
-changeOnAnInterval(300);
 
 function animateViewBox(newViewBox) {
   let target = document.querySelector('svg');
-
-  gsap.to(target, {
-    duration: 1.2,
-    attr: { viewBox: newViewBox },
-    // ease: "Expo.inOut"
-    ease: "power4.inOut"
-  }, 1.6);
+  tl = gsap.timeline({ defaults: {duration: 1.2, ease: "power4.inOut"} } );
+  tl.delay(1.8);
+  tl.to(target, {attr: {viewBox: newViewBox}},);
+  // tl.delay(1.8);
+  // tl.addLabel('change-to-solid');
+  // tl.to(['.dayContainer', '.emptyDay'],{stroke: 'rgba(27, 31, 35, 1)', fill: 'rgba(27, 31, 35, 1)', duration: 0.7}, 'change-to-solid');
+  // tl.to('.svg-container', {borderWidth: '2px', backgroundColor: 'rgba(27, 31, 35, 1)'}, 'change-to-solid');
+  // tl.addLabel('squish-nav');
+  // tl.to(target, {attr: {viewBox: '0 0 10160 40'}, ease: 'linear'}, 'squish-nav');
+  
+  tl.play();
 }
+
+function goSolid(){
+  let days = document.querySelectorAll('.emptyDay');
+  let borders = document.querySelectorAll('.dayContainer');
+  days.forEach( daySquare => {
+      daySquare.setAttribute('id', 'go-solid');        
+  });
+  borders.forEach( border => {
+    border.setAttribute('id', 'go-soild');
+  })
+}
+
+changeOnAnInterval(300);
 animateViewBox('0 0 16640 560');
+// animateViewBox('0 0 16640 560');

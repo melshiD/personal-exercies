@@ -2,7 +2,7 @@ const svgns = "http://www.w3.org/2000/svg";
 const fullSvg = document.querySelector("svg");
 let count = 0;
 
-  for (let i = 0; i < 156; i++) {
+  for (let i = 0; i < 208; i++) {
     for (let j = 0; j < 7; j++) {
     count++;
 
@@ -86,11 +86,11 @@ function changePatternBelivably(){
   });
 }
 
-async function changeOnAnInterval(){
+async function changeOnAnInterval(delayAmount){
   const timeDelay = ms => new Promise(resolve => setTimeout(resolve, ms));
-  const patternKeys = [6, 8, 0];
+  const patternKeys = [8, 14, 6, 6];
   const patternKey = key => {
-    return timeDelay(500).then( () => {
+    return timeDelay(delayAmount).then( () => {
       changePatternVisually(key);
     })
   }
@@ -100,5 +100,20 @@ async function changeOnAnInterval(){
   changePatternBelivably();
 }
 let viewBox = document.querySelector('svg');
-viewBox.setAttribute('viewBox', '0 0 12480 560');
-changeOnAnInterval()
+// viewBox.setAttribute('viewBox', '0 0 16640 560');
+// viewBox.setAttribute('viewBox', '0 0 12480 560');
+// viewBox.setAttribute('viewBox', '0 0 4160 560');
+viewBox.setAttribute('viewBox', '0 0 5500 560');
+changeOnAnInterval(300);
+
+function animateViewBox(newViewBox) {
+  let target = document.querySelector('svg');
+
+  gsap.to(target, {
+    duration: 1.2,
+    attr: { viewBox: newViewBox },
+    // ease: "Expo.inOut"
+    ease: "power4.inOut"
+  }, 1.6);
+}
+animateViewBox('0 0 16640 560');

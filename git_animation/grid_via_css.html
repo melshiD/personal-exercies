@@ -6,6 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Git Grid Animation</title>
+    <style>
+        *{
+            --outer-width: 50px;
+            --outer-height: 50px;
+        }
+        body{
+            background-color: black;
+        }
+        .calendar-container{
+            width: 100vw;
+            height: 350px;
+            border-top: 5px #3d1212 solid;
+            border-bottom: 5px #3d1212 solid;
+            display: flex;
+            flex-flow: column wrap;
+        }
+        .emptyDay{
+            box-sizing: border-box;
+            width: var(--outer-width);
+            height: var(--outer-height);
+            background-color: green;
+            border: 4px black solid;
+            border-radius: 13%;
+            transition: all 2s;
+        }
+        .emptyDay:hover{
+            transition: all 2s;
+            background-color: #0c0018;
+        }
+    </style>
 </head>
 
 <body>

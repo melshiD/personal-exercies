@@ -26,3 +26,4 @@ mark.speak();
 
 let markBark = mark.speak;
 markBark();
+// http://127.0.0.1:5500/three_js_fundamentals/from_threejs_org/loaders/loaders.js net::ERR_ABORTED 404 (Not Found)

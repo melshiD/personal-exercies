@@ -1,7 +1,7 @@
 {
-  "name": "personal_exercises",
+  "name": "three_js_fundamentals",
   "version": "1.0.0",
-  "description": "",
+  "description": "displaying 3d content into the browser",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -9,9 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "animejs": "^3.2.1",
-    "express": "^4.17.2",
-    "gsap": "^3.8.0",
     "three": "^0.137.5"
   }
 }

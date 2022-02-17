@@ -13,3 +13,4 @@ router.get('/shelters/:id/edit', (req, res) => {
     res.send('editing shelter');
 });
 
+module.exports = router;

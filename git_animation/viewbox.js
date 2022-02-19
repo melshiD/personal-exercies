@@ -98,9 +98,12 @@ viewBox.setAttribute('viewBox', '0 0 5500 560');
 
 function animateViewBox(newViewBox) {
   let target = document.querySelector('svg');
-  tl = gsap.timeline({ defaults: {duration: 1.2, ease: "power4.inOut"} } );
+  tl = gsap.timeline({ defaults: {duration: 1.2, ease: "power1.inOut"} } );
   tl.delay(1.8);
-  tl.to(target, {attr: {viewBox: newViewBox}},);
+  tl.to(target, {attr: {viewBox: newViewBox}, duration: .98, ease: 'power3'}, 'zoom-out-move-up');
+  tl.to('.svg-container', {top: '2vh', ease: "power3.inOut", duration: 1.2}, 'zoom-out-move-up');
+  // tl.to('.emptyDay', {attr:{rx: '0.01%'}, ease: "power3.inOut", duration: 1.2}, 'zoom-out-move-up');
+
   // tl.delay(1.8);
   // tl.addLabel('change-to-solid');
   // tl.to(['.dayContainer', '.emptyDay'],{stroke: 'rgba(27, 31, 35, 1)', fill: 'rgba(27, 31, 35, 1)', duration: 0.7}, 'change-to-solid');
@@ -123,5 +126,5 @@ function goSolid(){
 }
 
 changeOnAnInterval(300);
-animateViewBox('0 0 16640 560');
+animateViewBox('0 0 16540 560');
 // animateViewBox('0 0 16640 560');

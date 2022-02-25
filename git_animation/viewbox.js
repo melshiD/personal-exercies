@@ -84,6 +84,14 @@ async function changeOnAnInterval(delayAmount){
       changePatternVisually(key);
     })
   }
+  //FIGURE OUT HOW TO GRAB ONE OF THE SVG ELEMENTS AT THE VISIBLE EDGE
+  //OF THE WINDOW, AND THEN RETURN IT'S DAYNUMBER ID, THEN
+  //USE IT TO PROGRAMATICALLY DECIDE HOW MANY ELEMENTS TO CHANGE BEFORE THE
+  //ZOOM
+
+
+  //below verson of look for ALL elements, even ones
+  //not currently visible
   for(let i of patternKeys){
     await patternKey(i);
   }
@@ -91,9 +99,6 @@ async function changeOnAnInterval(delayAmount){
 }
 
 let viewBox = document.querySelector('svg');
-// viewBox.setAttribute('viewBox', '0 0 16640 560');
-// viewBox.setAttribute('viewBox', '0 0 12480 560');
-// viewBox.setAttribute('viewBox', '0 0 4160 560');
 viewBox.setAttribute('viewBox', '0 0 5500 560');
 
 function animateViewBox(newViewBox) {
@@ -102,15 +107,6 @@ function animateViewBox(newViewBox) {
   tl.delay(1.8);
   tl.to(target, {attr: {viewBox: newViewBox}, duration: .98, ease: 'power3'}, 'zoom-out-move-up');
   tl.to('.svg-container', {top: '2vh', ease: "power3.inOut", duration: 1.2}, 'zoom-out-move-up');
-  // tl.to('.emptyDay', {attr:{rx: '0.01%'}, ease: "power3.inOut", duration: 1.2}, 'zoom-out-move-up');
-
-  // tl.delay(1.8);
-  // tl.addLabel('change-to-solid');
-  // tl.to(['.dayContainer', '.emptyDay'],{stroke: 'rgba(27, 31, 35, 1)', fill: 'rgba(27, 31, 35, 1)', duration: 0.7}, 'change-to-solid');
-  // tl.to('.svg-container', {borderWidth: '2px', backgroundColor: 'rgba(27, 31, 35, 1)'}, 'change-to-solid');
-  // tl.addLabel('squish-nav');
-  // tl.to(target, {attr: {viewBox: '0 0 10160 40'}, ease: 'linear'}, 'squish-nav');
-  
   tl.play();
 }
 
@@ -127,4 +123,3 @@ function goSolid(){
 
 changeOnAnInterval(300);
 animateViewBox('0 0 16540 560');
-// animateViewBox('0 0 16640 560');

@@ -1,3 +1,89 @@
 Nonce: number only used once
 
-shift right:
+
+I need one function to set the interval and receive a callback
+  to perform the required shift or rotation.  It needs to return
+  the new content as well, I suspect
+
+  Main Basic Operations
+  rotation right
+  first shift
+  xor
+  integer addition (followed by mod2^32 also writtena as mod**32)
+
+  "Lowercase sigma 0"
+  input:      00000000000000000011111111111111
+  σ0(x):
+  ROTR 7:     11111110000000000000000001111111
+  ROTR 18:    00001111111111111100000000000000    XOR
+  SHR 3:      00000000000000000000011111111111    XOR
+
+  σ0(x):      11110001111111111100011110000000
+----------------------  Other main operations:
+  "Lowercase sigma 1"
+  σ1(x):
+  ROTR 17:
+  ROTR 19:        XOR
+  SHR 10:         XOR
+
+  "Uppercase Sigma 0" 
+  Σ0(x):
+  ROTR 2:
+  ROTR 13:        XOR
+  ROTR 22:        XOR
+
+  "Uppercase Sigma 1" 
+  Σ1(x):
+  ROTR 6:
+  ROTR 11:        XOR
+  ROTR 25:        XOR
+
+  CHOICE:
+  If the x value is a 1, the result will be taken from y, otherwise from z
+  x: 00000000111111110000000011111111
+  y: 00000000000000001111111111111111
+  z: 11111111111111110000000000000000
+   ---------------------------------
+    11111111000000000000000011111111
+
+  MAJORITY (of three bits)
+  x: 00000000111111110000000011111111
+  y: 00000000000000001111111111111111
+  z: 11111111111111110000000000000000
+   ---------------------------------
+    00000000111111110000000011111111
+
+
+
+--------------
+constants (K)
+--------------
+find the cubed roots of the first 64 prime numbers (starting with 2),
+and use the fractional portion of the number
+
+K0 = Math.cbrt(2)
+K1 = Math.cbrt(3)
+K2 = Math.cbrt(5)
+K3 = Math.cbrt(7)
+K4 = Math.cbrt(11)
+...and so on
+
+---
+String.prototype.fixedSize = function(size) {
+  return this.padEnd(size).substring(0, size);
+}
+---
+Math.cbrt(13).toString(2).split('.')[1].substring(0, 32);
+This line will convert the prime into its fractional binary component
+
+Also this from Stack Overflow, but I need to read more about this
+sort of bitwise cohersion
+function dec2bin(dec) {
+  return (dec >>> 0).toString(2);
+}
+
+console.log(dec2bin(1)); // 1
+console.log(dec2bin(-1)); // 11111111111111111111111111111111
+console.log(dec2bin(256)); // 100000000
+console.log(dec2bin(-256)); // 11111111111111111111111100000000
+-------------------

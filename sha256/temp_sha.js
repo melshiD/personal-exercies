@@ -1,5 +1,3 @@
-
-
 function sha256(ascii) {
     function rightRotate(value, amount) {
         return (value >>> amount) | (value << (32 - amount));
@@ -96,3 +94,70 @@ function sha256(ascii) {
     }
     return result;
 };
+
+async function changeOnAnInterval(delayAmount){
+    const timeDelay = ms => new Promise(resolve => setTimeout(resolve, ms));
+    const patternKeys = [8, 14, 6, 6];
+    const patternKey = key => {
+      return timeDelay(delayAmount).then( () => {
+        changePatternVisually(key);
+      })
+    }
+
+    for(let i of patternKeys){
+      await patternKey(i);
+    }
+  }
+
+  //I need one function to set the interval and receive a callback
+  //to perform the required shift or rotation.  It needs to return
+  //the new content as well, I suspect
+
+  //Main Basic Operations
+  //rotation right
+  //first shift
+  //xor
+  //integer addition (followed by mod2^32 also writtena as mod**32)
+
+
+  //"Lowercase sigma 0"
+  //input:      00000000000000000011111111111111
+  // σ0(x):
+  //ROTR 7:     11111110000000000000000001111111
+  //ROTR 18:    00001111111111111100000000000000    XOR
+  //SHR 3:      00000000000000000000011111111111    XOR
+
+  //σ0(x):      11110001111111111100011110000000
+//----------------------  Other main operations:
+  //"Lowercase sigma 1"
+  //σ1(x):
+  //ROTR 17:
+  //ROTR 19:        XOR
+  //SHR 10:         XOR
+
+  //"Uppercase Sigma 0" 
+  //Σ0(x):
+  //ROTR 2:
+  //ROTR 13:        XOR
+  //ROTR 22:        XOR
+
+  //"Uppercase Sigma 1" 
+  //Σ1(x):
+  //ROTR 6:
+  //ROTR 11:        XOR
+  //ROTR 25:        XOR
+
+  //CHOICE:
+  //If the x value is a 1, the result will be taken from y, otherwise from z
+  //x: 00000000111111110000000011111111
+  //y: 00000000000000001111111111111111
+  //z: 11111111111111110000000000000000
+  //  ---------------------------------
+  //   11111111000000000000000011111111
+
+  //MAJORITY (of three bits)
+  //x: 00000000111111110000000011111111
+  //y: 00000000000000001111111111111111
+  //z: 11111111111111110000000000000000
+  //  ---------------------------------
+  //   00000000111111110000000011111111

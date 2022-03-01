@@ -1,2 +1,3 @@
 Nonce: number only used once
 
+shift right:

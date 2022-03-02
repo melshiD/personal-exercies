@@ -59,7 +59,8 @@ I need one function to set the interval and receive a callback
 constants (K)
 --------------
 find the cubed roots of the first 64 prime numbers (starting with 2),
-and use the fractional portion of the number
+and use the fractional portion of the number (the sq or cbd root
+of a prime number yields an irrational number... cool feature of primes)
 
 K0 = Math.cbrt(2)
 K1 = Math.cbrt(3)
@@ -87,3 +88,64 @@ console.log(dec2bin(-1)); // 11111111111111111111111111111111
 console.log(dec2bin(256)); // 100000000
 console.log(dec2bin(-256)); // 11111111111111111111111100000000
 -------------------
+
+A message is parsed into ascii values and then their binary representation:
+Input: abc (String)
+bytes: [97, 98, 99]
+bytes as represented[01100001, 01100010, 01100011]
+all mashed together:
+Message: 011000010110001001100011
+
+Padding:
+The algo works on chunks of 512 bits at a time, so we need to add some padding.
+message: 011000010110001001100011 + 1 (the added 1 acts as a separator between
+the original message and the 0's being added for padding) + 000000... until 
+the message has reached 448 bits.
+
+We stop padding at 448 bits because a final 64-bits will be added to encode the length
+of the message (length being the number of bits of the original message) => we add
+a final 64 bits, whose ending represents the length of our 24-bit message => 11000
+
+To review:
+original message:
+abc => 011000010110001001100011
+message with padding separator token:
+0110000101100010011000111
+message padded up to 448 bits:
+0110000101100010011000111000000000000000000000000000000000000000 :64
+0000000000000000000000000000000000000000000000000000000000000000 :128
+0000000000000000000000000000000000000000000000000000000000000000 :192
+0000000000000000000000000000000000000000000000000000000000000000 :256
+0000000000000000000000000000000000000000000000000000000000000000 :320
+0000000000000000000000000000000000000000000000000000000000000000 :384
+0000000000000000000000000000000000000000000000000000000000000000 :448
+and the final 64 bits to encode the original message length
+0000000000000000000000000000000000000000000000000000000000011000 :512
+
+
+Now we have the message that will be hashed.  
+(more later on if the message had been longer)
+It's time to make a message schedule: note, each message block gets its own schedule,
+so consider the roughly 2mb block limit on bitcoin.  LOTS of schedules).
+
+We will use the input message to produce the first 16 worsd
+of our 64-word message schedule:
+Message Schedule=====================
+W0 : 01100001011000100110001110000000 ->      01100001011000100110001110000000
+W1 : 00000000000000000000000000000000 ->  σ0  00000000000000000000000000000000
+W2 : 00000000000000000000000000000000  (we say a 'lowercase sigma zero' rotation has been applied to this t-15, although it's boring here)
+W3 : 00000000000000000000000000000000
+W4 : 00000000000000000000000000000000
+W5 : 00000000000000000000000000000000
+W6 : 00000000000000000000000000000000
+W7 : 00000000000000000000000000000000
+W8 : 00000000000000000000000000000000
+W9 : 00000000000000000000000000000000 ->      00000000000000000000000000000000
+W10: 00000000000000000000000000000000
+W11: 00000000000000000000000000000000
+W12: 00000000000000000000000000000000
+W13: 00000000000000000000000000000000
+W14: 00000000000000000000000000000000 ->  σ1  00000000000000000000000000000000
+W15: 00000000000000000000000000011000
+W16: 01100001011000100110001110000000    =   σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
+

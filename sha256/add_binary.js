@@ -1,4 +1,3 @@
-const { download } = require("express/lib/response");
 
 function addArrayOfBinWords(arrayOfWords){
     //this is a novel way I came up with for doing binary math on multiple
@@ -22,16 +21,38 @@ function addArrayOfBinWords(arrayOfWords){
 }
 
 function shiftRight(amount){
-    //ridiculous padding function to fill in the front with zeros
+    //padding to fill in the front with zeros
     let padding = Array.apply(null, Array(amount)).map(function (pad) {return'0'}).join('');
     return function(word){
-        let shifted = `${padding}${word.slice(0, -17)}`;
+        let shifted = `${padding}${word.slice(0, -Math.abs(amount))}`;
         console.log(`original word :${word}`);
         console.log(`${amount} Char right :${shifted}`);
 
         // return `${padding}${word.slice(0, -17)}`;
         return shifted;
     }
+}
+
+function rightRotation(amount){
+    return function(word){
+        let newWord = word.slice(word.length - amount)+(word.slice(0, word.length - amount));
+        return newWord;
+    }
+}
+
+function collapseArrayOfBinWords(arrayOfWords){
+    let collapsedWordsArray = [];
+    for(let i = arrayOfWords[0].length-1; i >= 0; i --){
+        let columnSum = 0;
+        arrayOfWords.forEach( (word) => columnSum += parseInt(word[i]) );
+        collapsedWordsArray.push(columnSum);
+    }
+    return collapsedWordsArray.reverse();
+}
+
+function exclusiveOr(arrayOfWords){
+    let collapsedWordsArray = collapseArrayOfBinWords(arrayOfWords);
+    console.log(collapsedWordsArray);
 }
 
 const SR17 = shiftRight(17);
@@ -42,8 +63,9 @@ let testArray = ['11100001011000100110001110001100',
                  '01000100000000000000000010000000',
                  '01100001011000101100000110000011'];
 
-// console.log(addArrayOfBinWords(testArray));
+const ROTR13 = rightRotation(13);
+let rotated = ROTR13('1111111111111110000000011111');
+console.log(rotated);
 
-// WHEN YOU SIT BACK DOWN FIGURE OUT TWO THINGS: 
-// IS THE SHIFT RIGHT SR FUNCTION REALLY HANDING INPUT AS BINARY AS IT SHOULD
-// WHATS UP WITH THE SIGN OVERFLOWING WHEN I USE ALL 32 BITS TO THE SR17 FUNCTION
+console.log(addArrayOfBinWords(testArray));
+exclusiveOr(testArray);

@@ -1,3 +1,17 @@
+let testArray = ['11100001011000100110001110001100',
+                 '01100001011000000110001110000000',
+                 '01000100000000000000000010000000',
+                 '01100001011000101100000110000011'];
+
+function collapseArrayOfBinWords(arrayOfWords){
+    let collapsedWordsArray = [];
+    for(let i = arrayOfWords[0].length-1; i >= 0; i --){
+        let columnSum = 0;
+        arrayOfWords.forEach( (word) => columnSum += parseInt(word[i]) );
+        collapsedWordsArray.push(columnSum);
+    }
+    return collapsedWordsArray.reverse();
+}
 
 function addArrayOfBinWords(arrayOfWords){
     //this is a novel way I came up with for doing binary math on multiple
@@ -25,9 +39,8 @@ function shiftRight(amount){
     let padding = Array.apply(null, Array(amount)).map(function (pad) {return'0'}).join('');
     return function(word){
         let shifted = `${padding}${word.slice(0, -Math.abs(amount))}`;
-        console.log(`original word :${word}`);
-        console.log(`${amount} Char right :${shifted}`);
-
+        // console.log(`original word :${word}`);
+        // console.log(`${amount} Char right :${shifted}`);
         // return `${padding}${word.slice(0, -17)}`;
         return shifted;
     }
@@ -40,32 +53,43 @@ function rightRotation(amount){
     }
 }
 
-function collapseArrayOfBinWords(arrayOfWords){
-    let collapsedWordsArray = [];
-    for(let i = arrayOfWords[0].length-1; i >= 0; i --){
-        let columnSum = 0;
-        arrayOfWords.forEach( (word) => columnSum += parseInt(word[i]) );
-        collapsedWordsArray.push(columnSum);
-    }
-    return collapsedWordsArray.reverse();
-}
-
 function exclusiveOr(arrayOfWords){
     let collapsedWordsArray = collapseArrayOfBinWords(arrayOfWords);
-    console.log(collapsedWordsArray);
+    for(let i = 0; i < collapsedWordsArray.length; i++){
+        collapsedWordsArray[i] = collapsedWordsArray[i]%2;
+    }
+    return collapsedWordsArray;
 }
 
-const SR17 = shiftRight(17);
-let shifted = SR17('11100001011000100110001110001100');
+function lowerCaseSigmaZero(word){
+    const ROTR7 = rightRotation(7),
+          ROTR18 = rightRotation(18),
+          SHR3 = shiftRight(3);
+    let wordArray = [ROTR7(word), ROTR18(word), SHR3(word)];
+    return exclusiveOr(wordArray);
+}
 
-let testArray = ['11100001011000100110001110001100',
-                 '01100001011000000110001110000000',
-                 '01000100000000000000000010000000',
-                 '01100001011000101100000110000011'];
+function lowerCaseSigmaOne(word){
+    const ROTR17 = rightRotation(17),
+          ROTR19 = rightRotation(19),
+          SHR10 = shiftRight(10);
+    let wordArray = [ROTR17(word), ROTR19(word), SHR10(word)];
+    return exclusiveOr(wordArray);
+}
 
-const ROTR13 = rightRotation(13);
-let rotated = ROTR13('1111111111111110000000011111');
-console.log(rotated);
+function upperCaseSigmaZero(word){
+    const ROTR2 = rightRotation(2),
+          ROTR13 = rightRotation(13),
+          ROTR22 = rightRotation(22);
+    let wordArray = [ROTR2(word), ROTR13(word), ROTR22(word)];
+    return exclusiveOr(wordArray);
+}
 
-console.log(addArrayOfBinWords(testArray));
-exclusiveOr(testArray);
+function upperCaseSigmaOne(word){
+    const ROTR6 = rightRotation(6),
+          ROTR11 = rightRotation(11),
+          ROTR25 = rightRotation(25);
+    let wordArray = [ROTR6(word), ROTR11(word), ROTR25(word)];
+    return exclusiveOr(wordArray);
+}
+

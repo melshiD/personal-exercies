@@ -1,3 +1,5 @@
+const { raw } = require("express");
+
 let testArray = ['11100001011000100110001110001100',
                  '01100001011000000110001110000000',
                  '01000100000000000000000010000000',
@@ -43,8 +45,12 @@ function addArrayOfBinWords(arrayOfWords){
     return evaluatedBinaryString.reverse().join('');
 }
 
+function makeSomePadding(howManyZeros){
+    return Array.apply(null, Array(howManyZeros)).map(function (pad) {return'0'}).join('');
+}
+
 function shiftRight(amount){
-    let padding = Array.apply(null, Array(amount)).map(function (pad) {return'0'}).join('');
+    let padding = makeSomePadding(amount);
     return function(word){
         let shifted = `${padding}${word.slice(0, -Math.abs(amount))}`;
         return shifted;
@@ -100,8 +106,6 @@ function upperCaseSigmaOne(word){
 }
 
 function choice(wordArray){
-    //first input word indexed value determines whether the second word's value
-    //or thrid word's value is used
     if(wordArray.length != 3){
         console.log('Failed to pass exactly three words to the choice function');
     }
@@ -113,7 +117,6 @@ function choice(wordArray){
 }
 
 function majority(wordArray){
-    //return word values dependent on the majority of three words at an index
     if(wordArray.length != 3){
         console.log('Failed to pass exactly three words to the majority function');
     }
@@ -157,8 +160,37 @@ function genCubedConstants(primeNumberArray){
     return cubedConstants
 }
 
-console.log(lowerCaseSigmaZero('00000000000000000011111111111111'));
-console.log( upperCaseSigmaOne('00000000000000000011111111111111'));
-console.log(choice(majorityArray));
-console.log(majority(majorityArray));
-console.log(genCubedConstants(compilePrimes(64)));
+const CubedConstants = genCubedConstants(compilePrimes(64));
+
+//-----INPUT MESSAGE HANDLING------
+function convertRawMessageToBinary(inputToConvert){
+    if(typeof(inputToConvert) !== 'string'){
+        console.log('please send a valid character string');
+        return;
+    }
+    let rawInputAsBinary = '';
+    for(let i = 0; i < inputToConvert.length; i ++){
+        rawInputAsBinary = rawInputAsBinary.concat(inputToConvert.charCodeAt(i).toString(2));
+    }
+    return rawInputAsBinary;
+}
+
+const aMessageAsBinary = convertRawMessageToBinary('as#$#@#$??@#?n.f.t!$///009)()ead');
+function padMessage(newMessage){
+    //add a 1 to message and then pad with zeros until length == 448 bits
+    let paddedMessage = newMessage + '1';
+    let paddingZeros = makeSomePadding((512 - paddedMessage.length%512)-64).toString();
+    paddedMessage += paddingZeros;
+    console.log(paddedMessage);
+    console.log(paddedMessage.length);
+    let encodedLength = paddedMessage.length.toString(2).padStart(64, '0');
+    paddedMessage += encodedLength;
+    console.log(paddedMessage);
+    console.log(paddedMessage.length);
+    return 
+}
+
+
+padMessage(aMessageAsBinary);
+
+

@@ -149,7 +149,7 @@ function isPrime(n){
     return n;
 }
 
-function genCubedConstants(primeNumberArray){
+function genCubedValues(primeNumberArray){
     let cubedConstants = [];
     //review this below again.  How is substring working here?
     primeNumberArray.forEach( (prime) => {
@@ -160,37 +160,107 @@ function genCubedConstants(primeNumberArray){
     return cubedConstants
 }
 
-const CubedConstants = genCubedConstants(compilePrimes(64));
+function genSquaredValues(primeNumberArray){
+    let squaredConstants = [];
+    //review this below again.  How is substring working here?
+    primeNumberArray.forEach( (prime) => {
+        squaredConstants.push( Math.sqrt(prime)
+        .toString(2).split('.')[1]
+        .substring(0, 32) );
+    });
+    return squaredConstants
+}
 
+const CubedConstants = genCubedValues(compilePrimes(64));
 //-----INPUT MESSAGE HANDLING------
+
 function convertRawMessageToBinary(inputToConvert){
     if(typeof(inputToConvert) !== 'string'){
         console.log('please send a valid character string');
         return;
     }
-    let rawInputAsBinary = '';
+    let rawInputAsBinary = ``;
     for(let i = 0; i < inputToConvert.length; i ++){
-        rawInputAsBinary = rawInputAsBinary.concat(inputToConvert.charCodeAt(i).toString(2));
+        rawInputAsBinary = rawInputAsBinary
+                    .concat(inputToConvert.charCodeAt(i).toString(2).padStart(8, '0'));
     }
     return rawInputAsBinary;
 }
 
-const aMessageAsBinary = convertRawMessageToBinary('as#$#@#$??@#?n.f.t!$///009)()ead');
-function padMessage(newMessage){
-    //add a 1 to message and then pad with zeros until length == 448 bits
+// const someMessageAsBinary = convertRawMessageToBinary('as#$#@#$??fasdfasdfasdfasdfasdfasdfasdfsdfasdfdddddddddddddddddddddddddddddddddd@#?n.f.t!$///009)()ead');
+const someMessageAsBinary = convertRawMessageToBinary('abc');
+
+function padAndReturnMessage(newMessage){
+    //add a 1 to message and then pad with zeros until length is 448 bits
+    //past the last multiple of 512
     let paddedMessage = newMessage + '1';
     let paddingZeros = makeSomePadding((512 - paddedMessage.length%512)-64).toString();
     paddedMessage += paddingZeros;
-    console.log(paddedMessage);
-    console.log(paddedMessage.length);
-    let encodedLength = paddedMessage.length.toString(2).padStart(64, '0');
+    let encodedLength = newMessage.length.toString(2).padStart(64, '0');
     paddedMessage += encodedLength;
-    console.log(paddedMessage);
-    console.log(paddedMessage.length);
-    return 
+    return paddedMessage;
+}
+//-----BUILD MESSAGE BLOCK ARRAY------
+
+const paddedMessage = padAndReturnMessage(someMessageAsBinary);
+
+function breakStringIntoChunksAsArray(desiredSizeOfChunks){
+    return function(paddedMessage){
+        let arrayOfChunks = [];
+        for(i = 0; i < paddedMessage.length; i += desiredSizeOfChunks){
+            arrayOfChunks.push(paddedMessage.slice(i, i+desiredSizeOfChunks));
+        }
+        return arrayOfChunks;
+    }
 }
 
+function returnArrayOfMessageBlocks(paddedMessage){
+    const make512BitChunks = breakStringIntoChunksAsArray(512);
+    let messageBlockArray = make512BitChunks(paddedMessage);
+    return messageBlockArray;
+}
 
-padMessage(aMessageAsBinary);
+let arrayOfMessages = returnArrayOfMessageBlocks(padAndReturnMessage(someMessageAsBinary));
+// console.log(arrayOfMessages);
+//-----BUILD MESSAGE SCHEDULE FOR EACH MESSAGE------
 
+function first16WordsOfMessageSchedules(arrayOfMessages){
+    const make32BitChunks = breakStringIntoChunksAsArray(32);
+    let messageScheduleArray = [];
+    arrayOfMessages.forEach( (individualMessage) => {
+        messageScheduleArray.push(make32BitChunks(individualMessage))
+    });
+    return messageScheduleArray;
+}
+// console.log(first16WordsOfMessageSchedules(arrayOfMessages));
+let AOMSFST16 = first16WordsOfMessageSchedules(arrayOfMessages);
 
+function finishBuildingMessageSchedules(partialSchedules){
+    //new word at index i = σ1(i-2) + (i-7) + σ0(i-15) + (i-16)
+    let fullSchedules = partialSchedules;
+    fullSchedules.forEach( (individualSchedule) => {
+        for(let i = 16; i < 64; i++){
+            let input1 = lowerCaseSigmaOne(individualSchedule[i-2]),
+                input2 = individualSchedule[i-7],
+                input3 = lowerCaseSigmaZero(individualSchedule[i-15]),
+                input4 = individualSchedule[i-16];
+            let inputArray = [input1, input2, input3, input4];
+            individualSchedule.push(addArrayOfBinWords(inputArray));
+        }
+    });
+    return fullSchedules;
+}
+console.log(finishBuildingMessageSchedules(AOMSFST16));
+//-----COMPRESSION FUNCTIONS------ (H0 -> H1)
+
+function initilizeHashValues(howManyValues){
+    return genSquaredValues(compilePrimes(howManyValues));
+}
+
+const InitialHashValues = initilizeHashValues(8);
+console.log(InitialHashValues);
+
+//temp word T1 = Σ1(e) + Ch(e, f, g) + h + K0 + W0
+//temp word T1 = Σ1(hashVals[4]) + Ch(hashVals[4], hashVals[5], hashVals[6]) + h + K0 + W0
+//temp word T2 = Σ0(a) + Maj(a, b, c)
+//temp word T2 = Σ0(0) + Maj(0, 1, 2)

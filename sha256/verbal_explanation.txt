@@ -1,3 +1,4 @@
+MAKE MARKDOWN README
 Nonce: number only used once
 
 
@@ -128,7 +129,7 @@ Now we have the message that will be hashed.
 It's time to make a message schedule: note, each message block gets its own schedule,
 so consider the roughly 2mb block limit on bitcoin.  LOTS of schedules).
 
-We will use the input message to produce the first 16 worsd
+We will use the input message to produce the first 16 words
 of our 64-word message schedule:
 Message Schedule=====================
 W0 : 01100001011000100110001110000000 ->      01100001011000100110001110000000

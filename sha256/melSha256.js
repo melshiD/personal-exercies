@@ -1,18 +1,3 @@
-const { raw } = require("express");
-
-let testArray = ['11100001011000100110001110001100',
-                 '01100001011000000110001110000000',
-                 '01000100000000000000000010000000',
-                 '01100001011000101100000110000011'];
-
-let tripleArray = ['01100001011000000110001110000000',
-                   '01000100000000000000000010000000',
-                   '01100001011000101100000110000011'];
-
-let majorityArray = ['00000000111111110000000011111111',
-                     '00000000000000001111111111111111',
-                     '11111111111111110000000000000000'];
-
 function collapseArrayOfBinWords(arrayOfWords){
     let collapsedWordsArray = [];
     for(let i = arrayOfWords[0].length-1; i >= 0; i --){
@@ -185,8 +170,7 @@ function convertRawMessageToBinary(inputToConvert){
     return rawInputAsBinary;
 }
 
-// const someMessageAsBinary = convertRawMessageToBinary('as#$#@#$??fasdfasdfasdfasdfasdfasdfasdfsdfasdfdddddddddddddddddddddddddddddddddd@#?n.f.t!$///009)()ead');
-const someMessageAsBinary = convertRawMessageToBinary('abc');
+const someMessageAsBinary = convertRawMessageToBinary('Dave');
 
 function padAndReturnMessage(newMessage){
     //add a 1 to message and then pad with zeros until length is 448 bits

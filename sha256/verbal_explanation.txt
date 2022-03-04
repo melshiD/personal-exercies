@@ -1,6 +1,10 @@
 MAKE MARKDOWN README
 Nonce: number only used once
 
+cryptographic hash function:
+  use cases: checking integrity of your data, 
+    challenge hash authentication, anti-tamper, 
+    digital signatures, blockchain
 
 I need one function to set the interval and receive a callback
   to perform the required shift or rotation.  It needs to return

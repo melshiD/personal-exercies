@@ -170,8 +170,6 @@ function genSquaredValues(primeNumberArray){
     });
     return squaredConstants
 }
-
-const CubedConstants = genCubedValues(compilePrimes(64));
 //-----INPUT MESSAGE HANDLING------
 
 function convertRawMessageToBinary(inputToConvert){
@@ -233,7 +231,7 @@ function first16WordsOfMessageSchedules(arrayOfMessages){
     return messageScheduleArray;
 }
 // console.log(first16WordsOfMessageSchedules(arrayOfMessages));
-let AOMSFST16 = first16WordsOfMessageSchedules(arrayOfMessages);
+const First16Words = first16WordsOfMessageSchedules(arrayOfMessages);
 
 function finishBuildingMessageSchedules(partialSchedules){
     //new word at index i = σ1(i-2) + (i-7) + σ0(i-15) + (i-16)
@@ -250,17 +248,94 @@ function finishBuildingMessageSchedules(partialSchedules){
     });
     return fullSchedules;
 }
-console.log(finishBuildingMessageSchedules(AOMSFST16));
 //-----COMPRESSION FUNCTIONS------ (H0 -> H1)
 
 function initilizeHashValues(howManyValues){
     return genSquaredValues(compilePrimes(howManyValues));
 }
+//Data needed for compression, renamed for ease of translation
+const CubedConstants = genCubedValues(compilePrimes(64));
+const K = CubedConstants;
+const MessageSchedules = finishBuildingMessageSchedules(First16Words);
+const W = MessageSchedules; //only data of a variable length
+let InitialHashValues = initilizeHashValues(8);
+let H = InitialHashValues;
 
-const InitialHashValues = initilizeHashValues(8);
-console.log(InitialHashValues);
+function generateT1(H, word, constant){
+    // T1 = Σ1(H[4]) + Ch(H[4], H[5], H[6]) + H[7] + K[0] + W[0]
+    let input1 = upperCaseSigmaOne(H[4]),
+        input2 = choice([H[4], H[5], H[6]]),
+        input3 = H[7],
+        input4 = constant,
+        input5 = word;
+    let inputArray = [input1, input2, input3, input4, input5];
+    let t1 = addArrayOfBinWords(inputArray);
+    return t1;
+}
 
-//temp word T1 = Σ1(e) + Ch(e, f, g) + h + K0 + W0
-//temp word T1 = Σ1(hashVals[4]) + Ch(hashVals[4], hashVals[5], hashVals[6]) + h + K0 + W0
-//temp word T2 = Σ0(a) + Maj(a, b, c)
-//temp word T2 = Σ0(0) + Maj(0, 1, 2)
+function generateT2(H){
+    //temp word T2 = Σ0(H[0]) + Maj(H[0], H[1], H[2])
+    let input1 = upperCaseSigmaZero(H[0]),
+        input2 = majority([H[0], H[1], H[2]]);
+    let inputArray = [input1, input2];
+    let t2 = addArrayOfBinWords(inputArray);
+    return t2;
+}
+
+function returnCompressedHashTable(H0, schedule, C) {
+    let H1 = [...H0];
+
+    //Shift H down, insert T1+T2 into a, Add T1 to e ( H[4] = H[4] + T1 )
+    function shiftHDownAndModify(H1, word, constant) {
+        let T1 = generateT1(H1, word, constant),
+            T2 = generateT2(H1);
+        H1.unshift(addArrayOfBinWords([T1, T2]));
+        H1[4] = addArrayOfBinWords([H1[4], T1]);
+        H1.pop();
+        return H1;
+    }
+
+    function addHashTables(arrayOfTables) {
+        let sumTable = [];
+        arrayOfTables[0].forEach((tableRow, index) => {
+            let rowsToAdd = [tableRow];
+            for (i = 1; i < arrayOfTables.length; i++) {//almost got burned by the 1~not 0
+                rowsToAdd.push(arrayOfTables[i][index]);
+            }
+            sumTable.push(addArrayOfBinWords(rowsToAdd));
+        });
+        return sumTable;
+    }
+
+    schedule.forEach((word, index) => {
+        H1 = shiftHDownAndModify(H1, word, C[index])
+    });
+
+    H1 = addHashTables([H0, H1]);
+    return H1;
+}
+
+function iterateAndCompress(H, W, K){
+    //then PLEASE refactor me!
+
+    function recurseThroughScheduleList(H, schedule, K, index = 0){
+        let H0 = [...H];
+        let H1 = returnCompressedHashTable(H0, schedule, K);
+        if(!W[index+1]) return H1;
+        return recurseThroughScheduleList(H1, W[index+1], K, index+1)
+    } 
+    let finalHashOutputAsBinary = recurseThroughScheduleList(H, W[0], K, 0);
+    return finalHashOutputAsBinary;
+}
+
+function binaryToHex(binaryStringArray){
+    let outputString = [];
+    binaryStringArray.forEach( 
+        (word) => outputString.push(parseInt(word, 2).toString(16).toUpperCase())
+    );
+    return outputString.join('');
+}
+// console.log(returnCompressedHashTable(H, W[0], K));
+// console.log(iterateAndCompress(H, W, K));
+let finalHashOutput = iterateAndCompress(H, W, K);
+console.log(binaryToHex(finalHashOutput));

@@ -136,7 +136,6 @@ function isPrime(n){
 
 function genCubedValues(primeNumberArray){
     let cubedConstants = [];
-    //review this below again.  How is substring working here?
     primeNumberArray.forEach( (prime) => {
         cubedConstants.push( Math.cbrt(prime)
         .toString(2).split('.')[1]
@@ -147,7 +146,6 @@ function genCubedValues(primeNumberArray){
 
 function genSquaredValues(primeNumberArray){
     let squaredConstants = [];
-    //review this below again.  How is substring working here?
     primeNumberArray.forEach( (prime) => {
         squaredConstants.push( Math.sqrt(prime)
         .toString(2).split('.')[1]
@@ -306,29 +304,30 @@ function iterateAndCompress(H, W, K){
 function binaryToHex(binaryStringArray){
     let outputString = [];
     binaryStringArray.forEach( 
-        (word) => outputString.push(parseInt(word, 2).toString(16).toUpperCase())
+        (word) => outputString.push(parseInt(word, 2).toString(16).toLowerCase())
     );
     return outputString.join('');
 }
 //--------USABILITY FUNCTIONS---------
 
-function performSHA256(inputData, requestDataIndex = 0){
+function performSHA256(inputData, dataRequestIndex = 0){
     let rawInBinary = convertRawMessageToBinary(inputData);
-        if(requestDataIndex == 1) return `rawInBinary: ${rawInBinary}`;
+        if(dataRequestIndex == 1) return `rawInBinary: ${rawInBinary}`;
     let paddedMessage = padAndReturnMessage(rawInBinary);
-        if(requestDataIndex == 2) return `paddedMessage: ${paddedMessage}`;
+        if(dataRequestIndex == 2) return `paddedMessage: ${paddedMessage}`;
     let messageBlocks = returnArrayOfMessageBlocks(paddedMessage);
-        if(requestDataIndex == 3) return `messageBlocks: ${messageBlocks}`;
+        if(dataRequestIndex == 3) return `messageBlocks: ${messageBlocks}`;
     let messageSchedules = finishBuildingMessageSchedules(first16WordsOfMessageSchedules(messageBlocks));
-        if(requestDataIndex == 4) return `messageSchedules: ${messageSchedules}`;
+        if(dataRequestIndex == 4) return messageSchedules;
     let initilizedHashValues = initilizeHashValues(8);
-        if(requestDataIndex == 5) return `initilizedHashValues: ${initilizedHashValues}`;
+        if(dataRequestIndex == 5) return `initilizedHashValues: ${initilizedHashValues}`;
     let constants = genCubedValues(compilePrimes(64));
-        if(requestDataIndex == 6) return `constants: ${constants}`;
+        if(dataRequestIndex == 6) return `constants: ${constants}`;
     let finalHashAsBinary = iterateAndCompress(initilizedHashValues, messageSchedules, constants);
-        if(requestDataIndex == 7) return `finalHashAsBinary: ${finalHashAsBinary}`;
-    let finalOutputHash = binaryToHex(finalHashAsBinary);
-        if(requestDataIndex == 8) return `finalOutputHash: ${finalOutputHash}`;
-    return finalOutputHash;
+        if(dataRequestIndex == 7) return `finalHashAsBinary: ${finalHashAsBinary}`;
+    let finalOutputDigest = binaryToHex(finalHashAsBinary);
+        if(dataRequestIndex == 8) return `finalOutputDigest: ${finalOutputDigest}`;
+    return finalOutputDigest;
 }
-console.log(performSHA256('1234567899edasssdasddfasdfasdfasdfasdfasdfasdfasdfsdasdfa'));
+// console.log(performSHA256('once there was a way to get back home.  Once there was a way, to get back home.  Go to sleep pretty darling, do not cry, and I will sing a lullaby'));
+console.log(performSHA256('dave', 4));

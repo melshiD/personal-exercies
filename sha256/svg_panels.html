@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SVG Panels</title>
+    <script src="./melSha256.js"></script>
+</head>
+<body>
+    <button onclick="console.log(performSHA256('david'))">01100100011000010111011001100101</button>
+
+    <script>
+        function buildSVGWord(word, size){
+            let svgns = 'http://www.w3.org/2000/svg';
+            let svg = document.createElementNS(svgns, 'svg');
+            svg.setAttribute('width', 'auto');
+            for(let i = 0; i < word.length; i++){
+                let letter = document.createElementNS(svgns, 'rect');
+                letter.setAttribute('width', size);
+                letter.setAttribute('height', size);
+                letter.setAttribute('x', `${i*size}`);
+                letter.setAttribute('fill', 'red');
+                letter.setAttribute('stroke', 'black');
+                letter.setAttribute('stroke-width', '2');
+                letter.setAttribute('rx', '2');
+                console.log(letter);
+                svg.appendChild(letter);
+            }
+            document.body.appendChild(svg);
+        }
+        buildSVGWord('101000101111111111111110', 50)
+    </script>
+</body>
+</html>

@@ -8,7 +8,7 @@
     --commit-border-opacity: 0.14;
     --day-transition-duration: 750ms;
     --go-solid-fill-color: #39d353;
-    --go-solid-stroke-color: var(var(--go-solid-fill-color))
+    --go-solid-stroke-color: var(--go-solid-fill-color);
 }
 
 body{
@@ -87,6 +87,18 @@ svg{
 }
 .emptyDay#go-solid{
     transition: all 0.5;
-    fill: var(--go-solid-fill-color);
-    stroke: var(--go-solid-stroke-color);
+    fill: rgba(57, 255, 21, 1);
+    stroke: rgba(57, 255, 21, 1);
+    /* fill: var(--go-solid-fill-color);
+    stroke: var(--go-solid-stroke-color); */
+    rx: 0;
+}
+.dayContainer#go-solid{
+    transition: all 0.5;
+    fill: rgba(57, 255, 21, 1);
+    /* stroke: rgba(57, 255, 21, 1); */
+    /* stroke: var(--go-solid-stroke-color); */
+}
+svg#go-solid{ 
+    background-color: rgba(57, 255, 21, 1);
 }

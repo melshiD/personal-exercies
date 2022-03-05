@@ -119,6 +119,8 @@ function goSolid(){
   borders.forEach( border => {
     border.setAttribute('id', 'go-soild');
   })
+  let svgElement = document.querySelector('svg');
+  svgElement.setAttribute('id', 'go-solid');
 }
 
 changeOnAnInterval(300);

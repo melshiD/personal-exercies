@@ -31,7 +31,7 @@ function addArrayOfBinWords(arrayOfWords){
 }
 
 function makeSomePadding(howManyZeros){
-    return Array.apply(null, Array(howManyZeros)).map(function (pad) {return'0'}).join('');
+    return Array.apply(null, Array(howManyZeros)).map(function () {return'0'}).join('');
 }
 
 function shiftRight(amount){
@@ -170,21 +170,24 @@ function convertRawMessageToBinary(inputToConvert){
     return rawInputAsBinary;
 }
 
-const someMessageAsBinary = convertRawMessageToBinary('Dave');
-
 function padAndReturnMessage(newMessage){
     //add a 1 to message and then pad with zeros until length is 448 bits
     //past the last multiple of 512
     let paddedMessage = newMessage + '1';
-    let paddingZeros = makeSomePadding((512 - paddedMessage.length%512)-64).toString();
+    //breakzone is when length%512 > 448 
+    let breakZone = (paddedMessage.length%512) - 448 > 0?512 - paddedMessage.length%512:0;
+    let paddingZeros = (function(paddedMessage, breakZone){
+        if(breakZone){
+            return makeSomePadding(breakZone + 448);
+        }
+        return makeSomePadding(448 - (paddedMessage.length%512)).toString();
+    })(paddedMessage, breakZone);
     paddedMessage += paddingZeros;
     let encodedLength = newMessage.length.toString(2).padStart(64, '0');
     paddedMessage += encodedLength;
     return paddedMessage;
 }
 //-----BUILD MESSAGE BLOCK ARRAY------
-
-const paddedMessage = padAndReturnMessage(someMessageAsBinary);
 
 function breakStringIntoChunksAsArray(desiredSizeOfChunks){
     return function(paddedMessage){
@@ -201,9 +204,6 @@ function returnArrayOfMessageBlocks(paddedMessage){
     let messageBlockArray = make512BitChunks(paddedMessage);
     return messageBlockArray;
 }
-
-let arrayOfMessages = returnArrayOfMessageBlocks(padAndReturnMessage(someMessageAsBinary));
-// console.log(arrayOfMessages);
 //-----BUILD MESSAGE SCHEDULE FOR EACH MESSAGE------
 
 function first16WordsOfMessageSchedules(arrayOfMessages){
@@ -214,8 +214,6 @@ function first16WordsOfMessageSchedules(arrayOfMessages){
     });
     return messageScheduleArray;
 }
-// console.log(first16WordsOfMessageSchedules(arrayOfMessages));
-const First16Words = first16WordsOfMessageSchedules(arrayOfMessages);
 
 function finishBuildingMessageSchedules(partialSchedules){
     //new word at index i = σ1(i-2) + (i-7) + σ0(i-15) + (i-16)
@@ -237,13 +235,6 @@ function finishBuildingMessageSchedules(partialSchedules){
 function initilizeHashValues(howManyValues){
     return genSquaredValues(compilePrimes(howManyValues));
 }
-//Data needed for compression, renamed for ease of translation
-const CubedConstants = genCubedValues(compilePrimes(64));
-const K = CubedConstants;
-const MessageSchedules = finishBuildingMessageSchedules(First16Words);
-const W = MessageSchedules; //only data of a variable length
-let InitialHashValues = initilizeHashValues(8);
-let H = InitialHashValues;
 
 function generateT1(H, word, constant){
     // T1 = Σ1(H[4]) + Ch(H[4], H[5], H[6]) + H[7] + K[0] + W[0]
@@ -319,7 +310,25 @@ function binaryToHex(binaryStringArray){
     );
     return outputString.join('');
 }
-// console.log(returnCompressedHashTable(H, W[0], K));
-// console.log(iterateAndCompress(H, W, K));
-let finalHashOutput = iterateAndCompress(H, W, K);
-console.log(binaryToHex(finalHashOutput));
+//--------USABILITY FUNCTIONS---------
+
+function performSHA256(inputData, requestDataIndex = 0){
+    let rawInBinary = convertRawMessageToBinary(inputData);
+        if(requestDataIndex == 1) return `rawInBinary: ${rawInBinary}`;
+    let paddedMessage = padAndReturnMessage(rawInBinary);
+        if(requestDataIndex == 2) return `paddedMessage: ${paddedMessage}`;
+    let messageBlocks = returnArrayOfMessageBlocks(paddedMessage);
+        if(requestDataIndex == 3) return `messageBlocks: ${messageBlocks}`;
+    let messageSchedules = finishBuildingMessageSchedules(first16WordsOfMessageSchedules(messageBlocks));
+        if(requestDataIndex == 4) return `messageSchedules: ${messageSchedules}`;
+    let initilizedHashValues = initilizeHashValues(8);
+        if(requestDataIndex == 5) return `initilizedHashValues: ${initilizedHashValues}`;
+    let constants = genCubedValues(compilePrimes(64));
+        if(requestDataIndex == 6) return `constants: ${constants}`;
+    let finalHashAsBinary = iterateAndCompress(initilizedHashValues, messageSchedules, constants);
+        if(requestDataIndex == 7) return `finalHashAsBinary: ${finalHashAsBinary}`;
+    let finalOutputHash = binaryToHex(finalHashAsBinary);
+        if(requestDataIndex == 8) return `finalOutputHash: ${finalOutputHash}`;
+    return finalOutputHash;
+}
+console.log(performSHA256('1234567899edasssdasddfasdfasdfasdfasdfasdfasdfasdfsdasdfa'));

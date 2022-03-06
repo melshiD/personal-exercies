@@ -17,11 +17,10 @@
             display: none;
         }
         .display{
-            /* display: flex; */
+            display: flex;
+            flex-flow: row;
             position: absolute;
-            top: -200px;
-            left: -50px;
-            transform: scale(0.8);
+            
             width: fit-content
         }
         .word-parent{
@@ -29,10 +28,12 @@
             height: 30px;
         } 
         svg{
-            pointer-events: none;
+            /* pointer-events: none; */
         }
         .table-div{
-            margin-bottom: 3em;
+            margin: 1.5em;
+            
+            width: 50%;
         }
 
     </style>
@@ -42,15 +43,12 @@
     <!-- <button onclick="console.log(performSHA256('david'))">01100100011000010111011001100101</button> -->
 
     <div class="word-defs">
-        <svg>
-            <symbol>
+        <svg id="defs-svg-div">
+            <symbol id="symbols">
             <g id="zero">
                 <rect width="30" height="30" fill="white" stroke="black"></rect>
                 <text x="7.5" y="25" style="font-size:30">0</text>
             </g>
-            //WHEN YOU SIT BACK DOWN, BUILD A JS TO ADD THESE BUILDING BLOCK
-            //DEFINITIONS TO DOM, BUT BEING SIZED DYNAMICALLY (MAYBE AS NEEDED)
-            //TO AID MY EXAMPLE BUT WITHOUT USING SCALE TRANSFORMS
             <g id="one">
                 <rect width="30" height="30" fill="white" stroke="black"></rect>
                 <text x="7.5" y="25" style="font-size:30">1</text>
@@ -63,30 +61,53 @@
     </div>
     <script>
         
-        function buildSVGWord(words) {
+        function buildSVGWords(words) {
             let svgns = 'http://www.w3.org/2000/svg';
             let divDisplay = document.querySelector('.display');
             let tableDiv = document.createElement('div');
             tableDiv.classList.add('table-div');
             words.toString().split(',').forEach( (word) => {
-                console.log("its me its me Im the word" + word + "its me its me Im the word");
                 let wordParent = document.createElementNS(svgns, 'svg');
                 wordParent.classList.add('word-parent');
+                wordParent.setAttribute('viewBox', '0 0 960 30')
                 word.split('').forEach( (character, index) => {
                     let use = document.createElementNS(svgns, 'use');
                     use.setAttribute('href', `#${character == '1'?'one':'zero'}`);
                     use.setAttribute('x', index*30);
                     wordParent.appendChild(use);
+
+                    let use2 = document.createElementNS(svgns, 'use');
+                    use2.setAttribute('href', `#${character == '1'?'one':'zero'}`);
+                    use2.setAttribute('x', 990 + index*30);
+                    wordParent.appendChild(use2);
+
+                    let use3 = document.createElementNS(svgns, 'use');
+                    use3.setAttribute('href', `#${character == '1'?'one':'zero'}`);
+                    use3.setAttribute('x', 990 + index*30);
+                    use3.setAttribute('y', 29);
+                    wordParent.appendChild(use3);
+                    for(let i = 0; i < 32; i ++){
+                        let use = document.createElementNS(svgns, 'use');
+                        use.setAttribute('href', `#zero`);
+                        use.setAttribute('x', i*30);
+                        use.setAttribute('y', 29);
+                        wordParent.appendChild(use);
+                    }
                 });
                 tableDiv.appendChild(wordParent);
             });
             divDisplay.append(tableDiv);
         }
-        let inputArray = performSHA256('david', 4);
-        buildSVGWord(inputArray);
-        buildSVGWord(performSHA256('dafsdafsd', 4));
-        buildSVGWord(performSHA256('daadsadsfsdafsd', 4));
-    </script>
+        // let justTooLongArrayMakesArrayOfTables = performSHA256('gfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfsdfasdfasfdd', 4);
+        // justTooLongArrayMakesArrayOfTables.forEach( (table) => {
+        //     buildSVGWord(table);
+        // });
+        let extraLongString = 'gfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfgfsdadfasdfasdafgfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfsdfasdfasfddasdasdfasdfasdfasddsasdfasdfsdfasdfasfddsdfasdfasfdd'
+        performSHA256(extraLongString, 4).forEach( (table) => buildSVGWords(table));
+        // evenLongerString.forEach( (table) => {
+        //     buildSVGWord(table);
+        // });
+</script>
 </body>
 
 </html>

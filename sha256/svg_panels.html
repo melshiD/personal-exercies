@@ -8,39 +8,62 @@
     <title>SVG Panels</title>
     <script src="./melSha256.js"></script>
     <style>
-        .svg-container{
-            width: 
+        body{
+            width: 100;
+            height: 100;
+            
         }
-        svg{
-            margin: 1em;
+        .word-defs{
+            display: none;
         }
+        .display{
+            width: fit-content
+        }
+        .word-parent{
+            display: flex;
+            flex-flow: wrap;
+        } 
+
     </style>
 </head>
 
 <body>
-    <button onclick="console.log(performSHA256('david'))">01100100011000010111011001100101</button>
+    <!-- <button onclick="console.log(performSHA256('david'))">01100100011000010111011001100101</button> -->
 
-    <div class="svg-container">
+    <div class="word-defs">
+        <svg>
+            <symbol>
+            <g id="zero">
+                <rect width="30" height="30" fill="white" stroke="black"></rect>
+                <text x="7.5" y="25" style="font-size:30">0</text>
+            </g>
+            <g id="one">
+                <rect width="30" height="30" fill="white" stroke="black"></rect>
+                <text x="7.5" y="25" style="font-size:30">1</text>
+            </g>
+            </symbol>
+        </svg>
+    </div>
+    <div class="display">
 
     </div>
     <script>
-        function buildSVGWord(word, size) {
+        
+        function buildSVGWord(word) {
             let svgns = 'http://www.w3.org/2000/svg';
-            let svg = document.createElementNS(svgns, 'svg');
-            svg.setAttributeNS(svgns, 'width', 'auto');
-
-            let letter = document.createElementNS(svgns, 'rect');
-            letter.setAttribute('width', `${size * word.length}`);
-            letter.setAttribute('height', size);
-            letter.setAttribute('fill', 'pink');
-            letter.setAttribute('stroke', 'grey');
-            letter.setAttribute('stroke-width', '3');
-            letter.setAttribute('rx', '0.1em');
-            svg.appendChild(letter);
-
-            document.querySelector('.svg-container').appendChild(svg);
+            let wordParent = document.createElementNS(svgns, 'svg');
+            wordParent.classList.add('word-parent');
+            word.split('').forEach( (character, index) => {
+                console.log(character, index);
+                let use = document.createElementNS(svgns, 'use');
+                use.setAttribute('href', `#${character == '1'?'one':'zero'}`);
+                use.setAttribute('x', index*30);
+                wordParent.appendChild(use);
+            });
+            let divDisplay = document.querySelector('.display');
+            divDisplay.appendChild(wordParent);
         }
-        buildSVGWord('101000101111111111111110', 33)
+        buildSVGWord('101000101111111111111110');
     </script>
 </body>
 

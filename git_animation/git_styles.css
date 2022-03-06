@@ -39,6 +39,7 @@ svg{
 
 .dayContainer{
     /* fill: #0d1117; */
+    transition: all 1.5;
     fill: rgba(13, 17, 23, 1);
 }
 
@@ -85,20 +86,12 @@ svg{
     stroke-width: 2px;
     transition: all var(--day-transition-duration);
 }
-.emptyDay#go-solid{
-    transition: all 0.5;
-    fill: rgba(57, 255, 21, 1);
+#go-solid{
+    transition: all 1.5;
+    fill: rgb(57, 255, 21);
     stroke: rgba(57, 255, 21, 1);
-    /* fill: var(--go-solid-fill-color);
-    stroke: var(--go-solid-stroke-color); */
-    rx: 0;
-}
-.dayContainer#go-solid{
-    transition: all 0.5;
-    fill: rgba(57, 255, 21, 1);
-    /* stroke: rgba(57, 255, 21, 1); */
-    /* stroke: var(--go-solid-stroke-color); */
-}
-svg#go-solid{ 
+    stroke-width: 2%;
     background-color: rgba(57, 255, 21, 1);
+    rx: 0;
+    /* stroke: var(--go-solid-stroke-color); */
 }

@@ -114,13 +114,13 @@ function goSolid(){
   let days = document.querySelectorAll('.emptyDay');
   let borders = document.querySelectorAll('.dayContainer');
   days.forEach( daySquare => {
-      daySquare.setAttribute('id', 'go-solid');        
+    daySquare.classList.remove('commit-0', 'commit-1', 'commit-2', 'commit-3', 'commit-4', 'commit-5', 'commit-6', 'commit-7');
+    daySquare.setAttribute('id', 'go-solid');        
   });
   borders.forEach( border => {
-    border.setAttribute('id', 'go-soild');
-  })
-  let svgElement = document.querySelector('svg');
-  svgElement.setAttribute('id', 'go-solid');
+    border.setAttribute('id', 'go-solid');
+
+  });
 }
 
 changeOnAnInterval(300);

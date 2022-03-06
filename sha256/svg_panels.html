@@ -8,40 +8,38 @@
     <title>SVG Panels</title>
     <script src="./melSha256.js"></script>
     <style>
-        body{
-            width: 100;
-            height: 100;
+        /* body{
+            width: 100%;
+            height: 100%;
             
-        }
+        } */
         .word-defs{
             display: none;
         }
         .display{
-            display: flex;
-            flex-flow: row;
-            position: absolute;
-            
-            width: fit-content
+            width: 900px;
+            height: fit-content;
+            /* position: absolute; */
         }
         .word-parent{
-            width: 900px;
-            height: 30px;
-        } 
-        svg{
+
+        }
+        svg use{
             /* pointer-events: none; */
         }
-        .table-div{
-            margin: 1.5em;
-            
-            width: 50%;
+        svg{
+            /* display: inline-block; */
+        }
+        .table-of-words{
+
+            width: 800px;
+            height: 1920px;
         }
 
     </style>
 </head>
 
 <body>
-    <!-- <button onclick="console.log(performSHA256('david'))">01100100011000010111011001100101</button> -->
-
     <div class="word-defs">
         <svg id="defs-svg-div">
             <symbol id="symbols">
@@ -64,35 +62,19 @@
         function buildSVGWords(words) {
             let svgns = 'http://www.w3.org/2000/svg';
             let divDisplay = document.querySelector('.display');
-            let tableDiv = document.createElement('div');
-            tableDiv.classList.add('table-div');
-            words.toString().split(',').forEach( (word) => {
+            let tableDiv = document.createElementNS(svgns, 'svg');
+            // tableDiv.setAttribute('viewBox', '0 0 960 1080');
+            tableDiv.classList.add('table-of-words');
+            words.toString().split(',').forEach( (word, index) => {
                 let wordParent = document.createElementNS(svgns, 'svg');
                 wordParent.classList.add('word-parent');
-                wordParent.setAttribute('viewBox', '0 0 960 30')
+                // wordParent.setAttribute('viewBox', '0 0 960 30');
+                wordParent.setAttribute('y', `${30*index}`);
                 word.split('').forEach( (character, index) => {
                     let use = document.createElementNS(svgns, 'use');
                     use.setAttribute('href', `#${character == '1'?'one':'zero'}`);
                     use.setAttribute('x', index*30);
                     wordParent.appendChild(use);
-
-                    let use2 = document.createElementNS(svgns, 'use');
-                    use2.setAttribute('href', `#${character == '1'?'one':'zero'}`);
-                    use2.setAttribute('x', 990 + index*30);
-                    wordParent.appendChild(use2);
-
-                    let use3 = document.createElementNS(svgns, 'use');
-                    use3.setAttribute('href', `#${character == '1'?'one':'zero'}`);
-                    use3.setAttribute('x', 990 + index*30);
-                    use3.setAttribute('y', 29);
-                    wordParent.appendChild(use3);
-                    for(let i = 0; i < 32; i ++){
-                        let use = document.createElementNS(svgns, 'use');
-                        use.setAttribute('href', `#zero`);
-                        use.setAttribute('x', i*30);
-                        use.setAttribute('y', 29);
-                        wordParent.appendChild(use);
-                    }
                 });
                 tableDiv.appendChild(wordParent);
             });
@@ -102,6 +84,7 @@
         // justTooLongArrayMakesArrayOfTables.forEach( (table) => {
         //     buildSVGWord(table);
         // });
+        let regurlarString = 'dave';
         let extraLongString = 'gfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfgfsdadfasdfasdafgfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfsdfasdfasfddasdasdfasdfasdfasddsasdfasdfsdfasdfasfddsdfasdfasfdd'
         performSHA256(extraLongString, 4).forEach( (table) => buildSVGWords(table));
         // evenLongerString.forEach( (table) => {

@@ -322,7 +322,8 @@ function performSHA256(inputData, dataRequestIndex = 0){
     let initilizedHashValues = initilizeHashValues(8);
         if(dataRequestIndex == 5) return `initilizedHashValues: ${initilizedHashValues}`;
     let constants = genCubedValues(compilePrimes(64));
-        if(dataRequestIndex == 6) return `constants: ${constants}`;
+        // if(dataRequestIndex == 6) return `constants: ${constants}`;
+        if(dataRequestIndex == 6) return constants.toString(2);
     let finalHashAsBinary = iterateAndCompress(initilizedHashValues, messageSchedules, constants);
         if(dataRequestIndex == 7) return `finalHashAsBinary: ${finalHashAsBinary}`;
     let finalOutputDigest = binaryToHex(finalHashAsBinary);

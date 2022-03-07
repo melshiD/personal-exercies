@@ -69,7 +69,7 @@
             let svgns = 'http://www.w3.org/2000/svg';
             let display = document.querySelector('.display');
             let tableDiv = document.createElementNS(svgns, 'svg');
-            // let viewBox = `0 0 960 ${30*words.split(',')[0].length}`;
+            let viewBox = `0 0 960 ${30*words[0].length}`;
             //TRYING TO MAKE THE HEIGHT VARIABLE BASED ON # OF WORDS
             console.log(typeof(words))
 
@@ -78,7 +78,6 @@
             words.toString().split(',').forEach( (word, index) => {
                 let wordParent = document.createElementNS(svgns, 'svg');
                 wordParent.classList.add('word-parent');
-                // wordParent.setAttribute('viewBox', '0 0 960 30');
                 //why does it break when I add this viewBox?
                 wordParent.setAttribute('y', `${30*index}`);
                 word.split('').forEach( (character, index) => {
@@ -103,14 +102,30 @@
         // });
         let regurlarString = 'dave';
         let extraLongString = 'gfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfgfsdadfasdfasdafgfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfsdfasdfasfddasdasdfasdfasdfasddsasdfasdfsdfasdfasfddsdfasdfasfdd'
-        // performSHA256(extraLongString, 4).forEach( (table) => buildSVGWords(table));
+        performSHA256(extraLongString, 4).forEach( (table) => buildSVGWords(table));
+        
 
         // WHEN YOU SIT BACK DOWN, RESOLVE THE ISSUE WITH THIS STRING/OBJECT/ARRAY ISSUE BEING PASSED 
-        buildSVGWords(['101101011000101001010', '101101011000101001010', '101101011000101001010']);
-        // evenLongerString.forEach( (table) => {
-        //     buildSVGWord(table);
-        // });
+        //THEN RESOLVE THE ISSUE OF THE HEIGHT OF THE VIEWBOX WHEN AUTOMATICALLY GENERATED.
+        //BASICALLY, MY FUNCTION ISN'T RETURNING CONSISTENT DATA WHEN USING DATAREQUESTINDEXES
+        buildSVGWords(['10110101100010111101001001010011',
+                       '10110101100010111101001001010011', 
+                       '10110101100010111101001001010011',
+                       '10110101100010111101001001010011',
+                       '10110101100010111101001001010011',
+                       '10110101100010111101001001010011',
+                       '10110101100010111101001001010011',
+                       '10110101100010111101001001010011']);
+        buildSVGWords([performSHA256('dave', 6)]);
+        // Mapping group works by exploring the relationships between the physical and metaphysical notions of form and space. 
 </script>
 </body>
 
 </html>
+Software Design
+3D Manufacturing
+Javascript.
+Fusion 360
+Browser-based VR
+Ethereum
+Solididity Programming

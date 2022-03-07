@@ -17,25 +17,28 @@
             display: none;
         }
         .display{
-            width: 900px;
+            width: auto;
             height: fit-content;
             /* position: absolute; */
         }
         .word-parent{
-
-        }
-        svg use{
-            /* pointer-events: none; */
-        }
-        svg{
-            /* display: inline-block; */
+            
         }
         .table-of-words{
-
-            width: 800px;
-            height: 1920px;
+            margin-bottom: 1em;
+            width: auto;
+            height: auto;
         }
-
+        .selected use{
+            fill: red;
+        }
+        use{
+            fill: none;
+            stroke: black;
+        }
+        text{
+            font-size: 30;
+        }
     </style>
 </head>
 
@@ -44,12 +47,15 @@
         <svg id="defs-svg-div">
             <symbol id="symbols">
             <g id="zero">
-                <rect width="30" height="30" fill="white" stroke="black"></rect>
-                <text x="7.5" y="25" style="font-size:30">0</text>
+                <!-- <rect width="30" height="30" ></rect> -->
+                <text x="7.5" y="25">0</text>
             </g>
             <g id="one">
-                <rect width="30" height="30" fill="white" stroke="black"></rect>
-                <text x="7.5" y="25" style="font-size:30">1</text>
+                <!-- <rect width="30" height="30" ></rect> -->
+                <text x="7.5" y="25">1</text>
+            </g>
+            <g id="word_">
+                <text x="7.5" y="25"></text>
             </g>
             </symbol>
         </svg>
@@ -61,14 +67,19 @@
         
         function buildSVGWords(words) {
             let svgns = 'http://www.w3.org/2000/svg';
-            let divDisplay = document.querySelector('.display');
+            let display = document.querySelector('.display');
             let tableDiv = document.createElementNS(svgns, 'svg');
-            // tableDiv.setAttribute('viewBox', '0 0 960 1080');
+            // let viewBox = `0 0 960 ${30*words.split(',')[0].length}`;
+            //TRYING TO MAKE THE HEIGHT VARIABLE BASED ON # OF WORDS
+            console.log(typeof(words))
+
+            tableDiv.setAttribute('viewBox', viewBox);
             tableDiv.classList.add('table-of-words');
             words.toString().split(',').forEach( (word, index) => {
                 let wordParent = document.createElementNS(svgns, 'svg');
                 wordParent.classList.add('word-parent');
                 // wordParent.setAttribute('viewBox', '0 0 960 30');
+                //why does it break when I add this viewBox?
                 wordParent.setAttribute('y', `${30*index}`);
                 word.split('').forEach( (character, index) => {
                     let use = document.createElementNS(svgns, 'use');
@@ -76,9 +87,15 @@
                     use.setAttribute('x', index*30);
                     wordParent.appendChild(use);
                 });
+                // let wordId = document.createElementNS(svgns, 'text');
+                // wordId.setAttribute('x', '7.5');
+                // wordId.setAttribute('y', '25');
+                // wordId.innerHTML = `W${index}:`;
+                // wordId.after(wordParent)
+                // tableDiv.appendChild(wordId);
                 tableDiv.appendChild(wordParent);
             });
-            divDisplay.append(tableDiv);
+            display.append(tableDiv);
         }
         // let justTooLongArrayMakesArrayOfTables = performSHA256('gfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfsdfasdfasfdd', 4);
         // justTooLongArrayMakesArrayOfTables.forEach( (table) => {
@@ -86,7 +103,10 @@
         // });
         let regurlarString = 'dave';
         let extraLongString = 'gfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfgfsdadfasdfasdafgfsdadfasdfasdafasdasdfasdfasdfasddsasdfasdfsdfasdfasfddasdasdfasdfasdfasddsasdfasdfsdfasdfasfddsdfasdfasfdd'
-        performSHA256(extraLongString, 4).forEach( (table) => buildSVGWords(table));
+        // performSHA256(extraLongString, 4).forEach( (table) => buildSVGWords(table));
+
+        // WHEN YOU SIT BACK DOWN, RESOLVE THE ISSUE WITH THIS STRING/OBJECT/ARRAY ISSUE BEING PASSED 
+        buildSVGWords(['101101011000101001010', '101101011000101001010', '101101011000101001010']);
         // evenLongerString.forEach( (table) => {
         //     buildSVGWord(table);
         // });

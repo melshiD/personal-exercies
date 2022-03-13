@@ -8,7 +8,11 @@ function App() {
   return (
     <React.Fragment>
     <BouncingBallsIcon />
-    <CustomTextInput />
+    <BouncingBallsIcon />
+    <BouncingBallsIcon />
+    <BouncingBallsIcon />
+    <BouncingBallsIcon />
+    <BouncingBallsIcon />
     </React.Fragment>
   );
 }

@@ -6,6 +6,15 @@
     width: 200px;
     height: 75px;
     overflow: hidden;
+    margin: 0 0.5em;
     /* border: solid pink 1px; */
     /* border-radius: 4px; */
+}
+
+.filler{
+    transform: scale(2);
+}
+
+.thriller{
+    transform: scale(2);
 }

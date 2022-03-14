@@ -1,4 +1,4 @@
-import React, { createRef, useEffect } from 'react';
+import React, { createRef, useEffect, useRef } from 'react';
 import classes from './BouncingBallsIcon.module.css';
 import { gsap } from 'gsap/gsap-core';
 import { CSSPlugin } from 'gsap/CSSPlugin'
@@ -9,18 +9,11 @@ import { Power4 } from 'gsap';
 gsap.registerPlugin(CSSPlugin)
 
 const BouncingBallsIcon = (props) => {
-    const elementsRef = createRef();
+    const elementsRef = useRef();
     const circsRef = gsap.utils.selector(elementsRef);
-    const viewBoxAnimationRef = createRef();
-
-
-    useEffect( () => {
-        gsap.to(viewBoxAnimationRef.current, {
-            viewBox: "240 0 240 90",
-            duration: 4
-        });
-    });
-
+    const viewBoxAnimationRef = useRef();
+    const tl = useRef();
+    
     useEffect( ()=> {
         gsap.to(circsRef("circle"), {
             x: 30,

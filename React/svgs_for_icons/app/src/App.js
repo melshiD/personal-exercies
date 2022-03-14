@@ -1,19 +1,14 @@
 import logo from './logo.svg';
-import './App.css';
 import BouncingBallsIcon from './Components/Icons/BouncingBallsIcon';
 import React from 'react';
 import CustomTextInput from "./Components/Icons/CustomTextInput";
+import classes from './App.module.css';
 
 function App() {
   return (
-    <React.Fragment>
+    <div className={classes.flexBalls}>
     <BouncingBallsIcon />
-    <BouncingBallsIcon />
-    <BouncingBallsIcon />
-    <BouncingBallsIcon />
-    <BouncingBallsIcon />
-    <BouncingBallsIcon />
-    </React.Fragment>
+    </div>
   );
 }
 

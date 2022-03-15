@@ -9,7 +9,7 @@ gsap.registerPlugin(CSSPlugin);
 const IconViewBoxAnimationWrapper = (props) => {
     //config the opacity 'mask'
     const maskStopColor = props.maskStopColor;
-    const initialViewBoxVals = `0 0 ${props.viewBoxWidth} ${props.viewBoxHeight}`;
+    const initialViewBoxVals = `300 0 ${props.viewBoxWidth} ${props.viewBoxHeight}`;
 
     const els1 = useRef();
     const q = gsap.utils.selector(els1);
@@ -18,50 +18,43 @@ const IconViewBoxAnimationWrapper = (props) => {
     const tl1 = useRef();
     const tl2 = useRef();
 
+    const duration = 10;
+    const pauseDuration = (duration-(duration/10));
+
     useEffect(() => {
-        tl1.current = gsap.timeline()
+        tl1.current = gsap.timeline({repeat:-1})
             .set(q('svg'), {
-                attr:{viewBox: '0 0 240 90'}
+                attr: { viewBox: initialViewBoxVals }
             })
             .to(q('svg'), {
                 attr: { viewBox: '0 0 240 90' },
-                duration: 4,
-                yoyo: true,
-                repeat: -1
-            }, 'beginning')
-            .addPause(3)
-            .to(q('svg'), {
-                attr: { viewBox: '480 0 240 90' },
-                duration: 4,
-                yoyo: true,
-                repeat: -1
+
             })
+            .pause(pauseDuration)
+            .to(q('svg'), {
+                attr: { viewBox: '-480 0 240 90' },
+            }).duration(duration).play();
     }, []);
 
     useEffect(() => {
-        tl2.current = gsap.timeline()
+        tl2.current = gsap.timeline({repeat:-1})
             .set(r('#masking_rect'), {
-                x: -240
+                x: 300,
+                y: 0
             })
             .to(r('#masking_rect'), {
                 x: 0,
-                duration: 4,
-                yoyo: true,
-                repeat: -1
             })
-            .addPause(3)
+            .pause(pauseDuration)
             .to(r('#masking_rect'), {
-                x: 480,
-                duration: 4,
-                yoyo: true,
-                repeat: -1
-            })
+                x: -480,
+            }).duration(duration).play();
     }, []);
-
+    //HOW DO I MAKE THE ICON'S CONSTITUENT SHAPES POSITION RELATIVE TO THE MASKING RECT
     return (
         <div ref={els1}>
-            <svg className={classes['svg-container']} viewBox={initialViewBoxVals} ref={els2}>
-                <defs>
+            <svg className={classes['svg-container']} ref={els2} width={props.viewBoxWidth} height={props.viewBoxHeight}>
+                <defs >
                     <linearGradient id="fade" >
                         <stop offset="0%" stopColor={maskStopColor} stopOpacity="1" />
                         <stop offset="5%" stopColor={maskStopColor} stopOpacity="0" />
@@ -69,8 +62,11 @@ const IconViewBoxAnimationWrapper = (props) => {
                         <stop offset="100%" stopColor={maskStopColor} stopOpacity="1" />
                     </linearGradient>
                 </defs>
-                {props.children}
-                <rect id="masking_rect" width={props.viewBoxWidth} height={props.viewBoxHeight} rx="2" fill="url(#fade)" />
+                <g id="icon_shapes" >
+                    {props.children}
+                </g>
+                <rect id="masking_rect" width={props.viewBoxWidth} height={props.viewBoxHeight} fill="url(#fade)"/>
+
             </svg>
         </div>
     );

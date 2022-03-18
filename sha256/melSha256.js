@@ -304,7 +304,11 @@ function iterateAndCompress(H, W, K){
 function binaryToHex(binaryStringArray){
     let outputString = [];
     binaryStringArray.forEach( 
-        (word) => outputString.push(parseInt(word, 2).toString(16).toLowerCase())
+        (word) => {
+            console.log(word);
+            outputString.push(parseInt(word, 2).toString(16).toLowerCase().padStart(8, '0'));
+            console.log(parseInt(word, 2).toString(16).toLowerCase());
+        }
     );
     return outputString.join('');
 }
@@ -332,3 +336,10 @@ function performSHA256(inputData, dataRequestIndex = 0){
 }
 // console.log(performSHA256('once there was a way to get back home.  Once there was a way, to get back home.  Go to sleep pretty darling, do not cry, and I will sing a lullaby'));
 console.log(performSHA256('dave', 4));
+
+let outputString = performSHA256('abcdefgHi1s');//IT'S REMOVING SOME ZEROES FROM INDIVIDUAL LETTERS see: 'abcdefgHi1s'
+console.log(`${outputString} length: ${outputString.length}`);
+
+//see: 0996aa97913b8e1516e59111515cb76726d79f69493fbd14d999291ff649d19f length:64
+//see: 996aa97913b8e1516e59111515cb76726d79f69493fbd14d999291ff0649d19f length:64
+//something is buggin in the hex function

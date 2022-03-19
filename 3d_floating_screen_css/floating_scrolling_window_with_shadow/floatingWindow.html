@@ -7,46 +7,193 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3d Screen Effect</title>
     <style>
+        body {
+            display: flex;
+            flex-flow: column wrap;
+            /* perspective: 36rem;
+            transform-style: preserve-3d; */
+
+        }
+
+        .slider-card {
+            padding: 0.7rem;
+            border: rgba(0, 0, 0, 0.25) solid 0.1rem;
+            border-radius: 1em;
+            width: auto;
+            margin: 1.2rem;
+            height: 5rem;
+        }
+
+        .testDivContainer {
+            /* position: fixed; */
+            display: flex;
+            flex-flow: column wrap;
+            /* top: 20vh; */
+            width: fit-content;
+            margin: 1em auto;
+            background: url('./assets/word.PNG');
+            background-size: cover;
+            background-position: 0% 0%;
+            padding: 1rem;
+            border: solid 1px black;
+            border-radius: 14px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            z-index: 30;
+            perspective: 4rem;
+            animation: scrolling-bits 12s infinite alternate-reverse;
+            /* --------------  */
+            transform: rotate3d(0.14, 1, -0.06, -18deg) rotateZ(-1deg);
+        }
+
+        @keyframes scrolling-bits {
+            from {
+                background-position: 0% 0%;
+            }
+
+            to {
+                background-position: 0% 100%;
+            }
+        }
+
         .testDiv {
-            width: 30rem;
-            height: 10rem;
-            background-color: bisque;
+            width: 40rem;
+            height: 20rem;
+            background-color: none;
             border: darkgoldenrod double 4px;
             border-radius: 1em;
         }
 
-        .testDivContainer {
-            position: fixed;
-            top: 20vh;
-            left: 5%;
-            width: fit-content;
-            background-color: white;
-            padding: 1rem;
-            border-radius: 14px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-            z-index: 30;
-            transform:  rotate3d(0.5, -0.866, 0, 18deg) rotateZ(-1deg);
-        }
-        p{
+        p {
             text-align: center;
+        }
+
+        .other {
+            transform: translateZ(4rem);
+        }
+
+        .two-containers {
+            transform-style: preserve-3d;
+        }
+
+        .words-and-board{
+            perspective: 46rem;
+            transform-style: preserve-3d;
         }
     </style>
 </head>
 
-<body> 
-    <div class="testDivContainer" id="floating_display">
-        <div class="testDiv">
-            <p>Hail the conquering hero!</p>
+<body>
+    <div class="slider-card" id="sliders">
+        <label for="Amount" name="amount">Amount</label>
+        <input type="range" class="fancy" id="amount" min="-180" max="180" value="0">
+
+        <label for="x" name="amount">x axis cord</label>
+        <input type="range" class="fancy" id="x" min="-1" max="1" step="0.01" value="0">
+
+        <label for="y" name="amount">y axis cord</label>
+        <input type="range" class="fancy" id="y" min="-1" max="1" step="0.01" value="0">
+
+        <label for="z" name="amount">z axis cord</label>
+        <input type="range" class="fancy" id="z" min="-1" max="1" step="0.01" value="0">
+
+        <label for="rotateZ" name="amount">rotateZ</label>
+        <input type="range" class="fancy" id="rotateZ" min="-180" max="180" value="0">
+    </div>
+    <div class="words-and-board">
+    <div class="words">
+        <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid minus aperiam sed nobis aspernatur ipsum
+            mollitia corrupti. Doloribus nobis vero recusandae numquam aut! Iure aut error quae reiciendis quis
+            consectetur!
+            Delectus laborum eaque cupiditate recusandae velit officiis? Soluta ipsum deleniti dolores eligendi nam
+            vitae, sit, molestiae vel architecto quibusdam ut facere doloribus officia velit explicabo tempora ducimus
+            recusandae, dicta similique.
+            Ipsam dolor quo commodi unde voluptate veritatis id alias quis reiciendis vitae facere quaerat impedit
+            recusandae illo consequuntur perspiciatis, animi suscipit distinctio voluptatum? Repudiandae omnis adipisci
+            voluptatum atque mollitia fuga.
+            Aperiam, animi. Tempore quas corrupti exercitationem nobis nihil? Dolorum laudantium, quae nihil
+            perspiciatis libero dolore perferendis earum nostrum porro error voluptate, nemo voluptates ipsa repudiandae
+            mollitia corrupti. Doloribus nobis vero recusandae numquam aut! Iure aut error quae reiciendis quis
+            consectetur!
+            Delectus laborum eaque cupiditate recusandae velit officiis? Soluta ipsum deleniti dolores eligendi nam
+            vitae, sit, molestiae vel architecto quibusdam ut facere doloribus officia velit explicabo tempora ducimus
+            recusandae, dicta similique.
+            Ipsam dolor quo commodi unde voluptate veritatis id alias quis reiciendis vitae facere quaerat impedit
+            recusandae illo consequuntur perspiciatis, animi suscipit distinctio voluptatum? Repudiandae omnis adipisci
+            voluptatum atque mollitia fuga.
+            Aperiam, animi. Tempore quas corrupti exercitationem nobis nihil? Dolorum laudantium, quae nihil
+            perspiciatis libero dolore perferendis earum nostrum porro error voluptate, nemo voluptates ipsa repudiandae
+            soluta officiis minus neque. Veniam.
+            Voluptas eos odio quisquam, est sunt sed! Eligendi possimus omnis reprehenderit illo hic reiciendis, ab
+        </p>
+    </div>
+    <div class="two-containers">
+        <div class="testDivContainer" id="floating_display">
+            <div class="testDiv"></div>
         </div>
     </div>
-    <input type="range" class="fancy" id="rot3d" min="0" max="360">
+    </div>
     <script>
+
+        const rotateAxisVals = {
+            x: '0.14',
+            y: '1',
+            z: '-0.06',
+            amount: '-18',
+            rotateZ: '-1'
+        };
+
+        const updateRotateValues = (x, y, z, amount, rotateZ) => {
+            rotateAxisVals.x = x;
+            rotateAxisVals.y = y;
+            rotateAxisVals.z = z;
+            rotateAxisVals.amount = amount;
+            rotateAxisVals.rotateZ = rotateZ;
+            console.log(rotateAxisVals);
+        };
+
         let floating_display = document.getElementById('floating_display');
-        let slider = document.getElementById('rot3d');
-        slider.addEventListener('input', (event) => {
-            console.log(slider.value);
-            floating_display.style.transform = `rotate3d(0.5, -0.866, 0, ${slider.value}deg) rotateZ(-1deg)`;
-        })
+        let amountSlider = document.getElementById('amount');
+        amountSlider.addEventListener('input', () => {
+            let { x, y, z, rotateZ } = rotateAxisVals;
+            console.log('amount: ' + amountSlider.value);
+            floating_display.style.transform = `rotate3d(${x}, ${y}, ${z}, ${amountSlider.value}deg) rotateZ(-1deg)`;
+            return updateRotateValues(x, y, z, amountSlider.value, rotateZ);
+        });
+
+        let xSlider = document.getElementById('x');
+        xSlider.addEventListener('input', () => {
+            let { y, z, amount, rotateZ } = rotateAxisVals;
+            console.log('x: ' + xSlider.value);
+            floating_display.style.transform = `rotate3d(${xSlider.value}, ${y}, ${z}, ${amount}deg) rotateZ(-1deg)`;
+            return updateRotateValues(xSlider.value, y, z, amount, rotateZ);
+        });
+
+        let ySlider = document.getElementById('y');
+        ySlider.addEventListener('input', () => {
+            let { x, z, amount, rotateZ } = rotateAxisVals;
+            console.log('y: ' + ySlider.value);
+            floating_display.style.transform = `rotate3d(${x}, ${ySlider.value}, ${z}, ${amount}deg) rotateZ(-1deg)`;
+            return updateRotateValues(x, ySlider.value, z, amount, rotateZ);
+        });
+
+        let zSlider = document.getElementById('z');
+        zSlider.addEventListener('input', () => {
+            let { x, y, amount, rotateZ } = rotateAxisVals;
+            console.log('z: ' + zSlider.value);
+            floating_display.style.transform = `rotate3d(${x}, ${y}, ${zSlider.value}, ${amount}deg) rotateZ(-1deg)`;
+            return updateRotateValues(x, y, zSlider.value, amount, rotateZ);
+        });
+
+        let rotateZ = document.getElementById('rotateZ');
+        rotateZ.addEventListener('input', () => {
+            let { x, y, z, amount } = rotateAxisVals;
+            console.log('rotateZ: ' + rotateZ.value);
+            floating_display.style.transform = `rotate3d(${x}, ${y}, ${z}, ${amount}deg) rotateZ(${rotateZ.value}deg)`;
+            return updateRotateValues(x, y, zSlider.value, amount, rotateZ.value);
+        });
+
+
     </script>
 </body>
 

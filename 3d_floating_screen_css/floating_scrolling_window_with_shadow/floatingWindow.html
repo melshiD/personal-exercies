@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3d Screen Effect</title>
+    <style>
+        .testDiv {
+            width: 30rem;
+            height: 10rem;
+            background-color: bisque;
+            border: darkgoldenrod double 4px;
+            border-radius: 1em;
+        }
+
+        .testDivContainer {
+            position: fixed;
+            top: 20vh;
+            left: 5%;
+            width: fit-content;
+            background-color: white;
+            padding: 1rem;
+            border-radius: 14px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            z-index: 30;
+            transform:  rotate3d(0.5, -0.866, 0, 18deg) rotateZ(-1deg);
+        }
+        p{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body> 
+    <div class="testDivContainer" id="floating_display">
+        <div class="testDiv">
+            <p>Hail the conquering hero!</p>
+        </div>
+    </div>
+    <input type="range" class="fancy" id="rot3d" min="0" max="360">
+    <script>
+        let floating_display = document.getElementById('floating_display');
+        let slider = document.getElementById('rot3d');
+        slider.addEventListener('input', (event) => {
+            console.log(slider.value);
+            floating_display.style.transform = `rotate3d(0.5, -0.866, 0, ${slider.value}deg) rotateZ(-1deg)`;
+        })
+    </script>
+</body>
+
+</html>

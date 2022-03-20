@@ -1,0 +1,78 @@
+/* @import "compass/css3"; */
+body{
+    overflow: hidden;
+    background-color: rgb(230, 202, 196);
+}
+.wrapper {
+  width: 50%;
+  float: left;
+}
+
+.w1 {
+  perspective: 1px;
+  animation: morph 60s ease-in;
+}
+@keyframes morph{
+    from{
+        perspective: 1px;
+    }
+    to{
+        perspective: 1000px;
+    }
+}
+.w2 {
+  perspective: 250px;
+}
+
+.wrapper h1 {
+  text-align: center;
+}
+
+.cube {
+  font-size: 4em;
+  width: 2em;
+  margin: 1.5em auto;
+  transform-style: preserve-3d;
+  transform: rotateX(-40deg) rotateY(32deg);
+}
+
+.side {
+  position: absolute;
+  width: 2em;
+  height: 2em;
+  
+  background: rgba(143, 58, 58, 0.419);
+  border: 1px solid rgba(0,0,0,.5);
+  
+  color: rgb(250, 59, 16); 
+  text-align: center;
+  line-height: 2em;
+}
+.four{
+    box-sizing: border-box;
+    border: solid goldenrod 3px;
+    width: 100vw;
+    height: 100vh;
+}
+.inside-four{
+    transform: rotate3d(0.14, 1, -0.06, -12deg) rotateZ(-1deg);
+}
+.rotated1{
+    transform: rotateZ(45deg);
+}
+.rotated2{
+    transform: rotateZ(90deg);
+}
+.rotated3{
+    transform: rotateY(135deg);
+}
+.rotated4{
+    transform: rotateY(225deg);
+}
+
+.front  { transform:                  translateZ(1.04em); }
+.top    { transform: rotateX( 90deg)  translateZ(1.04em); }
+.right  { transform: rotateY( 90deg)  translateZ(1.04em); }
+.left   { transform: rotateY(-90deg)  translateZ(1.04em); }
+.bottom { transform: rotateX(-90deg)  translateZ(1.04em); }
+.back   { transform: rotateY(-180deg) translateZ(1.04em); }

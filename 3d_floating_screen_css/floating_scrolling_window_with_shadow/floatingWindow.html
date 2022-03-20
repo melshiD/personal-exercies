@@ -26,8 +26,7 @@
 
         .testDivContainer {
             /* position: fixed; */
-            display: flex;
-            flex-flow: column wrap;
+
             /* top: 20vh; */
             width: fit-content;
             margin: 1em auto;
@@ -35,11 +34,11 @@
             background-size: cover;
             background-position: 0% 0%;
             padding: 1rem;
-            border: solid 1px black;
+            border: solid 0.5px black;
             border-radius: 14px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
             z-index: 30;
-            perspective: 4rem;
+            /* perspective: 4rem; */
             animation: scrolling-bits 12s infinite alternate-reverse;
             /* --------------  */
             transform: rotate3d(0.14, 1, -0.06, -18deg) rotateZ(-1deg);
@@ -67,15 +66,13 @@
             text-align: center;
         }
 
-        .other {
-            transform: translateZ(4rem);
-        }
-
         .two-containers {
             transform-style: preserve-3d;
+            display: flex;
+            flex-flow: row wrap;
         }
 
-        .words-and-board{
+        .words-and-board {
             perspective: 46rem;
             transform-style: preserve-3d;
         }
@@ -85,7 +82,7 @@
 <body>
     <div class="slider-card" id="sliders">
         <label for="Amount" name="amount">Amount</label>
-        <input type="range" class="fancy" id="amount" min="-180" max="180" value="0">
+        <input type="range" class="fancy" id="amount" step="0.01" min="-180" max="180" value="0">
 
         <label for="x" name="amount">x axis cord</label>
         <input type="range" class="fancy" id="x" min="-1" max="1" step="0.01" value="0">
@@ -100,38 +97,66 @@
         <input type="range" class="fancy" id="rotateZ" min="-180" max="180" value="0">
     </div>
     <div class="words-and-board">
-    <div class="words">
-        <p>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid minus aperiam sed nobis aspernatur ipsum
-            mollitia corrupti. Doloribus nobis vero recusandae numquam aut! Iure aut error quae reiciendis quis
-            consectetur!
-            Delectus laborum eaque cupiditate recusandae velit officiis? Soluta ipsum deleniti dolores eligendi nam
-            vitae, sit, molestiae vel architecto quibusdam ut facere doloribus officia velit explicabo tempora ducimus
-            recusandae, dicta similique.
-            Ipsam dolor quo commodi unde voluptate veritatis id alias quis reiciendis vitae facere quaerat impedit
-            recusandae illo consequuntur perspiciatis, animi suscipit distinctio voluptatum? Repudiandae omnis adipisci
-            voluptatum atque mollitia fuga.
-            Aperiam, animi. Tempore quas corrupti exercitationem nobis nihil? Dolorum laudantium, quae nihil
-            perspiciatis libero dolore perferendis earum nostrum porro error voluptate, nemo voluptates ipsa repudiandae
-            mollitia corrupti. Doloribus nobis vero recusandae numquam aut! Iure aut error quae reiciendis quis
-            consectetur!
-            Delectus laborum eaque cupiditate recusandae velit officiis? Soluta ipsum deleniti dolores eligendi nam
-            vitae, sit, molestiae vel architecto quibusdam ut facere doloribus officia velit explicabo tempora ducimus
-            recusandae, dicta similique.
-            Ipsam dolor quo commodi unde voluptate veritatis id alias quis reiciendis vitae facere quaerat impedit
-            recusandae illo consequuntur perspiciatis, animi suscipit distinctio voluptatum? Repudiandae omnis adipisci
-            voluptatum atque mollitia fuga.
-            Aperiam, animi. Tempore quas corrupti exercitationem nobis nihil? Dolorum laudantium, quae nihil
-            perspiciatis libero dolore perferendis earum nostrum porro error voluptate, nemo voluptates ipsa repudiandae
-            soluta officiis minus neque. Veniam.
-            Voluptas eos odio quisquam, est sunt sed! Eligendi possimus omnis reprehenderit illo hic reiciendis, ab
-        </p>
-    </div>
-    <div class="two-containers">
-        <div class="testDivContainer" id="floating_display">
-            <div class="testDiv"></div>
+        <div class="words">
+            <p>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid minus aperiam sed nobis aspernatur
+                ipsum
+                mollitia corrupti. Doloribus nobis vero recusandae numquam aut! Iure aut error quae reiciendis quis
+                consectetur!
+                Delectus laborum eaque cupiditate recusandae velit officiis? Soluta ipsum deleniti dolores eligendi nam
+                vitae, sit, molestiae vel architecto quibusdam ut facere doloribus officia velit explicabo tempora
+                ducimus
+                recusandae, dicta similique.
+                Ipsam dolor quo commodi unde voluptate veritatis id alias quis reiciendis vitae facere quaerat impedit
+                recusandae illo consequuntur perspiciatis, animi suscipit distinctio voluptatum? Repudiandae omnis
+                adipisci
+                voluptatum atque mollitia fuga.
+                Aperiam, animi. Tempore quas corrupti exercitationem nobis nihil? Dolorum laudantium, quae nihil
+                perspiciatis libero dolore perferendis earum nostrum porro error voluptate, nemo voluptates ipsa
+                repudiandae
+                mollitia corrupti. Doloribus nobis vero recusandae numquam aut! Iure aut error quae reiciendis quis
+                consectetur!
+                Delectus laborum eaque cupiditate recusandae velit officiis? Soluta ipsum deleniti dolores eligendi nam
+                vitae, sit, molestiae vel architecto quibusdam ut facere doloribus officia velit explicabo tempora
+                ducimus
+                recusandae, dicta similique.
+                Ipsam dolor quo commodi unde voluptate veritatis id alias quis reiciendis vitae facere quaerat impedit
+                recusandae illo consequuntur perspiciatis, animi suscipit distinctio voluptatum? Repudiandae omnis
+                adipisci
+                voluptatum atque mollitia fuga.
+                Aperiam, animi. Tempore quas corrupti exercitationem nobis nihil? Dolorum laudantium, quae nihil
+                perspiciatis libero dolore perferendis earum nostrum porro error voluptate, nemo voluptates ipsa
+                repudiandae
+                soluta officiis minus neque. Veniam.
+                Voluptas eos odio quisquam, est sunt sed! Eligendi possimus omnis reprehenderit illo hic reiciendis, ab
+            </p>
         </div>
-    </div>
+        <div class="two-containers">
+            <div class="testDivContainer" id="floating_display">
+                <div class="testDiv"></div>
+            </div>
+            <div class="testDivContainer" id="floating_display_2">
+                <div class="testDiv"></div>
+            </div>
+            <div class="testDivContainer" id="floating_display">
+                <div class="testDiv"></div>
+            </div>
+            <div class="testDivContainer" id="floating_display_2">
+                <div class="testDiv"></div>
+            </div>
+            <div class="testDivContainer" id="floating_display">
+                <div class="testDiv"></div>
+            </div>
+            <div class="testDivContainer" id="floating_display_2">
+                <div class="testDiv"></div>
+            </div>
+            <div class="testDivContainer" id="floating_display">
+                <div class="testDiv"></div>
+            </div>
+            <div class="testDivContainer" id="floating_display_2">
+                <div class="testDiv"></div>
+            </div>
+        </div>
     </div>
     <script>
 

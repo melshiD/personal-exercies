@@ -1,0 +1,27 @@
+.threeDContainer{
+    perspective: 20rem;
+    height: 300px;
+    width: 100vw;
+    margin-top: 4em;
+    border-top: black solid 1px;
+    border-bottom: black solid 1px;
+    overflow: hidden;
+}
+.middle{
+    transform-style: preserve-3d;
+    display: flex;
+    transform: rotate3d(0.14, 1, -0.06, -18deg) rotateZ(-1deg);
+
+}
+.whiteBoard{
+    width: 400px;
+    height: 250px;
+    border: black solid 1px;
+    border-radius: 1em;
+    transform-style: preserve-3d;
+    /* transform: rotate3d(0.14, 1, -0.06, -18deg) rotateZ(-1deg); */
+
+    background: url('./assets/word.PNG');
+    background-size: cover;
+    margin: 5em 5px;
+}

@@ -1,0 +1,39 @@
+body{
+    background: url('../../../git_animation/assets/ISD_bridge.webp');
+    background-size: cover;
+}
+.full-hero{
+    perspective: 50rem;
+    perspective-origin: center;
+    display: flex;
+    transform-style: preserve-3d;
+    width: 100%;
+    height: auto;
+    margin: 10rem auto;
+}
+.screen{
+    width: 20.83%;
+    height: 200px;
+    background-color: orchid;
+    border: black solid 2px;
+    border-radius: 4px;
+    margin: 1rem;
+}
+.screen:nth-child(1){
+
+    transform: rotate3d(0.14, 1, -0.06, 24deg) rotateZ(0deg) translateZ(0rem);
+}
+.screen:nth-child(2){
+
+    transform: rotate3d(0.14, 1, -0.06, 0deg) rotateZ(0deg) translateZ(rem);
+}
+.screen:nth-child(3){
+
+    transform: rotate3d(0.14, 1, -0.06, -24deg) rotateZ(0deg) translateZ(0rem);
+}
+.screens-holder{
+    display: flex;
+    margin: 5em auto;
+    transform-style: inherit;
+    width: 100%;
+}

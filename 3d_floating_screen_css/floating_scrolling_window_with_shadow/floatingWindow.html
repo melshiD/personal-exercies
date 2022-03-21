@@ -95,67 +95,17 @@
 
         <label for="rotateZ" name="amount">rotateZ</label>
         <input type="range" class="fancy" id="rotateZ" min="-180" max="180" value="0">
+
+        <label for="translateZ" name="amount">translateZ</label>
+        <input type="range" class="fancy" id="translateZ" min="-180rem" max="180rem" value="40">
     </div>
     <div class="words-and-board">
-        <div class="words">
-            <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aliquid minus aperiam sed nobis aspernatur
-                ipsum
-                mollitia corrupti. Doloribus nobis vero recusandae numquam aut! Iure aut error quae reiciendis quis
-                consectetur!
-                Delectus laborum eaque cupiditate recusandae velit officiis? Soluta ipsum deleniti dolores eligendi nam
-                vitae, sit, molestiae vel architecto quibusdam ut facere doloribus officia velit explicabo tempora
-                ducimus
-                recusandae, dicta similique.
-                Ipsam dolor quo commodi unde voluptate veritatis id alias quis reiciendis vitae facere quaerat impedit
-                recusandae illo consequuntur perspiciatis, animi suscipit distinctio voluptatum? Repudiandae omnis
-                adipisci
-                voluptatum atque mollitia fuga.
-                Aperiam, animi. Tempore quas corrupti exercitationem nobis nihil? Dolorum laudantium, quae nihil
-                perspiciatis libero dolore perferendis earum nostrum porro error voluptate, nemo voluptates ipsa
-                repudiandae
-                mollitia corrupti. Doloribus nobis vero recusandae numquam aut! Iure aut error quae reiciendis quis
-                consectetur!
-                Delectus laborum eaque cupiditate recusandae velit officiis? Soluta ipsum deleniti dolores eligendi nam
-                vitae, sit, molestiae vel architecto quibusdam ut facere doloribus officia velit explicabo tempora
-                ducimus
-                recusandae, dicta similique.
-                Ipsam dolor quo commodi unde voluptate veritatis id alias quis reiciendis vitae facere quaerat impedit
-                recusandae illo consequuntur perspiciatis, animi suscipit distinctio voluptatum? Repudiandae omnis
-                adipisci
-                voluptatum atque mollitia fuga.
-                Aperiam, animi. Tempore quas corrupti exercitationem nobis nihil? Dolorum laudantium, quae nihil
-                perspiciatis libero dolore perferendis earum nostrum porro error voluptate, nemo voluptates ipsa
-                repudiandae
-                soluta officiis minus neque. Veniam.
-                Voluptas eos odio quisquam, est sunt sed! Eligendi possimus omnis reprehenderit illo hic reiciendis, ab
-            </p>
-        </div>
+
         <div class="two-containers">
             <div class="testDivContainer" id="floating_display">
                 <div class="testDiv"></div>
             </div>
-            <div class="testDivContainer" id="floating_display_2">
-                <div class="testDiv"></div>
-            </div>
-            <div class="testDivContainer" id="floating_display">
-                <div class="testDiv"></div>
-            </div>
-            <div class="testDivContainer" id="floating_display_2">
-                <div class="testDiv"></div>
-            </div>
-            <div class="testDivContainer" id="floating_display">
-                <div class="testDiv"></div>
-            </div>
-            <div class="testDivContainer" id="floating_display_2">
-                <div class="testDiv"></div>
-            </div>
-            <div class="testDivContainer" id="floating_display">
-                <div class="testDiv"></div>
-            </div>
-            <div class="testDivContainer" id="floating_display_2">
-                <div class="testDiv"></div>
-            </div>
+
         </div>
     </div>
     <script>
@@ -165,15 +115,17 @@
             y: '1',
             z: '-0.06',
             amount: '-18',
-            rotateZ: '-1'
+            rotateZ: '-1',
+            translateZ: '40'
         };
 
-        const updateRotateValues = (x, y, z, amount, rotateZ) => {
+        const updateRotateValues = (x, y, z, amount, rotateZ, translateZ) => {
             rotateAxisVals.x = x;
             rotateAxisVals.y = y;
             rotateAxisVals.z = z;
             rotateAxisVals.amount = amount;
             rotateAxisVals.rotateZ = rotateZ;
+            rotateAxisVals.translateZ = translateZ;
             console.log(rotateAxisVals);
         };
 
@@ -185,6 +137,8 @@
             floating_display.style.transform = `rotate3d(${x}, ${y}, ${z}, ${amountSlider.value}deg) rotateZ(-1deg)`;
             return updateRotateValues(x, y, z, amountSlider.value, rotateZ);
         });
+
+        //WHEN YOU SIT BACK DOWN FIND A DRY WAY TO HANDLE ADDING STATE TO THIS OBJECT WITH SLIDERS!!
 
         let xSlider = document.getElementById('x');
         xSlider.addEventListener('input', () => {
@@ -212,6 +166,14 @@
 
         let rotateZ = document.getElementById('rotateZ');
         rotateZ.addEventListener('input', () => {
+            let { x, y, z, amount } = rotateAxisVals;
+            console.log('rotateZ: ' + rotateZ.value);
+            floating_display.style.transform = `rotate3d(${x}, ${y}, ${z}, ${amount}deg) rotateZ(${rotateZ.value}deg)`;
+            return updateRotateValues(x, y, zSlider.value, amount, rotateZ.value);
+        });
+
+        let translateZ = document.getElementById('translateZ');
+        translateZ.addEventListener('input', () => {
             let { x, y, z, amount } = rotateAxisVals;
             console.log('rotateZ: ' + rotateZ.value);
             floating_display.style.transform = `rotate3d(${x}, ${y}, ${z}, ${amount}deg) rotateZ(${rotateZ.value}deg)`;

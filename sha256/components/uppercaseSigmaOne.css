@@ -1,20 +1,24 @@
+*{
+    font-size: 16px;
+}
 .cards{
     border: black solid 4px;
     display: flex;
     flex-flow: column;
     height: 400px;
     justify-content: space-evenly;
-    width: 250px;
+    width: fit-content;
+    padding: .2em .8em;
 
 }
 .card{
     display: flex;
     border: black solid 3px;
     border-radius: 5px;
-    width: 200px;
-    height: 80px;
-    /* margin-left: 1em; */
+    width: fit-content;
     align-self: center;
+    padding: 10px;
+    
 }
 .sigmaIcon{
     box-sizing: border-box;
@@ -22,14 +26,14 @@
     justify-content: space-around;
     width: 65px;
     height: 65px;
-    margin: auto 5px;
+    /* margin: auto 5px; */
     border: black solid 2px;
     border-radius: 6px;
 }
 .superscript{
     font-size: 0;
     color: pink;
-    /* display: flex; */
+    display: flex;
 }
 .superscript p{
     display: inline-block;
@@ -43,4 +47,54 @@
     color: pink;
     align-self: flex-end;
     margin: 4px;
+}
+.colon{
+    width: content;
+    max-height: fit-content;
+    font-size: 60px;
+    line-height: 60px;
+}
+.rotationsList{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    border: solid black 1px;
+    border-radius: 3px;
+    padding: 0.2rem;
+}
+.rotRow{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.rotation{
+    /* display: flex;
+    flex-flow: column; */
+}
+.rotationName{
+    /* display: inline; */
+    font-size: 2rem;
+    /* border: 2px black solid; */
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    /* align-self: flex-start; */
+    margin-right: .3em;
+    width: 68px;
+}
+.rotationName .nameLetters{
+    align-self: flex-start;
+}
+.rotationName .nameNumbers{
+    align-self: flex-end;
+}
+.rotationExample{
+    /* display: inline; */
+    align-self: flex-end;
+    margin-right: 0.2em;
+}
+.hiding{
+    transition: all 3s;
+    opacity: 0;
 }

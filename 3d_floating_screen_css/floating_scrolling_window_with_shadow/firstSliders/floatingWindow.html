@@ -10,40 +10,41 @@
 </head>
 
 <body>
+    <div class="sliders-and-board">
     <div class="slider-left-group">
-    <div class="slider-card" id="sliders">
-        <h3>Rotate and Translate Sliders</h3>
-        <label for="Amount" name="amount">Rotate 3D Amount</label>
-        <input type="range" class="fancy" id="amount" step="0.01" min="-180" max="180" value="0">
+        <div class="slider-card" id="sliders">
+            <h3>Rotate and Translate Sliders</h3>
+            <label for="Amount" name="amount">Rotate 3D Amount</label>
+            <input type="range" class="fancy" id="amount" step="0.01" min="-180" max="180" value="0">
 
-        <label for="x" name="amount">x axis cord</label>
-        <input type="range" class="fancy" id="x" min="-1" max="1" step="0.01" value="0">
+            <label for="x" name="amount">x axis cord</label>
+            <input type="range" class="fancy" id="x" min="-1" max="1" step="0.01" value="0">
 
-        <label for="y" name="amount">y axis cord</label>
-        <input type="range" class="fancy" id="y" min="-1" max="1" step="0.01" value="0">
+            <label for="y" name="amount">y axis cord</label>
+            <input type="range" class="fancy" id="y" min="-1" max="1" step="0.01" value="0">
 
-        <label for="z" name="amount">z axis cord</label>
-        <input type="range" class="fancy" id="z" min="-1" max="1" step="0.01" value="0">
+            <label for="z" name="amount">z axis cord</label>
+            <input type="range" class="fancy" id="z" min="-1" max="1" step="0.01" value="0">
 
-        <label for="rotateZ" name="amount">rotateZ</label>
-        <input type="range" class="fancy" id="rotateZ" min="-180" max="180" value="0">
+            <label for="rotateZ" name="amount">rotateZ</label>
+            <input type="range" class="fancy" id="rotateZ" min="-180" max="180" value="0">
 
-        <label for="translateZ" name="amount">translateZ</label>
-        <input type="range" class="fancy" id="translateZ" min="-30" max="30" value="0">
+            <label for="translateZ" name="amount">translateZ</label>
+            <input type="range" class="fancy" id="translateZ" min="-30" max="30" value="0">
+        </div>
+        <div class="slider-card" id="sliders">
+            <h3>Perspective Sliders</h3>
+            <label for="perspective" name="amount">Perspective in rem</label>
+            <input type="range" class="fancy" id="perspective" min="-400" max="400" step="0.01" value="46">
+
+            <label for="originX" name="amount">Perspective Origin X</label>
+            <input type="range" class="fancy" id="originX" step="1" min="-500" max="500" value="0">
+
+            <label for="originY" name="amount">Perspective Origin y</label>
+            <input type="range" class="fancy" id="originY" step="1" min="-500" max="500" value="0">
+        </div>
+        </div>
     </div>
-    <div class="slider-card" id="sliders">
-        <h3>Perspective Sliders</h3>
-        <label for="perspective" name="amount">Perspective in rem</label>
-        <input type="range" class="fancy" id="perspective" min="-40" max="200" step="0.01" value="46">
-
-        <label for="originX" name="amount">Perspective Origin X</label>
-        <input type="range" class="fancy" id="originX" step="1" min="-500" max="500" value="0">
-
-        <label for="originY" name="amount">Perspective Origin y</label>
-        <input type="range" class="fancy" id="originY" step="1" min="-500" max="500" value="0">
-
-    </div>
-</div>
     <div class="words-and-board">
 
         <div class="testDivContainer" id="floating_display">

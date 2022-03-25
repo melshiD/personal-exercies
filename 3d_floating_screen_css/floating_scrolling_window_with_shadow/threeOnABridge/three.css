@@ -1,6 +1,7 @@
 body{
     background: url('../../../git_animation/assets/ISD_bridge.webp');
     background-size: cover;
+    padding: auto auto;
 }
 .full-hero{
     perspective: 50rem;
@@ -36,4 +37,9 @@ body{
     margin: 5em auto;
     transform-style: inherit;
     width: 100%;
+}
+.sliders-and-board{
+    width: auto;
+    height: auto;
+    margin: 10em auto;
 }

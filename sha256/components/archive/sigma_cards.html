@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sha</title>
+    <link rel="stylesheet" href="./uppercaseSigmaOne.css">
+    <style>
+        *{
+    font-size: 16px;
+}
+.cards{
+    border: black solid 4px;
+    display: flex;
+    flex-flow: column;
+    /* height: 400px; */
+    justify-content: space-evenly;
+    width: fit-content;
+    /* padding: 2em 2em; */
+    padding: .5em .8em;
+
+}
+.card{
+    display: flex;
+    /* flex-flow: column; */
+    border: black solid 3px;
+    border-radius: 5px;
+    width: fit-content;
+    align-self: center;
+    padding: 10px;
+    margin: 0.4em;
+    
+}
+.sigmaIcon{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-around;
+    width: 65px;
+    height: 65px;
+    /* margin: auto 5px; */
+    border: black solid 2px;
+    border-radius: 6px;
+}
+.superscript{
+    font-size: 0;
+    color: pink;
+    display: flex;
+}
+.superscript p{
+    display: inline-block;
+    font-size: 60px;
+    line-height: 60px;
+    margin-top: 0;
+    margin-left: 10%
+}
+.subscript{
+    font-size:px;
+    color: pink;
+    align-self: flex-end;
+    margin: 4px;
+}
+.colon{
+    width: content;
+    max-height: fit-content;
+    font-size: 60px;
+    line-height: 60px;
+}
+.rotationsList{
+    display: flex;
+    flex-flow: column;
+    justify-content: space-between;
+    border: solid black 1px;
+    border-radius: 3px;
+    padding: 0.2rem;
+}
+.rotRow{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+.rotation{
+    /* display: flex;
+    flex-flow: column; */
+}
+.rotationName{
+    /* display: inline; */
+    font-size: 2rem;
+    /* border: 2px black solid; */
+    border-radius: 3px;
+    display: flex;
+    justify-content: space-between;
+    /* align-self: flex-start; */
+    margin-right: .3em;
+    width: 68px;
+}
+.rotationName .nameLetters{
+    align-self: flex-start;
+}
+.rotationName .nameNumbers{
+    align-self: flex-end;
+}
+.rotationExample{
+    /* display: inline; */
+    align-self: flex-end;
+    margin-right: 0.2em;
+}
+.result{
+    
+}
+.hiding{
+    transition: all 3s;
+    opacity: 0;
+}
+.iconAndListContainer{
+    display: flex;
+    
+}
+
+    </style>
+</head>
+
+<body>
+    <div class="cards">
+        <div class="card">
+            <div class="iconAndListContainer">
+                <div class="sigmaIcon">
+                    <div class="superscript">
+                        <p>Σ</p>
+                    </div>
+                    <div class="subscript">
+                        1
+                    </div>
+                </div>
+                <div class="colon">:</div>
+                <div class="rotationsList">
+                    <div class="rotation">
+                        <div class="rotRow">
+                            <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                    class="nameNumbers">6:</span>
+                            </div>
+                            <div class="rotationExample">10110100101001101010100101010110</div>
+                        </div>
+                    </div>
+                    <div class="rotation">
+                        <div class="rotRow">
+                            <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                    class="nameNumbers">11:</span></div>
+                            <div class="rotationExample">10110100101001101010100101010110</div>
+                        </div>
+                    </div>
+                    <div class="rotation">
+                        <div class="rotRow">
+                            <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                    class="nameNumbers">25:</span></div>
+                            <div class="rotationExample">10110100101001101010100101010110</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="result">10110100101001101100111111010110</div>
+
+        </div>
+
+
+
+
+
+
+
+        <div class="card">
+            <div class="sigmaIcon">
+                <div class="superscript">
+                    <p>Σ</p>
+                </div>
+                <div class="subscript">
+                    0
+                </div>
+            </div>
+            <div class="colon">:</div>
+            <div class="rotationsList">
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                class="nameNumbers">2:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                class="nameNumbers">13:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                class="nameNumbers">22:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="sigmaIcon">
+                <div class="superscript">
+                    <p>σ</p>
+                </div>
+                <div class="subscript">
+                    1
+                    <!-- <p>1</p> -->
+                </div>
+            </div>
+            <div class="colon">:</div>
+            <div class="rotationsList">
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                class="nameNumbers">17:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                class="nameNumbers">19:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">SHR</span><span
+                                class="nameNumbers">10:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
+            <div class="sigmaIcon">
+                <div class="superscript">
+                    <p>σ</p>
+                </div>
+                <div class="subscript">
+                    0
+                </div>
+            </div>
+            <div class="colon">:</div>
+            <div class="rotationsList">
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                class="nameNumbers">7:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">ROTR</span><span
+                                class="nameNumbers">18:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+                <div class="rotation">
+                    <div class="rotRow">
+                        <div class="rotationName"><span class="nameLetters">SHR</span><span
+                                class="nameNumbers">3:</span>
+                        </div>
+                        <div class="rotationExample">10110100101001101010100101010110</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

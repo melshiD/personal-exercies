@@ -5,19 +5,23 @@
     border: black solid 4px;
     display: flex;
     flex-flow: column;
-    height: 400px;
+    /* height: 400px; */
     justify-content: space-evenly;
     width: fit-content;
-    padding: .2em .8em;
+    /* padding: 2em 2em; */
+    padding: .5em .8em;
+    margin: 1em;
 
 }
 .card{
     display: flex;
+    flex-flow: column;
     border: black solid 3px;
     border-radius: 5px;
     width: fit-content;
     align-self: center;
     padding: 10px;
+    margin: 0.4em;
     
 }
 .sigmaIcon{
@@ -94,7 +98,35 @@
     align-self: flex-end;
     margin-right: 0.2em;
 }
+
 .hiding{
     transition: all 3s;
     opacity: 0;
+}
+.iconAndListContainer{
+    display: flex; 
+}
+.resultsCard{
+    display: flex;
+    border: black solid 1px;
+    border-radius: 2px;
+    justify-content: space-between;
+    margin-top: .5em;
+    padding-right: 0.2rem;
+
+}
+.resultsName{
+    display: inline;
+    margin-left: 0.2em;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    /* align-self: flex-end; */
+}
+.resultBits{
+    align-self: flex-end;
+    margin-right: 0.2em;
+}
+button{
+    width: 200px;
+    margin-right: 300px;
 }

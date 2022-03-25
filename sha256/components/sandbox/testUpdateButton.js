@@ -48,7 +48,7 @@ function shiftAndReturnReceipt(inputBits, amount){
     return shiftDigest;
 }
 
-//-------------event listener for input----------------
+//-------------event listener for input  length----------------
 let inputBits = document.getElementById('bitsInput');
 let lengthIndicator = '';
 inputBits.addEventListener('keyup', (event) => {
@@ -61,7 +61,20 @@ inputBits.addEventListener('keyup', (event) => {
     }
 });
 
-//----load entered values into sigma rotation slots-----
-console.log(generateRotationSchedule(inputBits.value, rotationSpecs));
+
+const THREE_DIGESTS = generateRotationSchedule(inputBits.value, rotationSpecs);
+//working on getting these digests animated in the innerHTML space of the number spans
 
 
+//WHEN YOU SIT BACK DOWN KEEP WORKING ON HOW TO GET THIS TO ANIMATE THE VALUES IN THE BITDISPLAYS
+
+const greeting = delayAmount => {
+    setTimeout( () => {
+        console.log('it rains today at ' + delayAmount);
+        if(delayAmount <= 0){
+            return;
+        }
+        greeting(Math.floor(delayAmount/2));
+    }, delayAmount)
+}
+greeting(4000)

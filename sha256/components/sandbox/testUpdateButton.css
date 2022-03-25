@@ -1,0 +1,27 @@
+.table {
+    width: 400px;
+    height: 400px;
+    border: solid black 4px;
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    align-items: center;
+}
+.rotAndBitEntry{
+    padding: 4px;
+    border: solid black 2px;
+    border-radius: 4px;
+}
+.bitsInput{
+    width: 400px;
+    margin-top: 1em;
+}
+.bidDisplay{
+    min-width: 32ch;
+}
+.correctLength{
+    color: black;
+}
+.incorrectLength{
+    color: red;
+}

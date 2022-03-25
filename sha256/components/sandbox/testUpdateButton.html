@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Update Button</title>
+    <style>
+        .table {
+            width: 400px;
+            height: 400px;
+            border: solid black 4px;
+            display: flex;
+            flex-flow: column;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .rotAndBitEntry{
+            padding: 4px;
+            border: solid black 2px;
+            border-radius: 4px;
+        }
+        .bitsInput{
+            width: 400px;
+            margin-top: 1em;
+        }
+        .correctLength{
+            color: black;
+        }
+        .incorrectLength{
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="table">
+        <div class="rotAndBitEntry">
+            <div class="rotationNameAndNumber">
+                <span class="name">ROTR</span><span class="number">13</span>
+            </div>
+            <div class="inputBits">
+                <span class="bitDisplay"></span>
+            </div>
+        </div>
+        <div class="rotAndBitEntry">
+            <div class="rotationNameAndNumber">
+                <span class="name">ROTR</span><span class="number">2</span>
+            </div>
+            <div class="inputBits">
+                <span class="bitDisplay"></span>
+            </div>
+        </div>
+        <div class="rotAndBitEntry">
+            <div class="rotationNameAndNumber">
+                <span class="name">SHR</span><span class="number">23</span>
+            </div>
+            <div class="inputBits">
+                <span class="bitDisplay"></span>
+            </div>
+        </div>
+    </div>
+    <input type="text" class="bitsInput" id="bitsInput" value="10100101011010111010101101110000">
+    <button onclick="loadValues()">Accept Input</button>
+    <script>
+        const rotationNamesAndNumElements = document.querySelectorAll('.rotationNameAndNumber');
+
+        let rotationSpecs = [];
+
+        rotationNamesAndNumElements.forEach( (rotationElemAndAmountElem)=> {
+            let spec = {};
+            console.log(rotationElemAndAmountElem.nextElementSibling.children[0].innerHTML);//vals
+            spec.rotation = rotationElemAndAmountElem.children[0].innerHTML;
+            spec.amount = rotationElemAndAmountElem.children[1].innerHTML;
+            rotationSpecs.push(spec);
+        });
+        console.log(rotationSpecs);
+
+        const generateRotationSchedule = (inputBits, rotationSpecs) => {
+            //build three arrays of strings.  
+            //Each array's length depends on how many movements the bits make
+            let firstDigest = [];
+            for(let spec of rotationSpecs){
+                if(spec.rotation === 'ROTR'){
+                    let digest = rotateAndReturnReceipt(inputBits, parseInt(spec.amount, 10));
+                    firstDigest.push(digest);
+                }
+                if(spec.rotation === 'SHR'){
+                    let digest = shiftAndReturnReceipt(inputBits, parseInt(spec.amount, 10));
+                    firstDigest.push(digest);
+                }
+            }
+            console.log(firstDigest);
+        }
+        //refactor rotation and shift function to be one
+        function rotateAndReturnReceipt(inputBits, amount){
+            let rotationDigest = [inputBits];
+            for(let i = 0; i < amount; i++){
+                let rotated = `${inputBits.slice(-1)}${(inputBits.slice(0, 31))}`;
+                inputBits = rotated;
+                rotationDigest.push(inputBits);
+                // console.log(rotationDigest);
+            }
+            return rotationDigest;
+        }
+        function shiftAndReturnReceipt(inputBits, amount){
+            let shiftDigest = [inputBits];
+            for(let i = 0; i < amount; i++){
+                let shifted = `${(inputBits.slice(0, -1)).padStart(32, '0')}`;
+                inputBits = shifted;
+                shiftDigest.push(inputBits);
+            }
+            return shiftDigest;
+        }
+
+        //-------------event listener for input----------------
+        let inputBits = document.getElementById('bitsInput');
+        let currentValue = inputBits.value;
+        inputBits.addEventListener('keyup', (event) => {
+            currentValue = event.target.value;
+            inputBits.classList.add('incorrectLength');
+            inputBits.classList.remove('correctLength');
+            if(currentValue.length === 32){
+                inputBits.classList.remove('incorrectLength');
+                inputBits.classList.add('correctLength');
+            }
+        });
+        function loadValues(){
+            let bitDisplays = document.querySelectorAll('.bitDisplay');
+            bitDisplays.forEach( (display) => {
+                display.innerHTML = currentValue;
+            });
+        }
+
+
+
+
+        //--------------call main function---------------------
+        generateRotationSchedule('30110100101001101020000101010110', rotationSpecs);
+    </script>
+</body>
+
+</html>

@@ -11,6 +11,7 @@
     padding: 4px;
     border: solid black 2px;
     border-radius: 4px;
+    width: 32ch;
 }
 .bitsInput{
     width: 400px;

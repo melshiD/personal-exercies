@@ -1,40 +1,51 @@
-const rotationNamesAndNumElements = document.querySelectorAll('.rotationNameAndNumber');
+//build an object containing a rotation's name an it's amount/degree, as well as capturing
+const fetchTransformationConstituientsAndEventualDisplayElements = () => {
+    const rotationSpecs = [],
+          concernedBitDisplayElementPointers = [];
 
-let rotationSpecs = [];
+    const rotationNamesAndNumElements = document.querySelectorAll('.rotationNameAndNumber');
+    rotationNamesAndNumElements.forEach( (rotationElemAndAmountElem)=> {
+        //also take an opportunity to build an array of pointers while we're at it
+        concernedBitDisplayElementPointers.push(rotationElemAndAmountElem.nextElementSibling.children[0]);
+        let spec = {};
+        spec.rotation = rotationElemAndAmountElem.children[0].innerHTML;
+        spec.amount = rotationElemAndAmountElem.children[1].innerHTML;
+        rotationSpecs.push(spec);
+    });
+    let displays = concernedBitDisplayElementPointers;
+    // return {rotationSpecs, displays};
+    return zipperTwoArraysTogether(rotationSpecs, displays);
+}
+//WHEN YOU SIT BACK DOWN ZIPPER THESE ARRAYS
+function zipperTwoArraysTogether(array1, array2){
 
-rotationNamesAndNumElements.forEach( (rotationElemAndAmountElem)=> {
-    let spec = {};
-    console.log(rotationElemAndAmountElem.nextElementSibling.children[0].innerHTML);//vals
-    spec.rotation = rotationElemAndAmountElem.children[0].innerHTML;
-    spec.amount = rotationElemAndAmountElem.children[1].innerHTML;
-    rotationSpecs.push(spec);
-});
-console.log(rotationSpecs);
+}
+// let {rotationSpecs, displays} = fetchTransformationConstituientsAndEventualDisplayElements();
+let displays = fetchTransformationConstituientsAndEventualDisplayElements().displays;
+let rotationSpecs = fetchTransformationConstituientsAndEventualDisplayElements().rotationSpecs;
 
-const generateRotationSchedule = (inputBits, rotationSpecs) => {
-    //build three arrays of strings.  
-    //Each array's length depends on how many movements the bits make
-    let fullTransformationsDigest = [];
+const generateRotationSchedule = (inputWord, rotationSpecs) => {
+    let transDigests = [];
     for(let spec of rotationSpecs){
         if(spec.rotation === 'ROTR'){
-            let digest = rotateAndReturnReceipt(inputBits, parseInt(spec.amount, 10));
-            fullTransformationsDigest.push(digest);
+            let digest = rotateBitsAndReturnReceipt(inputWord, parseInt(spec.amount, 10));
+            transDigests.push(digest);
         }
         if(spec.rotation === 'SHR'){
-            let digest = shiftAndReturnReceipt(inputBits, parseInt(spec.amount, 10));
-            fullTransformationsDigest.push(digest);
+            let digest = shiftAndReturnReceipt(inputWord, parseInt(spec.amount, 10));
+            transDigests.push(digest);
         }
     }
-    return fullTransformationsDigest
+    return transDigests;
 }
-//refactor rotation and shift function to be one
-function rotateAndReturnReceipt(inputBits, amount){
+
+//--------ROTATE AND SHIFT FUNCTIONS-----------------
+function rotateBitsAndReturnReceipt(inputBits, amount){
     let rotationDigest = [inputBits];
     for(let i = 0; i < amount; i++){
         let rotated = `${inputBits.slice(-1)}${(inputBits.slice(0, 31))}`;
         inputBits = rotated;
         rotationDigest.push(inputBits);
-        // console.log(rotationDigest);
     }
     return rotationDigest;
 }
@@ -48,25 +59,7 @@ function shiftAndReturnReceipt(inputBits, amount){
     return shiftDigest;
 }
 
-//-------------event listener for input  length----------------
-let inputBits = document.getElementById('bitsInput');
-let lengthIndicator = '';
-inputBits.addEventListener('keyup', (event) => {
-    lengthIndicator = event.target.value;
-    inputBits.classList.add('incorrectLength');
-    inputBits.classList.remove('correctLength');
-    if(lengthIndicator.length === 32){
-        inputBits.classList.remove('incorrectLength');
-        inputBits.classList.add('correctLength');
-    }
-});
-
-
-const THREE_DIGESTS = generateRotationSchedule(inputBits.value, rotationSpecs);
-//working on getting these digests animated in the innerHTML space of the number spans
-
-
-//WHEN YOU SIT BACK DOWN KEEP WORKING ON HOW TO GET THIS TO ANIMATE THE VALUES IN THE BITDISPLAYS
+const THREE_DIGESTS = generateRotationSchedule('10100101011010111010101101110000', rotationSpecs, displays);
 
 const greeting = delayAmount => {
     setTimeout( () => {
@@ -77,4 +70,4 @@ const greeting = delayAmount => {
         greeting(Math.floor(delayAmount/2));
     }, delayAmount)
 }
-greeting(4000)
+//greeting(4000)

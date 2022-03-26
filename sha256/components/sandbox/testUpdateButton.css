@@ -1,6 +1,6 @@
 .table {
     width: 400px;
-    height: 400px;
+    height: 300px;
     border: solid black 4px;
     display: flex;
     flex-flow: column;

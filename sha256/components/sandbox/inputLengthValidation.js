@@ -9,4 +9,3 @@ inputBits.addEventListener('keyup', (event) => {
         inputBits.classList.add('correctLength');
     }
 });
-

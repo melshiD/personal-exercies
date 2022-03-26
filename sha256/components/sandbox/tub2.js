@@ -50,16 +50,6 @@ let element1 = bitDisplays[0];
 let element2 = bitDisplays[1];
 let element3 = bitDisplays[2];
 
-function double(rotTime){
-    let timeOne = Math.floor(rotTime/ONE_DIGEST.length);
-    let timeTwo = Math.floor(rotTime/DIGEST_TWO.length);
-    let timeThree = Math.floor(rotTime/DIGEST_THREE.length);
-    printWordsFromDigest(ONE_DIGEST, timeOne, 0, element1);
-    printWordsFromDigest(DIGEST_TWO, timeTwo, 0, element2);
-    printWordsFromDigest(DIGEST_THREE, timeThree, 0, element3);
-}
-
-
 //---------BINARY OPERATIONS------------------------------------
 function collapseArrayOfBinWords(arrayOfWords){
     let collapsedWordsArray = [];
@@ -77,4 +67,22 @@ function exclusiveOr(arrayOfWords){
         collapsedWordsArray[i] = collapsedWordsArray[i]%2;
     }
     return collapsedWordsArray;
+}
+//WHEN YOU SIT BACK DOWN REWRITE BUTTON FUNCTION AS 
+//HANDLE AND ROTATE INPUT
+//SO WE CAN GRAB THE VALUE AND PASS IT TO GENERATEROTATIONSCHEDULES
+//TAKES INPUT AND SPEC FOR GENERATEROTATIONSCHEDULES
+let inputBits = document.getElementById('bitsInput');
+inputBits.addEventListener( (event) => {
+
+})
+
+
+function handleAndRotateInput(rotTime){
+    let timeOne = Math.floor(rotTime/ONE_DIGEST.length);
+    let timeTwo = Math.floor(rotTime/DIGEST_TWO.length);
+    let timeThree = Math.floor(rotTime/DIGEST_THREE.length);
+    printWordsFromDigest(ONE_DIGEST, timeOne, 0, element1);
+    printWordsFromDigest(DIGEST_TWO, timeTwo, 0, element2);
+    printWordsFromDigest(DIGEST_THREE, timeThree, 0, element3);
 }

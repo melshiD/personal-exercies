@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sha</title>
+    <title>Uppercase Σ1</title>
     <link rel="stylesheet" href="./uppercaseSigmaOne.css">
 </head>
 
@@ -22,41 +22,51 @@
                     </div>
                 </div>
                 <div class="colon">:</div>
-                <div class="rotationsList">
-                    <div class="rotation">
-                        <div class="rotRow">
-                            <div class="rotationName"><span class="nameLetters">ROTR</span><span
-                                    class="nameNumbers">6:</span>
+                <div class="transformationsList">
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">6</span>
                             </div>
-                            <div class="rotationExample">10110100101001101010100101010110</div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
                         </div>
                     </div>
-                    <div class="rotation">
-                        <div class="rotRow">
-                            <div class="rotationName">
-                                <span class="nameLetters">ROTR</span>
-                                <span class="nameNumbers">11:</span>
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">11</span>
                             </div>
-                            <div class="rotationExample">10110100101001101010100101010110</div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
                         </div>
                     </div>
-                    <div class="rotation">
-                        <div class="rotRow">
-                            <div class="rotationName"><span class="nameLetters">ROTR</span><span
-                                    class="nameNumbers">25:</span></div>
-                            <div class="rotationExample">10110100101001101010100101010110</div>
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">25</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="resultsCard" id="testHide">
-                <span class="resultsName">Result:</span><span class="resultBits">10110100101001101010100101010110</span>
+                <span class="resultsName">Xor:</span>
+                <!-- <div class="xorToken">
+                    <span>xor</span>
+                </div>
+                 -->
+                <span class="resultBits" id="xorResultBits"></span>
             </div>
             
         </div>
         <button class="updateResult">Update Result</button>
 
     </div>
+    <input type="text" class="bitsInput" id="bitsInput" value="00000000111111111100000000111111">
+    <button type="button" onclick="handleAndRotateInput(300)">Transform Words</button>
     <script src="./uppercaseSigmaOne.js"></script>
 </body>
 

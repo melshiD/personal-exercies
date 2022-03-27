@@ -23,15 +23,6 @@ const generateRotationSchedules = (inputWord, rotationSpecs) => {
     return transDigests;
 }
 
-let THREE_DIGESTS = generateRotationSchedules('11111111000000001111110100000000', 
-                                        [{rotation: 'ROTR', amount: 13}, 
-                                         {rotation: 'ROTR', amount: 2},
-                                         {rotation: 'SHR', amount: 23}]);
-
-let ONE_DIGEST = THREE_DIGESTS[0];
-let DIGEST_TWO = THREE_DIGESTS[1];
-let DIGEST_THREE = THREE_DIGESTS[2];
-
 const printWordsFromDigest = (digest, rotationDuration, index = 0, element) => { 
     // console.log(index);
     if(index > digest.length - 1){
@@ -68,21 +59,25 @@ function exclusiveOr(arrayOfWords){
     }
     return collapsedWordsArray;
 }
-//WHEN YOU SIT BACK DOWN REWRITE BUTTON FUNCTION AS 
-//HANDLE AND ROTATE INPUT
-//SO WE CAN GRAB THE VALUE AND PASS IT TO GENERATEROTATIONSCHEDULES
-//TAKES INPUT AND SPEC FOR GENERATEROTATIONSCHEDULES
-let inputBits = document.getElementById('bitsInput');
-inputBits.addEventListener( (event) => {
 
-})
+
+// let inputBits = document.getElementById('bitsInput');
+// inputBits.addEventListener( (event) => {
+
+// })
 
 
 function handleAndRotateInput(rotTime){
-    let timeOne = Math.floor(rotTime/ONE_DIGEST.length);
-    let timeTwo = Math.floor(rotTime/DIGEST_TWO.length);
-    let timeThree = Math.floor(rotTime/DIGEST_THREE.length);
-    printWordsFromDigest(ONE_DIGEST, timeOne, 0, element1);
-    printWordsFromDigest(DIGEST_TWO, timeTwo, 0, element2);
-    printWordsFromDigest(DIGEST_THREE, timeThree, 0, element3);
+    let inputValue = document.getElementById('bitsInput').value;
+    let transSpecs = [{transformation: 'ROTR', degree: 13}, 
+                      {transformation: 'ROTR', degree: 2},
+                      {transformation: 'ROTR', degree: 23}];
+            console.log(inputValue);
+    let schedules = generateRotationSchedules(inputValue, transSpecs)
+    let timeOne = Math.floor(rotTime/schedules[0].length);
+    let timeTwo = Math.floor(rotTime/schedules[1].length);
+    let timeThree = Math.floor(rotTime/schedules[2].length);
+    printWordsFromDigest(schedules[0], timeOne, 0, element1);
+    printWordsFromDigest(schedules[1], timeTwo, 0, element2);
+    printWordsFromDigest(schedules[2], timeThree, 0, element3);
 }

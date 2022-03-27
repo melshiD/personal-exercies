@@ -1,6 +1,7 @@
 *{
     font-size: 16px;
 }
+
 .cards{
     border: black solid 4px;
     display: flex;
@@ -58,25 +59,26 @@
     font-size: 60px;
     line-height: 60px;
 }
-.rotationsList{
+.transformationsList{
     display: flex;
     flex-flow: column;
     justify-content: space-between;
     border: solid black 1px;
     border-radius: 3px;
     padding: 0.2rem;
+    /* width: 32ch; */
 }
-.rotRow{
+.transRow{
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: space-between;
 }
-.rotation{
+.transformation{
     /* display: flex;
     flex-flow: column; */
 }
-.rotationName{
+.transformationName{
     /* display: inline; */
     font-size: 2rem;
     /* border: 2px black solid; */
@@ -87,13 +89,14 @@
     margin-right: .3em;
     width: 68px;
 }
-.rotationName .nameLetters{
+.transformationName .transformationNameToken{
     align-self: flex-start;
 }
-.rotationName .nameNumbers{
+.transformationName .transformationDegree{
     align-self: flex-end;
+    color: black;
 }
-.rotationExample{
+.transformationExample{
     /* display: inline; */
     align-self: flex-end;
     margin-right: 0.2em;
@@ -117,7 +120,7 @@
 }
 .resultsName{
     display: inline;
-    margin-left: 0.2em;
+    margin: auto 0.2rem;
     font-size: 1.1rem;
     text-transform: uppercase;
     /* align-self: flex-end; */
@@ -131,4 +134,39 @@
     width: fit-content;
     margin-right: 1em;
     align-self: flex-end;
+}
+.xorToken{
+    align-self: stretch;
+    border: 1px rgb(240, 228, 228) solid;
+    width: max-content;
+}
+.xorToken span{
+    display: inline-block;
+    margin: 1px;
+    background-color: black;
+    border: solid 1px palevioletred;
+    border-radius: 13%;
+    font-size: 1.2rem;
+    color: whitesmoke;
+    
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.correctLength{
+    color: black;
+}
+.incorrectLength{
+    color: red;
 }

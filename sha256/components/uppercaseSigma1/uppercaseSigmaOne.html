@@ -11,944 +11,311 @@
 
 <body>
     <div class="fullShaDesk">
-    <div class="constantsAndSchedules">
-        <!-- <input type="text" disabled class="bitsInput" id="bitsInput" value="1234567891234567891234567891234"> -->
-        <input type="text" disabled class="bitsInput" id="bitsInput" value="11111111110000000000111000111111">
-        <button type="button" onclick="handleAndRotateInput(300, 'cardOne')">lowerCase Sigma 0</button>
-        <button type="button" onclick="handleAndRotateInput(300, 'cardTwo')">lowerCase Sigma 1</button>
-        <button type="button" onclick="handleAndRotateInput(300, 'cardThree')">UpperCase Sigma 0</button>
-        <button type="button" onclick="handleAndRotateInput(300, 'cardFour')">UpperCase Sigma 1</button>
-        <div class="card" id="cardOne">
-            <div class="iconAndListContainer">
-                <div class="sigmaIcon">
-                    <div class="superscript">
-                        <p>σ</p>
-                    </div>
-                    <div class="subscript">
-                        0
-                    </div>
-                </div>
-                <div class="colon">:</div>
-                <div class="transformationsList">
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">7</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">18</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">SHR</span>
-                                <span class="transformationDegree">3</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                </div>
+        <div class="monoCard">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Constituent Operators</div>
             </div>
-            <div class="resultsCard" id="testHide">
-                <span class="resultsName">Xor:</span>
-                <span class="resultBits" ></span>
-            </div>
-            
-        </div>
-        <div class="card" id="cardTwo">
-            <div class="iconAndListContainer">
-                <div class="sigmaIcon">
-                    <div class="superscript">
-                        <p>σ</p>
-                    </div>
-                    <div class="subscript">
-                        1
-                    </div>
-                </div>
-                <div class="colon">:</div>
-                <div class="transformationsList">
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">17</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
+            <!-- <input type="text" disabled class="bitsInput" id="bitsInput" value="1234567891234567891234567891234"> -->
+            <input type="text" disabled class="bitsInput" id="bitsInput" value="11111111110000000000111000111111">
+            <button type="button" onclick="handleAndRotateInput(300, 'cardOne')">lowerCase Sigma 0</button>
+            <button type="button" onclick="handleAndRotateInput(300, 'cardTwo')">lowerCase Sigma 1</button>
+            <button type="button" onclick="handleAndRotateInput(300, 'cardThree')">UpperCase Sigma 0</button>
+            <button type="button" onclick="handleAndRotateInput(300, 'cardFour')">UpperCase Sigma 1</button>
+            <div class="card" id="cardOne">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="superscript">
+                            <p>σ</p>
+                        </div>
+                        <div class="subscript">
+                            0
                         </div>
                     </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">19</span>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">7</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
                             </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
                         </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">SHR</span>
-                                <span class="transformationDegree">10</span>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">18</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
                             </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">SHR</span>
+                                    <span class="transformationDegree">3</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="resultsCard" id="testHide">
-                <span class="resultsName">Xor:</span>
-                <span class="resultBits" ></span>
-            </div>
-        </div>
-        <hr>
-        <div class="card" id="cardThree">
-            <div class="iconAndListContainer">
-                <div class="sigmaIcon">
-                    <div class="superscript">
-                        <p>Σ</p>
-                    </div>
-                    <div class="subscript">
-                        0
-                    </div>
+                <div class="resultsCard" id="testHide">
+                    <span class="resultsName">Xor:</span>
+                    <span class="resultBits"></span>
                 </div>
-                <div class="colon">:</div>
-                <div class="transformationsList">
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">2</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">13</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">22</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="resultsCard" id="testHide">
-                <span class="resultsName">Xor:</span>
-                <span class="resultBits" ></span>
-            </div>
-            
-        </div>
-        <div class="card" id="cardFour">
-            <div class="iconAndListContainer">
-                <div class="sigmaIcon">
-                    <div class="superscript">
-                        <p>Σ</p>
-                    </div>
-                    <div class="subscript">
-                        1
-                    </div>
-                </div>
-                <div class="colon">:</div>
-                <div class="transformationsList">
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">6</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">11</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">ROTR</span>
-                                <span class="transformationDegree">25</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="resultsCard" id="testHide">
-                <span class="resultsName">Xor:</span>
-                <span class="resultBits" ></span>
-            </div>
-            
-        </div>
-        <hr>
-        <!-- choice and majority  -->
-        <div class="card" id="cardFive">
-            <div class="iconAndListContainer">
-                <div class="sigmaIcon">
-                    <div class="choiceMaj">
-                        <p>Maj</p>
-                    </div>
-                </div>
-                <div class="colon">:</div>
-                <div class="transformationsList">
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">X</span>
-                                <span class="transformationDegree">:</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">Y</span>
-                                <span class="transformationDegree">:</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">Z</span>
-                                <span class="transformationDegree">:</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="card" id="cardSix">
-            <div class="iconAndListContainer">
-                <div class="sigmaIcon">
-                    <div class="choiceMaj">
-                        <p>Ch'</p>
-                    </div>
-                </div>
-                <div class="colon">:</div>
-                <div class="transformationsList">
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">X</span>
-                                <span class="transformationDegree">:</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">Y</span>
-                                <span class="transformationDegree">:</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                    <div class="transformation">
-                        <div class="transRow">
-                            <div class="transformationName">
-                                <span class="transformationNameToken">Z</span>
-                                <span class="transformationDegree">:</span>
-                            </div>
-                            <div class="transformationExample">00000000000000000000000000000000</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-        <!-- CONSTANTS --------------------------------------------------------------------- JS will solve this wetness -->
-    <div class="constantsAndSchedules">
-        <div class="centeredCardTitle">
-            <div class="cardTitleLine">Constants (K)</div>
-        </div>
-        <hr>
-        <div class="card. Kcard">
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-        </div>
-    </div>
 
+            </div>
+            <div class="card" id="cardTwo">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="superscript">
+                            <p>σ</p>
+                        </div>
+                        <div class="subscript">
+                            1
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">17</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">19</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">SHR</span>
+                                    <span class="transformationDegree">10</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultsCard" id="testHide">
+                    <span class="resultsName">Xor:</span>
+                    <span class="resultBits"></span>
+                </div>
+            </div>
+            <hr>
+            <div class="card" id="cardThree">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="superscript">
+                            <p>Σ</p>
+                        </div>
+                        <div class="subscript">
+                            0
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">2</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">13</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">22</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultsCard" id="testHide">
+                    <span class="resultsName">Xor:</span>
+                    <span class="resultBits"></span>
+                </div>
 
-    <div class="constantsAndSchedules">
-        <div class="centeredCardTitle">
-            <!-- <div class="cardTitleLine">--------------------</div> -->
-            <div class="cardTitleLine">Message Schedule (M)</div>
-            <!-- <div class="cardTitleLine">--------------------</div> -->
-        </div>
-        <hr>
-        <div class="Kcard">
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
             </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
+            <div class="card" id="cardFour">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="superscript">
+                            <p>Σ</p>
+                        </div>
+                        <div class="subscript">
+                            1
+                        </div>
                     </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">6</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">11</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">25</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
                 </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
+                <div class="resultsCard" id="testHide">
+                    <span class="resultsName">Xor:</span>
+                    <span class="resultBits"></span>
                 </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-            <div class="transformation">
-                <div class="transRow">
-                    <div class="transformationName">
-                        <span class="transformationNameToken">3√x</span>
-                        <span class="transformationDegree">:</span>
-                    </div>
-                    <div class="transformationExample">00000000000000000000000000000000</div>
-                </div>
-            </div>
-        </div>
 
-    </div>
-</div>
+            </div>
+            <hr>
+            <!-- choice and majority  -->
+            <div class="card" id="cardFive">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="choiceMaj">
+                            <p>Maj</p>
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">X</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">Y</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">Z</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="resultsCard" id="testHide">
+                            <span class="resultsName">:</span>
+                            <span class="resultBits"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="cardSix">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="choiceMaj">
+                            <p>Ch'</p>
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">X</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">Y</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">Z</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="resultsCard" id="testHide">
+                            <span class="resultsName">:</span>
+                            <span class="resultBits"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- CONSTANTS ------ JS will solve this wetness ----------------------------------------------------------------->
+        <div class="monoCard">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Constants (K)</div>
+            </div>
+            <button type="button" onclick="generateConstants()">Generate Constants</button>
+            <hr>
+            <div class="constantCard" id="constantCard">
+                    <div class="constantCardRow">
+                        <div class="constantIndexAndColon">
+                            <span class="constantIndexNumber">K(x)</span>
+                            <span class="colonSpan">:</span>
+                        </div>
+                        <div class="constantContents">3√prime(x)</div>
+                    </div>
+            </div>
+        </div>
+    </div>    
     <script src="./uppercaseSigmaOne.js"></script>
 </body>
 

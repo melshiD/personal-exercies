@@ -62,17 +62,7 @@ const printWordsFromDigest = (digest, transformationDuration, index = 0, element
     setTimeout( () => {
         printWordsFromDigest(digest, transformationDuration, index+1, element);
     }, transformationDuration);
-
-    // function printXorAfterTransformation(){
-
-    //     const xorDisplay = document.getElementById('resultBits');
-    //     xorDisplay.innerHTML = 
-    //     return;
-    // }
 }
-
-//WHEN YOU SIT BACK DOWN, BUILD THIS FUNCTIONALITY TO ACCEPT AN ELEMENT TO KEEP IT'S SCOPE WITHIN SO WE CAN
-//ANIMATE EVERYTHING WE NEED AT ONCE
 
 function handleAndRotateInput(rotTime, cardName){
     let cardForTransformation = document.getElementById(cardName);
@@ -112,7 +102,51 @@ function handleAndRotateInput(rotTime, cardName){
 }
 
 
-// SHA functions 
+// ------Constant Generation and Animation-------------------------
+function generateConstants(){
+    //needs to go from 0-63 and do the following each iteration:
+    //1. Build a constantRow with K(currentIndex): 3√prime(currentIndex)
+    //2. Append the constantRow
+    //3. animate the constantContents innerHTML with the prime base-10 number
+    //4. Animate innerHTML then to the prime without the decimals
+    //5. Animate innerHTML to the final usable pure binary value
+    //6. Move on to next element until finished
+    const rawPrimes = compilePrimes(64);
+    console.log(rawPrimes);
+    const cubedPrimes = rawPrimes.map( (primeValue) => Math.cbrt(primeValue));
+    console.log(cubedPrimes);
+    const cubedPrimesLessWholeNumbers = cubedPrimes.map( cubedPrime => cubedPrime % 1 );
+    console.log(cubedPrimesLessWholeNumbers);
+    const binaryCubedConstants = genCubedValues(rawPrimes);
+    console.log(binaryCubedConstants);
+    // const cubedPrimesDecimals = cubedPrimes.forEach( cubedPrime => cubedPrime.toString(10).split('.')[0] ); //already string value
+    // const cubedPrimesAsBinaryConstants = cubedPrimesDecimals.forEach( cubedPrimeDecimal => parseInt(cubedPrimeDecimal, 2).toString(2) );
+
+    // console.log(cubedPrimesAsBinaryConstants);
+    // const parentElement = document.getElementById('constantCard');
+    // const populateAndAnimatePrimes = (parentToAppendTo, numberOfConstants) => {
+    //     for(let i = 0; i < rawPrimesArray.length; i++){
+    //         let constantIndexLable = `K(${i})`;
+    //         let thisPrimeDecimalValues = thisPrime.split('.')[1];
+    //         let binaryConstant = parseInt(thisPrimeDecimalValues, 2).substring(0, 32);
+
+    //         let constantContentsDisplayArray = [
+    //             `3√prime(${i})`,
+    //             `${thisPrime}`,
+    //             `${thisPrimeDecimalValues}`
+    //         ]
+    //     }
+    // }
+    let newConstantCardRow = document.querySelector('.constantCardRow').cloneNode(true);
+    let constantIndexNumber = newConstantCardRow.firstElementChild.children[0];
+    constantIndexNumber.innerHTML = 'K(23)';
+    let constantContents = newConstantCardRow.children[1];
+    constantContents.innerHTML = '11111111110000000000111000111111'
+    // parentElement.appendChild(newConstantCardRow);
+}
+
+
+// ------SHA and Math functions---------------------------------------------
 function exclusiveOr(arrayOfWords){
     let collapsedWordsArray = collapseArrayOfBinWords(arrayOfWords);
     for(let i = 0; i < collapsedWordsArray.length; i++){
@@ -129,4 +163,34 @@ function collapseArrayOfBinWords(arrayOfWords){
         collapsedWordsArray.push(columnSum);
     }
     return collapsedWordsArray.reverse();
+}
+//---//---Prime Constant Generation Functions
+function genCubedValues(primeNumberArray){
+    let cubedConstants = [];
+    primeNumberArray.forEach( (prime) => {
+        cubedConstants.push( Math.cbrt(prime)
+        .toString(2).split('.')[1]
+        .substring(0, 32) );
+    });
+    return cubedConstants
+}
+
+function compilePrimes(howMany){
+    let primeArray = [];
+    let counter = 2;
+    while(primeArray.length < howMany){
+        if(isPrime(counter)){primeArray.push(counter)}
+        counter ++;
+    }
+    return primeArray;
+}
+
+function isPrime(n){
+    if(n < 2) return 0;
+    for(let i = 2; i < n; i++){
+        if(n % i === 0){
+            return 0;
+        }
+    }
+    return n;
 }

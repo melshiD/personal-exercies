@@ -13,7 +13,58 @@
     <div class="cards">
         <input type="text" class="bitsInput" id="bitsInput" value="00000000111111111100000000111111">
         <button type="button" onclick="handleAndRotateInput(300)">Transform Words</button>
-        <div class="card">
+        <div class="card" id="cardOne">
+            <div class="iconAndListContainer">
+                <div class="sigmaIcon">
+                    <div class="superscript">
+                        <p>Σ</p>
+                    </div>
+                    <div class="subscript">
+                        0
+                    </div>
+                </div>
+                <div class="colon">:</div>
+                <div class="transformationsList">
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">2</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">13</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">22</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resultsCard" id="testHide">
+                <span class="resultsName">Xor:</span>
+                <!-- <div class="xorToken">
+                    <span>xor</span>
+                </div>
+                 -->
+                <span class="resultBits" id="xorResultBits"></span>
+            </div>
+            
+        </div>
+        <div class="card" id="cardTwo">
             <div class="iconAndListContainer">
                 <div class="sigmaIcon">
                     <div class="superscript">
@@ -64,6 +115,7 @@
             </div>
             
         </div>
+        
 
     </div>
 

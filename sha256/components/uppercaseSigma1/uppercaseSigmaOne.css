@@ -8,7 +8,7 @@
     flex-flow: column;
     /* height: 400px; */
     justify-content: space-evenly;
-    width: fit-content;
+    width: 60ch;
     /* padding: 2em 2em; */
     padding: .5em .8em;
     margin: 1em;
@@ -19,7 +19,7 @@
     flex-flow: column;
     border: black solid 3px;
     border-radius: 5px;
-    width: fit-content;
+    width: auto;
     align-self: center;
     padding: 10px;
     margin: 0.4em;
@@ -100,6 +100,7 @@
     /* display: inline; */
     align-self: flex-end;
     margin-right: 0.2em;
+    width: 31ch;
 }
 
 .hiding{

@@ -11,8 +11,8 @@ inputBits.addEventListener('keyup', (event) => {
 });
 
 //grab the elements we need to build the specs
-const grabRotationSpecElementsReturnSpecArray = () => {
-    let specElementsList = document.querySelectorAll('.transformationName');
+const grabRotationSpecElementsReturnSpecArray = (cardId) => {
+    let specElementsList = document.querySelectorAll(`#${cardId} .transformationName`);
     const specObjectArray = () => {
         let specObjects = [];
         for(let i = 0; i < specElementsList.length; i++){
@@ -71,18 +71,21 @@ const printWordsFromDigest = (digest, transformationDuration, index = 0, element
     // }
 }
 
+//WHEN YOU SIT BACK DOWN, BUILD THIS FUNCTIONALITY TO ACCEPT AN ELEMENT TO KEEP IT'S SCOPE WITHIN SO WE CAN
+//ANIMATE EVERYTHING WE NEED AT ONCE
+
 async function handleAndRotateInput(rotTime){
     let xorDisplayElement = document.getElementById('xorResultBits');
     xorDisplayElement.innerHTML = '';
 
-
-    const transformationSpecs = grabRotationSpecElementsReturnSpecArray();
+    const transformationSpecs = grabRotationSpecElementsReturnSpecArray('cardOne');
     let inputValue = document.getElementById('bitsInput').value;
     let schedules = generateRotationSchedules(inputValue, transformationSpecs)
     let transTimeOne = Math.floor(rotTime/schedules[0].length);
     let transTimeTwo = Math.floor(rotTime/schedules[1].length);
     let transTimeThree = Math.floor(rotTime/schedules[2].length);
     let elements = document.querySelectorAll('.transformationExample');
+    elements.forEach( elem => elem.innerHTML = inputValue);
 
     let wordsToXor = [
         schedules[0][schedules[0].length-1], 
@@ -100,28 +103,12 @@ async function handleAndRotateInput(rotTime){
             xorDisplayElement.innerHTML = xorValue;
         }, delay);
     }
-    let delay = 2200;
-    printWordsFromDigest(schedules[0], transTimeOne, 0, elements[0]);
-    printWordsFromDigest(schedules[1], transTimeTwo, 0, elements[1]);
-    printWordsFromDigest(schedules[2], transTimeThree, 0, elements[2], 
-        printXorAtEndOfTransformation(450, xorValue, xorDisplayElement)
-    );
-
+    setTimeout( () => printWordsFromDigest(schedules[1], transTimeTwo, 0, elements[1]), 200);
+    setTimeout( () => printWordsFromDigest(schedules[2], transTimeThree, 0, elements[2]), 0);
+    setTimeout( () => printWordsFromDigest(schedules[0], transTimeOne, 0, elements[0], 
+        printXorAtEndOfTransformation(420, xorValue, xorDisplayElement)
+    ), 350);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 // SHA functions 

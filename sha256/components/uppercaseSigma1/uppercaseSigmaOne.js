@@ -100,10 +100,13 @@ async function handleAndRotateInput(rotTime){
             xorDisplayElement.innerHTML = xorValue;
         }, delay);
     }
-
+    let delay = 2200;
     printWordsFromDigest(schedules[0], transTimeOne, 0, elements[0]);
     printWordsFromDigest(schedules[1], transTimeTwo, 0, elements[1]);
-    printWordsFromDigest(schedules[2], transTimeThree, 0, elements[2], printXorAtEndOfTransformation(450, xorValue, xorDisplayElement));
+    printWordsFromDigest(schedules[2], transTimeThree, 0, elements[2], 
+        printXorAtEndOfTransformation(450, xorValue, xorDisplayElement)
+    );
+
 }
 
 

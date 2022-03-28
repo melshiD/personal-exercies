@@ -1,7 +1,10 @@
 *{
     font-size: 16px;
+    font-family: monospace;
 }
-
+#bitsInput{
+    text-align: center;
+}
 .cards{
     border: black solid 4px;
     display: flex;
@@ -100,7 +103,7 @@
     /* display: inline; */
     align-self: flex-end;
     margin-right: 0.2em;
-    width: 31ch;
+    width: 32ch;
 }
 
 .hiding{

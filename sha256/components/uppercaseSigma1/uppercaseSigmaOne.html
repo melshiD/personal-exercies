@@ -11,9 +11,110 @@
 
 <body>
     <div class="cards">
-        <input type="text" class="bitsInput" id="bitsInput" value="00000000111111111100000000111111">
-        <button type="button" onclick="handleAndRotateInput(300)">Transform Words</button>
+        <input type="text" class="bitsInput" id="bitsInput" value="00000000111111110000011111010101">
+        <button type="button" onclick="handleAndRotateInput(300, 'cardOne')">lowerCase Sigma 0</button>
+        <button type="button" onclick="handleAndRotateInput(300, 'cardTwo')">lowerCase Sigma 1</button>
+        <button type="button" onclick="handleAndRotateInput(300, 'cardThree')">UpperCase Sigma 0</button>
+        <button type="button" onclick="handleAndRotateInput(300, 'cardFour')">UpperCase Sigma 1</button>
         <div class="card" id="cardOne">
+            <div class="iconAndListContainer">
+                <div class="sigmaIcon">
+                    <div class="superscript">
+                        <p>σ</p>
+                    </div>
+                    <div class="subscript">
+                        0
+                    </div>
+                </div>
+                <div class="colon">:</div>
+                <div class="transformationsList">
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">7</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">18</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">SHR</span>
+                                <span class="transformationDegree">3</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resultsCard" id="testHide">
+                <span class="resultsName">Xor:</span>
+                <span class="resultBits" ></span>
+            </div>
+            
+        </div>
+        <div class="card" id="cardTwo">
+            <div class="iconAndListContainer">
+                <div class="sigmaIcon">
+                    <div class="superscript">
+                        <p>σ</p>
+                    </div>
+                    <div class="subscript">
+                        1
+                    </div>
+                </div>
+                <div class="colon">:</div>
+                <div class="transformationsList">
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">17</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">ROTR</span>
+                                <span class="transformationDegree">19</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                    <div class="transformation">
+                        <div class="transRow">
+                            <div class="transformationName">
+                                <span class="transformationNameToken">SHR</span>
+                                <span class="transformationDegree">10</span>
+                            </div>
+                            <div class="transformationExample">00000000000000000000000000000000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="resultsCard" id="testHide">
+                <span class="resultsName">Xor:</span>
+                <!-- <div class="xorToken">
+                    <span>xor</span>
+                </div>
+                 -->
+                <span class="resultBits" ></span>
+            </div>
+            
+        </div>
+        <div class="card" id="cardThree">
             <div class="iconAndListContainer">
                 <div class="sigmaIcon">
                     <div class="superscript">
@@ -60,11 +161,11 @@
                     <span>xor</span>
                 </div>
                  -->
-                <span class="resultBits" id="xorResultBits"></span>
+                <span class="resultBits" ></span>
             </div>
             
         </div>
-        <div class="card" id="cardTwo">
+        <div class="card" id="cardFour">
             <div class="iconAndListContainer">
                 <div class="sigmaIcon">
                     <div class="superscript">
@@ -111,7 +212,7 @@
                     <span>xor</span>
                 </div>
                  -->
-                <span class="resultBits" id="xorResultBits"></span>
+                <span class="resultBits" ></span>
             </div>
             
         </div>

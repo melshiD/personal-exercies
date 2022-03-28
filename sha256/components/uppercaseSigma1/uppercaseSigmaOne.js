@@ -74,17 +74,18 @@ const printWordsFromDigest = (digest, transformationDuration, index = 0, element
 //WHEN YOU SIT BACK DOWN, BUILD THIS FUNCTIONALITY TO ACCEPT AN ELEMENT TO KEEP IT'S SCOPE WITHIN SO WE CAN
 //ANIMATE EVERYTHING WE NEED AT ONCE
 
-async function handleAndRotateInput(rotTime){
-    let xorDisplayElement = document.getElementById('xorResultBits');
+function handleAndRotateInput(rotTime, cardName){
+    let cardForTransformation = document.getElementById(cardName);
+    let xorDisplayElement = cardForTransformation.querySelector('.resultBits');
     xorDisplayElement.innerHTML = '';
 
-    const transformationSpecs = grabRotationSpecElementsReturnSpecArray('cardOne');
+    const transformationSpecs = grabRotationSpecElementsReturnSpecArray(cardName);
     let inputValue = document.getElementById('bitsInput').value;
     let schedules = generateRotationSchedules(inputValue, transformationSpecs)
     let transTimeOne = Math.floor(rotTime/schedules[0].length);
     let transTimeTwo = Math.floor(rotTime/schedules[1].length);
     let transTimeThree = Math.floor(rotTime/schedules[2].length);
-    let elements = document.querySelectorAll('.transformationExample');
+    let elements = cardForTransformation.querySelectorAll(`.transformationExample`);
     elements.forEach( elem => elem.innerHTML = inputValue);
 
     let wordsToXor = [

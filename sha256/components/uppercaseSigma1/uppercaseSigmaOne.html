@@ -12,6 +12,12 @@
 <body>
     <div class="fullShaDesk">
         <div class="monoCard">
+            <div class="cnetreredCardTitle">
+                <div class="cardTitleLine">Input message and Padding</div>
+            </div>
+            <button type="button" onclick="handleMessageInput()">Handle Messge Input</button>
+        </div>
+        <div class="monoCard">
             <div class="centeredCardTitle">
                 <div class="cardTitleLine">Constituent Operators</div>
             </div>
@@ -304,7 +310,6 @@
                 <div class="cardTitleLine">Constants (K)</div>
             </div>
             <button type="button" onclick="generateConstants()">Generate Constants</button>
-            <hr>
             <div class="constantCard" id="constantCard">
                     <div class="constantCardRow">
                         <div class="constantIndexAndColon">
@@ -312,6 +317,25 @@
                             <span class="colonSpan">:</span>
                         </div>
                         <div class="constantContents">3√prime(x)</div>
+                    </div>
+            </div>
+        </div>
+        <!-- Message Schedule ------ JS will solve this wetness ----------------------------------------------------------------->
+        <div class="monoCard">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Message Schedule (M)</div>
+            </div>
+            <button type="button" onclick="initilizeMessageSchedule()">Initilize Message Schedule</button>
+            <button type="button" onclick="completeMessageSchedule()">Complete Message Schedule</button>
+            <div class="constantCard" id="messageSchedule">
+                    <div class="constantCardRow">
+                        <div class="constantIndexAndColon">
+                            <span class="constantIndexNumber">M(x)</span>
+                            <span class="colonSpan">:</span>
+                        </div>
+                        <div class="constantContents">
+                            σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
+                        </div>
                     </div>
             </div>
         </div>

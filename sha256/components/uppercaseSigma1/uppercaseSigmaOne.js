@@ -1,5 +1,3 @@
-const { download } = require("express/lib/response");
-
 //-------------event listener for input  length----------------
 let inputBits = document.getElementById('bitsInput');
 inputBits.addEventListener('keyup', (event) => {
@@ -12,7 +10,7 @@ inputBits.addEventListener('keyup', (event) => {
     }
 });
 
-//grab the elements we need to build the specs
+//grab the elements we need to build the transformation specs: ie ROTR or SHR and degree
 const grabRotationSpecElementsReturnSpecArray = (cardId) => {
     let specElementsList = document.querySelectorAll(`#${cardId} .transformationName`);
     const specObjectArray = () => {
@@ -90,9 +88,9 @@ function handleAndRotateInput(rotTime, cardName) {
     let xorValue = exclusiveOr(wordsToXor).join('');
     console.log(xorValue);
 
-    //printXorAtEnd... is a function optionally passed to printWordsFromDigest so the timing functionality has access
-    //to the values needed to update the transfromationOutputs.  Janky, but less janky than having to grab the dom elements
-    //over and over again
+    //printXorAtEnd: is a function optionally passed to printWordsFromDigest so the timing 
+    //functionality has access to the values needed to update the transfromationOutputs.  
+    //Janky, but less janky than having to grab the dom elements over and over again.
     const printXorAtEndOfTransformation = (delay, xorValue, xorDisplayElement) => {
         setTimeout(() => {
             xorDisplayElement.innerHTML = xorValue;
@@ -103,6 +101,7 @@ function handleAndRotateInput(rotTime, cardName) {
     setTimeout(() => printWordsFromDigest(schedules[0], transTimeOne, 0, elements[0],
         printXorAtEndOfTransformation(420, xorValue, xorDisplayElement)
     ), 350);
+    return xorValue;
 }
 
 
@@ -116,46 +115,51 @@ function generateConstants() {
     //5. Animate innerHTML to the final usable pure binary value
     //6. Move on to next element until finished
     const rawPrimes = compilePrimes(64);
-    console.log(rawPrimes);
     const cubedPrimes = rawPrimes.map((primeValue) => Math.cbrt(primeValue));
-    console.log(cubedPrimes);
     const cubedPrimesLessWholeNumbers = cubedPrimes.map(cubedPrime => cubedPrime.toString(10).split('.')[1]);
-    console.log(cubedPrimesLessWholeNumbers);
     const cubedPrimesAsBinary = genCubedValues(rawPrimes);
     console.log(cubedPrimesAsBinary);
+    const parentToAppendTo = document.getElementById('constantCard');
 
-    const parentElement = document.getElementById('constantCard');
     const populateAndAnimatePrimes = (parentToAppendTo) => {
         let constantContentsDisplayArrays = [];
         for (let i = 0; i < rawPrimes.length; i++) {
             constantContentsDisplayArrays.push(
                 [
                     `3√prime(${i})`,
-                    `3√(${rawPrimes[i]})`,
+                    `3√ ${rawPrimes[i]}`,
                     `${cubedPrimes[i]}`,
                     `${cubedPrimesLessWholeNumbers[i]}`,
                     `${cubedPrimesAsBinary[i]}`
                 ]
-            );
+            )
         }
 
-        const animateToBinary = (constantContentsDisplayArrays, constantContentsDisplayArray, displayIndex = 0) => {
+        let currentConstantIndex = 0;
+        const animateToBinary = (constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex) => {
+            if(currentConstantIndex >= constantContentsDisplayArrays.length){ return }
+
             let newConstantCardRow = parentToAppendTo.querySelector('.constantCardRow').cloneNode(true);
             let constantIndexNumber = newConstantCardRow.firstElementChild.children[0];
-            constantIndexNumber.innerHTML = constantIndexLable;
+            constantIndexNumber.innerHTML = `K(${currentConstantIndex})`;
             let constantContents = newConstantCardRow.children[1];
-            constantContents.innerHTML = constantContentsDisplayArray[0];
-            parentElement.appendChild(newConstantCardRow);
+            constantContents.innerHTML = constantContentsDisplayArrays[currentConstantIndex][1];
+            parentToAppendTo.appendChild(newConstantCardRow);
 
-            // WHEN YOU SIT BACK DOWN BUILD A NESTED FUNCTION TO ANIMATE THE CASCADE OF APPENDING AND ANIMATING CONTENTS 
-            if (displayIndex >= constantContentsDisplayArray.length) { return }
-            constantContents.innerHTML = constantContentsDisplayArray[displayIndex];
-            setTimeout(animateThroughBinary, 1600, constantContents, constantContentsDisplayArray, displayIndex + 1);
+            let startingDelay = 10;
+            let rowDisplayArray = constantContentsDisplayArrays[currentConstantIndex];
+            const animateRowToBinary = (newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex) => {
+                if(rowCurrentDisplayIndex >= rowDisplayArray.length){ return animateToBinary(constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex + 1)}
+                // startingDelay = startingDelay<= 20?20:startingDelay/2;
+                newConstantCardRow.innerHTML = rowDisplayArray[rowCurrentDisplayIndex];
+                setTimeout( animateRowToBinary, Math.floor(startingDelay), newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex + 1);
+            }
+            animateRowToBinary(constantContents, rowDisplayArray, 0);
+
         }
-        animateToBinary(constantContents, constantContentsDisplayArray, 0);
+        animateToBinary(constantContentsDisplayArrays, parentToAppendTo, 0);
     }
-
-    populateAndAnimatePrimes(parentElement);
+    populateAndAnimatePrimes(parentToAppendTo);
 }
 
 

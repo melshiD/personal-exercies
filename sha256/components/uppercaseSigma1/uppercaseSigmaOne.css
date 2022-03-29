@@ -1,6 +1,7 @@
 *{
     font-size: 16px;
     font-family: monospace;
+    /* WHEN YOU SIT BACK DOWN FIGURE OUT WHY SETTING FONT ON BODY AND ON ROOT ARE DIFFERENT; */
 }
 body{
     background-color: whitesmoke;
@@ -42,7 +43,7 @@ body{
     width: fit-content;
     /* padding: 2em 2em; */
     padding: .5em .8em;
-    margin: 3em .4em;
+    margin: 2em .4em;
 }
 .centeredCardTitle{
     margin: 0 auto;
@@ -57,6 +58,7 @@ body{
     padding: 2px;
 }
 .card{
+    
     display: flex;
     flex-flow: column;
     border: black solid 3px;
@@ -203,12 +205,14 @@ body{
 .constantCard{
     display: flex;
     flex-direction: column;
+    margin-top: 1em;
 }
 .constantCard .constantCardRow{
     display: flex;
-    width: 40ch;
-    /* font-size: 0.83em; */
+    /* width: 40ch; */
+    font-size: 10px;
     margin-left: 3px;
+    line-height: 14.5px;
 }
 .constantIndexAndColon{
     display: flex;
@@ -226,8 +230,12 @@ body{
     width: 32ch;
     align-self: flex-end;
     margin-left: 4px;
+    margin-top: 1px;
+    color: black;
+
 }
 
+/* Message Schedue  */
 
 
 
@@ -259,4 +267,10 @@ hr{
 }
 .incorrectLength{
     color: red;
+}
+.activeRowHighlight{
+    box-sizing: border-box;
+    border-radius: 3px;
+    background-color: black;
+    color: whitesmoke;
 }

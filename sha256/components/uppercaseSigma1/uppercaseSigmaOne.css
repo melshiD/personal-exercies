@@ -206,8 +206,8 @@ body{
 }
 .constantCard .constantCardRow{
     display: flex;
-    /* justify-content: center; */
     width: 40ch;
+    /* font-size: 0.83em; */
     margin-left: 3px;
 }
 .constantIndexAndColon{

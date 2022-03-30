@@ -1,15 +1,16 @@
 
-//-------------event listener for input  length----------------
-let inputBits = document.getElementById('bitsInput');
-inputBits.addEventListener('keyup', (event) => {
-    lengthIndicator = event.target.value;
-    inputBits.classList.add('incorrectLength');
-    inputBits.classList.remove('correctLength');
-    if (inputBits.value.length === 32) {
-        inputBits.classList.remove('incorrectLength');
-        inputBits.classList.add('correctLength');
-    }
+//-------------event listener for input ----------------
+let inputMessage = document.getElementById('messageInput');
+inputMessage.addEventListener('keyup', (event) => {
+    let inputFromUser = event.target.value;
+    let inputAsRawBinary = inputFromUser.split('').map( e => e.charCodeAt(0).toString(2)).join('').padStart(8, '0');
+    document.getElementById('messageAsBinary').innerHTML = inputAsRawBinary;
 });
+
+
+    //'YOU PICKED 56 CHARACTERS BECAUSE THAT LIMITS THE INPUT MESSAGE TO ONE MESSAGE DIGEST!  DUH.  OK, '
+    //'WHEN YOU STI BACK DOWN WORK WITH THAT IN THE MORNING'
+
 
 //grab the elements we need to build the transformation specs: ie ROTR or SHR and degree
 const grabRotationSpecElementsReturnSpecArray = (cardId) => {

@@ -16,8 +16,13 @@
                 <div class="cardTitleLine">Input message and Padding</div>
             </div>
             <!-- <input type="text" onclick="" id="messageInput" maxlength="55">  -->
-            <textArea id="messageInput" maxlength="55" rows="30" cols="2"></textArea>
-            <button type="button" onclick="handleMessageInput()">Handle Messge Input</button>
+            <textArea id="messageInput" class="messageInputTA" maxlength="55" ></textArea>
+            <button type="button" onclick="handleMessageInput()">Convert Message to Binary</button>
+            <div class="centeredCardTitle titleMarginTop">
+                <div class="cardTitleLine">Message As Binary (ascii)</div>
+            </div>
+            <textarea id="messageAsBinary" class="messageAsBinary" disabled></textarea>
+            <button type="button" onclick="handleMessageInput()">Pad With Zeroes to 448 bits</button>
         </div>
 
         <!-- CONSTITUENT OPERATORS------------------------------------  -->

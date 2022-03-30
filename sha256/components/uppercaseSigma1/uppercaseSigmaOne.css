@@ -1,7 +1,6 @@
 *{
     font-size: 16px;
     font-family: monospace;
-    /* WHEN YOU SIT BACK DOWN FIGURE OUT WHY SETTING FONT ON BODY AND ON ROOT ARE DIFFERENT; */
 }
 body{
     background-color: whitesmoke;
@@ -17,13 +16,18 @@ body{
     flex-wrap: wrap;
     align-items: flex-start;
 }
-#messageInput{
+.messageInputTA,.messageAsBinary{
     width: 40ch;
     height: 6ch;
     resize: none;
     text-align: left;
     border: black solid 4px;
     border-radius: 4px;
+}
+#messageAsBinary{
+    height: 23ch;
+    background-color: white;
+    color: black;
 }
 #bitsInput{
     text-align: center;
@@ -64,6 +68,9 @@ body{
     border-bottom: 1px dashed black;
     text-align: center;
     padding: 2px;
+}
+.centeredCardTitle.titleMarginTop{
+    margin-top: .5em;
 }
 .card{
     display: flex;
@@ -280,4 +287,8 @@ hr{
     border-radius: 3px;
     background-color: black;
     color: whitesmoke;
+}
+
+.span{
+    font-size: 50px;
 }

@@ -25,7 +25,12 @@ body{
     border-radius: 4px;
 }
 #messageAsBinary{
-    height: 23ch;
+    height: 27ch;
+    background-color: white;
+    color: black;
+}
+#completeBinaryMessage{
+    height: 30ch;
     background-color: white;
     color: black;
 }
@@ -48,7 +53,7 @@ body{
     /* copied and modded .cards, dry it up  */
     display: flex;
     flex-flow: column;
-    border: black solid 4px;
+    border: whitesmoke solid 4px;
     border-radius: 5px 18px;
     /* height: 400px; */
     justify-content: space-evenly;
@@ -226,6 +231,7 @@ body{
     display: flex;
     flex-direction: column;
     margin-top: 1em;
+
 }
 .constantCard .constantCardRow{
     display: flex;
@@ -235,6 +241,18 @@ body{
     line-height: 14.5px;
     width: fit-content;
 }
+.constantContents{
+    transition: background-color 2s;
+    background-color: inherit;
+    border-radius: 5px;
+}
+/* ---------------- active constantContents row stuff -------------------------------  */
+.constantContents.activeRow{
+    transition: background-color 0.01s;
+    background-color: rgb(162, 170, 237);
+    border-radius: 5px;
+}
+/* ---------------- active constantContents row stuff needs help-------------------------------  */
 .constantIndexAndColon{
     display: flex;
     align-items: flex-start;
@@ -253,7 +271,9 @@ body{
     margin-left: 4px;
     margin-top: 1px;
     color: black;
-
+}
+.invisibleLetters{
+    color: #efefef;
 }
 .simplyASeperator{
     width: auto;
@@ -264,7 +284,10 @@ body{
 
 
 /* Message Schedue  */
-
+.messageSubscript{
+    display: inline-block;
+    font-size: 0.7em;
+}
 
 
 

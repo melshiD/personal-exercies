@@ -17,12 +17,16 @@
             </div>
             <!-- <input type="text" onclick="" id="messageInput" maxlength="55">  -->
             <textArea id="messageInput" class="messageInputTA" maxlength="55" ></textArea>
-            <button type="button" onclick="handleMessageInput()">Convert Message to Binary</button>
             <div class="centeredCardTitle titleMarginTop">
                 <div class="cardTitleLine">Message As Binary (ascii)</div>
             </div>
             <textarea id="messageAsBinary" class="messageAsBinary" disabled></textarea>
-            <button type="button" onclick="handleMessageInput()">Pad With Zeroes to 448 bits</button>
+            <button type="button" onclick="padWithZerosTo448Bits()">Pad and Encode Length</button>
+            <div class="centeredCardTitle titleMarginTop">
+                <div class="cardTitleLine">Padded Message (message block)</div>
+            </div>
+            <textarea id="completeBinaryMessage" class="messageAsBinary" disabled></textarea>
+            <button type="button" onclick="initilizeMessageSchedule()">Build Message Schedule</button>
         </div>
 
         <!-- CONSTITUENT OPERATORS------------------------------------  -->
@@ -53,7 +57,7 @@
                                     <span class="transformationNameToken">ROTR</span>
                                     <span class="transformationDegree">7</span>
                                 </div>
-                                <div class="transformationExample">00000000000000000000000000000000</div>
+                                <div class="transformationExample">00000000000000000<span>00</span>0000000000000</div>
                             </div>
                         </div>
                         <div class="transformation">
@@ -318,6 +322,8 @@
                 <div class="cardTitleLine">Constants (K)</div>
             </div>
             <button type="button" onclick="generateConstants()">Generate Constants</button>
+            <!-- <div class="underConstants"></div> -->
+            <button type="button" onclick="completeMessageSchedule()" class="invisibleLetters">.</button>
             <div class="constantCard" id="constantCard">
                     <div class="constantCardRow">
                         <div class="constantIndexAndColon">
@@ -334,17 +340,17 @@
                 <div class="cardTitleLine">Message Schedule (M)</div>
             </div>
             <button type="button" onclick="initilizeMessageSchedule()">Initilize Message Schedule</button>
-            <button type="button" onclick="completeMessageSchedule()">Complete Message Schedule</button>
+            <button type="button" onclick="completeMessageSchedule()" id="completeMessageSchedule">Complete Message Schedule</button>
             <div class="constantCard" id="messageSchedule">
-                    <div class="constantCardRow">
-                        <div class="constantIndexAndColon">
-                            <span class="constantIndexNumber">M(x)</span>
-                            <span class="colonSpan">:</span>
-                        </div>
-                        <div class="constantContents">
-                            σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
-                        </div>
+                <div class="constantCardRow">
+                    <div class="constantIndexAndColon">
+                        <span class="constantIndexNumber">W(16)</span>
+                        <span class="colonSpan">:</span>
                     </div>
+                    <div class="constantContents">
+                        σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
+                    </div>
+                </div>
             </div>
         </div>
     </div>    

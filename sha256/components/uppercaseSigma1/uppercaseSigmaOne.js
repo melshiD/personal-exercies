@@ -3,14 +3,44 @@
 let inputMessage = document.getElementById('messageInput');
 inputMessage.addEventListener('keyup', (event) => {
     let inputFromUser = event.target.value;
-    let inputAsRawBinary = inputFromUser.split('').map( e => e.charCodeAt(0).toString(2)).join('').padStart(8, '0');
-    document.getElementById('messageAsBinary').innerHTML = inputAsRawBinary;
+    let inputAsRawBinary = inputFromUser.split('').map( e => e.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+    document.getElementById('messageAsBinary').innerHTML = inputFromUser.length === 0?'':inputAsRawBinary;
 });
 
+function padWithZerosTo448Bits(){
+    document.getElementById('messageInput').disabled = true;
+    //add 1 to end of message as encoding, then followed with zeroes
+    let inputAsBinary
+    let messageAsBinary = `${document.getElementById('messageAsBinary').value}`;
+    let originalBinaryLengthInBinary = messageAsBinary.length.toString(2);
+    console.log(originalBinaryLengthInBinary);
+    messageAsBinary = messageAsBinary + '1';
+    let paddedMessageAsBinary = `${messageAsBinary}${''.padStart(512-messageAsBinary.length-originalBinaryLengthInBinary.length, '0')}${originalBinaryLengthInBinary}`;
+    document.getElementById('completeBinaryMessage').value = paddedMessageAsBinary;
+}
 
-    //'YOU PICKED 56 CHARACTERS BECAUSE THAT LIMITS THE INPUT MESSAGE TO ONE MESSAGE DIGEST!  DUH.  OK, '
-    //'WHEN YOU STI BACK DOWN WORK WITH THAT IN THE MORNING'
+function initilizeMessageSchedule(){
+    let paddedMessage = document.getElementById('completeBinaryMessage').value;
+    if (!paddedMessage) return;
+    const first16WordsArray = (paddedMessage) => {
+        let messageArray = [];
+        for(let i = 0; i < paddedMessage.length; i += 32){
+            messageArray.push(paddedMessage.slice(i, i+32));
+        }
+        return messageArray;
+    };
+    console.log(first16WordsArray(paddedMessage));
+    const stick16WordsIntoDom = (first16WordsArray) => {
+        let parentToAppendTo = document.getElementById('messageSchedule');
+        let nodeToClone = parentToAppendTo.firstElementChild;
+        console.log(nodeToClone);
+    };  //WHEN YOU SIT BACK DOWN, FINISH BUILDING OUT THIS FUNCTION TO PRESENT FIRST 16 WORDS TO BROWSER
+    stick16WordsIntoDom(first16WordsArray);
+}
 
+function handleMessageInput(){
+    return;
+}
 
 //grab the elements we need to build the transformation specs: ie ROTR or SHR and degree
 const grabRotationSpecElementsReturnSpecArray = (cardId) => {
@@ -55,7 +85,7 @@ function transformWordAndReturnReceipt(inputBits, amount, flag) {
     return transformedDigest;
 }
 
-const printWordsFromDigest = (digest, transformationDuration, index = 0, element, followOnFunction = null) => {
+const printWordsFromRotationDigest = (digest, transformationDuration, index = 0, element, followOnFunction = null) => {
     // console.log(index);
     if (index > digest.length - 1) {
         if (!followOnFunction) { return }
@@ -64,7 +94,7 @@ const printWordsFromDigest = (digest, transformationDuration, index = 0, element
     element.innerHTML = digest[index];
 
     setTimeout(() => {
-        printWordsFromDigest(digest, transformationDuration, index + 1, element);
+        printWordsFromRotationDigest(digest, transformationDuration, index + 1, element);
     }, transformationDuration);
 }
 
@@ -91,7 +121,7 @@ function handleAndRotateInput(rotTime, cardName) {
     let xorValue = exclusiveOr(wordsToXor).join('');
     console.log(xorValue);
 
-    //printXorAtEnd: is a function optionally passed to printWordsFromDigest so the timing 
+    //printXorAtEnd: is a function optionally passed to printWordsFromRotationDigest so the timing 
     //functionality has access to the values needed to update the transfromationOutputs.  
     //Janky, but less janky than having to grab the dom elements over and over again.
     const printXorAtEndOfTransformation = (delay, xorValue, xorDisplayElement) => {
@@ -100,9 +130,9 @@ function handleAndRotateInput(rotTime, cardName) {
             xorDisplayElement.parentElement.parentElement.classList.toggle('activeCard');
         }, delay);
     }
-    setTimeout(() => printWordsFromDigest(schedules[1], transTimeTwo, 0, elements[1]), 200);
-    setTimeout(() => printWordsFromDigest(schedules[2], transTimeThree, 0, elements[2]), 0);
-    setTimeout(() => printWordsFromDigest(schedules[0], transTimeOne, 0, elements[0],
+    setTimeout(() => printWordsFromRotationDigest(schedules[1], transTimeTwo, 0, elements[1]), 200);
+    setTimeout(() => printWordsFromRotationDigest(schedules[2], transTimeThree, 0, elements[2]), 0);
+    setTimeout(() => printWordsFromRotationDigest(schedules[0], transTimeOne, 0, elements[0],
         printXorAtEndOfTransformation(420, xorValue, xorDisplayElement)
     ), 350);
     return xorValue;
@@ -119,12 +149,6 @@ function generateConstants() {
     //5. Animate innerHTML to the final usable pure binary value
     //6. Move on to next element until finished
     const parentToAppendTo = document.getElementById('constantCard');
-    const cleanConstantsCard = (parentToRemoveFrom) => {
-        while(parentToRemoveFrom.children){
-            let removeTheseChildren = parentToRemoveFrom.children;
-            removeTheseChildren.forEach( (child) => child.parentElement.remove(child) );
-        };
-    }
     if(parentToAppendTo.children.length > 1) {
         return;
         //this isn't over, and I will figure out how to clear the card of all but the first rowConstant (also refactor later to make it moot)
@@ -158,24 +182,26 @@ function generateConstants() {
             constantIndexNumber.innerHTML = `K(${currentConstantIndex})`;
             let constantContents = newConstantCardRow.children[1];
             constantContents.innerHTML = constantContentsDisplayArrays[currentConstantIndex][1];
+            constantContents.classList.toggle('activeRow');
             parentToAppendTo.appendChild(newConstantCardRow);
+            
 
-            let startingDelay = 10;
+            let startingDelay = 50;
             let rowDisplayArray = constantContentsDisplayArrays[currentConstantIndex];
             const animateRowToBinary = (newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex) => {
-                if (rowCurrentDisplayIndex >= rowDisplayArray.length) { return animateToBinary(constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex + 1) }
-                // startingDelay = startingDelay<= 20?20:startingDelay/2;
+                if (rowCurrentDisplayIndex >= rowDisplayArray.length) { 
+                    return animateToBinary(constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex + 1) 
+                }
                 newConstantCardRow.innerHTML = rowDisplayArray[rowCurrentDisplayIndex];
+                constantContents.classList.toggle('activeRow'); //this accidently works because I'm toggleing an odd number of times.  obvoius when running slowly
                 setTimeout(animateRowToBinary, Math.floor(startingDelay), newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex + 1);
             }
             animateRowToBinary(constantContents, rowDisplayArray, 0);
-
         }
         animateToBinary(constantContentsDisplayArrays, parentToAppendTo, 0);
     }
     populateAndAnimatePrimes(parentToAppendTo);
 }
-
 
 // ------SHA and Math functions---------------------------------------------
 function exclusiveOr(arrayOfWords) {

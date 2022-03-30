@@ -335,10 +335,11 @@ function performSHA256(inputData, dataRequestIndex = 0){
     return finalOutputDigest;
 }
 // console.log(performSHA256('once there was a way to get back home.  Once there was a way, to get back home.  Go to sleep pretty darling, do not cry, and I will sing a lullaby'));
-console.log(performSHA256('dave', 4));
+let char64long = '11111111110000000000111000111111111111111100000010000110';
+console.log(performSHA256(char64long, 4));
 
-let outputString = performSHA256('abcdefgHi1s');//IT'S REMOVING SOME ZEROES FROM INDIVIDUAL LETTERS see: 'abcdefgHi1s'
-console.log(`${outputString} length: ${outputString.length}`);
+// let outputString = performSHA256('abcdefgHi1s');//IT'S REMOVING SOME ZEROES FROM INDIVIDUAL LETTERS see: 'abcdefgHi1s'
+// console.log(`${outputString} length: ${outputString.length}`);
 
 //see: 0996aa97913b8e1516e59111515cb76726d79f69493fbd14d999291ff649d19f length:64
 //see: 996aa97913b8e1516e59111515cb76726d79f69493fbd14d999291ff0649d19f length:64

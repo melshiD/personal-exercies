@@ -1,3 +1,4 @@
+
 //-------------event listener for input  length----------------
 let inputBits = document.getElementById('bitsInput');
 inputBits.addEventListener('keyup', (event) => {
@@ -118,11 +119,14 @@ function generateConstants() {
     //6. Move on to next element until finished
     const parentToAppendTo = document.getElementById('constantCard');
     const cleanConstantsCard = (parentToRemoveFrom) => {
-        let removeTheseChildren = parentToRemoveFrom.children;
-        console.log(removeTheseChildren);
-        parentToRemoveFrom.removeChild(removeMe);
-    };
+        while(parentToRemoveFrom.children){
+            let removeTheseChildren = parentToRemoveFrom.children;
+            removeTheseChildren.forEach( (child) => child.parentElement.remove(child) );
+        };
+    }
     if(parentToAppendTo.children.length > 1) {
+        return;
+        //this isn't over, and I will figure out how to clear the card of all but the first rowConstant (also refactor later to make it moot)
         cleanConstantsCard(parentToAppendTo);
     }
 

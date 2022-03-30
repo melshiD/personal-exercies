@@ -12,16 +12,19 @@
 <body>
     <div class="fullShaDesk">
         <div class="monoCard">
-            <div class="cnetreredCardTitle">
+            <div class="centeredCardTitle">
                 <div class="cardTitleLine">Input message and Padding</div>
             </div>
+            <!-- <input type="text" onclick="" id="messageInput" maxlength="55">  -->
+            <textArea id="messageInput" maxlength="55" rows="30" cols="2"></textArea>
             <button type="button" onclick="handleMessageInput()">Handle Messge Input</button>
         </div>
+
+        <!-- CONSTITUENT OPERATORS------------------------------------  -->
         <div class="monoCard">
             <div class="centeredCardTitle">
                 <div class="cardTitleLine">Constituent Operators</div>
             </div>
-            <!-- <input type="text" disabled class="bitsInput" id="bitsInput" value="1234567891234567891234567891234"> -->
             <input type="text" disabled class="bitsInput" id="bitsInput" value="11111111110000000000111000111111">
             <button type="button" onclick="handleAndRotateInput(300, 'cardOne')">lowerCase Sigma 0</button>
             <button type="button" onclick="handleAndRotateInput(300, 'cardTwo')">lowerCase Sigma 1</button>

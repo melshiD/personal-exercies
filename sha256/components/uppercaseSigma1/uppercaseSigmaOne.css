@@ -17,6 +17,14 @@ body{
     flex-wrap: wrap;
     align-items: flex-start;
 }
+#messageInput{
+    width: 40ch;
+    height: 6ch;
+    resize: none;
+    text-align: left;
+    border: black solid 4px;
+    border-radius: 4px;
+}
 #bitsInput{
     text-align: center;
 }
@@ -218,6 +226,7 @@ body{
     font-size: 10px;
     margin-left: 3px;
     line-height: 14.5px;
+    width: fit-content;
 }
 .constantIndexAndColon{
     display: flex;
@@ -232,7 +241,7 @@ body{
     width: 5ch;
 }
 .constantCardRow .constantContents{
-    width: 32ch;
+    min-width: 32ch;
     align-self: flex-end;
     margin-left: 4px;
     margin-top: 1px;

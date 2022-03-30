@@ -68,6 +68,7 @@ const printWordsFromDigest = (digest, transformationDuration, index = 0, element
 
 function handleAndRotateInput(rotTime, cardName) {
     let cardForTransformation = document.getElementById(cardName);
+    cardForTransformation.classList.toggle('activeCard');
     let xorDisplayElement = cardForTransformation.querySelector('.resultBits');
     xorDisplayElement.innerHTML = '';
 
@@ -94,6 +95,7 @@ function handleAndRotateInput(rotTime, cardName) {
     const printXorAtEndOfTransformation = (delay, xorValue, xorDisplayElement) => {
         setTimeout(() => {
             xorDisplayElement.innerHTML = xorValue;
+            xorDisplayElement.parentElement.parentElement.classList.toggle('activeCard');
         }, delay);
     }
     setTimeout(() => printWordsFromDigest(schedules[1], transTimeTwo, 0, elements[1]), 200);
@@ -211,3 +213,4 @@ function isPrime(n) {
     }
     return n;
 }
+

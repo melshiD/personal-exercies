@@ -73,7 +73,6 @@ body{
     transition: background-color 0.07s;
     /* background-color: purple; */
     background-color: rgb(162, 170, 237);
-    box-shadow: pink 4px 4px 4px;
 }
 .sigmaIcon{
     box-sizing: border-box;
@@ -240,6 +239,13 @@ body{
     color: black;
 
 }
+.simplyASeperator{
+    width: auto;
+    border-bottom: black 2px solid;
+    background-color: black;
+    margin: 3px;
+}
+
 
 /* Message Schedue  */
 

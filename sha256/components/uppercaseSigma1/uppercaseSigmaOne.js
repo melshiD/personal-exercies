@@ -116,12 +116,20 @@ function generateConstants() {
     //4. Animate innerHTML then to the prime without the decimals
     //5. Animate innerHTML to the final usable pure binary value
     //6. Move on to next element until finished
+    const parentToAppendTo = document.getElementById('constantCard');
+    const cleanConstantsCard = (parentToRemoveFrom) => {
+        let removeTheseChildren = parentToRemoveFrom.children;
+        console.log(removeTheseChildren);
+        parentToRemoveFrom.removeChild(removeMe);
+    };
+    if(parentToAppendTo.children.length > 1) {
+        cleanConstantsCard(parentToAppendTo);
+    }
+
     const rawPrimes = compilePrimes(64);
     const cubedPrimes = rawPrimes.map((primeValue) => Math.cbrt(primeValue));
     const cubedPrimesLessWholeNumbers = cubedPrimes.map(cubedPrime => cubedPrime.toString(10).split('.')[1]);
     const cubedPrimesAsBinary = genCubedValues(rawPrimes);
-    console.log(cubedPrimesAsBinary);
-    const parentToAppendTo = document.getElementById('constantCard');
 
     const populateAndAnimatePrimes = (parentToAppendTo) => {
         let constantContentsDisplayArrays = [];
@@ -136,10 +144,9 @@ function generateConstants() {
                 ]
             )
         }
-
         let currentConstantIndex = 0;
         const animateToBinary = (constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex) => {
-            if(currentConstantIndex >= constantContentsDisplayArrays.length){ return }
+            if (currentConstantIndex >= constantContentsDisplayArrays.length) { return }
 
             let newConstantCardRow = parentToAppendTo.querySelector('.constantCardRow').cloneNode(true);
             let constantIndexNumber = newConstantCardRow.firstElementChild.children[0];
@@ -151,10 +158,10 @@ function generateConstants() {
             let startingDelay = 10;
             let rowDisplayArray = constantContentsDisplayArrays[currentConstantIndex];
             const animateRowToBinary = (newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex) => {
-                if(rowCurrentDisplayIndex >= rowDisplayArray.length){ return animateToBinary(constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex + 1)}
+                if (rowCurrentDisplayIndex >= rowDisplayArray.length) { return animateToBinary(constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex + 1) }
                 // startingDelay = startingDelay<= 20?20:startingDelay/2;
                 newConstantCardRow.innerHTML = rowDisplayArray[rowCurrentDisplayIndex];
-                setTimeout( animateRowToBinary, Math.floor(startingDelay), newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex + 1);
+                setTimeout(animateRowToBinary, Math.floor(startingDelay), newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex + 1);
             }
             animateRowToBinary(constantContents, rowDisplayArray, 0);
 

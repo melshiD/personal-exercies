@@ -19,9 +19,16 @@ function padWithZerosTo448Bits(){
     document.getElementById('completeBinaryMessage').value = paddedMessageAsBinary;
 }
 
+function hideMessageInputCard(cardToHide){
+    cardToHide.remove();
+}
+
 function initilizeMessageSchedule(){
     let paddedMessage = document.getElementById('completeBinaryMessage').value;
     if (!paddedMessage) return;
+    if(document.getElementById('messageSchedule').children.length>1){
+        return hideMessageInputCard(document.getElementById('messageInputCard'))
+    };
     const first16WordsArray = (paddedMessage) => {
         let messageArray = [];
         for(let i = 0; i < paddedMessage.length; i += 32){
@@ -29,13 +36,25 @@ function initilizeMessageSchedule(){
         }
         return messageArray;
     };
-    console.log(first16WordsArray(paddedMessage));
     const stick16WordsIntoDom = (first16WordsArray) => {
         let parentToAppendTo = document.getElementById('messageSchedule');
         let nodeToClone = parentToAppendTo.firstElementChild;
-        console.log(nodeToClone);
-    };  //WHEN YOU SIT BACK DOWN, FINISH BUILDING OUT THIS FUNCTION TO PRESENT FIRST 16 WORDS TO BROWSER
-    stick16WordsIntoDom(first16WordsArray);
+        for(let [i,v] of first16WordsArray.entries()){
+            let newWord = nodeToClone.cloneNode(true);
+            newWord.firstElementChild.children[0].innerHTML = `W(${i})`;
+            newWord.querySelector('.constantContents').innerHTML = `${v}`;
+            newWord.querySelector('.constantContents').classList.add('activeRow');
+            parentToAppendTo.appendChild(newWord);
+        }
+        return parentToAppendTo.children;
+    };
+    // let children = stick16WordsIntoDom(first16WordsArray(paddedMessage));
+    let children = stick16WordsIntoDom(first16WordsArray(paddedMessage));
+    setTimeout( () => {
+        for(let child of children){
+            child.querySelector('.constantContents').classList.remove('activeRow');
+        }
+    }, 500);
 }
 
 function handleMessageInput(){

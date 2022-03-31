@@ -15,12 +15,12 @@
             <div class="centeredCardTitle">
                 <div class="cardTitleLine">Input message and Padding</div>
             </div>
-            <textArea id="messageInput" class="messageInputTA" maxlength="55" ></textArea>
+            <textArea id="messageInput" class="messageInputTA" maxlength="55" >David => Arlyn: $500;</textArea>
             <div class="centeredCardTitle titleMarginTop">
                 <div class="cardTitleLine">Message As Binary (ascii)</div>
             </div>
             <textarea id="messageAsBinary" class="messageAsBinary" disabled></textarea>
-            <button type="button" onclick="padWithZerosTo448Bits()">Pad and Encode Length</button>
+            <button type="button" onclick="padAndEncodeLength()" id="paddingButton">Pad and Encode Length</button>
             <div class="centeredCardTitle titleMarginTop">
                 <div class="cardTitleLine">Padded Message (message block)</div>
             </div>
@@ -28,7 +28,24 @@
             <button type="button" onclick="initilizeMessageSchedule()">Initilize Message Schedule</button>
             <!-- <button type="button" onclick="hideMessageInputCard()">Close Message Input</button> -->
         </div>
-
+                <!-- CONSTANTS ------ JS will solve this wetness ----------------------------------------------------------------->
+                <div class="monoCard">
+                    <div class="centeredCardTitle">
+                        <div class="cardTitleLine">Constants (K)</div>
+                    </div>
+                    <button type="button" onclick="generateConstants()">Generate Constants</button>
+                    <!-- <div class="underConstants"></div> -->
+                    <button type="button" onclick="completeMessageSchedule()" class="invisibleLetters">.</button>
+                    <div class="constantCard" id="constantCard">
+                            <div class="constantCardRow">
+                                <div class="constantIndexAndColon">
+                                    <span class="constantIndexNumber">K(x)</span>
+                                    <span class="colonSpan">:</span>
+                                </div>
+                                <div class="constantContents">3√prime(x)</div>
+                            </div>
+                    </div>
+                </div>
         <!-- CONSTITUENT OPERATORS------------------------------------  -->
         <div class="monoCard">
             <div class="centeredCardTitle">
@@ -316,24 +333,6 @@
                 </div>
             </div>
         </div>
-        <!-- CONSTANTS ------ JS will solve this wetness ----------------------------------------------------------------->
-        <div class="monoCard">
-            <div class="centeredCardTitle">
-                <div class="cardTitleLine">Constants (K)</div>
-            </div>
-            <button type="button" onclick="generateConstants()">Generate Constants</button>
-            <!-- <div class="underConstants"></div> -->
-            <button type="button" onclick="completeMessageSchedule()" class="invisibleLetters">.</button>
-            <div class="constantCard" id="constantCard">
-                    <div class="constantCardRow">
-                        <div class="constantIndexAndColon">
-                            <span class="constantIndexNumber">K(x)</span>
-                            <span class="colonSpan">:</span>
-                        </div>
-                        <div class="constantContents">3√prime(x)</div>
-                    </div>
-            </div>
-        </div>
         <!-- Message Schedule ------ JS will solve this wetness ----------------------------------------------------------------->
         <div class="monoCard">
             <div class="centeredCardTitle">
@@ -348,7 +347,8 @@
                         <span class="colonSpan">:</span>
                     </div>
                     <div class="constantContents">
-                        σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
+                        <!-- σ1(t-2) + (t-7) + σ0(t-15) + (t-16) -->
+                        <span>σ1(t-2)</span> + <span>(t-7)</span> + <span>σ0(t-15)</span> + <span>(t-16)</span>
                     </div>
                 </div>
             </div>
@@ -359,4 +359,3 @@
 
 </html>
 
-<!-- WHEN YOU SIT BACK DOWN, STOP MESSING AROUND AND ANIMATE THE MESSAGE SCHEDULE GENERATION  -->

@@ -7,7 +7,7 @@ inputMessage.addEventListener('keyup', (event) => {
     document.getElementById('messageAsBinary').innerHTML = inputFromUser.length === 0?'':inputAsRawBinary;
 });
 
-function padWithZerosTo448Bits(){
+function padAndEncodeLength(){
     document.getElementById('messageInput').disabled = true;
     //add 1 to end of message as encoding, then followed with zeroes
     let inputAsBinary
@@ -47,6 +47,7 @@ function initilizeMessageSchedule(){
             parentToAppendTo.appendChild(newWord);
         }
         nodeToClone.remove();
+        nodeToClone.classList.add('movingEquation');
         parentToAppendTo.appendChild(nodeToClone);
         return parentToAppendTo.children;
     };
@@ -58,7 +59,6 @@ function initilizeMessageSchedule(){
         }
     }, 500);
 }
-
 function handleMessageInput(){
     return;
 }
@@ -119,14 +119,14 @@ const printWordsFromRotationDigest = (digest, transformationDuration, index = 0,
     }, transformationDuration);
 }
 
-function handleAndRotateInput(rotTime, cardName) {
+function handleAndRotateInput(rotTime, cardName, inputBits = null) {
     let cardForTransformation = document.getElementById(cardName);
     cardForTransformation.classList.toggle('activeCard');
     let xorDisplayElement = cardForTransformation.querySelector('.resultBits');
     xorDisplayElement.innerHTML = '';
 
     const transformationSpecs = grabRotationSpecElementsReturnSpecArray(cardName);
-    let inputValue = document.getElementById('bitsInput').value;
+    let inputValue = !inputBits ? document.getElementById('bitsInput').value : inputBits;
     let schedules = generateRotationSchedules(inputValue, transformationSpecs)
     let transTimeOne = Math.floor(rotTime / schedules[0].length);
     let transTimeTwo = Math.floor(rotTime / schedules[1].length);
@@ -159,13 +159,12 @@ function handleAndRotateInput(rotTime, cardName) {
     return xorValue;
 }
 
-
 // ------Constant Generation and Animation-------------------------
 function generateConstants() {
     //needs to go from 0-63 and do the following each iteration:
     //1. Build a constantRow with K(currentIndex): 3√prime(currentIndex)
     //2. Append the constantRow
-    //3. animate the constantContents innerHTML with the prime base-10 number
+    //3. Animate the constantContents innerHTML with the prime base-10 number
     //4. Animate innerHTML then to the prime without the decimals
     //5. Animate innerHTML to the final usable pure binary value
     //6. Move on to next element until finished
@@ -233,6 +232,38 @@ function generateConstants() {
     //change in delay times within the row animations 
 }
 
+// ------Complete Message Schedule --------------------------------
+function completeMessageSchedule(wordIndex = 16){
+    const parentElement = document.getElementById('messageSchedule');
+    const nodeArray = parentElement.children;
+    //    W(16) : σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
+    // σ1(t-2):
+    let addend1RowElement = parentElement.firstElementChild.cloneNode(true);
+    console.log(parentElement);
+    let addend2RowElement = parentElement.firstElementChild.cloneNode(true);
+    let addend3RowElement = parentElement.firstElementChild.cloneNode(true);
+    let addend4RowElement = parentElement.firstElementChild.cloneNode(true);
+
+    let xor = handleAndRotateInput(300, 'cardTwo', nodeArray[wordIndex-2].children[1].innerHTML);
+    nodeArray[wordIndex-2].children[1].classList.toggle('activeRow');
+    console.log(document.querySelector('.movingEquation .constantContents').children[0]);
+    document.querySelector('.movingEquation .constantContents').children[0].classList.toggle('activeRow');
+    console.log(addend1RowElement);
+    addend1RowElement.firstElementChild.children[0].innerHTML = '';
+    addend1RowElement.children[1].innerHTML = xor;
+    const appendAddend1 = () => {
+        addend1RowElement.querySelector('.constantContents').classList.add('activeRow');
+        setTimeout( () => {
+            parentElement.appendChild(addend1RowElement);
+            setTimeout(()=>addend1RowElement.querySelector('.constantContents').classList.remove('activeRow'), 200)
+        }, 800);
+        //'WHEN YOU SIT BACK DOWN, TACKLE REPEATING THIS PROCESS FOR EACH WORD, ALONG WITH ADDING AND REMOVING THE CLASSES FOR THE HIGHLIGHTS
+    }
+
+    appendAddend1();
+}
+
+
 // ------SHA and Math functions---------------------------------------------
 function exclusiveOr(arrayOfWords) {
     let collapsedWordsArray = collapseArrayOfBinWords(arrayOfWords);
@@ -251,7 +282,7 @@ function collapseArrayOfBinWords(arrayOfWords) {
     }
     return collapsedWordsArray.reverse();
 }
-//---//---Prime Constant Generation Functions
+//SHA//---Prime Constant Generation Functions
 function genCubedValues(primeNumberArray) {
     let cubedConstants = [];
     primeNumberArray.forEach((prime) => {
@@ -282,3 +313,14 @@ function isPrime(n) {
     return n;
 }
 
+function toggleBackground(){
+    document.body.classList.toggle('toggleBackground');
+}
+
+//----- So I don't have to keep clicking to move through the flow -----
+document.getElementById('messageInput').dispatchEvent(new Event("keyup"))
+setTimeout( () => {
+    padAndEncodeLength();
+    initilizeMessageSchedule();
+    initilizeMessageSchedule();
+},5);

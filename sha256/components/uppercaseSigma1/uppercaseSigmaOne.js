@@ -46,6 +46,8 @@ function initilizeMessageSchedule(){
             newWord.querySelector('.constantContents').classList.add('activeRow');
             parentToAppendTo.appendChild(newWord);
         }
+        nodeToClone.remove();
+        parentToAppendTo.appendChild(nodeToClone);
         return parentToAppendTo.children;
     };
     // let children = stick16WordsIntoDom(first16WordsArray(paddedMessage));
@@ -178,13 +180,13 @@ function generateConstants() {
     const cubedPrimes = rawPrimes.map((primeValue) => Math.cbrt(primeValue));
     const cubedPrimesLessWholeNumbers = cubedPrimes.map(cubedPrime => cubedPrime.toString(10).split('.')[1]);
     const cubedPrimesAsBinary = genCubedValues(rawPrimes);
-
+    let startingDelay = 3000;
     const populateAndAnimatePrimes = (parentToAppendTo) => {
         let constantContentsDisplayArrays = [];
         for (let i = 0; i < rawPrimes.length; i++) {
             constantContentsDisplayArrays.push(
                 [
-                    `3√prime(${i})`,
+                    `3√prime(${i+1})`,
                     `3√ ${rawPrimes[i]}`,
                     `${cubedPrimes[i]}`,
                     `${cubedPrimesLessWholeNumbers[i]}`,
@@ -201,25 +203,34 @@ function generateConstants() {
             constantIndexNumber.innerHTML = `K(${currentConstantIndex})`;
             let constantContents = newConstantCardRow.children[1];
             constantContents.innerHTML = constantContentsDisplayArrays[currentConstantIndex][1];
-            constantContents.classList.toggle('activeRow');
+            constantContents.classList.add('activeRow');
             parentToAppendTo.appendChild(newConstantCardRow);
             
 
-            let startingDelay = 50;
+            // let startingDelay = 50;
+            let currentInnerDelay = currentConstantIndex > 1 ? 50 : startingDelay;
             let rowDisplayArray = constantContentsDisplayArrays[currentConstantIndex];
             const animateRowToBinary = (newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex) => {
                 if (rowCurrentDisplayIndex >= rowDisplayArray.length) { 
                     return animateToBinary(constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex + 1) 
                 }
                 newConstantCardRow.innerHTML = rowDisplayArray[rowCurrentDisplayIndex];
-                constantContents.classList.toggle('activeRow'); //this accidently works because I'm toggleing an odd number of times.  obvoius when running slowly
-                setTimeout(animateRowToBinary, Math.floor(startingDelay), newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex + 1);
+                // constantContents.classList.add('activeRow'); //this accidently works because I'm toggleing an odd number of times.  obvoius when running slowly
+                setTimeout(animateRowToBinary, Math.floor(currentInnerDelay), newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex + 1);
             }
+            setTimeout( () => {
+                constantContents.classList.remove('activeRow');
+            }, currentInnerDelay*5);
             animateRowToBinary(constantContents, rowDisplayArray, 0);
         }
         animateToBinary(constantContentsDisplayArrays, parentToAppendTo, 0);
     }
     populateAndAnimatePrimes(parentToAppendTo);
+    setTimeout( () => {
+        document.getElementById('constantCard').firstElementChild.remove();
+    }, 25000);
+    //this timeout delay to remove the top element is being hard-coded on account of the 
+    //change in delay times within the row animations 
 }
 
 // ------SHA and Math functions---------------------------------------------

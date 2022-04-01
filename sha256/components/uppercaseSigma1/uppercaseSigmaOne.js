@@ -13,7 +13,6 @@ function padAndEncodeLength(){
     let inputAsBinary
     let messageAsBinary = `${document.getElementById('messageAsBinary').value}`;
     let originalBinaryLengthInBinary = messageAsBinary.length.toString(2);
-    console.log(originalBinaryLengthInBinary);
     messageAsBinary = messageAsBinary + '1';
     let paddedMessageAsBinary = `${messageAsBinary}${''.padStart(512-messageAsBinary.length-originalBinaryLengthInBinary.length, '0')}${originalBinaryLengthInBinary}`;
     document.getElementById('completeBinaryMessage').value = paddedMessageAsBinary;
@@ -140,8 +139,6 @@ function handleAndRotateInput(rotTime, cardName, inputBits = null) {
         schedules[2][schedules[2].length - 1]
     ]
     let xorValue = exclusiveOr(wordsToXor).join('');
-    console.log(xorValue);
-
     //printXorAtEnd: is a function optionally passed to printWordsFromRotationDigest so the timing 
     //functionality has access to the values needed to update the transfromationOutputs.  
     //Janky, but less janky than having to grab the dom elements over and over again.
@@ -233,34 +230,110 @@ function generateConstants() {
 }
 
 // ------Complete Message Schedule --------------------------------
-function completeMessageSchedule(wordIndex = 16){
+// function completeMessageSchedule(wordIndex = 16, startingDelay = 2000){
+//     if(wordIndex > 20) startingDelay = 500;
+function completeMessageSchedule(wordIndex = 16, startingDelay = 500){
+    if(wordIndex > 20) startingDelay = 80;
+    if(wordIndex === 64) return;
     const parentElement = document.getElementById('messageSchedule');
     const nodeArray = parentElement.children;
     //    W(16) : σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
     // σ1(t-2):
     let addend1RowElement = parentElement.firstElementChild.cloneNode(true);
-    console.log(parentElement);
     let addend2RowElement = parentElement.firstElementChild.cloneNode(true);
     let addend3RowElement = parentElement.firstElementChild.cloneNode(true);
     let addend4RowElement = parentElement.firstElementChild.cloneNode(true);
-
-    let xor = handleAndRotateInput(300, 'cardTwo', nodeArray[wordIndex-2].children[1].innerHTML);
-    nodeArray[wordIndex-2].children[1].classList.toggle('activeRow');
-    console.log(document.querySelector('.movingEquation .constantContents').children[0]);
-    document.querySelector('.movingEquation .constantContents').children[0].classList.toggle('activeRow');
-    console.log(addend1RowElement);
-    addend1RowElement.firstElementChild.children[0].innerHTML = '';
-    addend1RowElement.children[1].innerHTML = xor;
+    
     const appendAddend1 = () => {
-        addend1RowElement.querySelector('.constantContents').classList.add('activeRow');
+        let xor = handleAndRotateInput(300, 'cardTwo', nodeArray[wordIndex-2].children[1].innerHTML);
+        document.querySelector('.movingEquation .constantContents').children[0].classList.add('activeRow'); //span styles
+        nodeArray[wordIndex-2].children[1].classList.add('activeRow');
+        addend1RowElement.firstElementChild.children[0].innerHTML = '';
+        addend1RowElement.children[1].innerHTML = xor;
         setTimeout( () => {
+            // addend1RowElement.querySelector('.constantContents').classList.add('activeRow');
             parentElement.appendChild(addend1RowElement);
-            setTimeout(()=>addend1RowElement.querySelector('.constantContents').classList.remove('activeRow'), 200)
-        }, 800);
-        //'WHEN YOU SIT BACK DOWN, TACKLE REPEATING THIS PROCESS FOR EACH WORD, ALONG WITH ADDING AND REMOVING THE CLASSES FOR THE HIGHLIGHTS
+            setTimeout(()=>addend1RowElement.querySelector('.constantContents').classList.remove('activeRow'), startingDelay*0.2)
+        }, startingDelay*0.8);
     }
+    setTimeout( appendAddend1(), startingDelay);
 
-    appendAddend1();
+    const appendAddend2 = () => {
+        addend2RowElement.firstElementChild.children[0].innerHTML = '';
+        addend2RowElement.children[1].innerHTML = nodeArray[wordIndex-7].children[1].innerHTML;
+        setTimeout( () => {
+            nodeArray[wordIndex-7].children[1].classList.add('activeRow');
+            document.querySelector('.movingEquation .constantContents').children[1].classList.add('activeRow'); //span styles
+            // parentElement.appendChild(addend2RowElement);
+            setTimeout(()=>{
+                parentElement.appendChild(addend2RowElement);
+                addend2RowElement.querySelector('.constantContents').classList.remove('activeRow')}, 
+            startingDelay*0.2)
+        }, startingDelay*0.8);
+    }
+    setTimeout( appendAddend2(), startingDelay*0.9);
+
+    const appendAddend3 = () => {
+        setTimeout(() => {
+            let xor = handleAndRotateInput(300, 'cardOne', nodeArray[wordIndex - 15].children[1].innerHTML);
+            addend3RowElement.firstElementChild.children[0].innerHTML = '';
+            addend3RowElement.children[1].innerHTML = xor;
+            nodeArray[wordIndex - 15].children[1].classList.add('activeRow');
+            document.querySelector('.movingEquation .constantContents').children[2].classList.add('activeRow'); //span styles
+            // addend3RowElement.querySelector('.constantContents').classList.add('activeRow');
+            setTimeout(() => {
+                // addend3RowElement.querySelector('.constantContents').classList.remove('activeRow');
+                setTimeout( () => parentElement.appendChild(addend3RowElement), startingDelay*0.4);
+            }, startingDelay*0.2)
+        }, startingDelay*0.8);
+    }
+    setTimeout( appendAddend3, startingDelay*1);
+
+    const appendAddend4 = () => {
+        setTimeout( () => {
+            addend4RowElement.firstElementChild.children[0].innerHTML = '';
+            addend4RowElement.children[1].innerHTML = nodeArray[wordIndex-16].children[1].innerHTML;
+            nodeArray[wordIndex-16].children[1].classList.add('activeRow');
+            document.querySelector('.movingEquation .constantContents').children[3].classList.add('activeRow'); //span styles
+            // addend4RowElement.querySelector('.constantContents').classList.add('activeRow');
+            parentElement.appendChild(addend4RowElement);
+            // addend4RowElement.querySelector('.constantContents').classList.remove('activeRow')
+            setTimeout( ()=> {
+                setTimeout( () => {
+                    parentElement.appendChild(addend4RowElement);
+                    setTimeout( addWordsAndAdvanceToNext(wordIndex, startingDelay*0.3), startingDelay);
+                }, startingDelay*0.4)
+            }, startingDelay*0.2); //maybe back to 4.  need promises bad
+        }, startingDelay*0.8);
+    }
+    setTimeout( appendAddend4, startingDelay*2);
+}
+const addWordsAndAdvanceToNext = (currentConstantIndex, delay) => {  //function used in tandem with completeMessageSchedule to build full schedule
+    if(currentConstantIndex === 64) return;
+
+    let functionSpans = document.querySelectorAll('.constantContents span');
+    functionSpans.forEach( (span) => span.classList.remove('activeRow'));
+
+    let messageSchedule = document.getElementById('messageSchedule');
+    Array.from(messageSchedule.children).forEach( (child) => child.children[1].classList.remove('activeRow'));
+    let arrayToAddTogether = [
+        messageSchedule.children[messageSchedule.children.length - 1].children[1].innerHTML,
+        messageSchedule.children[messageSchedule.children.length - 2].children[1].innerHTML,
+        messageSchedule.children[messageSchedule.children.length - 3].children[1].innerHTML,
+        messageSchedule.children[messageSchedule.children.length - 4].children[1].innerHTML
+    ];
+    let wordSum = addArrayOfBinWords(arrayToAddTogether);
+    let removeAndReplace = document.querySelector('.movingEquation');
+    removeAndReplace.children[0].children[0].innerHTML = `W(${currentConstantIndex+1})`;
+
+    removeAndReplace.remove();
+    messageSchedule.children[messageSchedule.children.length - 1].remove();
+    messageSchedule.children[messageSchedule.children.length - 1].remove();
+    messageSchedule.children[messageSchedule.children.length - 1].remove();
+    messageSchedule.children[messageSchedule.children.length - 1].children[1].innerHTML = wordSum;
+    messageSchedule.children[messageSchedule.children.length - 1].children[0].children[0].innerHTML = `W(${currentConstantIndex})`;
+    messageSchedule.appendChild(removeAndReplace);
+    setTimeout( completeMessageSchedule(currentConstantIndex+1), delay);
 }
 
 
@@ -313,14 +386,30 @@ function isPrime(n) {
     return n;
 }
 
-function toggleBackground(){
-    document.body.classList.toggle('toggleBackground');
+function addArrayOfBinWords(arrayOfWords){
+    //re-used from earlier SHA256 I wrote.  Refactor when appropriate
+    if(!arrayOfWords) return -1;
+    if(arrayOfWords.length == 1) return arrayOfWords[0];
+    let evaluatedBinaryString = [];
+    let carryOver = 0;
+    for(let i = arrayOfWords[0].length-1; i >= 0; i --){
+        let columnSum = 0;
+        arrayOfWords.forEach( (word) => columnSum += parseInt(word[i]) );
+        columnSum += carryOver;
+        evaluatedBinaryString.push(columnSum % 2);
+        carryOver = Math.floor(columnSum/2);
+    }
+    return evaluatedBinaryString.reverse().join('');
 }
 
 //----- So I don't have to keep clicking to move through the flow -----
-document.getElementById('messageInput').dispatchEvent(new Event("keyup"))
+document.getElementById('messageInput').dispatchEvent(new Event("keyup"));
 setTimeout( () => {
     padAndEncodeLength();
     initilizeMessageSchedule();
     initilizeMessageSchedule();
 },5);
+
+function toggleBackground(){
+    document.body.classList.toggle('toggleBackground');
+}

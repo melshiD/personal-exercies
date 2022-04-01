@@ -238,7 +238,7 @@ function generateConstants() {
 //     if(wordIndex > 20) startingDelay = 500;
 function completeMessageSchedule(wordIndex = 16, startingDelay = 5000){
     const parentElement = document.getElementById('messageSchedule');
-    if(parentElement.children.length < 2) return;
+    if(parentElement.childElementCount === 1) return;
     if(wordIndex > 17) startingDelay = 500;
     if(wordIndex > 20) startingDelay = 80;
     if(wordIndex === 64) return;
@@ -274,7 +274,7 @@ function completeMessageSchedule(wordIndex = 16, startingDelay = 5000){
             setTimeout(()=>{
                 parentElement.appendChild(addend2RowElement);
                 addend2RowElement.querySelector('.constantContents').classList.remove('activeRow')}, 
-            startingDelay*0.2)
+            startingDelay*0.8)
         }, startingDelay*0.8);
     }
     setTimeout( appendAddend2(), startingDelay*0.9);

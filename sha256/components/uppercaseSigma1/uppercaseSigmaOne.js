@@ -8,10 +8,11 @@ inputMessage.addEventListener('keyup', (event) => {
 });
 
 function padAndEncodeLength(){
+    let messageAsBinary = `${document.getElementById('messageAsBinary').value}`;
+    if(messageAsBinary === '') return;
     document.getElementById('messageInput').disabled = true;
     //add 1 to end of message as encoding, then followed with zeroes
-    let inputAsBinary
-    let messageAsBinary = `${document.getElementById('messageAsBinary').value}`;
+    // let inputAsBinary
     let originalBinaryLengthInBinary = messageAsBinary.length.toString(2);
     messageAsBinary = messageAsBinary + '1';
     let paddedMessageAsBinary = `${messageAsBinary}${''.padStart(512-messageAsBinary.length-originalBinaryLengthInBinary.length, '0')}${originalBinaryLengthInBinary}`;
@@ -20,14 +21,17 @@ function padAndEncodeLength(){
 
 function hideMessageInputCard(cardToHide){
     cardToHide.remove();
+    cardToHide = null;
+    return;
 }
 
 function initilizeMessageSchedule(){
-    let paddedMessage = document.getElementById('completeBinaryMessage').value;
-    if (!paddedMessage) return;
+    if(!document.getElementById('messageInputCard')) return;
     if(document.getElementById('messageSchedule').children.length>1){
         return hideMessageInputCard(document.getElementById('messageInputCard'))
     };
+    let paddedMessage = document.getElementById('completeBinaryMessage').value;
+    if (!paddedMessage) return;
     const first16WordsArray = (paddedMessage) => {
         let messageArray = [];
         for(let i = 0; i < paddedMessage.length; i += 32){
@@ -232,10 +236,12 @@ function generateConstants() {
 // ------Complete Message Schedule --------------------------------
 // function completeMessageSchedule(wordIndex = 16, startingDelay = 2000){
 //     if(wordIndex > 20) startingDelay = 500;
-function completeMessageSchedule(wordIndex = 16, startingDelay = 500){
+function completeMessageSchedule(wordIndex = 16, startingDelay = 5000){
+    const parentElement = document.getElementById('messageSchedule');
+    if(parentElement.children.length < 2) return;
+    if(wordIndex > 17) startingDelay = 500;
     if(wordIndex > 20) startingDelay = 80;
     if(wordIndex === 64) return;
-    const parentElement = document.getElementById('messageSchedule');
     const nodeArray = parentElement.children;
     //    W(16) : σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
     // σ1(t-2):
@@ -406,8 +412,8 @@ function addArrayOfBinWords(arrayOfWords){
 document.getElementById('messageInput').dispatchEvent(new Event("keyup"));
 setTimeout( () => {
     padAndEncodeLength();
-    initilizeMessageSchedule();
-    initilizeMessageSchedule();
+    // initilizeMessageSchedule();
+    // initilizeMessageSchedule();
 },5);
 
 function toggleBackground(){

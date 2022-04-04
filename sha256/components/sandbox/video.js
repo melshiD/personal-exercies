@@ -39,9 +39,3 @@ finalPromise.then(result => {
 //     return sum += order.amount;
 // }, 0);
 // console.log(totalAmount);
-
-async function* readFiles(files) {
-    for(const file of files) {
-      yield await readFile(file);
-    }
-  }; //async generator

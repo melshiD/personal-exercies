@@ -169,42 +169,45 @@ function handleAndRotateInput(rotTime, cardName, inputBits = null) {
 
 // ------Majority and Choice---------------------------------------
 function majorityAndChoice(evalDuration, cardName, inputBits = null){
-    const inputArray = !inputBits === null?inputBits:[
+    const inputArray = !inputBits === null?inputBits:[ //for testing
         '01101111011101010111000000111010',
         '00100000001001000011010100101100',
         '00110000001100000011000000101100'
     ];
-    inputArrayAsArrays = [];
+    inputStringsAsArrays = [];
     inputArray.forEach( (inputString) => {
-        inputArrayAsArrays.push(inputString.split('').reverse());
+        inputStringsAsArrays.push(inputString.split('').reverse());
     });
     // ------ show card as active ------
     let cardForTransformation = document.getElementById(cardName);
     cardForTransformation.classList.add('activeCard');
-    //populate card with values from inputArray
+    // ------ populate card with values from inputArray -------
     let threeListsOf32Spans = cardForTransformation.querySelectorAll('[class*="Value"]');
-    inputArrayAsArrays.forEach( (inputArray, arrayIndex) => {
+    inputStringsAsArrays.forEach( (inputArray, arrayIndex) => {
         inputArray.forEach( (value, i) => {
             let spanIndex = (31 - i);
             threeListsOf32Spans[arrayIndex].children[spanIndex].innerHTML = value;
         })
     });
-
-
-
-    // inputArray.forEach( (inputString, stringIndexOf3) => {
-    //     inputString = inputString.split('').reverse();
-    //     inputString.forEach( (value, i) => {
-    //         let spanIndex = (31 - i);
-    //         threeListsOf32Spans[stringIndexOf3].children[spanIndex].innerHTML = value;
-    //     })
-    // });
     // ------ depending on which transformation, animate and populate answer accordingly ------
     const sequencePromise = (ms) => {
         return new Promise(resolvingAction => setTimeout(resolvingAction, ms))
     }
     if(cardName === 'cardFive'){
-
+        //for each item in the array (0 - 32), find the majority character,
+        //then highlight each case of that character at the current index,
+        //then output the result character under the highlighted chars/unhighlight chars
+        //move to the next index and repeat
+        for(let i = 0, p = Promise.resolve(); i < 32; i++){
+            p = p.then( () => sequencePromise(evalDuration)).then( () => {
+                let majority = parseInt(inputStringsAsArrays[0][i], 10) + parseInt(inputStringsAsArrays[1][i], 10) + parseInt(inputStringsAsArrays[2][i], 10);
+                console.log(majority);
+                if(majority > 1){
+                    console.log('weve got a one here!');
+                }
+            });
+        }
+        //'WHEN YOU SIT BACK DOWN, BUILD ENOUGH PROMISED FUNCTIONS TO SEQUENCE THE ENTIRE DISPLAY OF EVENTS
     }
 }
 

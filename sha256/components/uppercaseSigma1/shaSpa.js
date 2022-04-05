@@ -169,10 +169,43 @@ function handleAndRotateInput(rotTime, cardName, inputBits = null) {
 
 // ------Majority and Choice---------------------------------------
 function majorityAndChoice(evalDuration, cardName, inputBits = null){
+    const inputArray = !inputBits === null?inputBits:[
+        '01101111011101010111000000111010',
+        '00100000001001000011010100101100',
+        '00110000001100000011000000101100'
+    ];
+    inputArrayAsArrays = [];
+    inputArray.forEach( (inputString) => {
+        inputArrayAsArrays.push(inputString.split('').reverse());
+    });
+    // ------ show card as active ------
     let cardForTransformation = document.getElementById(cardName);
     cardForTransformation.classList.add('activeCard');
-    let threeVars = cardForTransformation.querySelectorAll('[class*="Value"]');
+    //populate card with values from inputArray
+    let threeListsOf32Spans = cardForTransformation.querySelectorAll('[class*="Value"]');
+    inputArrayAsArrays.forEach( (inputArray, arrayIndex) => {
+        inputArray.forEach( (value, i) => {
+            let spanIndex = (31 - i);
+            threeListsOf32Spans[arrayIndex].children[spanIndex].innerHTML = value;
+        })
+    });
 
+
+
+    // inputArray.forEach( (inputString, stringIndexOf3) => {
+    //     inputString = inputString.split('').reverse();
+    //     inputString.forEach( (value, i) => {
+    //         let spanIndex = (31 - i);
+    //         threeListsOf32Spans[stringIndexOf3].children[spanIndex].innerHTML = value;
+    //     })
+    // });
+    // ------ depending on which transformation, animate and populate answer accordingly ------
+    const sequencePromise = (ms) => {
+        return new Promise(resolvingAction => setTimeout(resolvingAction, ms))
+    }
+    if(cardName === 'cardFive'){
+
+    }
 }
 
 // ------Constant Generation and Animation-------------------------

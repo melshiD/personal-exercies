@@ -6,6 +6,7 @@
 //Animated padding
 //click to go through prime building sequence until button press
 //Perhaps same for message schedule
+//remove W(64) after message schedule completion is concluded
 
 //-------------event listener for input ----------------
 let inputMessage = document.getElementById('messageInput');
@@ -171,7 +172,7 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
     let cardForTransformation = document.getElementById(cardName);
     cardForTransformation.classList.add('activeCard');
     let threeVars = cardForTransformation.querySelectorAll('[class*="Value"]');
-    console.log(threeVars);
+
 }
 
 // ------Constant Generation and Animation-------------------------

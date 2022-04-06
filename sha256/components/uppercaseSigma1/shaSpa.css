@@ -95,6 +95,19 @@ body{
     /* background-color: purple; */
     background-color: rgb(162, 170, 237);
 }
+.card.activeCard .activeSpanDigitOne{
+    transition: all .1s;
+    box-sizing: border-box;
+    /* border-radius: 4px; */
+    background-color: rgb(223, 245, 245);
+}
+.card.activeCard .activeSpanDigitZero{
+    transition: all .1s;
+    box-sizing: border-box;
+    /* border-radius: 4px; */
+    background-color: rgb(85, 131, 240);
+    color:rgb(248, 250, 255)
+}
 .sigmaIcon{
     box-sizing: border-box;
     display: flex;
@@ -205,6 +218,19 @@ body{
 .resultBits{
     align-self: flex-end;
     margin-right: 0.2em;
+}
+.resultBits{
+
+    transition: all 0.1s;
+}
+#cardFive.activeCard .transformationsList,
+#cardSix.activeCard .transformationsList{
+    background-color: rgba(250, 231, 219, 0.521);
+    /* background-color: white; */
+}
+#cardFive .resultBits,
+#cardSix .resultBits{
+    margin: 0;
 }
 .updateResult{
     display: inline-block;
@@ -323,9 +349,5 @@ hr{
     background-color: black;
     color: whitesmoke;
 }
-#testSpan{
-    box-sizing: border-box;
-    /* border: solid pink 2px; */
-    border-radius: 4px;
-    background-color: pink;
-}
+
+/* omg this stylesheet is so poorly organized.  Must keep BIDLing! */

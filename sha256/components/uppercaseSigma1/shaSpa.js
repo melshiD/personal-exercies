@@ -2,6 +2,8 @@
 //Implementing some more click handlers to aid my presentation and 
 //ditching the set-timeout-only sequences with some promises
 
+// const res = require("express/lib/response");
+
 //-------PUNCH LIST-----------------------
 //Animated padding
 //click to go through prime building sequence until button press
@@ -198,16 +200,38 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
         //then highlight each case of that character at the current index,
         //then output the result character under the highlighted chars/unhighlight chars
         //move to the next index and repeat
+        let resultsDiv = cardForTransformation.querySelector('.resultBits');
         for(let i = 0, p = Promise.resolve(); i < 32; i++){
+            //remove all the activeClass added in a last iteration of the loop
+
+            //'WHEN YOU SIT BACK DOWN, ADDRESS THE ABOVE COMMENT AND MAKE THE COLORS FLASH AND NOT PERSIST
             p = p.then( () => sequencePromise(evalDuration)).then( () => {
                 let majority = parseInt(inputStringsAsArrays[0][i], 10) + parseInt(inputStringsAsArrays[1][i], 10) + parseInt(inputStringsAsArrays[2][i], 10);
                 console.log(majority);
+                let resultsDisplayOutput = '';
                 if(majority > 1){
-                    console.log('weve got a one here!');
+                    //highlight the majority digit/s in that column;
+                    for(let t = 0; t < 3; t ++){
+                        // if(inputStringsAsArrays[0][i] > 0) threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitOne');
+                        // if(inputStringsAsArrays[1][i] > 0) threeListsOf32Spans[1].children[(31 - i)].classList.add('activeSpanDigitOne');
+                        // if(inputStringsAsArrays[2][i] > 0) threeListsOf32Spans[2].children[(31 - i)].classList.add('activeSpanDigitOne');
+                    }
+                    resultsDisplayOutput = `${'1'}${resultsDiv.innerHTML}`;
+                    resultsDiv.innerHTML = `${resultsDisplayOutput}`;
+                }
+                if(majority < 2){
+                    //highlight the majority digit/s in that column;
+                    for(let t = 0; t < 3; t ++){
+                        // if(inputStringsAsArrays[0][i] == '0') threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitZero');
+                        // if(inputStringsAsArrays[1][i] == '0') threeListsOf32Spans[1].children[(31 - i)].classList.add('activeSpanDigitZero');
+                        // if(inputStringsAsArrays[2][i] == '0') threeListsOf32Spans[2].children[(31 - i)].classList.add('activeSpanDigitZero');
+                    }
+                    resultsDisplayOutput = `${'0'}${resultsDiv.innerHTML}`;
+                    resultsDiv.innerHTML = `${resultsDisplayOutput}`;
                 }
             });
         }
-        //'WHEN YOU SIT BACK DOWN, BUILD ENOUGH PROMISED FUNCTIONS TO SEQUENCE THE ENTIRE DISPLAY OF EVENTS
+
     }
 }
 

@@ -195,6 +195,9 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
     const sequencePromise = (ms) => {
         return new Promise(resolvingAction => setTimeout(resolvingAction, ms))
     }
+    const differentSequencePromise = (ms) => {
+        return new Promise(resolvingAction => setTimeout(resolvingAction, ms))
+    }
     const removeDigitStyle = (threeListsOf32Spans, i) => {
             threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitOne');
             threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitOne');
@@ -202,7 +205,7 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
             threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitZero');
             threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitZero');
             threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitZero');
-            return;
+            console.log('removing styling now')
     };
     
     if(cardName === 'cardFive'){
@@ -237,8 +240,8 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
                     resultsDisplayOutput = `${'0'}${resultsDiv.innerHTML}`;
                     resultsDiv.innerHTML = `${resultsDisplayOutput}`;
                 }
-                // setTimeout(removeDigitStyle(threeListsOf32Spans, i), 300);
-
+                const delay = differentSequencePromise(600);
+                // delay.then( removeDigitStyle(threeListsOf32Spans, i) );
             });
         }
 

@@ -98,13 +98,13 @@ body{
 .card.activeCard .activeSpanDigitOne{
     /* transition: all .07s; */
     box-sizing: border-box;
-    /* border-radius: 4px; */
+    border-radius: 4px;
     background-color: rgb(223, 245, 245);
 }
 .card.activeCard .activeSpanDigitZero{
     /* transition: all .07s; */
     box-sizing: border-box;
-    /* border-radius: 4px; */
+    border-radius: 4px;
     background-color: rgb(85, 131, 240);
     color:rgb(248, 250, 255)
 }

@@ -251,6 +251,12 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
         //if X is 1, the output is Y
         let resultsDiv = cardForTransformation.querySelector('.resultBits');
         for(let i = 0, p = Promise.resolve(); i < 32; i++){
+
+
+            //`WHEN YOU SIT BACK DOWN, SEE ABOUT BUILDING AN ARRAY OF EACH CHILD THAT NEEDS STYLES REMOVED, THEN SEND 
+            //THE ARRAY TO BE GONE THROUGH
+
+
             p = p.then( () => sequencePromise(evalDuration)).then( () => {
                 let choiceValue = parseInt(inputStringsAsArrays[0][i], 10);
                 let resultsDisplayOutput = '';
@@ -276,6 +282,7 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
                 // removeDigitStyle(threeListsOf32Spans, i);
             });
         }
+        //how the hell do I get rid of the styles AFTER the event
     }
 }
 

@@ -172,7 +172,7 @@ function handleAndRotateInput(rotTime, cardName, inputBits = null) {
 // ------Majority and Choice---------------------------------------
 function majorityAndChoice(evalDuration, cardName, inputBits = null){
     const inputArray = !inputBits === null?inputBits:[ //for testing
-        '01101111011101010111000000111010',
+        '01101111011101010111000000111011',
         '00100000001001000011010100101100',
         '00110000001100000011000000101100'
     ];
@@ -195,6 +195,16 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
     const sequencePromise = (ms) => {
         return new Promise(resolvingAction => setTimeout(resolvingAction, ms))
     }
+    const removeDigitStyle = (threeListsOf32Spans, i) => {
+            threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitOne');
+            threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitOne');
+            threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitOne');
+            threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitZero');
+            threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitZero');
+            threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitZero');
+            return;
+    };
+    
     if(cardName === 'cardFive'){
         //for each item in the array (0 - 32), find the majority character,
         //then highlight each case of that character at the current index,
@@ -202,14 +212,7 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
         //move to the next index and repeat
         let resultsDiv = cardForTransformation.querySelector('.resultBits');
         for(let i = 0, p = Promise.resolve(); i < 32; i++){
-            //remove all the activeClass added in a last iteration of the loop
-            // if(inputStringsAsArrays[0][i - 1]) threeListsOf32Spans[0].children[(31 - i - 1)].classList.remove('activeSpanDigitOne');
-            // if(inputStringsAsArrays[1][i - 1]) threeListsOf32Spans[1].children[(31 - i - 1)].classList.remove('activeSpanDigitOne');
-            // if(inputStringsAsArrays[2][i - 1]) threeListsOf32Spans[2].children[(31 - i - 1)].classList.remove('activeSpanDigitOne');
-            // if(inputStringsAsArrays[0][i - 1]) threeListsOf32Spans[0].children[(31 - i - 1)].classList.remove('activeSpanDigitZero');
-            // if(inputStringsAsArrays[1][i - 1]) threeListsOf32Spans[1].children[(31 - i - 1)].classList.remove('activeSpanDigitZero');
-            // if(inputStringsAsArrays[2][i - 1]) threeListsOf32Spans[2].children[(31 - i - 1)].classList.remove('activeSpanDigitZero');
-            //'WHEN YOU SIT BACK DOWN, ADDRESS THE ABOVE COMMENT AND MAKE THE COLORS FLASH AND NOT PERSIST
+            console.log('im here');
             p = p.then( () => sequencePromise(evalDuration)).then( () => {
                 let majority = parseInt(inputStringsAsArrays[0][i], 10) + parseInt(inputStringsAsArrays[1][i], 10) + parseInt(inputStringsAsArrays[2][i], 10);
                 console.log(majority);
@@ -234,9 +237,42 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
                     resultsDisplayOutput = `${'0'}${resultsDiv.innerHTML}`;
                     resultsDiv.innerHTML = `${resultsDisplayOutput}`;
                 }
+                // setTimeout(removeDigitStyle(threeListsOf32Spans, i), 300);
+
             });
         }
 
+    }
+    if(cardName === 'cardSix'){
+        //if X is 0, the output is Z.
+        //if X is 1, the output is Y
+        let resultsDiv = cardForTransformation.querySelector('.resultBits');
+        for(let i = 0, p = Promise.resolve(); i < 32; i++){
+            p = p.then( () => sequencePromise(evalDuration)).then( () => {
+                let choiceValue = parseInt(inputStringsAsArrays[0][i], 10);
+                let resultsDisplayOutput = '';
+                if(choiceValue === 0){
+                    //then just activate the span in place Z
+                    let valueInZ = threeListsOf32Spans[2].children[(31 - i)].innerHTML;
+                    for(let t = 0; t < 3; t ++){
+                        threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitOne');
+                        threeListsOf32Spans[2].children[(31 - i)].classList.add('activeSpanDigitOne');
+                    }
+                    resultsDisplayOutput = `${valueInZ}${resultsDiv.innerHTML}`;
+                    resultsDiv.innerHTML = `${resultsDisplayOutput}`;
+                }
+                if(choiceValue === 1){
+                    let valueInY = threeListsOf32Spans[1].children[(31 - i)].innerHTML;
+                    for(let t = 0; t < 3; t ++){
+                        threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitOne');
+                        threeListsOf32Spans[1].children[(31 - i)].classList.add('activeSpanDigitOne');
+                    }
+                    resultsDisplayOutput = `${valueInY}${resultsDiv.innerHTML}`;
+                    resultsDiv.innerHTML = `${resultsDisplayOutput}`;
+                }
+                // removeDigitStyle(threeListsOf32Spans, i);
+            });
+        }
     }
 }
 

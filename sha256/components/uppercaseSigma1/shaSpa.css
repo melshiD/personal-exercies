@@ -96,13 +96,13 @@ body{
     background-color: rgb(162, 170, 237);
 }
 .card.activeCard .activeSpanDigitOne{
-    transition: all .1s;
+    /* transition: all .07s; */
     box-sizing: border-box;
     /* border-radius: 4px; */
     background-color: rgb(223, 245, 245);
 }
 .card.activeCard .activeSpanDigitZero{
-    transition: all .1s;
+    /* transition: all .07s; */
     box-sizing: border-box;
     /* border-radius: 4px; */
     background-color: rgb(85, 131, 240);

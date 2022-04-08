@@ -2,6 +2,8 @@
 //Implementing some more click handlers to aid my presentation and 
 //ditching the set-timeout-only sequences with some promises
 
+// const { listen } = require("express/lib/application");
+
 // const res = require("express/lib/response");
 
 //-------PUNCH LIST-----------------------
@@ -170,7 +172,7 @@ function handleAndRotateInput(rotTime, cardName, inputBits = null) {
 }
 
 // ------Majority and Choice---------------------------------------
-function majorityAndChoice(evalDuration, cardName, inputBits = null){
+function majorityAndChoice(evalDuration, cardName, inputBits = null){ 
     const inputArray = !inputBits === null?inputBits:[ //for testing
         '01101111011101010111000000111011',
         '00100000001001000011010100101100',
@@ -240,11 +242,9 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
                     resultsDisplayOutput = `${'0'}${resultsDiv.innerHTML}`;
                     resultsDiv.innerHTML = `${resultsDisplayOutput}`;
                 }
-                const delay = differentSequencePromise(600);
                 // delay.then( removeDigitStyle(threeListsOf32Spans, i) );
             });
         }
-
     }
     if(cardName === 'cardSix'){
         //if X is 0, the output is Z.
@@ -255,6 +255,8 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
 
             //`WHEN YOU SIT BACK DOWN, SEE ABOUT BUILDING AN ARRAY OF EACH CHILD THAT NEEDS STYLES REMOVED, THEN SEND 
             //THE ARRAY TO BE GONE THROUGH
+
+            //2 when you sit back down build the event listener to cycle values into the test slots for use during explanation
 
 
             p = p.then( () => sequencePromise(evalDuration)).then( () => {
@@ -283,6 +285,7 @@ function majorityAndChoice(evalDuration, cardName, inputBits = null){
             });
         }
         //how the hell do I get rid of the styles AFTER the event
+        //maybe return a function and send it everything that needs styles removed from
     }
 }
 

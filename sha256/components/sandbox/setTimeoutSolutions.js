@@ -1,13 +1,11 @@
-function delay(ms) {
-    return new Promise(endsUp => setTimeout(endsUp, ms));
-  }
+function delay(t, v){
+  return new Promise(function(resolve){
+    setTimeout(resolve.bind(null, v) t)
+  });
+}
 
-  delay(3000)
-    .then(() => console.log('1: first running'))
-    .then(() => { delay(3000)
-    .then(() => {
-        let newButton = document.createElement('button');
-        newButton.innerHTML = 'Im a button';
-        document.body.appendChild(newButton);
-    })
-  })
+
+
+// let newButton = document.createElement('button');
+// newButton.innerHTML = 'Im a button';
+// document.body.appendChild(newButton);

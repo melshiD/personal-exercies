@@ -1,8 +1,9 @@
-function delay(t, v){
+function delay(delayTime, v){
   return new Promise(function(resolve){
-    setTimeout(resolve.bind(null, v) t)
+    setTimeout(resolve.bind(null, v) delayTime)
   });
 }
+
 
 
 

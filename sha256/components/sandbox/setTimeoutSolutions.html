@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>promised solution</title>
 </head>
 
 <body>
@@ -20,7 +20,7 @@
 
 
     <script>
-        Promise.prototype.delay = function delay(delayTime, v, functo) {
+        Promise.prototype.delay = (delayTime, v, functo) => {
             return new Promise(function (resolve) {
                 setTimeout(resolve.bind(null, v), delayTime)
             });
@@ -33,6 +33,8 @@
         }
 
         makeAndActPromise = Promise.delay(4000, '200', functo);
+
+        makeAndActPromise();
 
     </script>
 </body>

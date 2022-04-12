@@ -1,13 +1,4 @@
-//WHY DO REQUIRE STATEMENTS KEEP GETTING ADDED TO MY CODE!?
 //HOW DO I REMOVE THE STYLES WITH MY FUNCTION WHILE INSIDE THE PROMISIFIED FOR LOOP
-
-//starting out same as uppercaseSigmaOne.js
-//Implementing some more click handlers to aid my presentation and 
-//ditching the set-timeout-only sequences with some promises
-
-// const { listen } = require("express/lib/application");
-// const { listen } = require("express/lib/application");
-// const res = require("express/lib/response");
 
 //-------PUNCH LIST-----------------------
 //Animated padding
@@ -308,40 +299,45 @@ async function majorityAndChoice(evalDuration, cardName, inputBits = null) {
 }
 
 // ------Constant Generation and Animation-------------------------
-function generateConstants() {
-    //needs to go from 0-63 and do the following each iteration:
-    //1. Build a constantRow with K(currentIndex): 3√prime(currentIndex)
+function generateConstants(howMany, radical = '2', parentId) {
+    //needs to go from 0-howMany and do the following each iteration:
+    //1. Build a constantRow with K(currentIndex): radical√prime(currentIndex)
     //2. Append the constantRow
     //3. Animate the constantContents innerHTML with the prime base-10 number
     //4. Animate innerHTML then to the prime without the decimals
     //5. Animate innerHTML to the final usable pure binary value
     //6. Move on to next element until finished
-    const parentToAppendTo = document.getElementById('constantCard');
+    const parentToAppendTo = document.getElementById(`${parentId}`);
     if (parentToAppendTo.children.length > 1) {
         return;
         //this isn't over, and I will figure out how to clear the card of all but the first rowConstant (also refactor later to make it moot)
         cleanConstantsCard(parentToAppendTo);
     }
 
-    const rawPrimes = compilePrimes(64);
-    const cubedPrimes = rawPrimes.map((primeValue) => Math.cbrt(primeValue));
-    const cubedPrimesLessWholeNumbers = cubedPrimes.map(cubedPrime => cubedPrime.toString(10).split('.')[1]);
-    const cubedPrimesAsBinary = genCubedValues(rawPrimes);
+    const rawPrimes = compilePrimes(howMany);
+
+    const primes = radical === '3'?rawPrimes.map((primeValue) => Math.cbrt(primeValue)):rawPrimes.map((primeValue) => Math.sqrt(primeValue));
+    const primesLessWholeNumbers = primes.map(thisPrime => thisPrime.toString(10).split('.')[1]);
+    const primesAsBinary = genCubedValues(rawPrimes);
+
+    //`WHEN YOU SIT BACK DOWN, DRY UP THE GENCUBED FUNCTION TO ALLOW FOR SQUARED VALUES DYNAMICALLY
+
+
     let startingDelay = 3000;
     const populateAndAnimatePrimes = (parentToAppendTo) => {
         let constantContentsDisplayArrays = [];
         for (let i = 0; i < rawPrimes.length; i++) {
             constantContentsDisplayArrays.push(
                 [
-                    `3√prime(${i + 1})`,
-                    `3√ ${rawPrimes[i]}`,
-                    `${cubedPrimes[i]}`,
-                    `${cubedPrimesLessWholeNumbers[i]}`,
-                    `${cubedPrimesAsBinary[i]}`
+                    `${radical}√prime(${i + 1})`,
+                    `${radical}√ ${rawPrimes[i]}`,
+                    `${primes[i]}`,
+                    `${primesLessWholeNumbers[i]}`,
+                    `${primesAsBinary[i]}`
                 ]
             )
         }
-        let currentConstantIndex = 0;
+        // let currentConstantIndex = 0;
         const animateToBinary = (constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex) => {
             if (currentConstantIndex >= constantContentsDisplayArrays.length) { return }
 
@@ -374,7 +370,7 @@ function generateConstants() {
     }
     populateAndAnimatePrimes(parentToAppendTo);
     setTimeout(() => {
-        document.getElementById('constantCard').firstElementChild.remove();
+        document.getElementById(`${parentId}`).firstElementChild.remove();
     }, 25000);
     //this timeout delay to remove the top element is being hard-coded on account of the 
     //change in delay times within the row animations 

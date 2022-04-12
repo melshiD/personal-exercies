@@ -28,24 +28,24 @@
             <button type="button" onclick="initilizeMessageSchedule()">Initilize Message Schedule</button>
             <!-- <button type="button" onclick="hideMessageInputCard()">Close Message Input</button> -->
         </div>
-                <!-- CONSTANTS ------ JS will solve this wetness ----------------------------------------------------------------->
-                <div class="monoCard">
-                    <div class="centeredCardTitle">
-                        <div class="cardTitleLine">Constants (K)</div>
+        <!-- CONSTANTS ------ JS will solve this wetness ----------------------------------------------------------------->
+        <div class="monoCard">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Constants (K)</div>
+            </div>
+            <button type="button" onclick="generateConstants(64, '3', 'constantCard')">Generate Constants</button>
+            <!-- <div class="underConstants"></div> -->
+            <button type="button" onclick="return" class="invisibleLetters">.</button>
+            <div class="constantCard" id="constantCard">
+                    <div class="constantCardRow">
+                        <div class="constantIndexAndColon">
+                            <span class="constantIndexNumber">K(x)</span>
+                            <span class="colonSpan">:</span>
+                        </div>
+                        <div class="constantContents">3√prime(x)</div>
                     </div>
-                    <button type="button" onclick="generateConstants()">Generate Constants</button>
-                    <!-- <div class="underConstants"></div> -->
-                    <button type="button" onclick="return" class="invisibleLetters">.</button>
-                    <div class="constantCard" id="constantCard">
-                            <div class="constantCardRow">
-                                <div class="constantIndexAndColon">
-                                    <span class="constantIndexNumber">K(x)</span>
-                                    <span class="colonSpan">:</span>
-                                </div>
-                                <div class="constantContents">3√prime(x)</div>
-                            </div>
-                    </div>
-                </div>
+            </div>
+        </div>
         <!-- CONSTITUENT OPERATORS------------------------------------  -->
         <div class="monoCard">
             <div class="centeredCardTitle">
@@ -56,8 +56,8 @@
             <button type="button" onclick="handleAndRotateInput(300, 'cardTwo')">lowerCase Sigma 1</button>
             <button type="button" onclick="handleAndRotateInput(300, 'cardThree')">UpperCase Sigma 0</button>
             <button type="button" onclick="handleAndRotateInput(300, 'cardFour')">UpperCase Sigma 1</button>
-            <button type="button" onclick="majorityAndChoice(300, 'cardFive')">Majority</button>
-            <button type="button" onclick="majorityAndChoice(300, 'cardSix')">Choice</button>
+            <button type="button" onclick="majorityAndChoice(30, 'cardFive')">Majority</button>
+            <button type="button" onclick="majorityAndChoice(30, 'cardSix')">Choice</button>
             <div class="card" id="cardOne">
                 <div class="iconAndListContainer">
                     <div class="sigmaIcon">
@@ -382,6 +382,23 @@
                         <span>σ1(t-2)</span> + <span>(t-7)</span> + <span>σ0(t-15)</span> + <span>(t-16)</span>
                     </div>
                 </div>
+            </div>
+        </div>
+        <div class="monoCard workingRegisters">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Compression</div>
+            </div>
+            <button type="button" onclick="generateConstants(8, '2', 'workingRegisters')">Generate Constants</button>
+            <!-- <div class="underConstants"></div> -->
+            <button type="button" onclick="return" class="invisibleLetters">.</button>
+            <div class="constantCard" id="workingRegisters">
+                    <div class="constantCardRow">
+                        <div class="constantIndexAndColon">
+                            <span class="constantIndexNumber">K(x)</span>
+                            <span class="colonSpan">:</span>
+                        </div>
+                        <div class="constantContents">2√prime(x)</div>
+                    </div>
             </div>
         </div>
     </div>    

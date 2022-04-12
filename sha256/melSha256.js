@@ -337,7 +337,7 @@ function performSHA256(inputData, dataRequestIndex = 0){
 // console.log(performSHA256('once there was a way to get back home.  Once there was a way, to get back home.  Go to sleep pretty darling, do not cry, and I will sing a lullaby'));
 let char64long = '11111111110000000000111000111111111111111100000010000110';
 // console.log(performSHA256('David => Arlyn: $500;', 4));
-console.log(performSHA256("Let's Do this", 4));
+console.log(performSHA256("SalesForce => Mapping Group: $5,000,367.21;", 6));
 
 // let outputString = performSHA256('abcdefgHi1s');//IT'S REMOVING SOME ZEROES FROM INDIVIDUAL LETTERS see: 'abcdefgHi1s'
 // console.log(`${outputString} length: ${outputString.length}`);

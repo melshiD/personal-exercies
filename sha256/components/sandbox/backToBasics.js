@@ -23,7 +23,7 @@ const asyncFoo = async () => {
 
 
 const resFunc = () => console.log('resolving log func');
-const sleep = (ms, resolvingFunc) =>{
+const sleep = (ms) =>{
     return new Promise(flobsDizzle => setTimeout(
         flobsDizzle, ms));
 }

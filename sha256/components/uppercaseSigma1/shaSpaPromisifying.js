@@ -1,9 +1,12 @@
+//WHY DO REQUIRE STATEMENTS KEEP GETTING ADDED TO MY CODE!?
+//HOW DO I REMOVE THE STYLES WITH MY FUNCTION WHILE INSIDE THE PROMISIFIED FOR LOOP
+
 //starting out same as uppercaseSigmaOne.js
 //Implementing some more click handlers to aid my presentation and 
 //ditching the set-timeout-only sequences with some promises
 
 // const { listen } = require("express/lib/application");
-
+// const { listen } = require("express/lib/application");
 // const res = require("express/lib/response");
 
 //-------PUNCH LIST-----------------------
@@ -11,49 +14,50 @@
 //click to go through prime building sequence until button press
 //Perhaps same for message schedule
 //remove W(64) after message schedule completion is concluded
+//remove active digit styling during choice and maj evaluation
 
 //-------------event listener for input ----------------
 let inputMessage = document.getElementById('messageInput');
 inputMessage.addEventListener('keyup', (event) => {
     let inputFromUser = event.target.value;
-    let inputAsRawBinary = inputFromUser.split('').map( e => e.charCodeAt(0).toString(2).padStart(8, '0')).join('');
-    document.getElementById('messageAsBinary').innerHTML = inputFromUser.length === 0?'':inputAsRawBinary;
+    let inputAsRawBinary = inputFromUser.split('').map(e => e.charCodeAt(0).toString(2).padStart(8, '0')).join('');
+    document.getElementById('messageAsBinary').innerHTML = inputFromUser.length === 0 ? '' : inputAsRawBinary;
 });
 
-function padAndEncodeLength(){
+function padAndEncodeLength() {
     let messageAsBinary = `${document.getElementById('messageAsBinary').value}`;
-    if(messageAsBinary === '') return;
+    if (messageAsBinary === '') return;
     document.getElementById('messageInput').disabled = true;
     let originalBinaryLengthInBinary = messageAsBinary.length.toString(2);
     messageAsBinary = messageAsBinary + '1';
-    let paddedMessageAsBinary = `${messageAsBinary}${''.padStart(512-messageAsBinary.length-originalBinaryLengthInBinary.length, '0')}${originalBinaryLengthInBinary}`;
+    let paddedMessageAsBinary = `${messageAsBinary}${''.padStart(512 - messageAsBinary.length - originalBinaryLengthInBinary.length, '0')}${originalBinaryLengthInBinary}`;
     document.getElementById('completeBinaryMessage').value = paddedMessageAsBinary;
 }
 
-function hideMessageInputCard(cardToHide){
+function hideMessageInputCard(cardToHide) {
     cardToHide.remove();
     cardToHide = null;
     return;
 }
 
-function initilizeMessageSchedule(){
-    if(!document.getElementById('messageInputCard')) return;
-    if(document.getElementById('messageSchedule').children.length>1){
+function initilizeMessageSchedule() {
+    if (!document.getElementById('messageInputCard')) return;
+    if (document.getElementById('messageSchedule').children.length > 1) {
         return hideMessageInputCard(document.getElementById('messageInputCard'))
     };
     let paddedMessage = document.getElementById('completeBinaryMessage').value;
     if (!paddedMessage) return;
     const first16WordsArray = (paddedMessage) => {
         let messageArray = [];
-        for(let i = 0; i < paddedMessage.length; i += 32){
-            messageArray.push(paddedMessage.slice(i, i+32));
+        for (let i = 0; i < paddedMessage.length; i += 32) {
+            messageArray.push(paddedMessage.slice(i, i + 32));
         }
         return messageArray;
     };
     const stick16WordsIntoDom = (first16WordsArray) => {
         let parentToAppendTo = document.getElementById('messageSchedule');
         let nodeToClone = parentToAppendTo.firstElementChild;
-        for(let [i,v] of first16WordsArray.entries()){
+        for (let [i, v] of first16WordsArray.entries()) {
             let newWord = nodeToClone.cloneNode(true);
             newWord.firstElementChild.children[0].innerHTML = `W(${i})`;
             newWord.querySelector('.constantContents').innerHTML = `${v}`;
@@ -67,13 +71,13 @@ function initilizeMessageSchedule(){
     };
     // let children = stick16WordsIntoDom(first16WordsArray(paddedMessage));
     let children = stick16WordsIntoDom(first16WordsArray(paddedMessage));
-    setTimeout( () => {
-        for(let child of children){
+    setTimeout(() => {
+        for (let child of children) {
             child.querySelector('.constantContents').classList.remove('activeRow');
         }
     }, 500);
 }
-function handleMessageInput(){
+function handleMessageInput() {
     return;
 }
 
@@ -172,23 +176,26 @@ function handleAndRotateInput(rotTime, cardName, inputBits = null) {
 }
 
 // ------Majority and Choice---------------------------------------
-async function majorityAndChoice(evalDuration, cardName, inputBits = null){ 
-    const inputArray = !inputBits === null?inputBits:[ //for testing
+async function majorityAndChoice(evalDuration, cardName, inputBits = null) {
+    const inputArray = !inputBits === null ? inputBits : [ //for testing
         '01101111011101010111000000111011',
         '00100000001001000011010100101100',
         '00110000001100000011000000101100'
     ];
     inputStringsAsArrays = [];
-    inputArray.forEach( (inputString) => {
+    inputArray.forEach((inputString) => {
         inputStringsAsArrays.push(inputString.split('').reverse());
     });
     // ------ show card as active ------
     let cardForTransformation = document.getElementById(cardName);
     cardForTransformation.classList.add('activeCard');
+    // ------ clear card of output result
+    let resultsDiv = cardForTransformation.querySelector('.resultBits');
+    resultsDiv.innerHTML = '';
     // ------ populate card with values from inputArray -------
     let threeListsOf32Spans = cardForTransformation.querySelectorAll('[class*="Value"]');
-    inputStringsAsArrays.forEach( (inputArray, arrayIndex) => {
-        inputArray.forEach( (value, i) => {
+    inputStringsAsArrays.forEach((inputArray, arrayIndex) => {
+        inputArray.forEach((value, i) => {
             let spanIndex = (31 - i);
             threeListsOf32Spans[arrayIndex].children[spanIndex].innerHTML = value;
         })
@@ -198,58 +205,67 @@ async function majorityAndChoice(evalDuration, cardName, inputBits = null){
     const sequencePromise = (ms) => {
         return new Promise(resolvingAction => setTimeout(resolvingAction, ms))
     }
-    const removeDigitStyle = (threeListsOf32Spans, i) => {
-            threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitOne');
-            threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitOne');
-            threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitOne');
-            threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitZero');
-            threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitZero');
-            threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitZero');
-            console.log('removing styling now')
+    const removeDigitStyle = (threeListsOf32Spans, i = null) => {
+        threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitOne');
+        threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitOne');
+        threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitOne');
+        threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitZero');
+        threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitZero');
+        threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitZero');
+        console.log('removing styling now')
     };
-    
-    if(cardName === 'cardFive'){
+
+    if (cardName === 'cardFive') {
         //for each item in the array (0 - 32), find the majority character,
         //then highlight each case of that character at the current index,
         //then output the result character under the highlighted chars/unhighlight chars
         //move to the next index and repeat
-        let resultsDiv = cardForTransformation.querySelector('.resultBits');
-        for(let i = 0, p = Promise.resolve(); i < 32; i++){
-            console.log('im here');
-            p = p.then( () => sequencePromise(evalDuration)).then( () => {
-                let majority = parseInt(inputStringsAsArrays[0][i], 10) + parseInt(inputStringsAsArrays[1][i], 10) + parseInt(inputStringsAsArrays[2][i], 10);
-                console.log(majority);
-                let resultsDisplayOutput = '';
-                if(majority > 1){
-                    //highlight the majority digit/s in that column;
-                    for(let t = 0; t < 3; t ++){
-                        if(inputStringsAsArrays[0][i] > 0) threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitOne');
-                        if(inputStringsAsArrays[1][i] > 0) threeListsOf32Spans[1].children[(31 - i)].classList.add('activeSpanDigitOne');
-                        if(inputStringsAsArrays[2][i] > 0) threeListsOf32Spans[2].children[(31 - i)].classList.add('activeSpanDigitOne');
-                    }
-                    resultsDisplayOutput = `${'1'}${resultsDiv.innerHTML}`;
-                    resultsDiv.innerHTML = `${resultsDisplayOutput}`;
+
+        const performCardFive = () => {
+            return new Promise(resolve => {
+                for (let i = 0, p = Promise.resolve(); i < 32; i++) {
+                    // if(i == 31){ setTimeout(removeDigitStyle(threeListsOf32Spans, 3), 2000)}
+                    p = p.then(() => sequencePromise(evalDuration)).then(() => {
+                        let majority = parseInt(inputStringsAsArrays[0][i], 10) +
+                            parseInt(inputStringsAsArrays[1][i], 10) +
+                            parseInt(inputStringsAsArrays[2][i], 10);
+                        let resultsDisplayOutput = '';
+                        if (majority > 1) {
+                            //highlight the majority digit/s in that column;
+                            for (let t = 0; t < 3; t++) {
+                                if (inputStringsAsArrays[0][i] > 0) threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitOne');
+                                if (inputStringsAsArrays[1][i] > 0) threeListsOf32Spans[1].children[(31 - i)].classList.add('activeSpanDigitOne');
+                                if (inputStringsAsArrays[2][i] > 0) threeListsOf32Spans[2].children[(31 - i)].classList.add('activeSpanDigitOne');
+                            }
+                            resultsDisplayOutput = `${'1'}${resultsDiv.innerHTML}`;
+                            resultsDiv.innerHTML = `${resultsDisplayOutput}`;
+                        }
+                        if (majority < 2) {
+                            for (let t = 0; t < 3; t++) {
+                                if (inputStringsAsArrays[0][i] == '0') threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitZero');
+                                if (inputStringsAsArrays[1][i] == '0') threeListsOf32Spans[1].children[(31 - i)].classList.add('activeSpanDigitZero');
+                                if (inputStringsAsArrays[2][i] == '0') threeListsOf32Spans[2].children[(31 - i)].classList.add('activeSpanDigitZero');
+                            }
+                            resultsDisplayOutput = `${'0'}${resultsDiv.innerHTML}`;
+                            resultsDiv.innerHTML = `${resultsDisplayOutput}`;
+                        }
+                    })
                 }
-                if(majority < 2){
-                    //highlight the majority digit/s in that column;
-                    for(let t = 0; t < 3; t ++){
-                        if(inputStringsAsArrays[0][i] == '0') threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitZero');
-                        if(inputStringsAsArrays[1][i] == '0') threeListsOf32Spans[1].children[(31 - i)].classList.add('activeSpanDigitZero');
-                        if(inputStringsAsArrays[2][i] == '0') threeListsOf32Spans[2].children[(31 - i)].classList.add('activeSpanDigitZero');
-                    }
-                    resultsDisplayOutput = `${'0'}${resultsDiv.innerHTML}`;
-                    resultsDiv.innerHTML = `${resultsDisplayOutput}`;
-                }
-                await delay.then( removeDigitStyle(threeListsOf32Spans, i) );
-            });
+            })
         }
+        await performCardFive();
+
+
+
+
+
+
+
     }
-    if(cardName === 'cardSix'){
+    if (cardName === 'cardSix') {
         //if X is 0, the output is Z.
         //if X is 1, the output is Y
-        let resultsDiv = cardForTransformation.querySelector('.resultBits');
-        for(let i = 0, p = Promise.resolve(); i < 32; i++){
-
+        for (let i = 0, p = Promise.resolve(); i < 32; i++) {
 
             //`WHEN YOU SIT BACK DOWN, SEE ABOUT BUILDING AN ARRAY OF EACH CHILD THAT NEEDS STYLES REMOVED, THEN SEND 
             //THE ARRAY TO BE GONE THROUGH
@@ -257,22 +273,22 @@ async function majorityAndChoice(evalDuration, cardName, inputBits = null){
             //2 when you sit back down build the event listener to cycle values into the test slots for use during explanation
 
 
-            p = p.then( () => sequencePromise(evalDuration)).then( () => {
+            p = p.then(() => sequencePromise(evalDuration)).then(() => {
                 let choiceValue = parseInt(inputStringsAsArrays[0][i], 10);
                 let resultsDisplayOutput = '';
-                if(choiceValue === 0){
+                if (choiceValue === 0) {
                     //then just activate the span in place Z
                     let valueInZ = threeListsOf32Spans[2].children[(31 - i)].innerHTML;
-                    for(let t = 0; t < 3; t ++){
+                    for (let t = 0; t < 3; t++) {
                         threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitOne');
                         threeListsOf32Spans[2].children[(31 - i)].classList.add('activeSpanDigitOne');
                     }
                     resultsDisplayOutput = `${valueInZ}${resultsDiv.innerHTML}`;
                     resultsDiv.innerHTML = `${resultsDisplayOutput}`;
                 }
-                if(choiceValue === 1){
+                if (choiceValue === 1) {
                     let valueInY = threeListsOf32Spans[1].children[(31 - i)].innerHTML;
-                    for(let t = 0; t < 3; t ++){
+                    for (let t = 0; t < 3; t++) {
                         threeListsOf32Spans[0].children[(31 - i)].classList.add('activeSpanDigitOne');
                         threeListsOf32Spans[1].children[(31 - i)].classList.add('activeSpanDigitOne');
                     }
@@ -295,7 +311,7 @@ function generateConstants() {
     //5. Animate innerHTML to the final usable pure binary value
     //6. Move on to next element until finished
     const parentToAppendTo = document.getElementById('constantCard');
-    if(parentToAppendTo.children.length > 1) {
+    if (parentToAppendTo.children.length > 1) {
         return;
         //this isn't over, and I will figure out how to clear the card of all but the first rowConstant (also refactor later to make it moot)
         cleanConstantsCard(parentToAppendTo);
@@ -311,7 +327,7 @@ function generateConstants() {
         for (let i = 0; i < rawPrimes.length; i++) {
             constantContentsDisplayArrays.push(
                 [
-                    `3√prime(${i+1})`,
+                    `3√prime(${i + 1})`,
                     `3√ ${rawPrimes[i]}`,
                     `${cubedPrimes[i]}`,
                     `${cubedPrimesLessWholeNumbers[i]}`,
@@ -330,28 +346,28 @@ function generateConstants() {
             constantContents.innerHTML = constantContentsDisplayArrays[currentConstantIndex][1];
             constantContents.classList.add('activeRow');
             parentToAppendTo.appendChild(newConstantCardRow);
-            
+
 
             // let startingDelay = 50;
             let currentInnerDelay = currentConstantIndex > 1 ? 50 : startingDelay;
             let rowDisplayArray = constantContentsDisplayArrays[currentConstantIndex];
             const animateRowToBinary = (newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex) => {
-                if (rowCurrentDisplayIndex >= rowDisplayArray.length) { 
-                    return animateToBinary(constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex + 1) 
+                if (rowCurrentDisplayIndex >= rowDisplayArray.length) {
+                    return animateToBinary(constantContentsDisplayArrays, parentToAppendTo, currentConstantIndex + 1)
                 }
                 newConstantCardRow.innerHTML = rowDisplayArray[rowCurrentDisplayIndex];
                 // constantContents.classList.add('activeRow'); //this accidently works because I'm toggleing an odd number of times.  obvoius when running slowly
                 setTimeout(animateRowToBinary, Math.floor(currentInnerDelay), newConstantCardRow, rowDisplayArray, rowCurrentDisplayIndex + 1);
             }
-            setTimeout( () => {
+            setTimeout(() => {
                 constantContents.classList.remove('activeRow');
-            }, currentInnerDelay*5);
+            }, currentInnerDelay * 5);
             animateRowToBinary(constantContents, rowDisplayArray, 0);
         }
         animateToBinary(constantContentsDisplayArrays, parentToAppendTo, 0);
     }
     populateAndAnimatePrimes(parentToAppendTo);
-    setTimeout( () => {
+    setTimeout(() => {
         document.getElementById('constantCard').firstElementChild.remove();
     }, 25000);
     //this timeout delay to remove the top element is being hard-coded on account of the 
@@ -361,12 +377,12 @@ function generateConstants() {
 // ------Complete Message Schedule --------------------------------
 // function completeMessageSchedule(wordIndex = 16, startingDelay = 2000){
 //     if(wordIndex > 20) startingDelay = 500;
-function completeMessageSchedule(wordIndex = 16, startingDelay = 5000){
+function completeMessageSchedule(wordIndex = 16, startingDelay = 5000) {
     const parentElement = document.getElementById('messageSchedule');
-    if(parentElement.childElementCount === 1) return;
-    if(wordIndex > 17) startingDelay = 500;
-    if(wordIndex > 20) startingDelay = 80;
-    if(wordIndex === 64) return;
+    if (parentElement.childElementCount === 1) return;
+    if (wordIndex > 17) startingDelay = 500;
+    if (wordIndex > 20) startingDelay = 80;
+    if (wordIndex === 64) return;
     const nodeArray = parentElement.children;
     //    W(16) : σ1(t-2) + (t-7) + σ0(t-15) + (t-16)
     // σ1(t-2):
@@ -374,35 +390,36 @@ function completeMessageSchedule(wordIndex = 16, startingDelay = 5000){
     let addend2RowElement = parentElement.firstElementChild.cloneNode(true);
     let addend3RowElement = parentElement.firstElementChild.cloneNode(true);
     let addend4RowElement = parentElement.firstElementChild.cloneNode(true);
-    
+
     const appendAddend1 = () => {
-        let xor = handleAndRotateInput(300, 'cardTwo', nodeArray[wordIndex-2].children[1].innerHTML);
+        let xor = handleAndRotateInput(300, 'cardTwo', nodeArray[wordIndex - 2].children[1].innerHTML);
         document.querySelector('.movingEquation .constantContents').children[0].classList.add('activeRow'); //span styles
-        nodeArray[wordIndex-2].children[1].classList.add('activeRow');
+        nodeArray[wordIndex - 2].children[1].classList.add('activeRow');
         addend1RowElement.firstElementChild.children[0].innerHTML = '';
         addend1RowElement.children[1].innerHTML = xor;
-        setTimeout( () => {
+        setTimeout(() => {
             // addend1RowElement.querySelector('.constantContents').classList.add('activeRow');
             parentElement.appendChild(addend1RowElement);
-            setTimeout(()=>addend1RowElement.querySelector('.constantContents').classList.remove('activeRow'), startingDelay*0.2)
-        }, startingDelay*0.8);
+            setTimeout(() => addend1RowElement.querySelector('.constantContents').classList.remove('activeRow'), startingDelay * 0.2)
+        }, startingDelay * 0.8);
     }
-    setTimeout( appendAddend1(), startingDelay);
+    setTimeout(appendAddend1(), startingDelay);
 
     const appendAddend2 = () => {
         addend2RowElement.firstElementChild.children[0].innerHTML = '';
-        addend2RowElement.children[1].innerHTML = nodeArray[wordIndex-7].children[1].innerHTML;
-        setTimeout( () => {
-            nodeArray[wordIndex-7].children[1].classList.add('activeRow');
+        addend2RowElement.children[1].innerHTML = nodeArray[wordIndex - 7].children[1].innerHTML;
+        setTimeout(() => {
+            nodeArray[wordIndex - 7].children[1].classList.add('activeRow');
             document.querySelector('.movingEquation .constantContents').children[1].classList.add('activeRow'); //span styles
             // parentElement.appendChild(addend2RowElement);
-            setTimeout(()=>{
+            setTimeout(() => {
                 parentElement.appendChild(addend2RowElement);
-                addend2RowElement.querySelector('.constantContents').classList.remove('activeRow')}, 
-            startingDelay*0.8)
-        }, startingDelay*0.8);
+                addend2RowElement.querySelector('.constantContents').classList.remove('activeRow')
+            },
+                startingDelay * 0.8)
+        }, startingDelay * 0.8);
     }
-    setTimeout( appendAddend2(), startingDelay*0.9);
+    setTimeout(appendAddend2(), startingDelay * 0.9);
 
     const appendAddend3 = () => {
         setTimeout(() => {
@@ -414,39 +431,39 @@ function completeMessageSchedule(wordIndex = 16, startingDelay = 5000){
             // addend3RowElement.querySelector('.constantContents').classList.add('activeRow');
             setTimeout(() => {
                 // addend3RowElement.querySelector('.constantContents').classList.remove('activeRow');
-                setTimeout( () => parentElement.appendChild(addend3RowElement), startingDelay*0.4);
-            }, startingDelay*0.2)
-        }, startingDelay*0.8);
+                setTimeout(() => parentElement.appendChild(addend3RowElement), startingDelay * 0.4);
+            }, startingDelay * 0.2)
+        }, startingDelay * 0.8);
     }
-    setTimeout( appendAddend3, startingDelay*1);
+    setTimeout(appendAddend3, startingDelay * 1);
 
     const appendAddend4 = () => {
-        setTimeout( () => {
+        setTimeout(() => {
             addend4RowElement.firstElementChild.children[0].innerHTML = '';
-            addend4RowElement.children[1].innerHTML = nodeArray[wordIndex-16].children[1].innerHTML;
-            nodeArray[wordIndex-16].children[1].classList.add('activeRow');
+            addend4RowElement.children[1].innerHTML = nodeArray[wordIndex - 16].children[1].innerHTML;
+            nodeArray[wordIndex - 16].children[1].classList.add('activeRow');
             document.querySelector('.movingEquation .constantContents').children[3].classList.add('activeRow'); //span styles
             // addend4RowElement.querySelector('.constantContents').classList.add('activeRow');
             parentElement.appendChild(addend4RowElement);
             // addend4RowElement.querySelector('.constantContents').classList.remove('activeRow')
-            setTimeout( ()=> {
-                setTimeout( () => {
+            setTimeout(() => {
+                setTimeout(() => {
                     parentElement.appendChild(addend4RowElement);
-                    setTimeout( addWordsAndAdvanceToNext(wordIndex, startingDelay*0.3), startingDelay);
-                }, startingDelay*0.4)
-            }, startingDelay*0.2); //maybe back to 4.  need promises bad
-        }, startingDelay*0.8);
+                    setTimeout(addWordsAndAdvanceToNext(wordIndex, startingDelay * 0.3), startingDelay);
+                }, startingDelay * 0.4)
+            }, startingDelay * 0.2); //maybe back to 4.  need promises bad
+        }, startingDelay * 0.8);
     }
-    setTimeout( appendAddend4, startingDelay*2);
+    setTimeout(appendAddend4, startingDelay * 2);
 }
 const addWordsAndAdvanceToNext = (currentConstantIndex, delay) => {  //function used in tandem with completeMessageSchedule to build full schedule
-    if(currentConstantIndex === 64) return;
+    if (currentConstantIndex === 64) return;
 
     let functionSpans = document.querySelectorAll('.constantContents span');
-    functionSpans.forEach( (span) => span.classList.remove('activeRow'));
+    functionSpans.forEach((span) => span.classList.remove('activeRow'));
 
     let messageSchedule = document.getElementById('messageSchedule');
-    Array.from(messageSchedule.children).forEach( (child) => child.children[1].classList.remove('activeRow'));
+    Array.from(messageSchedule.children).forEach((child) => child.children[1].classList.remove('activeRow'));
     let arrayToAddTogether = [
         messageSchedule.children[messageSchedule.children.length - 1].children[1].innerHTML,
         messageSchedule.children[messageSchedule.children.length - 2].children[1].innerHTML,
@@ -455,7 +472,7 @@ const addWordsAndAdvanceToNext = (currentConstantIndex, delay) => {  //function 
     ];
     let wordSum = addArrayOfBinWords(arrayToAddTogether);
     let removeAndReplace = document.querySelector('.movingEquation');
-    removeAndReplace.children[0].children[0].innerHTML = `W(${currentConstantIndex+1})`;
+    removeAndReplace.children[0].children[0].innerHTML = `W(${currentConstantIndex + 1})`;
 
     removeAndReplace.remove();
     messageSchedule.children[messageSchedule.children.length - 1].remove();
@@ -464,7 +481,7 @@ const addWordsAndAdvanceToNext = (currentConstantIndex, delay) => {  //function 
     messageSchedule.children[messageSchedule.children.length - 1].children[1].innerHTML = wordSum;
     messageSchedule.children[messageSchedule.children.length - 1].children[0].children[0].innerHTML = `W(${currentConstantIndex})`;
     messageSchedule.appendChild(removeAndReplace);
-    setTimeout( completeMessageSchedule(currentConstantIndex+1), delay);
+    setTimeout(completeMessageSchedule(currentConstantIndex + 1), delay);
 }
 
 
@@ -517,30 +534,24 @@ function isPrime(n) {
     return n;
 }
 
-function addArrayOfBinWords(arrayOfWords){
+function addArrayOfBinWords(arrayOfWords) {
     //re-used from earlier SHA256 I wrote.  Refactor when appropriate
-    if(!arrayOfWords) return -1;
-    if(arrayOfWords.length == 1) return arrayOfWords[0];
+    if (!arrayOfWords) return -1;
+    if (arrayOfWords.length == 1) return arrayOfWords[0];
     let evaluatedBinaryString = [];
     let carryOver = 0;
-    for(let i = arrayOfWords[0].length-1; i >= 0; i --){
+    for (let i = arrayOfWords[0].length - 1; i >= 0; i--) {
         let columnSum = 0;
-        arrayOfWords.forEach( (word) => columnSum += parseInt(word[i]) );
+        arrayOfWords.forEach((word) => columnSum += parseInt(word[i]));
         columnSum += carryOver;
         evaluatedBinaryString.push(columnSum % 2);
-        carryOver = Math.floor(columnSum/2);
+        carryOver = Math.floor(columnSum / 2);
     }
     return evaluatedBinaryString.reverse().join('');
 }
 
 //----- So I don't have to keep clicking to move through the flow -----
 document.getElementById('messageInput').dispatchEvent(new Event("keyup"));
-setTimeout( () => {
+setTimeout(() => {
     padAndEncodeLength();
-    // initilizeMessageSchedule();
-    // initilizeMessageSchedule();
-},5);
-
-function toggleBackground(){
-    document.body.classList.toggle('toggleBackground');
-}
+}, 5);

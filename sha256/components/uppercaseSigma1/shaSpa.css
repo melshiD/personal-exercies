@@ -95,14 +95,18 @@ body{
     /* background-color: purple; */
     background-color: rgb(162, 170, 237);
 }
+.card span{
+    transition: all 0.7s;
+    border-radius: 4px;
+}
 .card.activeCard .activeSpanDigitOne{
-    /* transition: all .07s; */
+    transition: all .07s;
     box-sizing: border-box;
     border-radius: 4px;
     background-color: rgb(223, 245, 245);
 }
 .card.activeCard .activeSpanDigitZero{
-    /* transition: all .07s; */
+    transition: all .07s;
     box-sizing: border-box;
     border-radius: 4px;
     /* background-color: rgb(162, 170, 237); */
@@ -158,6 +162,9 @@ body{
     border-radius: 3px;
     padding: 0.2rem;
     /* width: 32ch; */
+}
+.card .transformationsList{
+    transition: background-color 0.7s;
 }
 .transRow{
     width: 100%;

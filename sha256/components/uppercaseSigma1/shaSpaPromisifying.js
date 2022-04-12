@@ -205,14 +205,20 @@ async function majorityAndChoice(evalDuration, cardName, inputBits = null) {
     const sequencePromise = (ms) => {
         return new Promise(resolvingAction => setTimeout(resolvingAction, ms))
     }
-    const removeDigitStyle = (threeListsOf32Spans, i = null) => {
-        threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitOne');
-        threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitOne');
-        threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitOne');
-        threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitZero');
-        threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitZero');
-        threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitZero');
-        console.log('removing styling now')
+    const removeDigitStyle = (threeListsOf32Spans, cardName, delayTime) => {
+        return setTimeout( () => {
+            let removeActiveStatusFrom = document.getElementById(cardName);
+            removeActiveStatusFrom.classList.remove('activeCard');
+            for(let i = 0; i < 32; i ++){
+                threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitOne');
+                threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitOne');
+                threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitOne');
+                threeListsOf32Spans[0].children[(31 - i)].classList.remove('activeSpanDigitZero');
+                threeListsOf32Spans[1].children[(31 - i)].classList.remove('activeSpanDigitZero');
+                threeListsOf32Spans[2].children[(31 - i)].classList.remove('activeSpanDigitZero');
+            }
+            console.log('removing styling now');
+        }, delayTime);
     };
 
     if (cardName === 'cardFive') {
@@ -224,11 +230,10 @@ async function majorityAndChoice(evalDuration, cardName, inputBits = null) {
         const performCardFive = () => {
             return new Promise(resolve => {
                 for (let i = 0, p = Promise.resolve(); i < 32; i++) {
-                    // if(i == 31){ setTimeout(removeDigitStyle(threeListsOf32Spans, 3), 2000)}
                     p = p.then(() => sequencePromise(evalDuration)).then(() => {
                         let majority = parseInt(inputStringsAsArrays[0][i], 10) +
-                            parseInt(inputStringsAsArrays[1][i], 10) +
-                            parseInt(inputStringsAsArrays[2][i], 10);
+                                       parseInt(inputStringsAsArrays[1][i], 10) +
+                                       parseInt(inputStringsAsArrays[2][i], 10);
                         let resultsDisplayOutput = '';
                         if (majority > 1) {
                             //highlight the majority digit/s in that column;
@@ -249,6 +254,7 @@ async function majorityAndChoice(evalDuration, cardName, inputBits = null) {
                             resultsDisplayOutput = `${'0'}${resultsDiv.innerHTML}`;
                             resultsDiv.innerHTML = `${resultsDisplayOutput}`;
                         }
+                        if(i == 31){ return removeDigitStyle(threeListsOf32Spans, cardName, 100)}
                     })
                 }
             })
@@ -295,7 +301,7 @@ async function majorityAndChoice(evalDuration, cardName, inputBits = null) {
                     resultsDisplayOutput = `${valueInY}${resultsDiv.innerHTML}`;
                     resultsDiv.innerHTML = `${resultsDisplayOutput}`;
                 }
-                // removeDigitStyle(threeListsOf32Spans, i);
+                if(i == 31){ return removeDigitStyle(threeListsOf32Spans, cardName, 100)}
             });
         }
     }

@@ -553,7 +553,7 @@ function addArrayOfBinWords(arrayOfWords) {
 }
 
 //----- So I don't have to keep clicking to move through the flow -----
-document.getElementById('messageInput').dispatchEvent(new Event("keyup"));
-setTimeout(() => {
-    padAndEncodeLength();
-}, 5);
+// document.getElementById('messageInput').dispatchEvent(new Event("keyup"));
+// setTimeout(() => {
+//     padAndEncodeLength();
+// }, 5);

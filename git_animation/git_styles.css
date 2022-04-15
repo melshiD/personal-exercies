@@ -12,7 +12,8 @@
 }
 
 body{
-    /* background-color: #161b22; */
+    /* background: #161b22; */
+    transition: all 2s;
     background: url('./assets/ISD_bridge.webp');
     background-size: cover;
 }

@@ -1,0 +1,252 @@
+<!DOCTYPE="Html">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Blockchain Poetry Hour</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;300&family=Open+Sans:ital,wght@1,500&family=Pirata+One&family=Pushster&family=Raleway:wght@800&family=Roboto+Mono:ital@1&family=Spectral+SC:wght@300;500&display=swap"
+            rel="stylesheet">
+
+        <style>
+            body {
+                background-image: url('./images/background.jpg')
+            }
+
+            label {
+                display: inline-block;
+                font-family: 'Pirata One';
+                font-size: 2em;
+                font-weight: 500;
+                margin-bottom: 0.7em;
+
+            }
+
+            h1 {
+                font-family: Pushster;
+                font-size: 3.6em;
+                text-shadow: red 3px 3px;
+            }
+            h2{
+                font-family: 'Pirata One';
+                font-size: 5em;
+                font-weight: 300;
+                position: absolute;
+                top: 44;
+                left: 30;
+                opacity: 0;
+                z-index: -1;
+            }
+
+            .container {
+                /* background-image: url('./images/hunt_hero_2.PNG'); */
+                background-size: cover;
+                background-position: center center;
+                width: 60%;
+                height: 50vh;
+                border: solid rgb(160 127 83) 4px;
+                border-radius: 1.2em 0 1.2em 0;
+                margin: 5em 0 0 5em;
+                padding-left: 3em;
+                padding-right: 3em;
+                overflow: hidden;
+                position: relative;
+                opacity: 1;
+            }
+            .are-you-ready{
+                margin-left: 1em;
+                font-size: 1.3em;
+            }
+            #dare_you{
+                position: absolute;
+                top: 143;
+            }
+            .form-content{
+                position: absolute;
+                top: 1px;
+            }
+            .password{
+                opacity: 0;
+
+            }
+            #password{
+                opacity: 0;
+                display: inline-block;
+                position: absolute;
+                top: -6;
+            }
+            .inner-bkgd {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                left: -300px;
+                top: -100px;
+                /* background-image: url('./images/hunt_hero_2.PNG'); */
+
+            }
+            input {
+                font-family: 'Pirata One';
+                letter-spacing: .05em;
+                margin-left: 1em;
+                margin-top: 20px;
+                border-radius: 0.2em;
+                border-style: none;
+            }
+            #check_candle{
+                font-family: "pirata one";
+                font-size: 6em;
+                margin: 0 0 0 10rem;
+                text-shadow: 4px -5px 12px rgba(218, 167, 0, 0.37);
+                position: absolute;
+                z-index: -2;
+                top: 20px;
+                opacity: 0;
+
+
+            }
+
+            /* #zoom-image {
+                transition: all 1s ease-in-out;
+            }
+
+            #zoom-image:hover {
+                transform: scale(1.2);
+            } */
+
+            #email {
+                width: 14em;
+            }
+
+            #pass_label {
+                margin-left: 1.5em;
+            }
+
+            .question {
+                font-size: 1em;
+            }
+
+            .question::-webkit-input-placeholder {
+                font-size: 0.8em;
+            }
+        </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <div class="inner-bkgd">
+                <img id="zoom-image" src="./images/hunt_hero_2.PNG" />
+            </div>
+            <div class="form-content">
+                <h1>Beholding Bits or Knowledge</h1>
+                <form action="#nowhere">
+                    <div class="are-you-ready" >
+                        <label for="dare_you"></label>
+                        <input type="text" class="question" id="dare_you" autocomplete="off" placeholder="the surest of truths?">
+                    </div>
+                    <div class="password">
+                        <label id="pass_label" for="password">Find the first clue... </label>
+                        <input type="password" class="form-control" id="password" autocomplete="off" placeholder="and enter it here">
+                    </div>
+                </form>
+                <div class="very-good">
+                    <h2>Very Good</h2>
+                </div>
+            </div>
+        </div>
+        <div id="check_candle">
+            <div >Check your Candle</div>
+            <div>Check your Sticks</div>
+        </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+        <script>
+            let container = document.querySelector('.container');
+            let zoomImage = document.getElementById('zoom-image');
+            container.addEventListener('mouseenter', () =>{
+                let zoomAnimation = anime({
+                    targets: '#zoom-image',
+                    duration: 1500,
+                    easing: 'linear',
+                    scale: 1.2
+
+                })
+            });
+            container.addEventListener('mouseleave', () =>{
+                let zoomAnimation = anime({
+                    targets: '#zoom-image',
+                    duration: 1900,
+                    easing: 'linear',
+                    scale: 1.0
+                })
+            });
+
+            let formAction = document.getElementById('dare_you');
+            formAction.addEventListener('keyup', function(e){
+                if(formAction.value.toLowerCase() == 'yes') return veryGood();
+            });
+
+            function veryGood(input = 'yes'){
+                let inputToHide = document.querySelector('.are-you-ready');
+                let showGood = document.querySelector('h2');
+                let swapElements = anime.timeline({
+                    easing: 'linear'
+                });
+                swapElements.add({
+                    targets: inputToHide,
+                    duration: 200,
+                    opacity: 0
+                }).add({
+                    targets: showGood,
+                    duration: 1, 
+                    zIndex: 1
+                }).add({
+                    targets: showGood,
+                    duration: 2000, 
+                    opacity: 1
+                }).add({
+                    targets: '.password',
+                    duration: 3000,
+                    opacity: 1
+                }, '-=600').add({
+                    targets: '.password',
+                    duration: 1000,
+                    scale: 1.2
+                });
+
+                swapElements.add({
+                    targets: '#password',
+                    duration: 1000,
+                    opacity: 1
+                });
+            }
+
+            let passwordTrack = document.getElementById('password');
+            passwordTrack.addEventListener('keyup', () =>{
+                if(passwordTrack.value.toLowerCase() == "lets_play") return letsPlay();
+            });
+
+            function letsPlay(){
+                // let checkCandle = document.getElementById('check_candle');
+                const callToAction = anime.timeline({
+                    easing: 'linear',
+                });
+
+                callToAction.add({
+                    targets: '.container',
+                    opacity: 0,
+                    duration: 500
+                }).add({
+                    targets: '#check_candle',
+                    opacity: 1,
+                    duration: 2000
+                }).play();
+            }
+
+
+
+        </script>
+    </body>
+
+    </html>

@@ -27,8 +27,8 @@
     z-index: -1;
     opacity: 1;
     box-sizing: border-box;
-    /* animation: fadeIn 500ms forwards */
-    /* animation: fadeIn 1500ms 3s forwards, scrolling 12s 2s infinite alternate-reverse; */
+    /* animation: fadeIn 500ms forwards; */
+    animation: fadeIn 13s forwards, scrolling 12s 2s infinite alternate-reverse;
 }
 @keyframes fadeIn{
     from{

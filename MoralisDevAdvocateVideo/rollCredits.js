@@ -1,5 +1,5 @@
-function runCredits(){
-    const proudMoralisDevAdvocate = 'David Melsheimer';
+function rollCredits(){
+    let proudMoralisDevAdvocate = 'David Melsheimer';
     console.log('--- Credits ---');
     const roles = {
         'production team': proudMoralisDevAdvocate,

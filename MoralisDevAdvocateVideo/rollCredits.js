@@ -1,5 +1,6 @@
 function rollCredits(){
     let proudMoralisDevAdvocate = 'David Melsheimer';
+    //yes, let it be so
     console.log('--- Credits ---');
     const roles = {
         'production team': proudMoralisDevAdvocate,
@@ -11,5 +12,3 @@ function rollCredits(){
         console.log(`${key}: ${roles[key]}`);
     };
 }
-
-runCredits;

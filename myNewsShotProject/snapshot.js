@@ -32,6 +32,7 @@ async function doScreenCapture(url, site_name) {
 
 const newSites = fs.readFileSync('C:/Users/davem/Coding/personal_exercises/myNewsShotProject/bookmarks/bookmark_url_arrays/url_array.txt').toString('utf-8');
 let sitesByLine = newSites.split('\n');
+
 const loopAndGetSnapshot = async (siteList) => {
   console.log('start');
 

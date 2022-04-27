@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/Draggable.min.js"></script>
+    <style>
+        body {
+            background-color: black;
+            font-family: Signika Negative, Asap, sans-serif;
+        }
+
+        #container {
+            height: 801px;
+            overflow: visible;
+            padding: 0;
+            position: relative;
+        }
+
+        .box {
+            background-color: #91e600;
+            text-align: center;
+            font-family: Asap, Avenir, Arial, sans-serif;
+            width: 196px;
+            height: 100px;
+            line-height: 100px;
+            color: black;
+            position: absolute;
+            top: 0;
+            -webkit-border-radius: 10px;
+            -moz-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        .controls {
+            background-color: #222;
+            border: 1px solid #555;
+            color: #bbb;
+            font-size: 18px;
+            margin: 20px 0;
+        }
+
+        .controls ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .controls li {
+            display: inline-block;
+            padding: 8px 0 8px 10px;
+            margin: 0;
+        }
+
+        .controls input {
+            vertical-align: middle;
+            cursor: pointer;
+        }
+
+        .controls .controlsTitle {
+            border-right: 1px solid #555;
+            border-bottom: none;
+            padding-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="container">
+        <div class="box" id="box1">Drag and throw me</div>
+        <div class="box" id="box2" style="background-color:red;">Drag and throw me too</div>
+    </div>
+    <script>
+        const square1 = document.getElementById('box1');
+        Draggable.create('#box1', {
+            bounds: '#container'
+        });
+        const square2 = document.getElementById('box2');
+        Draggable.create('#box2',  {
+            bounds: '#container'
+        });
+
+    </script>
+</body>
+
+</html>

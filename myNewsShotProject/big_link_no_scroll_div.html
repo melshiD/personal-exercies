@@ -6,24 +6,32 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Big link image in frame</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/Draggable.min.js"></script>
+    <script>gsap.registerPlugin(MotionPathPlugin, TextPlugin);</script>
+
     <style>
         /* !!!! The "Unexplained extra padding on bottom of div" went away
         when I switched to overflow-y: hidden instead of scroll? */
-        *{
+        * {
             --scale: 0.11;
             --img-width: 1920px;
             --standard-screen-height: 1082px;
         }
-        body{
+
+        body {
+            height: 100vh;
             display: flex;
             flex-wrap: wrap;
             background-color: #2d353c;
             justify-content: center;
         }
+
         .img-wrapper {
             /* i can NOT figure out how to fix the padding at the bottom of the divs */
             margin: 16px;
-            height: calc(var(--standard-screen-height)*var(--scale));;
+            height: calc(var(--standard-screen-height)*var(--scale));
+            ;
             /* max-height: 50vh; */
             /*max-height: 130vh; /*since I'm scaling this div, 
                             the height actually ends up being 
@@ -36,6 +44,7 @@
             border-left: 2px solid #2d354c;
             border-radius: 10px;
         }
+
         .img-wrapper>img {
             transition: all 2s;
             position: relative;
@@ -47,7 +56,8 @@
             -webkit-transform: scale(calc(var(--scale)));
             -webkit-transform-origin: 0 0;
         }
-        .img-wrapper>img:hover{
+
+        .img-wrapper>img:hover {
             /* trans-origin setting dependent on screen div size  */
             transition: all 2s;
             -ms-zoom: calc(var(--scale)*1.1);
@@ -63,13 +73,18 @@
 
 <body>
     <script>
-        for (let i = 1; i < 370; i ++){
+        for (let i = 1; i < 40; i++) {
             let newDiv = document.createElement('div');
             newDiv.setAttribute('class', 'img-wrapper');
+            newDiv.setAttribute('id', `img_${i}_wrapper`);
+
             let newImg = document.createElement('img');
             newImg.setAttribute('src', `./images/${i}.png`);
             newDiv.appendChild(newImg);
             document.body.appendChild(newDiv);
+            Draggable.create(`#img_${i}_wrapper`, {
+                bounds: 'body'
+            });
         }
     </script>
 </body>

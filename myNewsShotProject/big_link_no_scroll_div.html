@@ -8,13 +8,14 @@
     <title>Big link image in frame</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.10.4/Draggable.min.js"></script>
-    <script>gsap.registerPlugin(MotionPathPlugin, TextPlugin);</script>
+    <!-- <script>gsap.registerPlugin(MotionPathPlugin, TextPlugin);</script> -->
 
     <style>
         /* !!!! The "Unexplained extra padding on bottom of div" went away
         when I switched to overflow-y: hidden instead of scroll? */
         * {
-            --scale: 0.11;
+            /* --scale: 0.11; */
+            --scale: 0.25;
             --img-width: 1920px;
             --standard-screen-height: 1082px;
         }
@@ -82,9 +83,9 @@
             newImg.setAttribute('src', `./images/${i}.png`);
             newDiv.appendChild(newImg);
             document.body.appendChild(newDiv);
-            Draggable.create(`#img_${i}_wrapper`, {
-                bounds: 'body'
-            });
+            // Draggable.create(`#img_${i}_wrapper`, {
+            //     bounds: 'body'
+            // });
         }
     </script>
 </body>

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uppercase Σ1</title>
+    <link rel="stylesheet" href="./shaSpa.css">
+</head>
+
+<body>
+    <div class="fullShaDesk">
+        <div class="monoCard" id="messageInputCard">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Input message and Padding</div>
+            </div>
+            <textArea id="messageInput" class="messageInputTA" maxlength="55" >SalesForce => Mapping Group: $5,000,367.21;</textArea>
+            <div class="centeredCardTitle titleMarginTop">
+                <div class="cardTitleLine">Message As Binary (ascii)</div>
+            </div>
+            <textarea id="messageAsBinary" class="messageAsBinary" disabled></textarea>
+            <button type="button" onclick="padAndEncodeLength()" id="paddingButton">Pad and Encode Length</button>
+            <div class="centeredCardTitle titleMarginTop">
+                <div class="cardTitleLine">Padded Message (message block)</div>
+            </div>
+            <textarea id="completeBinaryMessage" class="messageAsBinary" disabled></textarea>
+            <button type="button" onclick="initilizeMessageSchedule()">Initilize Message Schedule</button>
+            <!-- <button type="button" onclick="hideMessageInputCard()">Close Message Input</button> -->
+        </div>
+        <!-- CONSTANTS ------ JS will solve this wetness ----------------------------------------------------------------->
+        <div class="monoCard">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Constants (K)</div>
+            </div>
+            <button type="button" onclick="generateConstants(64, '3', 'constantCard')">Generate Constants</button>
+            <!-- <div class="underConstants"></div> -->
+            <button type="button" onclick="return" class="invisibleLetters">.</button>
+            <div class="constantCard" id="constantCard">
+                    <div class="constantCardRow">
+                        <div class="constantIndexAndColon">
+                            <span class="constantIndexNumber">K(x)</span>
+                            <span class="colonSpan">:</span>
+                        </div>
+                        <div class="constantContents">3√prime(x)</div>
+                    </div>
+            </div>
+        </div>
+        <!-- CONSTITUENT OPERATORS------------------------------------  -->
+        <div class="monoCard">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Constituent Operators</div>
+            </div>
+            <input type="text" disabled class="bitsInput" id="bitsInput" value="11111111110000000000000111111111">
+            <button type="button" onclick="handleAndRotateInput(300, 'cardOne')">lowerCase Sigma 0</button>
+            <button type="button" onclick="handleAndRotateInput(300, 'cardTwo')">lowerCase Sigma 1</button>
+            <button type="button" onclick="handleAndRotateInput(300, 'cardThree')">UpperCase Sigma 0</button>
+            <button type="button" onclick="handleAndRotateInput(300, 'cardFour')">UpperCase Sigma 1</button>
+            <button type="button" onclick="majorityAndChoice(300, 'cardFive')">Majority</button>
+            <button type="button" onclick="majorityAndChoice(300, 'cardSix')">Choice</button>
+            <div class="card" id="cardOne">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="superscript">
+                            <p>σ</p>
+                        </div>
+                        <div class="subscript">
+                            0
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">7</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000<span>00</span>0000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">18</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">SHR</span>
+                                    <span class="transformationDegree">3</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultsCard" id="testHide">
+                    <span class="resultsName">Xor:</span>
+                    <span class="resultBits"></span>
+                </div>
+
+            </div>
+            <div class="card" id="cardTwo">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="superscript">
+                            <p>σ</p>
+                        </div>
+                        <div class="subscript">
+                            1
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">17</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">19</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">SHR</span>
+                                    <span class="transformationDegree">10</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultsCard" id="testHide">
+                    <span class="resultsName">Xor:</span>
+                    <span class="resultBits"></span>
+                </div>
+            </div>
+            <hr>
+            <div class="card" id="cardThree">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="superscript">
+                            <p>Σ</p>
+                        </div>
+                        <div class="subscript">
+                            0
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">2</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">13</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">22</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultsCard" id="testHide">
+                    <span class="resultsName">Xor:</span>
+                    <span class="resultBits"></span>
+                </div>
+
+            </div>
+            <div class="card" id="cardFour">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="superscript">
+                            <p>Σ</p>
+                        </div>
+                        <div class="subscript">
+                            1
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">6</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">11</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">ROTR</span>
+                                    <span class="transformationDegree">25</span>
+                                </div>
+                                <div class="transformationExample">00000000000000000000000000000000</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="resultsCard" id="testHide">
+                    <span class="resultsName">Xor:</span>
+                    <span class="resultBits"></span>
+                </div>
+
+            </div>
+            <!-- choice and majority  -->
+            <div class="card" id="cardFive">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="choiceMaj">
+                            <p>Maj</p>
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">X</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample xValue">
+                                    <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">Y</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample yValue">
+                                    <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">Z</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample zValue">
+                                    <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resultsCard" id="testHide">
+                            <span class="resultsName">:</span>
+                            <span class="resultBits"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card" id="cardSix">
+                <div class="iconAndListContainer">
+                    <div class="sigmaIcon">
+                        <div class="choiceMaj">
+                            <p>Ch'</p>
+                        </div>
+                    </div>
+                    <div class="colon">:</div>
+                    <div class="transformationsList">
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">X</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample xValue">
+                                    <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">Y</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample yValue">
+                                    <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="transformation">
+                            <div class="transRow">
+                                <div class="transformationName">
+                                    <span class="transformationNameToken">Z</span>
+                                    <span class="transformationDegree">:</span>
+                                </div>
+                                <div class="transformationExample zValue">
+                                    <span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><!--
+                                    --><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span><span>0</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="resultsCard" id="testHide">
+                            <span class="resultsName">:</span>
+                            <span class="resultBits"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Message Schedule ------ JS will solve this wetness ----------------------------------------------------------------->
+        <div class="monoCard">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Message Schedule (M)</div>
+            </div>
+            <button type="button" onclick="initilizeMessageSchedule()">Initilize Message Schedule</button>
+            <button type="button" onclick="completeMessageSchedule()" id="completeMessageSchedule">Complete Message Schedule</button>
+            <div class="constantCard" id="messageSchedule">
+                <div class="constantCardRow">
+                    <div class="constantIndexAndColon">
+                        <span class="constantIndexNumber">W(16)</span>
+                        <span class="colonSpan">:</span>
+                    </div>
+                    <div class="constantContents">
+                        <!-- σ1(t-2) + (t-7) + σ0(t-15) + (t-16) -->
+                        <span>σ1(t-2)</span> + <span>(t-7)</span> + <span>σ0(t-15)</span> + <span>(t-16)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="monoCard workingRegisters">
+            <div class="centeredCardTitle">
+                <div class="cardTitleLine">Compression</div>
+            </div>
+            <button type="button" onclick="generateConstants(8, '2', 'workingRegisters')">Generate Constants</button>
+            <!-- <div class="underConstants"></div> -->
+            <button type="button" onclick="return" class="invisibleLetters">.</button>
+            <div class="constantCard" id="workingRegisters">
+                    <div class="constantCardRow">
+                        <div class="constantIndexAndColon">
+                            <span class="constantIndexNumber">K(x)</span>
+                            <span class="colonSpan">:</span>
+                        </div>
+                        <div class="constantContents">2√prime(x)</div>
+                    </div>
+            </div>
+        </div>
+    </div>    
+    <script src="./shaSpaPromisifying.js"></script>
+</body>
+
+</html>

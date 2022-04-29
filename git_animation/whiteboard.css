@@ -8,13 +8,13 @@
     position: absolute;
     right: 300px;
     top: 150px;
-
+    background-color: whitesmoke;
     /* transform-origin: 0 50%; */
     transform: rotate3d(0.14, 1, -0.06, -18deg) rotateZ(-1deg) translateZ(-1rem);
     transform-origin: 50% 0;
-    width: calc(3784px/5);
-    height: calc(1772px/5);
-    background-image: url('./assets/askMeAboutMoralisCropped.jpg');
+    width: calc(3784px/4);
+    height: calc(1772px/4);
+    /* background-image: url('./assets/askMeAboutMoralisCropped.jpg'); */
     border: #39ff15 solid 1px;
     border-radius: 1em;
     transform-style: preserve-3d;
@@ -27,9 +27,23 @@
     z-index: -1;
     opacity: 1;
     box-sizing: border-box;
+    overflow: scroll;
+    overflow-x: hidden;
     /* animation: fadeIn 500ms forwards; */
     /* animation: fadeIn 13s forwards, scrolling 12s 2s infinite alternate-reverse; */
 }
+
+object{
+    overflow:hidden;  
+    height:100vh; 
+    position:relative; 
+    top: -380px;
+    left: -690px;
+    width:100vw;
+    transform: scale(0.5);
+}
+
+
 @keyframes fadeIn{
     from{
         opacity: 0;

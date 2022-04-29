@@ -21,7 +21,7 @@
         }
 
         body {
-            height: 100vh;
+            height: 100%;
             display: flex;
             flex-wrap: wrap;
             background-color: #2d353c;
@@ -83,9 +83,9 @@
             newImg.setAttribute('src', `./images/${i}.png`);
             newDiv.appendChild(newImg);
             document.body.appendChild(newDiv);
-            // Draggable.create(`#img_${i}_wrapper`, {
-            //     bounds: 'body'
-            // });
+            Draggable.create(`#img_${i}_wrapper`, {
+                bounds: 'body'
+            });
         }
     </script>
 </body>

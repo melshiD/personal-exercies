@@ -27,8 +27,7 @@
     z-index: -1;
     opacity: 1;
     box-sizing: border-box;
-    overflow: scroll;
-    overflow-x: hidden;
+    overflow: hidden;
     /* animation: fadeIn 500ms forwards; */
     /* animation: fadeIn 13s forwards, scrolling 12s 2s infinite alternate-reverse; */
 }

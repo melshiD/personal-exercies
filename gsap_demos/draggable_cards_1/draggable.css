@@ -3,7 +3,7 @@ html, body {
   }
   
   body {
-    cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106114/cursor.png) 32 32,move;
+    /* cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106114/cursor.png) 32 32,move; */
     background: rgb(238,238,238);
     overflow: hidden;  
   }
@@ -21,8 +21,8 @@ html, body {
     opacity: 0;
     visibility: hidden;
     transform: translate(-50%, -50%);  
-    cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106114/cursor.png),move;
-    cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106114/cursor.png) 32 32,move;
+    /* cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106114/cursor.png),move;
+    cursor: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/106114/cursor.png) 32 32,move; */
   }
   
   .list-item {  

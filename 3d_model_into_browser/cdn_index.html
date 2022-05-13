@@ -18,16 +18,21 @@
     <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/GLTFLoader.js"></script>
     <script src="https://r105.threejsfundamentals.org/threejs/../3rdparty/dat.gui.min.js"></script>
     <style>
+        *{
+            --headDivDims: 300px;
+        }
         html,
         body {
             margin: 0;
             height: 100%;
         }
-
         #c {
-            width: 100%;
-            height: 100%;
+            width: var(--headDivDims);
+            height: var(--headDivDims);
             display: block;
+            border: green solid 3px;
+            border-radius: 50%;
+            margin: 1em;
         }
     </style>
 
@@ -41,14 +46,17 @@
 
         /* global THREE */
 
+
         function main() {
+            
+            // console.log(rawCursorPosition());
             const canvas = document.querySelector('#c');
             const renderer = new THREE.WebGLRenderer({ canvas });
 
             const fov = 45;
             const aspect = 2;  // the canvas default
             const near = 0.1;
-            const far = 100;
+            const far = 10;
             const camera = new THREE.PerspectiveCamera(fov, aspect, near, far);
             camera.position.set(0, 10, 200);
             // const cameraGui = new dat.GUI();
@@ -71,8 +79,9 @@
                         transControls.setMode('scale')
                         break
                 }
-            })
+            });
 
+;
 
             // const controls2 = new THREE.OrbitControls(camera, canvas);
             // controls2.target.set(0, 5, 0);
@@ -160,17 +169,18 @@
                     const boxCenter = box.getCenter(new THREE.Vector3());
 
                     // set the camera to frame the box
-                    frameArea(boxSize * 0.5, boxSize, boxCenter, camera);
+                    //NOTE: this box math can be reconciled up where the box size is defined.  do
+                    frameArea(boxSize * 0.07, boxSize, boxCenter, camera);
 
                     // update the Trackball controls to handle the new size
                     transControls.attach(gltf.scene);
                     window.addEventListener('mouseup', () => {
-                        console.log(`x: ${gltf.scene.position.x},
-                                     y: ${gltf.scene.position.y},
-                                     z: ${gltf.scene.position.z},
-                                     rot x: ${gltf.scene.rotation.x},
-                                     rot y: ${gltf.scene.rotation.y},
-                                     rot zr: ${gltf.scene.rotation.z},
+                        console.log(`x: ${root.position.x},
+                                     y: ${root.position.y},
+                                     z: ${root.position.z},
+                                     rot x: ${root.rotation.x},
+                                     rot y: ${root.rotation.y},
+                                     rot z: ${root.rotation.z},
                                      `);
                                      //WHEN YOU SIT BACK DOWN, LOG ROTATION 
 
@@ -178,6 +188,13 @@
                     // controls2.maxDistance = boxSize * 10;
                     // controls2.target.copy(boxCenter);
                     // controls2.update();
+                    //set the head in just the right place based on the transforms found using transform controlsr
+                                //show mouse coordinates and build func for head to rotate to watch cursor at intervals
+            window.addEventListener('mousemove', function(event){
+                console.log(event.clientY, event.clientX);
+            })
+                    root.translateX(-1.5727917680066588);
+                    root.translateY(0.6245890408992505);
                 });
             }
 

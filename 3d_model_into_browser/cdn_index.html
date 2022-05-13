@@ -58,7 +58,6 @@
 
 
             const transControls = new THREE.TransformControls(camera, canvas)
-            // transformControls.attach(cube)
 
             window.addEventListener('keydown', function (event) {
                 switch (event.code) {
@@ -74,6 +73,7 @@
                 }
             })
 
+
             // const controls2 = new THREE.OrbitControls(camera, canvas);
             // controls2.target.set(0, 5, 0);
             // controls2.update();
@@ -81,11 +81,6 @@
             const scene = new THREE.Scene();
             scene.background = new THREE.Color('black');
             scene.add(transControls);
-
-            console.log(`x: ${camera.position.x},
-                         y: ${camera.position.y},
-                         z: ${camera.position.z}`);
-                         //add this print statement to an 'onchange' event
 
             // {
             //     const planeSize = 40;
@@ -133,7 +128,7 @@
                 // in the xz plane from the center of the box
                 const direction = (new THREE.Vector3())
                     .subVectors(camera.position, boxCenter)
-                    .multiply(new THREE.Vector3(1, -10, 1))
+                    .multiply(new THREE.Vector3(1, 1, 1))
                     .normalize();
 
                 // move the camera to a position distance units way from the center
@@ -153,7 +148,7 @@
 
             {
                 const gltfLoader = new THREE.GLTFLoader();
-                gltfLoader.load('./assets/Head_Sculpt_1.gltf', (gltf) => {
+                gltfLoader.load('./assets/Head_Sculpt_2.glb', (gltf) => {
                     const root = gltf.scene;
                     scene.add(root);
 
@@ -169,6 +164,12 @@
 
                     // update the Trackball controls to handle the new size
                     transControls.attach(gltf.scene);
+                    window.addEventListener('mouseup', () => {
+                        console.log(`x: ${gltf.scene.position.x},
+                                     y: ${gltf.scene.position.y},
+                                     z: ${gltf.scene.position.z},
+                                     rot: ${gltf.scene.rotation}`);
+                    })
                     // controls2.maxDistance = boxSize * 10;
                     // controls2.target.copy(boxCenter);
                     // controls2.update();

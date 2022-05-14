@@ -19,7 +19,7 @@
     <script src="https://r105.threejsfundamentals.org/threejs/../3rdparty/dat.gui.min.js"></script>
     <style>
         * {
-            --headDivDims: 300px;
+            --headDivDims: 130px;
         }
 
         html,
@@ -29,13 +29,23 @@
         }
 
         #c {
-            
+            animation: fade-in 2s forwards;
+            animation-delay: 3s;
+            opacity: 0%;
             width: var(--headDivDims);
             height: var(--headDivDims);
             display: block;
             border: green solid 3px;
             border-radius: 50%;
             margin: 1em;
+        }
+        @keyframes fade-in{
+            from{
+                opacity: 0%;
+            }
+            to{
+                opacity: 100%;
+            }
         }
     </style>
 
@@ -163,7 +173,9 @@
                     // controls2.maxDistance = boxSize * 10;
                     // controls2.target.copy(boxCenter);
                     // controls2.update();
-                    //show mouse coordinates and build func for head to rotate to watch cursor at intervals
+
+                    //Head follows cursor
+                    //Build with tweening and feature for head to lose interest intermitently
                     window.addEventListener('mousemove', function (event) {
                         let rawMouseX = event.clientX;
                         let rawMouseY = event.clientY;

@@ -13,7 +13,7 @@
     <script type="text/javascript">var version = '1.9.4';</script>
     <script type="text/javascript" src="polyfill/polyfill.js?1.9.4"></script>
     <script type="text/javascript" src="polyfill/Blob.js?1.9.4"></script>
-    <script type="text/javascript" src="polyfill/FileSaver.js?1.9.4"></script>
+    <!-- <script type="text/javascript" src="polyfill/FileSaver.js?1.9.4"></script> -->
     <!--[if gte IE 9]><!-->
     <script type="text/javascript" src="d3.min.js?1.9.4"></script>
     <script type="text/javascript" src="koala.js?1.9.4"></script>
@@ -263,7 +263,7 @@
           }
 
           function basicLoad(location) {
-            var possible = ['ziva', 'koalas', 'koalas1', 'koalas2', 'koalas3'];
+            var possible = ['ziva'];
             var file = 'img/' + possible[Math.floor(Math.random() * possible.length)] + '.jpg'
             return {
               file: file,

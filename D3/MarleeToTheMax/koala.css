@@ -1,3 +1,6 @@
+*{
+    --dots-div-size: 1000px;
+}
 html,
 body {
   margin: 0;
@@ -33,22 +36,26 @@ a:hover {
 
 #center {
   position: relative;
-  height: 100%;
-  width: 512px;
+  /* height: 100%; */
+  height: var(--dots-div-size);
+  /* width: 512px; */
+  width: var(--dots-div-size)
   margin: 0 auto;
 }
 
 #cont {
   position: absolute;
   top: 50%;
-  margin-top: -270px;
-  width:  512px;
-  height: 570px;
+  /* margin-top: -270px; */
+  /* width:  512px; */
+  /* height: 570px; */
+  height: var(--dots-div-size);
+  width: var(--dots-div-size);
 }
 
 #dot {
-  width:  512px;
-  height: 512px;
+  width:  var(--dots-div-size);
+  height: var(--dots-div-size);
 }
 
 svg,
@@ -61,7 +68,8 @@ circle {
 }
 
 #next input {
-  width: 480px;
+  /* width: 480px; */
+  width: var(--dots-div-size);
   border: 1px solid #ccc;
   outline: none;
 }

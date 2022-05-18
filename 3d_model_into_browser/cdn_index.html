@@ -12,9 +12,10 @@
         </script>
 
 
-    <script
-        src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script>
+    <!-- <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/controls/OrbitControls.js"></script> -->
     <script src="https://threejs.org/examples/js/controls/TransformControls.js"></script>
+    <!-- <script src="./node_modules/three/examples/jsm/controls/TransformControls.js"></script> -->
+    <!-- ask Dustin about ways to utilize the modules within just an html doc  -->
     <script src="https://r105.threejsfundamentals.org/threejs/resources/threejs/r105/js/loaders/GLTFLoader.js"></script>
     <script src="https://r105.threejsfundamentals.org/threejs/../3rdparty/dat.gui.min.js"></script>
     <style>
@@ -26,6 +27,7 @@
         body {
             margin: 0;
             height: 100%;
+            background-color: pink;
         }
 
         #c {
@@ -175,7 +177,7 @@
                     // controls2.update();
 
                     //Head follows cursor
-                    //Build with tweening and feature for head to lose interest intermitently
+                    //Build (with tweening) a feature for head to lose interest intermitently (to and from looking at cursor and looking straight ahead)
                     window.addEventListener('mousemove', function (event) {
                         let rawMouseX = event.clientX;
                         let rawMouseY = event.clientY;
@@ -185,7 +187,6 @@
                         root.rotation.z = testTheZ;
 
                         let distanceFromTheSide = (window.innerWidth - rawMouseX)/window.innerWidth;
-                        console.log(rawMouseX);
                         let testTheY = distanceFromTheSide * (0.9);
                         root.rotation.y = -Math.abs(testTheY);
                     })

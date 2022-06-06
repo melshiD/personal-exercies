@@ -1,0 +1,32 @@
+body{
+    height: 100%;
+    width: auto;
+}
+main{
+    height: 100%;
+    width: inherit;
+    background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+    linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+    linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);
+}
+section{
+    border: solid pink 2px;
+    border-radius: 5em;
+    height: 100vh;
+    margin: 3em 1em;
+    background-image: url("https://picsum.photos/1200");
+    background-size: cover;
+}
+section:nth-child(2){
+    
+    background-image: url("https://picsum.photos/1201");
+}
+section:nth-child(3){
+    background-image: url("https://picsum.photos/1202");
+}
+section:nth-child(4){
+    background-image: url("https://picsum.photos/1203");
+}
+section:nth-child(5){
+    background-image: url("https://picsum.photos/1204");
+}

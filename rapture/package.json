@@ -1,0 +1,15 @@
+{
+  "name": "rapture",
+  "version": "1.0.0",
+  "description": "Dice Game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "David Melsheimer",
+  "license": "ISC",
+  "dependencies": {
+    "create-react-app": "^5.0.1",
+    "react-script": "^2.0.5"
+  }
+}

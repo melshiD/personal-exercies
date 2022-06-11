@@ -1,0 +1,729 @@
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <defs id="defs">
+                <symbol id="circle">
+                    <circle cx="100" cy="100" r="60" stroke-width="6" fill="none"></circle>
+                </symbol>
+                <symbol id="square">
+                    <rect x="45" y="50" rx="4" width="110" height="100" stroke-width="6" fill="none"></rect>
+                </symbol>
+                <symbol id="triangle" transform="scale(0.8)">
+                    <path d="M100 40 L45 155 L155 155 Z" stroke-width="6" fill="none"></path>
+                </symbol>
+                <symbol id="hexagon">
+                    <path d="M40 100 L70 50 L130 50 L160 100 L130 150 L70 150 Z" stroke-width="6" fill="none"></path>
+                </symbol>
+                <symbol id="dots-one">
+                    <circle cx="100" cy="100" r="10"></circle>
+                </symbol>
+                <symbol id="dots-two">
+                    <circle cx="120" cy="120" r="10"></circle>
+                    <circle cx="80" cy="80" r="10"></circle>
+                </symbol>
+                <symbol id="dots-three">
+                    <circle cx="105" cy="77" r="10"></circle>
+                    <circle cx="80" cy="104" r="10"></circle>
+                    <circle cx="117" cy="112" r="10"></circle>
+                </symbol>
+                <symbol id="dots-four">
+                    <circle cx="80" cy="80" r="10"></circle>
+                    <circle cx="120" cy="80" r="10"></circle>
+                    <circle cx="80" cy="120" r="10"></circle>
+                    <circle cx="120" cy="120" r="10"></circle>
+                </symbol>
+                <symbol id="dots-five">
+                    <circle cx="100" cy="70" r="10"></circle>
+                    <circle cx="70" cy="95" r="10"></circle>
+                    <circle cx="130" cy="95" r="10"></circle>
+                    <circle cx="115" cy="125" r="10"></circle>
+                    <circle cx="85" cy="125" r="10"></circle>
+                </symbol>
+                <!-- NUMBERING  -->
+                <style>
+                    @import url('https://fonts.googleapis.com/css2?family=Almendra+SC&amp;display=swap');
+
+                    text {
+                        font-family: "Almendra SC";
+                        font-size: 60px;
+                    }
+                </style>
+                <!-- value 1  -->
+                <symbol id="value-1">
+                    <text x="15" y="45">
+                        1
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        1
+                    </text>
+                </symbol>
+                <!-- value 2  -->
+                <symbol id="value-2">
+                    <text x="15" y="45">
+                        2
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        2
+                    </text>
+                </symbol>
+                <!-- value 3  -->
+                <symbol id="value-3">
+                    <text x="15" y="45">
+                        3
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        3
+                    </text>
+                </symbol>
+                <!-- value 5  -->
+                <symbol id="value-5">
+                    <text x="15" y="45">
+                        5
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        5
+                    </text>
+                </symbol>
+                <!-- value 7  -->
+                <symbol id="value-7">
+                    <text x="15" y="45">
+                        7
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        7
+                    </text>
+                </symbol>
+                <!-- value 11  -->
+                <symbol id="value-11">
+                    <text x="15" y="45">
+                        1
+                    </text>
+                    <text x="30" y="45">
+                        1
+                    </text>
+                    <text x="185" y="155" rotate="180">
+                        1
+                    </text>
+                    <text x="170" y="155" rotate="180">
+                        1
+                    </text>
+                </symbol>
+                <!-- face declarations  -->
+                <symbol id="face1">
+                    <use href="#hexagon" stroke="red"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-7" fill="red"></use>
+                </symbol>
+                <symbol id="face2">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="face3">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                </symbol>
+                <symbol id="face4" fill="red">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-11"></use>
+                </symbol>
+                <symbol id="die0_face0">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die0_face1">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die0_face2">
+                    <use href="#triangle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die0_face3">
+                    <use href="#triangle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die0_face4">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die0_face5">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die1_face0">
+                    <use href="#hexagon" stroke="red"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-11"></use>
+                </symbol>
+                <symbol id="die1_face1">
+                    <use href="#triangle" stroke="red"></use>
+                </symbol>
+                <symbol id="die1_face2">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die1_face3">
+                    <use href="#dots-four"></use>
+                </symbol>
+                <symbol id="die1_face4">
+                    <use href="#hexagon" stroke="red"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die1_face5">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-11"></use>
+                </symbol>
+                <symbol id="die2_face0">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die2_face1">
+                    <use href="#square" stroke="red"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die2_face2">
+                    <use href="#triangle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die2_face3">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die2_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die2_face5">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die3_face0">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die3_face1">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die3_face2">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die3_face3">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die3_face4">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die3_face5">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die4_face0">
+                    <use href="#triangle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die4_face1">
+                    <use href="#triangle" stroke="red"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die4_face2">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die4_face3">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die4_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die4_face5">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die5_face0">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die5_face1">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die5_face2">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die5_face3">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die5_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die5_face5">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die6_face0">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die6_face1">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die6_face2">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die6_face3">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die6_face4">
+                    <use href="#square" stroke="red"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die6_face5">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die7_face0">
+                    <use href="#triangle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die7_face1">
+                    <use href="#hexagon" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die7_face2">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die7_face3">
+                    <use href="#square" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die7_face4">
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die7_face5">
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die8_face0">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die8_face1">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die8_face2">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die8_face3">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die8_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die8_face5">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die9_face0">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die9_face1">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die9_face2">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die9_face3">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die9_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die9_face5">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die10_face0">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die10_face1">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die10_face2">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die10_face3">
+                    <use href="#triangle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die10_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die10_face5">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die11_face0">
+                    <use href="#hexagon" stroke="red"></use>
+                </symbol>
+                <symbol id="die11_face1">
+                    <use href="#circle" stroke="black"></use>
+                </symbol>
+                <symbol id="die11_face2">
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die11_face3">
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die11_face4">
+                    <use href="#dots-four"></use>
+                </symbol>
+                <symbol id="die11_face5">
+                    <use href="#triangle" stroke="black"></use>
+                </symbol>
+                <symbol id="die12_face0">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die12_face1">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die12_face2">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die12_face3">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die12_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die12_face5">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die13_face0">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die13_face1">
+                    <use href="#hexagon" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die13_face2">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die13_face3">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die13_face4">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die13_face5">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die14_face0">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die14_face1">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die14_face2">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die14_face3">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die14_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die14_face5">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die15_face0">
+                    <use href="#square" stroke="red"></use>
+                    <use href="#dots-three"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die15_face1">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die15_face2">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die15_face3">
+                    <use href="#triangle" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-2"></use>
+                </symbol>
+                <symbol id="die15_face4">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-3"></use>
+                </symbol>
+                <symbol id="die15_face5">
+                    <use href="#square" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                    <use href="#value-1"></use>
+                </symbol>
+                <symbol id="die16_face0">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-five"></use>
+                </symbol>
+                <symbol id="die16_face1">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die16_face2">
+                    <use href="#circle" stroke="black"></use>
+                    <use href="#dots-four"></use>
+                    <use href="#value-7"></use>
+                </symbol>
+                <symbol id="die16_face3">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die16_face4">
+                    <use href="#triangle" stroke="black"></use>
+                    <use href="#dots-five"></use>
+                </symbol>
+                <symbol id="die16_face5">
+                    <use href="#hexagon" stroke="black"></use>
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die17_face0">
+                    <use href="#hexagon" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die17_face1">
+                    <use href="#dots-five"></use>
+                </symbol>
+                <symbol id="die17_face2">
+                    <use href="#circle" stroke="red"></use>
+                    <use href="#dots-five"></use>
+                    <use href="#value-11"></use>
+                </symbol>
+                <symbol id="die17_face3">
+                    <use href="#circle" stroke="red"></use>
+                </symbol>
+                <symbol id="die17_face4">
+                    <use href="#hexagon" stroke="red"></use>
+                </symbol>
+                <symbol id="die17_face5">
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die18_face0">
+                    <use href="#triangle" stroke="black"></use>
+                </symbol>
+                <symbol id="die18_face1">
+                    <use href="#square" stroke="red"></use>
+                    <use href="#dots-one"></use>
+                    <use href="#value-5"></use>
+                </symbol>
+                <symbol id="die18_face2">
+                    <use href="#dots-three"></use>
+                </symbol>
+                <symbol id="die18_face3">
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die18_face4">
+                    <use href="#dots-three"></use>
+                </symbol>
+                <symbol id="die18_face5">
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die19_face0">
+                    <use href="#dots-three"></use>
+                </symbol>
+                <symbol id="die19_face1">
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die19_face2">
+                    <use href="#dots-three"></use>
+                </symbol>
+                <symbol id="die19_face3">
+                    <use href="#square" stroke="black"></use>
+                </symbol>
+                <symbol id="die19_face4">
+                    <use href="#dots-three"></use>
+                </symbol>
+                <symbol id="die19_face5">
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die20_face0">
+                    <use href="#triangle" stroke="black"></use>
+                </symbol>
+                <symbol id="die20_face1">
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die20_face2">
+                    <use href="#circle" stroke="black"></use>
+                </symbol>
+                <symbol id="die20_face3">
+                    <use href="#triangle" stroke="black"></use>
+                </symbol>
+                <symbol id="die20_face4">
+                    <use href="#hexagon" stroke="black"></use>
+                </symbol>
+                <symbol id="die20_face5">
+                    <use href="#dots-five"></use>
+                </symbol>
+                <symbol id="die21_face0">
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die21_face1">
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die21_face2">
+                    <use href="#dots-one"></use>
+                </symbol>
+                <symbol id="die21_face3">
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die21_face4">
+                    <use href="#triangle" stroke="black"></use>
+                </symbol>
+                <symbol id="die21_face5">
+                    <use href="#circle" stroke="black"></use>
+                </symbol>
+                <symbol id="die22_face0">
+                    <use href="#dots-three"></use>
+                </symbol>
+                <symbol id="die22_face1">
+                    <use href="#dots-five"></use>
+                </symbol>
+                <symbol id="die22_face2">
+                    <use href="#dots-two"></use>
+                </symbol>
+                <symbol id="die22_face3">
+                    <use href="#dots-four"></use>
+                </symbol>
+                <symbol id="die22_face4">
+                    <use href="#hexagon" stroke="black"></use>
+                </symbol>
+                <symbol id="die22_face5">
+                    <use href="#triangle" stroke="black"></use>
+                </symbol>
+            </defs>
+</svg>

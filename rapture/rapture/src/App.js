@@ -1,7 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {Fragment} from 'react';
-import FaceTest from './components/die_face_symbol_decs';
+import FaceDeclarations from './components/FaceDeclarations';
 
 function App() {
   return (
@@ -9,7 +9,7 @@ function App() {
       <h1>
         NOTHING TO SEE HERE!
       </h1>
-      <FaceTest />
+      <FaceDeclarations />
     </Fragment>
   );
 }

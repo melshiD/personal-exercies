@@ -1,12 +1,17 @@
 import React from 'react';
 import classes from './AtomicComponents.module.css';
-import FaceInsideAtomic from './FaceInsideAtomic';
+import IndividualFaceSymbol from './IndividualFaceSymbol';
 
-const AtomicComponents = () => {
+// process dice bag here and put together the face declarations as an array then add to return statement 
+//how to store and account for state created for each face when full die are created?
+
+
+const FaceImageDefinitions = () => {
     return (
         <div className={classes['svg-defs']} id="svg_defs">
             <svg xmlns="http://www.w3.org/2000/svg">
                 <defs id="defs">
+                    {/* ATOMIC DEFINITIONS  */}
                     <symbol id="circle">
                         <circle cx="100" cy="100" r="60" stroke-width="6" fill="none"></circle>
                     </symbol>
@@ -113,15 +118,16 @@ const AtomicComponents = () => {
                             1
                         </text>
                     </symbol>
-                    {/* Face declarations need to get embeded here  */}
+                    {/* END ATOMIC DEFINITIONS... BEGIN FACE DECLARATIONS BUILT FROM DICEBAG  */}
                     <symbol id="useSymbol">
                         <use href="#dots-three" />
                     </symbol>
-                    <FaceInsideAtomic />
+                    
+                    <IndividualFaceSymbol color="pink" />
                 </defs>
             </svg>
         </div>
     )
 }
 
-export default AtomicComponents;
+export default FaceImageDefinitions;

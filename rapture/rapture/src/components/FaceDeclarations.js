@@ -1,14 +1,12 @@
-import AtomicComponents from "./AtomicComponents";
+import FaceImageDefinitions from "./FaceImageDefinitions";
 import React from 'react';
 
 const FaceDeclarations = () => {
     return (
         <React.Fragment>
-            <AtomicComponents>
-            </AtomicComponents>
-            <svg width="200" height="200" fill="black" viewBox="0 0 200 200">
-                <use href="#testRect"></use>
-                <use href="#useSymbol"></use>
+            <FaceImageDefinitions />
+            <svg width="200" height="200" viewBox="0 0 200 200">
+                <use href="#die12_face1"></use>
             </svg>
         </React.Fragment>
     );

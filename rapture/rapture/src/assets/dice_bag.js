@@ -1,7 +1,6 @@
-const dice_bag_simple = [
-    
+const dice_bag = () =>{
+    return([
     //properties are: die-body-color, die-writing-color, number-of-dots, rune-shape, number-value
-
     [   //0
         ["white", "black", "one", "circle", "5"],
         ["white", "black", "one", "triangle", "3"],
@@ -204,4 +203,6 @@ const dice_bag_simple = [
         ["red", "black", "none", "hexagon", ""],
         ["red", "black", "none", "triangle", ""]
     ],
-];
+])};
+
+export default dice_bag;

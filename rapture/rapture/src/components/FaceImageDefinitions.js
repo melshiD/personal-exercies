@@ -1,10 +1,10 @@
 import React from 'react';
-import classes from './AtomicComponents.module.css';
+import classes from './FaceImageDefinitions.module.css';
 import IndividualFaceSymbol from './IndividualFaceSymbol';
 
-// process dice bag here and put together the face declarations as an array then add to return statement 
-//how to store and account for state created for each face when full die are created?
-
+// Contains raw 'atomic components' to make up each face
+//<IndividualFaceSymbols /> then builds sets of <symbol>'s 
+//that represent each die face based on an input 'dice_bag' file
 
 const FaceImageDefinitions = () => {
     return (
@@ -119,10 +119,7 @@ const FaceImageDefinitions = () => {
                         </text>
                     </symbol>
                     {/* END ATOMIC DEFINITIONS... BEGIN FACE DECLARATIONS BUILT FROM DICEBAG  */}
-                    <symbol id="useSymbol">
-                        <use href="#dots-three" />
-                    </symbol>
-                    <IndividualFaceSymbol color="pink" />
+                    <IndividualFaceSymbol />
                 </defs>
             </svg>
         </div>

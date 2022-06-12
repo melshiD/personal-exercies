@@ -122,7 +122,6 @@ const FaceImageDefinitions = () => {
                     <symbol id="useSymbol">
                         <use href="#dots-three" />
                     </symbol>
-                    
                     <IndividualFaceSymbol color="pink" />
                 </defs>
             </svg>

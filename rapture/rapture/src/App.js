@@ -1,23 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
 import React, {Fragment} from 'react';
 import FaceImageDefinitions from './components/FaceImageDefinitions';
+import DieDiv from './components/DiceDivs';
+import classes from './components/DiceContainer.module.css';
 
 function App() {
   return (
+    <div className={classes['body-container']}>
     <Fragment>
       <h1>
         Rapture
       </h1>
-      {/* <FaceDeclarations /> */}
       <FaceImageDefinitions />
-      <svg viewBox="0 0 200 200" width="200" height="200">
-      <use href="#die12_face3"></use>
-      </svg>
-      <svg viewBox="0 0 200 200" width="200" height="200">
-      <use href="#die20_face3"></use>
-      </svg>
+      <div className={classes['dice-container']}>
+      <DieDiv dieNumber="20"/>
+      <DieDiv dieNumber="13"/>
+      <DieDiv dieNumber="4"/>
+      <DieDiv dieNumber="8"/>
+      </div>
     </Fragment>
+    </div>
   );
 }
 

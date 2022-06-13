@@ -1,0 +1,28 @@
+* {
+    box-sizing: border-box;
+    --die-width: 100px;
+    --trans-amount: calc(var(--die-width)/2);
+}
+
+.body-container {
+    perspective: 2000px;
+    transform-style: preserve-3d;
+    background-color: darkgray;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+}
+.dice-container {
+    transform: rotateX(45deg);
+    /* margin: auto; */
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    transform-style: inherit;
+    width: 50vw;
+    height: 50vh;
+    border: black solid 2px;
+    background-color: rgba(64, 46, 46, 0.5);
+    /* transform: translateY(var(--trans-amount)); */
+}

@@ -24,7 +24,6 @@ function buildFaceSymbolsFromBag(){
             faceSymbolsBuiltFromBag.push(faceSymbol);
         });
     });
-    console.log(faceSymbolsBuiltFromBag);
     return faceSymbolsBuiltFromBag;
 }
 

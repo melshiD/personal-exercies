@@ -1,23 +1,24 @@
 import dice_bag from "../assets/dice_bag";
 import { Fragment } from "react";
+import styles from "./FaceSymbols.module.css";
 
-function buildFaceSymbolsFromBag(){
+function buildFaceSymbolsFromBag() {
     let fill_1 = "white";
     let fill_2 = "red";
     const faceSymbolsBuiltFromBag = [];
     dice_bag().bag.forEach((die, dieIndex) => {
         die.forEach((face, faceIndex) => {
             let faceSymbol = (
-                <symbol id={`die${dieIndex}_face${faceIndex}`}>
-                    <rect width="200" height="200" rx="3" fill={`${face[0] === fill_1?fill_1:fill_2}`}></rect>
-                    {face[2] !== "none" && 
-                    <use href={`#dots-${face[2]}`} />
+                <symbol id={`die${dieIndex}_face${faceIndex}`} className={styles['svg-symbol']}>
+                    <rect width="200" height="200" rx="3" fill={`${face[0] === fill_1 ? fill_1 : fill_2}`}></rect>
+                    {face[3] !== "none" &&
+                        <use href={`#${face[3]}`} stroke={`${face[1]}`} />
                     }
-                    {face[3] !== "none" && 
-                    <use href={`#${face[3]}`} stroke={`${face[1]}`} />
+                    {face[2] !== "none" &&
+                        <use href={`#dots-${face[2]}`} />
                     }
-                    {face[4] !== "" && 
-                    <use href={`#value-${face[4]}`} />
+                    {face[4] !== "" &&
+                        <use href={`#value-${face[4]}`} />
                     }
                 </symbol>
             );
@@ -34,7 +35,7 @@ const IndividualFaceSymbol = (props) => {
         <Fragment>
             {faceSymbols}
         </Fragment>
-         
+
     )
 }
 

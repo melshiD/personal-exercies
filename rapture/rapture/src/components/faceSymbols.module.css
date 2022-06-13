@@ -1,4 +1,12 @@
-svg{
-    width: 100px;
-    height: 100px;
+/* svg{
+    width: 200px;
+    height: 200px;
+} */
+
+.svg-symbol > [href="#triangle"] {
+    transform: translateY(-5px);
+}
+
+.svg-symbol > [href="#triangle"]+[href*='#dots-'] {
+    transform: scale(0.65) translateX(55px) translateY(70px);
 }

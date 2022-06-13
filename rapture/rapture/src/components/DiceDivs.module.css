@@ -13,13 +13,9 @@
     transform-style: preserve-3d;
     transform: translateZ(var(--trans-amount));
 }
-[href="#triangle"] {
-    transform: translateY(-5px);
-}
 
-[href="#triangle"]+[href*='#dots-'] {
-    transform: scale(0.65) translateX(55px) translateY(70px);
-}
+/* WHEN YOU SIT BACK DOWN, FIGURE OUT IF YOU CAN EVEN USE THIS TYPE OF SELECTOR IF YOU'RE GOING TO USE CSS MODULES IN REACT  */
+
 .die-face {
     position: absolute;
     background-color: rgb(241, 227, 227);
@@ -33,6 +29,15 @@
     transform-style: preserve-3d;
     user-select: none;
 }
+
+.die-face > svg > [href="#triangle"] {
+    transform: translateY(-5px);
+}
+
+.die-face > svg > [href="#triangle"]+[href*='#dots-'] {
+    transform: scale(0.65) translateX(55px) translateY(70px);
+}
+
 
 .die-face:hover {
     cursor: default;

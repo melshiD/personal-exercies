@@ -14,7 +14,10 @@ const DieDiv = (props) => {
       dragInstance.current = Draggable.create(dragTarget.current, {
         type: "x,y",
         onDragEnd(){
-          console.log('ended drag');
+            let cTarg = dragTarget.current;
+            console.log(cTarg.getBoundingClientRect())
+            gsap.set(dragTarget.current, {x: 0, y: 0});
+
         }
       })
     })

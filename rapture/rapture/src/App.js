@@ -1,24 +1,21 @@
-import React, {Fragment} from "react";
+import React, { Fragment } from "react";
 import FaceImageDefinitions from './components/FaceImageDefinitions';
 import DieDiv from './components/DiceDivs';
 import DiceContainer from './components/DiceContainer';
 import MainContainer from './components/MainContainer';
-import {gsap} from 'gsap';
-import { Draggable } from "gsap/Draggable";
-
-gsap.registerPlugin(Draggable);
+import WoodBackground from './components/WoodBackground'
 
 function App() {
 
   return (
-    <Fragment>
+    <WoodBackground>
       <h1>
         Rapture
       </h1>
       <MainContainer>
         <FaceImageDefinitions />
         <DiceContainer>
-          <DieDiv dieNumber="1"/>
+          <DieDiv dieNumber="1" />
           <DieDiv dieNumber="13" />
           <DieDiv dieNumber="4" />
           <DieDiv dieNumber="21" />
@@ -49,9 +46,9 @@ function App() {
           <DieDiv dieNumber="5" />
           <DieDiv dieNumber="6" />
         </DiceContainer>
-        <DiceContainer></DiceContainer>
+        <DiceContainer id="selected_dice_row"></DiceContainer>
       </MainContainer>
-    </Fragment>
+    </WoodBackground>
   );
 }
 

@@ -13,6 +13,7 @@
     /* animation: roll 4s ease-in-out forwards; */
     transform-origin: var(--trans-amount) var(--trans-amount) var(--trans-amount);
     transform-style: preserve-3d;
+    transform: translateY(-15px);
     /* transform: translateZ(var(--trans-amount)); */
 }
 .die:hover{
@@ -85,10 +86,9 @@
 }
 @keyframes spin {
     to{
-        transform: translateZ(var(--trans-amount)) rotateZ(360deg);
+        transform: translateY(-15px) rotateZ(360deg);
     }
 }
-
 @media screen and (max-width: 700px){
     *{
         --die-width: 60px;

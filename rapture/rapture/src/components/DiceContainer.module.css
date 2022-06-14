@@ -1,19 +1,25 @@
 .dice-container {
     /* transform: rotateX(43deg); */
-    transform-origin: bottom;
+    transform-origin: center;
     /* margin: auto; */
     display: flex;
     /* width: 45vw; */
     flex: 50%;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center; */
+    justify-content: flex-start;
     flex-wrap: wrap;
     transform-style: inherit;
     /* height: calc(var(--die-width)*1.5); */
     height: calc(100vh/8);
-    border: black solid 2px;
+    /* border: rgba(0, 0, 0, 0.3) solid 2px; */
     margin: 1em;
-    background-color: rgba(64, 46, 46, 0.5);
+    /* background-color: rgba(64, 46, 46, 0.5); */
     overflow-x: noscroll;
-    /* transform: translateY(var(--trans-amount)); */
+    padding-left: 3em;
+}
+
+.player-title{
+    position: absolute;
+    top: 30px;
+    left: 30px;
 }

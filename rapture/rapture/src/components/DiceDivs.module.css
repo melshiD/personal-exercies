@@ -1,17 +1,22 @@
 * {
     box-sizing: border-box;
-    --die-width: 100px;
-    --trans-amount: calc(var(--die-width)/2);
+    --die-width: 50px;
+    --die-width-halved: calc(var(--die-width)/2);
+    --trans-amount: var(--die-width-halved);
+    --face-trans-amount: calc(var(--trans-amount) - 1px);
+    /* --face-trans-amount: var(--trans-amount); */
+    /* ( --face-trans-amount prevents the line between faces that shows through to other side )  */
 }
 
 .die {
-    /* flex-basis: ; */
-    margin: 5em;
-    animation: roll 4s ease-in-out forwards;
-    /*  */
+    margin: calc(var(--die-width)/1.4);
+    /* animation: roll 4s ease-in-out forwards; */
     transform-origin: var(--trans-amount) var(--trans-amount) var(--trans-amount);
     transform-style: preserve-3d;
     transform: translateZ(var(--trans-amount));
+}
+.die:hover{
+    animation: spin 2s linear infinite;
 }
 
 /* WHEN YOU SIT BACK DOWN, FIGURE OUT IF YOU CAN EVEN USE THIS TYPE OF SELECTOR IF YOU'RE GOING TO USE CSS MODULES IN REACT  */
@@ -19,37 +24,27 @@
 .die-face {
     position: absolute;
     background-color: rgb(241, 227, 227);
-    border-radius: 3px;
-    /* width: var(--die-width);
-    height: var(--die-width); */
-    width: 200px;
-    height: 200px;
-    border: 1px solid #403737;
+    border-radius: 2px;
+    width: var(--die-width);
+    height: var(--die-width);
+    border: 4px solid #403737;
     line-height: 2em;
     transform-style: preserve-3d;
     user-select: none;
 }
 
-.die-face > svg > [href="#triangle"] {
-    transform: translateY(-5px);
-}
-
-.die-face > svg > [href="#triangle"]+[href*='#dots-'] {
-    transform: scale(0.65) translateX(55px) translateY(70px);
-}
-
-
 .die-face:hover {
+    /* doesnt work any longer because the die color is determined by an svg rect  */
     cursor: default;
     transition: background-color 0.5s;
     background-color: azure;
 }
 .die-face:nth-child(1) {
-    transform: translateZ(var(--trans-amount));
+    transform: translateZ(var(--face-trans-amount));
 }
 
 .die-face:nth-child(6) {
-    transform: rotateY(90deg) translateZ(var(--trans-amount));
+    transform: rotateY(90deg) translateZ(var(--face-trans-amount));
 }
 
 .die-face:nth-child(3) {
@@ -57,13 +52,39 @@
 }
 
 .die-face:nth-child(4) {
-    transform: rotateX(90deg) translateZ(var(--trans-amount));
+    transform: rotateX(90deg) translateZ(var(--face-trans-amount));
 }
 
 .die-face:nth-child(5) {
-    transform: rotateX(-90deg) translateZ(var(--trans-amount));
+    transform: rotateX(-90deg) translateZ(var(--face-trans-amount));
 }
 
 .die-face:nth-child(2) {
-    transform: rotateY(-180deg) translateZ(var(--trans-amount));
+    transform: rotateY(-180deg) translateZ(var(--face-trans-amount));
+}
+
+@keyframes roll {
+    20% {
+        transform: rotateX(500deg) rotateZ(0) translateZ(var(--trans-amount));
+    }
+
+    30% {
+        transform: rotateX(500deg) rotateZ(0) translateZ(var(--trans-amount));
+    }
+
+    50% {
+        transform: rotateX(500deg) rotateZ(405deg) translateZ(var(--trans-amount));
+    }
+
+    90% {
+        transform: rotateX(500deg) rotateZ(720deg) rotateY(360deg) translateZ(var(--trans-amount));
+    }
+    100%{
+        transform: rotateX(720deg) rotateZ(720deg) rotateY(360deg) translateZ(var(--trans-amount));
+    }
+}
+@keyframes spin {
+    to{
+        transform: translateZ(var(--trans-amount)) rotateZ(360deg);
+    }
 }

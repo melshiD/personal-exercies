@@ -1,8 +1,27 @@
 import classes from './DiceDivs.module.css';
+import React, { useEffect, useRef } from "react";
+import {gsap} from 'gsap';
+import { Draggable } from "gsap/Draggable";
+
+gsap.registerPlugin(Draggable);
 
 const DieDiv = (props) => {
+
+    const dragInstance = useRef(null);
+    const dragTarget = useRef(null);
+  
+    useEffect(() => {
+      dragInstance.current = Draggable.create(dragTarget.current, {
+        type: "x,y",
+        onDragEnd(){
+          console.log('ended drag');
+        }
+      })
+    })
+  
+  
     return(
-            <div className={classes.die}>
+            <div className={classes.die} ref={dragTarget}>
                 <div className={`${classes['die-face']} ${classes.face0}`}>
                     <svg viewBox="0 0 200 200">
                         <use href={`#die${props.dieNumber}_face0`} />

@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    --die-width: 50px;
+    --die-width: 100px;
     --die-width-halved: calc(var(--die-width)/2);
     --trans-amount: var(--die-width-halved);
     --face-trans-amount: calc(var(--trans-amount) - 1px);
@@ -13,10 +13,10 @@
     /* animation: roll 4s ease-in-out forwards; */
     transform-origin: var(--trans-amount) var(--trans-amount) var(--trans-amount);
     transform-style: preserve-3d;
-    transform: translateZ(var(--trans-amount));
+    /* transform: translateZ(var(--trans-amount)); */
 }
 .die:hover{
-    animation: spin 2s linear infinite;
+    /* animation: spin 2s linear infinite; */
 }
 
 /* WHEN YOU SIT BACK DOWN, FIGURE OUT IF YOU CAN EVEN USE THIS TYPE OF SELECTOR IF YOU'RE GOING TO USE CSS MODULES IN REACT  */
@@ -86,5 +86,11 @@
 @keyframes spin {
     to{
         transform: translateZ(var(--trans-amount)) rotateZ(360deg);
+    }
+}
+
+@media screen and (max-width: 700px){
+    *{
+        --die-width: 60px;
     }
 }

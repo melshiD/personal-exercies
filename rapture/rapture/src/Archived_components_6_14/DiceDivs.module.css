@@ -9,7 +9,7 @@
 }
 
 .die {
-    margin: calc(var(--die-width)/1.6);
+    margin: calc(var(--die-width)/1.4);
     /* animation: roll 4s ease-in-out forwards; */
     transform-origin: var(--trans-amount) var(--trans-amount) var(--trans-amount);
     transform-style: preserve-3d;
@@ -17,7 +17,7 @@
     /* transform: translateZ(var(--trans-amount)); */
 }
 .die:hover{
-    /* animation: spin 2s linear infinite; */
+    animation: spin 2s linear infinite;
 }
 .die-face {
     position: absolute;
@@ -30,7 +30,7 @@
     transform-style: preserve-3d;
     user-select: none;
 }
-.die-face:nth-child(1) {
+/* .die-face:nth-child(1) {
     transform: translateZ(var(--face-trans-amount));
 }
 
@@ -52,7 +52,7 @@
 
 .die-face:nth-child(2) {
     transform: rotateY(-180deg) translateZ(var(--face-trans-amount));
-}
+} */
 
 @keyframes roll {
     20% {
@@ -80,11 +80,6 @@
     }
 }
 @media screen and (max-width: 700px){
-    *{
-        --die-width: 60px;
-    }
-}
-@media screen and (max-width: 400px){
     *{
         --die-width: 60px;
     }

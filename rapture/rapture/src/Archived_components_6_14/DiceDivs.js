@@ -19,9 +19,8 @@ const DieDiv = (props) => {
             // gsap.set(dragTarget.current, {x: 0, y: 0});
 
         }
-      })
-    })
-  
+      });
+    });
   
     return(
             <div className={classes.die} ref={dragTarget}>

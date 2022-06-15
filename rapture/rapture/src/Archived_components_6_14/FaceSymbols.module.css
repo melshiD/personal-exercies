@@ -1,0 +1,7 @@
+.svg-symbol > [href="#triangle"] {
+    transform: translateY(-5px);
+}
+
+.svg-symbol > [href="#triangle"]+[href*='#dots-'] {
+    transform: scale(0.65) translateX(55px) translateY(70px);
+}

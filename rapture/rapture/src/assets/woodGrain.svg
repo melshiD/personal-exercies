@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg">
     <filter id="filter">
         <feTurbulence type="fractalNoise" baseFrequency=".1 .01"/>
-        <feColorMatrix values="5 0 1 .91 .99
+        <feColorMatrix values="2 0 1 .11 .99
                                0 0 0 .19 .38
                                0 0 0 .08 .14
                                5 0 0 0 1"/>

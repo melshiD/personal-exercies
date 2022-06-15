@@ -4,7 +4,7 @@
     /* margin: auto; */
     display: flex;
     /* width: 45vw; */
-    /* flex: 50%; */
+    flex: 50%;
     /* align-items: center; */
     justify-content: flex-start;
     flex-wrap: wrap;
@@ -15,7 +15,7 @@
     margin: 1em;
     /* background-color: rgba(64, 46, 46, 0.5); */
     overflow-x: noscroll;
-    /* padding-left: 3em; */
+    padding-left: 3em;
 }
 
 .player-title{

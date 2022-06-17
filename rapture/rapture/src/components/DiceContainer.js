@@ -5,7 +5,7 @@ function DiceContainer(props) {
     return (
         <Fragment>
             {/* <div className={classes['player-title']}>Player #</div> */}
-            <div className={classes['dice-container']}>
+            <div className={classes['dice-container']} data-player={props.player} onClick={props.onClick}>
                 {props.children}
             </div>
         </Fragment>

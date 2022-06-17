@@ -6,42 +6,63 @@ import MainContainer from './components/MainContainer';
 
 function App() {
 
-  let pos1, pos2 = '';
-
-  const [clickedDie, setClickedDie] = useState({
+  const thisPlayer1 = 'player1';
+  
+  const [clickedDie, setClickedDie] = useState('1');
+  const [clickedIsOwn, setClickIsOwn] = useState(false);
+  const [dicePositions, setDicePositions] = useState({
     pos1: "12", pos2: "11", pos3: "14", pos4: "13"
   });
 
+
+  //WHEN YOU SIT BACK DOWN FIGURE OUT HOW TO BIND/BOUNDINGBOX THE CLICK TO WITHIN A SPECIFIC PLAYER'S POOL AREA
+  const clickedIsOwnHandler = (event) => {
+    if(event.target.getAttribute('data-player') == thisPlayer1){
+      console.log('you are my own die');
+      return true;
+    }
+    console.log(event.target);
+    return false;
+  }
+
   const clickHandler = (event) => {
     let regex = new RegExp(/\d{1,2}/);
-    // setClickedDie(() => {
-    //   return event.target.getAttribute('href').match(regex)[0];
-    // });
-    setClickedDie(event.target.getAttribute('href').match(regex)[0]);
-    // console.log(clickedDie);
+    setClickedDie((previousState) => {
+      let newClickedDie = event.target.getAttribute('href').match(regex)[0];
+      if(previousState === newClickedDie){
+        console.log('clicked same dice twice');
+        return previousState;
+      }
+      //else, change dice positions with setDicePositions
+
+      return newClickedDie;
+    });
   }
+  //in the game, switch positions in this context only applies if one's own dice are clicked first
+  // setDicePositions( (event) => {
+  //   let event.target.getAttribute('href').match(regex)[0]);
+  // }
   console.log(clickedDie);
   return (
     <MainContainer>
-
-      <h1>
-        Rapture
-      </h1>
         <FaceImageDefinitions />
         <DiceContainer>
-          <DieDiv dieNumber={clickedDie.pos1} onMouseDown={clickHandler}/>
-          <DieDiv dieNumber={clickedDie.pos2} onMouseDown={clickHandler}/>
-          <DieDiv dieNumber={clickedDie.pos3} onMouseDown={clickHandler}/>
-
-          {/* WHEN YOU SIT BACK DOWN, USE THE RETURN FUNCTION TO SPREAD/UPDATE THE FULL STATE WITH CLICKHANDLER  */}
-          {/* see below... if a position isn't accounted for in state, it means the dice no longer fills that space */}
-          {clickedDie.pos4 && <DieDiv dieNumber={clickedDie.pos4} onMouseDown={clickHandler}/>}
+          <DieDiv dieNumber={dicePositions.pos1} onMouseDown={clickHandler}/>
+          <DieDiv dieNumber={dicePositions.pos2} onMouseDown={clickHandler}/>
+          <DieDiv dieNumber={dicePositions.pos3} onMouseDown={clickHandler}/>
+          {dicePositions.pos4 && <DieDiv dieNumber={dicePositions.pos4} onMouseDown={clickHandler}/>}
         </DiceContainer>
-        <DiceContainer>
+        <DiceContainer player="player2">
           <DieDiv dieNumber="1" onMouseDown={clickHandler}/>
           <DieDiv dieNumber="3" onMouseDown={clickHandler}/>
           <DieDiv dieNumber="14" onMouseDown={clickHandler}/>
           <DieDiv dieNumber="20" onMouseDown={clickHandler}/>
+        </DiceContainer>
+        <DiceContainer onClick={clickedIsOwnHandler} player={thisPlayer1}>
+          <DieDiv dieNumber="15" onMouseDown={clickHandler}/>
+          <DieDiv dieNumber="7" onMouseDown={clickHandler}/>
+          <DieDiv dieNumber="2" onMouseDown={clickHandler}/>
+          <DieDiv dieNumber="8" onMouseDown={clickHandler}/>
         </DiceContainer>
       </MainContainer>
   );

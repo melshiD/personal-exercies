@@ -9,7 +9,8 @@ function App() {
   const [clickedDie, setClickedDie] = useState();
 
   const clickHandler = (event) => {
-    setClickedDie(event.target);
+    let regex = new RegExp(/[0-22]/);
+    setClickedDie(event.target.getAttribute('href').match(regex));
     console.log(clickedDie);
   }
 
@@ -22,7 +23,7 @@ function App() {
         <FaceImageDefinitions />
         <DiceContainer>
           <DieDiv dieNumber="12" onMouseDown={clickHandler}/>
-          <DieDiv dieNumber="13" onMouseDown={clickHandler}/>
+          <DieDiv dieNumber='6' onMouseDown={clickHandler}/>
           <DieDiv dieNumber="4" onMouseDown={clickHandler}/>
           <DieDiv dieNumber="21" onMouseDown={clickHandler}/>
         </DiceContainer>

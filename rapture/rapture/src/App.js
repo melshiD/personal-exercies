@@ -15,7 +15,7 @@ function App() {
   });
 
 
-  //WHEN YOU SIT BACK DOWN FIGURE OUT HOW TO BIND/BOUNDINGBOX THE CLICK TO WITHIN A SPECIFIC PLAYER'S POOL AREA
+  //DONT EVEN NEED TO FIND A BINDING!  JUST USE THE POSITIONS FROM THE STATE OBJECT AGAINST WHO HAS WHAT AT A PARTICULAR TIME
   const clickedIsOwnHandler = (event) => {
     if(event.target.getAttribute('data-player') == thisPlayer1){
       console.log('you are my own die');

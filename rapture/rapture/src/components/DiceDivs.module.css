@@ -84,8 +84,18 @@
         --die-width: 60px;
     }
 }
+@media screen and (max-width: 420px){
+    *{
+        --die-width: 54px;
+    }
+}
 @media screen and (max-width: 400px){
     *{
-        --die-width: 60px;
+        --die-width: 50px;
+    }
+}
+@media screen and (max-width: 377px){
+    *{
+        --die-width: 48px;
     }
 }

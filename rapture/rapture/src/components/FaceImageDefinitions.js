@@ -55,8 +55,8 @@ const FaceImageDefinitions = () => {
 
                     text {
                         font-family: "Almendra SC";
-                        // font-size: 60px;
                         font-size: 60px;
+                        
                     }
                 `}</style>
                     {/* <!-- value 1  --> */}

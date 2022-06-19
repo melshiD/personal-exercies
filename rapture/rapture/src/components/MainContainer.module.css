@@ -1,5 +1,5 @@
 .main-container {
-    background: url('../assets/woodGrain.svg');
+    /* background: url('../assets/woodGrain.svg'); */
     background-size: cover;
     box-sizing: border-box;
     perspective: 2000px;

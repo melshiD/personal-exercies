@@ -8,6 +8,16 @@ function App() {
 
   const thisPlayer1 = 'player1';
   
+  const initialPositionState = (numberOfPlayers) => {
+    //each player must have a red die, but others are randomly assigned
+    //for our prototype example we already know what will be red, but here
+    //we will just assume die 18, 19, 20 and 21
+    let availableDice = [...Array(numberOfPlayers*5).keys()].map(num=>num+1);
+    // for(let player of numberOfPlayers){
+      console.log(availableDice);
+    // }
+  }
+  initialPositionState(3);
   const [clickedDie, setClickedDie] = useState('1');
   const [clickedIsOwn, setClickIsOwn] = useState(false);
   const [dicePositions, setDicePositions] = useState({

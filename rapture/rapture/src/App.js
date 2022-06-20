@@ -9,24 +9,31 @@ function App() {
   const thisPlayer1 = 'player1';
   
   const initialPositionState = (numberOfPlayers) => {
+    let positionObject = {};
     //each player must have a red die, but others are randomly assigned
     //for our prototype example we already know what will be red, but here
     //we will just assume die 18, 19, 20 and 21
     let availableDice = [...Array(numberOfPlayers*5).keys()].map(num=>num+1);
-    // for(let player of numberOfPlayers){
-      console.log(availableDice);
-    // }
+    for(let player = numberOfPlayers; player > 0; player --){
+      for(let position = 5; position > 0; position -- ){
+        let diceLeft = availableDice.length;
+        positionObject[`pos${player}_${position}`] = availableDice.splice(Math.random()*diceLeft, 1)[0];
+      }
+    }
+    console.log(positionObject);
+    return positionObject;
   }
-  initialPositionState(3);
+  // initialPositionState(3);
   const [clickedDie, setClickedDie] = useState('1');
   const [clickedIsOwn, setClickIsOwn] = useState(false);
-  const [dicePositions, setDicePositions] = useState({
-    //position object may be produced at time of bag parsing and passed to this as state
-    pos1_1: "12", pos1_2: "11", pos1_3: "14", pos1_4: "13", pos1_5: '15', pos1_6: '3',
-    pos2_1: "12", pos2_2: "11", pos2_3: "14", pos2_4: "13", pos2_5: '6', pos2_6: '5',
-    pos3_1: "12", pos3_2: "11", pos3_3: "14", pos3_4: "13", pos3_5: '22', pos3_6: '21',
-    pos4_1: "12", pos4_2: "11", pos4_3: "14", pos4_4: "13", pos4_5: '18', pos4_6: '5',
-  });
+  const [dicePositions, setDicePositions] = useState(initialPositionState(4));
+  // const [dicePositions, setDicePositions] = useState({
+  //   //position object may be produced at time of bag parsing and passed to this as state
+  //   pos1_1: "12", pos1_2: "11", pos1_3: "14", pos1_4: "13", pos1_5: '15', pos1_6: '3',
+  //   pos2_1: "12", pos2_2: "11", pos2_3: "14", pos2_4: "13", pos2_5: '6', pos2_6: '5',
+  //   pos3_1: "12", pos3_2: "11", pos3_3: "14", pos3_4: "13", pos3_5: '22', pos3_6: '21',
+  //   pos4_1: "12", pos4_2: "11", pos4_3: "14", pos4_4: "13", pos4_5: '18', pos4_6: '5',
+  // });
 
 
   //DONT EVEN NEED TO FIND A BINDING!  JUST USE THE POSITIONS FROM THE STATE OBJECT AGAINST WHO HAS WHAT AT A PARTICULAR TIME

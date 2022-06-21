@@ -7,6 +7,11 @@ import React, { useEffect, useRef } from "react";
 
 const DieDiv = (props) => {
 
+    if(props.doubleClicked.doubleClicked && props.doubleClicked.die === props.dieNumber){
+        console.log(props.doubleClicked);
+        console.log('props:' + props);
+    }
+    
     // const dragInstance = useRef(null);
     // const dragTarget = useRef(null);
     // useEffect(() => {
@@ -25,7 +30,7 @@ const DieDiv = (props) => {
 
 
     return(
-            <div className={classes.die} >
+            <div className={classes.die}>
             {/* <div className={classes.die} > */}
                 <div className={`${classes['die-face']} ${classes.face0}`}>
                     <svg viewBox="0 0 200 200">

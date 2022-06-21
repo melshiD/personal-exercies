@@ -172,6 +172,14 @@ const dice_bag = () => {
             //         ["white", "black", "none", "hexagon", "",
             //             ["white", "red", "none", "circle", ""]]]
             // ],
+            [   //15 copied to stand in for a 19 right now
+                ["white", "red", "three", "square", "1"],
+                ["white", "red", "four", "circle", "5"],
+                ["white", "red", "four", "circle", "11"],
+                ["white", "red", "one", "square", "2"],
+                ["white", "black", "four", "square", "3"],
+                ["white", "black", "two", "square", "1"]
+            ],
             [   //20, First Red Die of Four in base set
                 ["red", "black", "three", "none", ""],
                 ["red", "black", "one", "none", ""],

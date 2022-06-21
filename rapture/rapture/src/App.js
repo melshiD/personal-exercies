@@ -12,7 +12,10 @@ function App(props) {
   const thisPlayer2 = 'playing';
   const thisPlayer3 = 'playing';
   const thisPlayer4 = 'playing';
-  
+  const randOf = (max) => {
+    return Math.floor(Math.random()*max)
+  }
+
   const initialPositionState = () => {
     let positionObject = {};
     //each player must have a red die, but others are randomly assigned
@@ -20,10 +23,19 @@ function App(props) {
     for(let player = 4; player > 0; player --){
       for(let position = 5; position > 0; position -- ){
         let diceLeft = availableDice.length;
-        positionObject[`pos${player}_${position}`]['dieNumber'] = availableDice.splice(Math.floor((Math.random()*diceLeft)), 1)[0].toString(10);
+        positionObject[`pos${player}_${position}`] = {'dieNumber': availableDice.splice(Math.floor((Math.random()*diceLeft)), 1)[0].toString(10)};
+        let showing = {'showing': `${randOf(6)}`};
+        let upEdge = {'upEdge': `0`}
+        positionObject[`pos${player}_${position}`] = {...positionObject[`pos${player}_${position}`], ...showing, ...upEdge};
+        // positionObject[`pos${player}_${position}`] = {'dieNumber': availableDice.splice(Math.floor((Math.random()*diceLeft)), 1)[0].toString(10)};
       }
       //assign red die (always presented as the last 4 of the array of dice)
-      positionObject[`pos${player}_6`]['dieNumber'] = `2${player - 1}`;
+      positionObject[`pos${player}_6`] = {'dieNumber': `2${player - 1}`};
+      let keyVal = {'showing': `${randOf(6)}`};
+      let upEdge = {'upEdge': `0`}
+      positionObject[`pos${player}_6`] = {...positionObject[`pos${player}_6`], ...keyVal, ...upEdge};
+
+      // positionObject[`pos${player}_6`]['dieNumber'] = `2${player - 1}`;
     }
     console.log(positionObject);
     return positionObject;
@@ -48,7 +60,7 @@ function App(props) {
       return newClickedDie;
     });
   }
-
+  let dp = dicePositions;
   console.log(clickedDie);
   return (
     <MainContainer>
@@ -57,42 +69,42 @@ function App(props) {
         
         {thisPlayer1 === "playing" && 
           <DiceContainer>
-            {dicePositions.pos1_1.dieNumber && <DieDiv dieNumber={dicePositions.pos1_1.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos1_2.dieNumber && <DieDiv dieNumber={dicePositions.pos1_2.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos1_3.dieNumber && <DieDiv dieNumber={dicePositions.pos1_3.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos1_4.dieNumber && <DieDiv dieNumber={dicePositions.pos1_4.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos1_5.dieNumber && <DieDiv dieNumber={dicePositions.pos1_5.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos1_6.dieNumber && <DieDiv dieNumber={dicePositions.pos1_6.dieNumber} onMouseDown={clickHandler}/>}
+            {dp.pos1_1.dieNumber && <DieDiv dieNumber={dp.pos1_1.dieNumber} showing={dp.pos1_1.showing} MouseDown={clickHandler}/>}
+            {dp.pos1_2.dieNumber && <DieDiv dieNumber={dp.pos1_2.dieNumber} onMouseDown={clickHandler}/>}
+            {dp.pos1_3.dieNumber && <DieDiv dieNumber={dp.pos1_3.dieNumber} onMouseDown={clickHandler}/>}
+            {dp.pos1_4.dieNumber && <DieDiv dieNumber={dp.pos1_4.dieNumber} onMouseDown={clickHandler}/>}
+            {dp.pos1_5.dieNumber && <DieDiv dieNumber={dp.pos1_5.dieNumber} onMouseDown={clickHandler}/>}
+            {dp.pos1_6.dieNumber && <DieDiv dieNumber={dp.pos1_6.dieNumber} onMouseDown={clickHandler}/>}
           </DiceContainer>
         }
         {thisPlayer2 === "playing" && 
           <DiceContainer player="player2">
-            {dicePositions.pos2_1 && <DieDiv dieNumber={dicePositions.pos2_1} onMouseDown={clickHandler}/>}
-            {dicePositions.pos2_2 && <DieDiv dieNumber={dicePositions.pos2_2} onMouseDown={clickHandler}/>}
-            {dicePositions.pos2_3 && <DieDiv dieNumber={dicePositions.pos2_3} onMouseDown={clickHandler}/>}
-            {dicePositions.pos2_4 && <DieDiv dieNumber={dicePositions.pos2_4} onMouseDown={clickHandler}/>}
-            {dicePositions.pos2_5 && <DieDiv dieNumber={dicePositions.pos2_5} onMouseDown={clickHandler}/>}
-            {dicePositions.pos2_6 && <DieDiv dieNumber={dicePositions.pos2_6} onMouseDown={clickHandler}/>}
+            {dicePositions.pos2_1.dieNumber && <DieDiv dieNumber={dicePositions.pos2_1.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos2_2.dieNumber && <DieDiv dieNumber={dicePositions.pos2_2.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos2_3.dieNumber && <DieDiv dieNumber={dicePositions.pos2_3.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos2_4.dieNumber && <DieDiv dieNumber={dicePositions.pos2_4.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos2_5.dieNumber && <DieDiv dieNumber={dicePositions.pos2_5.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos2_6.dieNumber && <DieDiv dieNumber={dicePositions.pos2_6.dieNumber} onMouseDown={clickHandler}/>}
           </DiceContainer>
         }
         {thisPlayer3 === "playing" && 
           <DiceContainer player="player2">
-            {dicePositions.pos3_1 && <DieDiv dieNumber={dicePositions.pos3_1} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_2 && <DieDiv dieNumber={dicePositions.pos3_2} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_3 && <DieDiv dieNumber={dicePositions.pos3_3} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_4 && <DieDiv dieNumber={dicePositions.pos3_4} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_5 && <DieDiv dieNumber={dicePositions.pos3_5} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_6 && <DieDiv dieNumber={dicePositions.pos3_6} onMouseDown={clickHandler}/>}
+            {dicePositions.pos3_1.dieNumber && <DieDiv dieNumber={dicePositions.pos3_1.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos3_2.dieNumber && <DieDiv dieNumber={dicePositions.pos3_2.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos3_3.dieNumber && <DieDiv dieNumber={dicePositions.pos3_3.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos3_4.dieNumber && <DieDiv dieNumber={dicePositions.pos3_4.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos3_5.dieNumber && <DieDiv dieNumber={dicePositions.pos3_5.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos3_6.dieNumber && <DieDiv dieNumber={dicePositions.pos3_6.dieNumber} onMouseDown={clickHandler}/>}
           </DiceContainer>
         }
         {thisPlayer4 === "playing" && 
           <DiceContainer>
-            {dicePositions.pos4_1 && <DieDiv dieNumber={dicePositions.pos4_1} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_2 && <DieDiv dieNumber={dicePositions.pos4_2} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_3 && <DieDiv dieNumber={dicePositions.pos4_3} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_4 && <DieDiv dieNumber={dicePositions.pos4_4} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_5 && <DieDiv dieNumber={dicePositions.pos4_5} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_6 && <DieDiv dieNumber={dicePositions.pos4_6} onMouseDown={clickHandler}/>}
+            {dicePositions.pos4_1.dieNumber && <DieDiv dieNumber={dicePositions.pos4_1.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos4_2.dieNumber && <DieDiv dieNumber={dicePositions.pos4_2.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos4_3.dieNumber && <DieDiv dieNumber={dicePositions.pos4_3.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos4_4.dieNumber && <DieDiv dieNumber={dicePositions.pos4_4.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos4_5.dieNumber && <DieDiv dieNumber={dicePositions.pos4_5.dieNumber} onMouseDown={clickHandler}/>}
+            {dicePositions.pos4_6.dieNumber && <DieDiv dieNumber={dicePositions.pos4_6.dieNumber} onMouseDown={clickHandler}/>}
           </DiceContainer>
         }
         <DiceContainer>

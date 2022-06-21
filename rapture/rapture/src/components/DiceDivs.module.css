@@ -79,6 +79,11 @@
         transform: translateY(-15px) rotateZ(360deg);
     }
 }
+@keyframes showingAnimation {
+    to{
+        transform: translateY(-15px) rotateZ(360deg);
+    }
+}
 @media screen and (max-width: 700px){
     *{
         --die-width: 60px;
@@ -98,4 +103,7 @@
     *{
         --die-width: 48px;
     }
+}
+.showing{
+    animation: showingAnimation 2s linear 0.5s forwards;
 }

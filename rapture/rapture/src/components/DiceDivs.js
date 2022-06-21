@@ -21,8 +21,12 @@ const DieDiv = (props) => {
     //   })
     // })
 
+    //WHEN YOU SIT BACK DOWN, BUILD A GOOD WAY TO RANDOMIZE AND ANIMATE THE ROLLING OF DIE BASED ON SHOWING VALUE
+
+
     return(
             <div className={classes.die} >
+            {/* <div className={classes.die} > */}
                 <div className={`${classes['die-face']} ${classes.face0}`}>
                     <svg viewBox="0 0 200 200">
                         <use href={`#die${props.dieNumber}_face0`} onMouseDown={props.onMouseDown}/>

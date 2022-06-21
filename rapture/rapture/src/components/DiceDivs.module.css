@@ -11,9 +11,9 @@
 .die {
     margin: calc(var(--die-width)/1.6);
     /* animation: roll 4s ease-in-out forwards; */
-    transform-origin: var(--trans-amount) var(--trans-amount) var(--trans-amount);
+    transform-origin: var(--trans-amount) var(--trans-amount);
     transform-style: preserve-3d;
-    transform: translateY(-15px);
+    /* transform: translateY(-15px); */
     /* transform: translateZ(var(--trans-amount)); */
 }
 .die:hover{

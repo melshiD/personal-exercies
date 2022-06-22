@@ -11,7 +11,7 @@ function App(props) {
   const thisPlayer1 = 'playing';
   const thisPlayer2 = 'playing';
   const thisPlayer3 = 'playing';
-  const thisPlayer4 = 'playing';
+  const thisPlayer4 = '';
   const randOf = (max) => {
     return Math.floor(Math.random()*max)
   }
@@ -41,45 +41,44 @@ function App(props) {
     return positionObject;
   }
 
-  const testPositions = {
-    "pos1_5": {
-      "dieNumber": "13",
-      "showing": "1",
-      "upEdge": "0"
-    },
-    "pos1_4": {
-      "dieNumber": "0",
-      "showing": "2",
-      "upEdge": "0"
-    },
-    "pos1_3": {
-      "dieNumber": "9",
-      "showing": "3",
-      "upEdge": "0"
-    },
-    "pos1_2": {
-      "dieNumber": "10",
-      "showing": "3",
-      "upEdge": "0"
-    },
-    "pos1_1": {
-      "dieNumber": "7",
-      "showing": "4",
-      "upEdge": "0"
-    },
-    "pos1_6": {
-      "dieNumber": "20",
-      "showing": "5",
-      "upEdge": "0"
-    }
-  }
+  // const testPositions = {
+  //   "pos1_5": {
+  //     "dieNumber": "13",
+  //     "showing": "4",
+  //     "upEdge": "0"
+  //   },
+  //   "pos1_4": {
+  //     "dieNumber": "0",
+  //     "showing": "2",
+  //     "upEdge": "0"
+  //   },
+  //   "pos1_3": {
+  //     "dieNumber": "9",
+  //     "showing": "3",
+  //     "upEdge": "0"
+  //   },
+  //   "pos1_2": {
+  //     "dieNumber": "10",
+  //     "showing": "3",
+  //     "upEdge": "0"
+  //   },
+  //   "pos1_1": {
+  //     "dieNumber": "7",
+  //     "showing": "4",
+  //     "upEdge": "0"
+  //   },
+  //   "pos1_6": {
+  //     "dieNumber": "20",
+  //     "showing": "5",
+  //     "upEdge": "0"
+  //   }
+  // }
 
   const [dieDoubleClicked, setDieDoubleClicked] = useState({'die': '', 'doubleClicked': true});
   const [clickedDie, setClickedDie] = useState('1');
   const [clickedIsOwn, setClickedIsOwn] = useState(false);
   const [dicePositions, setDicePositions] = useState( () => {
-                                                      // return initialPositionState();
-                                                      return testPositions;
+                                                      return initialPositionState();
                                                     });
 
   //Should I add dieDouleClicked to the positions array, and store most state there?
@@ -108,6 +107,9 @@ function App(props) {
 
         {thisPlayer1 === "playing" && 
           <DiceContainer>
+            {/* do this instead  */}
+            {/* {dp.pos1_1.dieNumber && <DieDiv {...dp.pos1_1} dieData={dp.pos1_1} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>} */}
+            {/* {dp.pos1_1.dieNumber && <DieDiv dieData={dp.pos1_1} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler.bind(this, )}/>} */}
             {dp.pos1_1.dieNumber && <DieDiv dieData={dp.pos1_1} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
             {dp.pos1_2.dieNumber && <DieDiv dieData={dp.pos1_2} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
             {dp.pos1_3.dieNumber && <DieDiv dieData={dp.pos1_3} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
@@ -116,36 +118,36 @@ function App(props) {
             {dp.pos1_6.dieNumber && <DieDiv dieData={dp.pos1_6} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
           </DiceContainer>
         }
-        {/* {thisPlayer2 === "playing" && 
-          <DiceContainer player="player2">
-            {dp.pos2_1.dieNumber && <DieDiv dieNumber={dp.pos2_1.dieNumber} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
-            {dp.pos2_2.dieNumber && <DieDiv dieNumber={dp.pos2_2.dieNumber} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
-            {dp.pos2_3.dieNumber && <DieDiv dieNumber={dp.pos2_3.dieNumber} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
-            {dp.pos2_4.dieNumber && <DieDiv dieNumber={dp.pos2_4.dieNumber} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
-            {dp.pos2_5.dieNumber && <DieDiv dieNumber={dp.pos2_5.dieNumber} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
-            {dp.pos2_6.dieNumber && <DieDiv dieNumber={dp.pos2_6.dieNumber} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+        {thisPlayer2 === "playing" && 
+          <DiceContainer>
+            {dp.pos2_1.dieNumber && <DieDiv dieData={dp.pos2_1} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos2_2.dieNumber && <DieDiv dieData={dp.pos2_2} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos2_3.dieNumber && <DieDiv dieData={dp.pos2_3} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos2_4.dieNumber && <DieDiv dieData={dp.pos2_4} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos2_5.dieNumber && <DieDiv dieData={dp.pos2_5} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos2_6.dieNumber && <DieDiv dieData={dp.pos2_6} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
           </DiceContainer>
-        } */}
-        {/* {thisPlayer3 === "playing" && 
-          <DiceContainer player="player2">
-            {dicePositions.pos3_1.dieNumber && <DieDiv dieNumber={dicePositions.pos3_1.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_2.dieNumber && <DieDiv dieNumber={dicePositions.pos3_2.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_3.dieNumber && <DieDiv dieNumber={dicePositions.pos3_3.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_4.dieNumber && <DieDiv dieNumber={dicePositions.pos3_4.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_5.dieNumber && <DieDiv dieNumber={dicePositions.pos3_5.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos3_6.dieNumber && <DieDiv dieNumber={dicePositions.pos3_6.dieNumber} onMouseDown={clickHandler}/>}
+        }
+        {thisPlayer3 === "playing" && 
+          <DiceContainer>
+            {dp.pos3_1.dieNumber && <DieDiv dieData={dp.pos3_1} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos3_2.dieNumber && <DieDiv dieData={dp.pos3_2} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos3_3.dieNumber && <DieDiv dieData={dp.pos3_3} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos3_4.dieNumber && <DieDiv dieData={dp.pos3_4} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos3_5.dieNumber && <DieDiv dieData={dp.pos3_5} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos3_6.dieNumber && <DieDiv dieData={dp.pos3_6} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
           </DiceContainer>
         }
         {thisPlayer4 === "playing" && 
           <DiceContainer>
-            {dicePositions.pos4_1.dieNumber && <DieDiv dieNumber={dicePositions.pos4_1.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_2.dieNumber && <DieDiv dieNumber={dicePositions.pos4_2.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_3.dieNumber && <DieDiv dieNumber={dicePositions.pos4_3.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_4.dieNumber && <DieDiv dieNumber={dicePositions.pos4_4.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_5.dieNumber && <DieDiv dieNumber={dicePositions.pos4_5.dieNumber} onMouseDown={clickHandler}/>}
-            {dicePositions.pos4_6.dieNumber && <DieDiv dieNumber={dicePositions.pos4_6.dieNumber} onMouseDown={clickHandler}/>}
+            {dp.pos4_1.dieNumber && <DieDiv dieData={dp.pos4_1} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos4_2.dieNumber && <DieDiv dieData={dp.pos4_2} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos4_3.dieNumber && <DieDiv dieData={dp.pos4_3} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos4_4.dieNumber && <DieDiv dieData={dp.pos4_4} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos4_5.dieNumber && <DieDiv dieData={dp.pos4_5} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
+            {dp.pos4_6.dieNumber && <DieDiv dieData={dp.pos4_6} doubleClicked={dieDoubleClicked} onMouseDown={clickHandler}/>}
           </DiceContainer>
-        } */}
+        }
         {/* <DiceContainer>
           <DieDiv dieNumber="holde" onMouseDown={clickHandler}/>
           <DieDiv dieNumber="holde" onMouseDown={clickHandler}/>

@@ -1,9 +1,6 @@
 import classes from './DiceDivs.module.css';
 import React, { useEffect, useRef } from "react";
 import {gsap} from 'gsap';
-// import { Draggable } from "gsap/Draggable";
-
-// gsap.registerPlugin(Draggable);
 
 const DieDiv = (props) => {
 
@@ -11,7 +8,7 @@ const DieDiv = (props) => {
     const thisDie = useRef();
     const extraMovement = (timesWhat) => {
         let returningValue = (Math.floor(Math.random()*4)+1)*timesWhat;
-        console.log(returningValue);
+        // console.log(returningValue);
         return returningValue;
     }
 
@@ -19,6 +16,7 @@ const DieDiv = (props) => {
     //It's imparative this object correspond with the transformations 
     //in CSS for the die faces to ensure the applicable properties of the faces
     //(per their svg iconography) can be tracked and the meaning applied according to the rules of the game
+    let extraneousDieMovement = extraMovement(360)+360;
     const showingSide = {
         '0': {'y': `${extraMovement(360)}`, 'x': `${extraMovement(360)}`},
         '1': {'y': `${extraMovement(360)+90}`, 'x': `${extraMovement(360)}`},
@@ -27,20 +25,23 @@ const DieDiv = (props) => {
         '4': {'y': `${extraMovement(360)}`, 'x': `${extraMovement(360)+90}`},
         '5': {'y': `${extraMovement(360)}`, 'x': `${extraMovement(360)+270}`}
     };
+    // const showingSide = {
+    //     '0': {'y': `${extraneousDieMovement}`, 'x': `${extraneousDieMovement}`},
+    //     '1': {'y': `${extraneousDieMovement+90}`, 'x': `${extraneousDieMovement}`},
+    //     '2': {'y': `${extraneousDieMovement+180}`, 'x': `${extraneousDieMovement}`},
+    //     '3': {'y': `${extraneousDieMovement+270}`, 'x': `${extraneousDieMovement}`},
+    //     '4': {'y': `${extraneousDieMovement}`, 'x': `${extraneousDieMovement+90}`},
+    //     '5': {'y': `${extraneousDieMovement}`, 'x': `${extraneousDieMovement+270}`}
+    // };
 
     useEffect( () => {
+        //for the first setup, before an actual roll, we can just pass a '0' to duration and use this gsap.to as a gsap.set
         gsap.to(thisDie.current, {rotationY: `${showingSide[dieData.showing]['y']}`, rotationX: `${showingSide[dieData.showing]['x']}`, duration: `${extraMovement(0.5)}`});
-    });
-    //WHY DO THE DIE 1. ROLL EACH TIME I CLICK THEM 2. NOT ROTATE ON THE X AXIS EACH TIME AS SHOULD BE THE
-    //this gsap.set is what was foiling my x-rotations, but how do I preset per this and also enable the animated version
-    // gsap.set(thisDie.current, {rotateX: `${showingSide[dieData.showing]['x']}`, rotateY: '46'});
+    }, [thisDie.current]);
 
     if(props.doubleClicked.doubleClicked && (props.doubleClicked.die === props.dieNumber)){
-        // console.log(props.doubleClicked);
+        console.log(props.doubleClicked);
     }
-    //SET SHOWING SIDE WITH GREENSOCK SET METHOD
-
-    //WHEN YOU SIT BACK DOWN, BUILD A GOOD WAY TO RANDOMIZE AND ANIMATE THE ROLLING OF DIE BASED ON SHOWING VALUE
 
     return(
             <div className={classes.die} ref={thisDie}>
@@ -84,7 +85,9 @@ export default DieDiv;
 
 
     
-    
+    // import { Draggable } from "gsap/Draggable";
+    // gsap.registerPlugin(Draggable);
+
     // const dragInstance = useRef(null);
     // const dragTarget = useRef(null);
     // useEffect(() => {

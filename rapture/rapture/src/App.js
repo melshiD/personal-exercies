@@ -11,7 +11,7 @@ function App(props) {
   const thisPlayer1 = 'playing';
   const thisPlayer2 = 'playing';
   const thisPlayer3 = 'playing';
-  const thisPlayer4 = '';
+  const thisPlayer4 = 'playing';
   const randOf = (max) => {
     return Math.floor(Math.random()*max)
   }
@@ -20,8 +20,8 @@ function App(props) {
     let positionObject = {};
     //each player must have a red die, but others are randomly assigned
     let availableDice = [...Array(20).keys()];
-    for(let player = 4; player > 0; player --){
-      for(let position = 5; position > 0; position -- ){
+    for(let player = 1; player < 5; player ++){
+      for(let position = 1; position < 6; position ++ ){
         let diceLeft = availableDice.length;
         positionObject[`pos${player}_${position}`] = {'dieNumber': availableDice.splice(Math.floor((Math.random()*diceLeft)), 1)[0].toString(10)};
         let showing = {'showing': `${randOf(6)}`};

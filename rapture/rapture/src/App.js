@@ -80,6 +80,7 @@ function App(props) {
   const [dicePositions, setDicePositions] = useState( () => {
                                                       return initialPositionState();
                                                     });
+  
 
   //Should I add dieDouleClicked to the positions array, and store most state there?
 
@@ -103,7 +104,7 @@ function App(props) {
   return (
     <MainContainer>
         <FaceImageDefinitions />
-        <h2 className={classes.h2}>Rapture</h2>
+        <h1 className={classes.h2}>Rapture</h1>
 
         {thisPlayer1 === "playing" && 
           <DiceContainer>

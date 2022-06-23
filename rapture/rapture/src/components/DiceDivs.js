@@ -37,10 +37,10 @@ const DieDiv = (props) => {
     useEffect( () => {
         //for the first setup, before an actual roll, we can just pass a '0' to duration and use this gsap.to as a gsap.set
         gsap.to(thisDie.current, {rotationY: `${showingSide[dieData.showing]['y']}`, rotationX: `${showingSide[dieData.showing]['x']}`, duration: `${extraMovement(0.5)}`});
-    }, [thisDie.current]);
+    }, []);
 
     if(props.doubleClicked.doubleClicked && (props.doubleClicked.die === props.dieNumber)){
-        console.log(props.doubleClicked);
+        console.log(props.doubleClicked.doubleClicked);
     }
 
     return(

@@ -56,37 +56,41 @@ return (
 );
 
 const state = {
-    player_1: [
-        {
-            pool: [
-                //when a die leaves a pool for a hand, the entry in the pool section of the state must be removed
-                    {dieIndex: '2', face: '3', edge:'1'},
-                    {dieIndex: '4', face: '3', edge:'1'},
-                    {dieIndex: '12', face: '4', edge:'1'},
-                    {dieIndex: '7', face: '6', edge:'1'},
-                    {dieIndex: '4', face: '3', edge:'1'},
-                    {dieIndex: '5', face: '1', edge:'1'}
-                ],
-            hand: [
-                //here we represent a hand containing only one die at the moment
-                    {dieIndex: '13', face: '1', edge:'3'}
-                ]
-        }],
-    player_2: [
-        {
-            pool: [
-                //when a die leaves a pool for a hand, the entry in the pool section of the state must be removed
-                    {dieIndex: '2', face: '3', edge:'1'},
-                    {dieIndex: '4', face: '3', edge:'1'},
-                    {dieIndex: '12', face: '4', edge:'1'},
-                    {dieIndex: '7', face: '6', edge:'1'},
-                    {dieIndex: '4', face: '3', edge:'1'},
-                    {dieIndex: '5', face: '1', edge:'1'}
-                ],
-            hand: [
-                //here we represent a hand containing only one die at the moment
-                    {dieIndex: '13', face: '1', edge:'3'}
-            ]
-        }
-    ]
+    player_1:
+    {
+        name: 'bilbo',
+        pool: [
+            { dieIndex: '2', face: '3', edge: '1' },
+            { dieIndex: '4', face: '3', edge: '1' },
+            { dieIndex: '12', face: '4', edge: '1' },
+            { dieIndex: '7', face: '6', edge: '1' },
+            { dieIndex: '4', face: '3', edge: '1' },
+            { dieIndex: '5', face: '1', edge: '1' }
+        ],
+        hand: [
+            { dieIndex: '13', face: '1', edge: '3' }
+        ]
+    }
 }
+
+const players = ['bilbo', 'bingham', 'bryce', 'bradley'];
+const buildInitialState = (players, diceBag) =>{//players is array of player names maybe?  add player order to state at end?
+    const initialState = {};
+    const availableDice = [...Array(diceBag.length).keys()].map( index => index.toString(10));
+    players.map( (player, index) => {
+        const thisPlayer = {};
+        const playerPool = [];
+        for(let i = 0; i < 6; i++){
+            let die = {
+                'dieIndex': `${availableDice.splice(Math.floor((Math.random()*diceLeft)), 1)[0]}`,
+                'face': `${Math.floor(Math.random()*6)}`,
+                'edge': `${Math.floor(Math.random()*4)}`
+            }
+            playerPool.push(die);
+        }
+        thisPlayer['name'] = player;
+        thisPlayer['pool'] = playerPool;
+        initialState[`player_${index}`] = thisPlayer;
+    });
+    return initialState;
+};

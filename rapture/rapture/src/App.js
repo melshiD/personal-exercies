@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react";
 import FaceImageDefinitions from './components/FaceImageDefinitions';
 import DieDiv from './components/DiceDivs';
+import {DieDiv as DieDiv2} from './components/DiceDivs2';
 import DiceContainer from './components/DiceContainer';
 import MainContainer from './components/MainContainer';
 import classes from './app.module.css';
@@ -164,12 +165,18 @@ function App(props) {
 }
 export default App;
 
+
+
+
+
+
+
 export function AlternateApp(props) {
   const playerNames = ['bilbo', 'bingham', 'bryce', 'bradley'];
 
-  const buildInitialState = (playerNames) => {//players is array of player names maybe?  add player order to state at end?
+  const buildInitialState = (playerNames) => {
     const initialState = {};
-    const availableDice = [...Array(20).keys()].map(index => index.toString(10));
+    const availableDice = [...Array(24).keys()].map(index => index.toString(10));
     const players = [];
     playerNames.map((playerName, index) => {
       const thisPlayer = {};
@@ -188,7 +195,7 @@ export function AlternateApp(props) {
       players.push({...thisPlayer});
       // initialState[`player_${index}`] = thisPlayer;
     });
-    initialState.players = {...players};
+    initialState.players = [...players];
     return initialState;
   };
 
@@ -205,23 +212,28 @@ export function AlternateApp(props) {
   }
 
   return (
-    <div>
-      {/* {state.players.map(player => (
-        <Pool>
-          {player.pool.map(({ index, face }) => {
-            const die = dice[index];
-            const isSelected = selected === index;
+    <MainContainer>
+      <FaceImageDefinitions />
 
-            return <DieDiv
-              selected={isSelected}
-              onSelect={onSelectDie.bind(this, isSelected ? null : index)}
-              face={face}
-              {...die}
+      {/* WHEN YOU SIT BACK DOWN, ADD A MAP FOR PLAYERS, THEN PLAYERS.POOL  */}
+      
+      {state.players.map(player => (
+        //Dustin, why is this arrow function having a paren and not a '{' at the start?
+        <DiceContainer>
+          {player.pool.map(({ dieIndex, face }) => {
+            const die = dieIndex;
+            // const isSelected = selected === index;
+
+            return <DieDiv2 die={die}
+              // selected={isSelected}
+              // onSelect={onSelectDie.bind(this, isSelected ? null : index)}
+              // face={face}
+              // {...die}
             />;
           })}
-        </Pool>
-      ))} */}
-    </div>
+        </DiceContainer>
+      ))}
+    </MainContainer>
   );
 }
 

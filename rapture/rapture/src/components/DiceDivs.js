@@ -25,27 +25,20 @@ const DieDiv = (props) => {
         '4': {'y': `${extraMovement(360)}`, 'x': `${extraMovement(360)+90}`},
         '5': {'y': `${extraMovement(360)}`, 'x': `${extraMovement(360)+270}`}
     };
-    // const showingSide = {
-    //     '0': {'y': `${extraneousDieMovement}`, 'x': `${extraneousDieMovement}`},
-    //     '1': {'y': `${extraneousDieMovement+90}`, 'x': `${extraneousDieMovement}`},
-    //     '2': {'y': `${extraneousDieMovement+180}`, 'x': `${extraneousDieMovement}`},
-    //     '3': {'y': `${extraneousDieMovement+270}`, 'x': `${extraneousDieMovement}`},
-    //     '4': {'y': `${extraneousDieMovement}`, 'x': `${extraneousDieMovement+90}`},
-    //     '5': {'y': `${extraneousDieMovement}`, 'x': `${extraneousDieMovement+270}`}
-    // };
 
     useEffect( () => {
         //for the first setup, before an actual roll, we can just pass a '0' to duration and use this gsap.to as a gsap.set
         gsap.to(thisDie.current, {rotationY: `${showingSide[dieData.showing]['y']}`, rotationX: `${showingSide[dieData.showing]['x']}`, duration: `${extraMovement(0.5)}`});
-    }, []);
+    }, [props.onMouseDown]);
 
     if(props.doubleClicked.doubleClicked && (props.doubleClicked.die === props.dieNumber)){
         console.log(props.doubleClicked.doubleClicked);
     }
 
+
+
     return(
             <div className={classes.die} ref={thisDie}>
-            {/* <div className={classes.die} > */}
                 <div className={`${classes['die-face']} ${classes.face0}`}>
                     <svg viewBox="0 0 200 200">
                         <use href={`#die${props.dieData.dieNumber}_face0`} onMouseDown={props.onMouseDown}/>

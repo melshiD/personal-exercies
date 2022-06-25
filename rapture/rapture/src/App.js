@@ -215,16 +215,15 @@ export function AlternateApp(props) {
     <MainContainer>
       <FaceImageDefinitions />
 
-      {/* WHEN YOU SIT BACK DOWN, ADD A MAP FOR PLAYERS, THEN PLAYERS.POOL  */}
+      {/* WHEN YOU SIT BACK DOWN, ADD A MAP FOR PLAYERS, THEN PLAYERS.POOL  ...ok it already has it!  what's up?*/}
       
       {state.players.map(player => (
         //Dustin, why is this arrow function having a paren and not a '{' at the start?
         <DiceContainer>
           {player.pool.map(({ dieIndex, face }) => {
-            const die = dieIndex;
             // const isSelected = selected === index;
 
-            return <DieDiv2 die={die}
+            return <DieDiv2 die={dieIndex}
               // selected={isSelected}
               // onSelect={onSelectDie.bind(this, isSelected ? null : index)}
               // face={face}

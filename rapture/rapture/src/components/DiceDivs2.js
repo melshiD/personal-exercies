@@ -8,13 +8,13 @@ export const DieDiv = (props) => {
     const faces = ['0', '1', '2', '3', '4', '5'];
     return (
         <div className={classes.die} >
-        {faces.map((faceNumber) => {
+        {faces.map((faceNumber) => (
                 <div classname={`${classes['die-face']}`}>
                     <svg viewBox="0 0 200 200">
                         <use href={`#die${props.die}_face${faceNumber}`} />
                     </svg>
                 </div>
-            }
+            )
         )}
         </div>
     )

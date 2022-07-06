@@ -7,11 +7,14 @@ async function doScreenCapture(url, site_name) {
   // const d = new Date();
   // const current_time = `${d.getFullYear()}_${d.getMonth() + 1}_${d.getDate()}_${d.getHours()}_${d.getMinutes()}`
 
-  let windowWidth = 1920;
-  let windowHeight = 1080;
+  // let windowWidth = 1920;
+  // let windowHeight = 1080;
+  let deviceSizeKey = [{pixil5 : '393, 851'}];
+  // let mobileSize = deviceSizeKey[0]'393, 851';
   const browser = await puppeteer.launch({ 
     headless: true,
-    args: [`--window-size=1920,1080`] 
+    // args: [`--window-size=1920,1080`] 
+    args: [`--window-size=393,851`] 
   });
 
   const page = await browser.newPage();
@@ -30,6 +33,9 @@ async function doScreenCapture(url, site_name) {
 }
 
 
+//
+//WHEN YUOU SIT BACK DOWN, CONTINUE TO BUILD THE PAGE STYLE-WATCH
+//
 const newSites = fs.readFileSync('C:/Users/davem/Coding/personal_exercises/myNewsShotProject/bookmarks/bookmark_url_arrays/url_array.txt').toString('utf-8');
 let sitesByLine = newSites.split('\n');
 
@@ -45,4 +51,5 @@ const loopAndGetSnapshot = async (siteList) => {
 // loopAndGetSnapshot(sitesByLine);
 
 //Need to return a list of any links that didn't make it
-doScreenCapture('C:/Users/davem/Coding/personal_exercises/myNewsShotProject/big_link_no_scroll_div.html', 'meta_divs_full');
+// doScreenCapture('C:/Users/davem/Coding/personal_exercises/myNewsShotProject/big_link_no_scroll_div.html', 'meta_divs_full');
+doScreenCapture('https://stackoverflow.com/questions/3437786/get-the-size-of-the-screen-current-web-page-and-browser-window', 'get_size_393_851_7_6_2022');

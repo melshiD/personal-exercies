@@ -213,13 +213,12 @@ export function AlternateApp(props) {
 
   return (
     <MainContainer>
+      <h1>Hello!</h1>
       <FaceImageDefinitions />
-
-      {/* WHEN YOU SIT BACK DOWN, ADD A MAP FOR PLAYERS, THEN PLAYERS.POOL  ...ok it already has it!  what's up?*/}
       
       {state.players.map(player => (
         //Dustin, why is this arrow function having a paren and not a '{' at the start?
-        <DiceContainer>
+        <DiceContainer key={player}>
           {player.pool.map(({ dieIndex, face }) => {
             // const isSelected = selected === index;
 
@@ -235,148 +234,3 @@ export function AlternateApp(props) {
     </MainContainer>
   );
 }
-
-// {
-//   "players": {
-//       "0": {
-//           "name": "bilbo",
-//           "pool": [
-//               {
-//                   "dieIndex": "5",
-//                   "face": "4",
-//                   "edge": "0"
-//               },
-//               {
-//                   "dieIndex": "10",
-//                   "face": "3",
-//                   "edge": "2"
-//               },
-//               {
-//                   "dieIndex": "18",
-//                   "face": "0",
-//                   "edge": "1"
-//               },
-//               {
-//                   "dieIndex": "2",
-//                   "face": "2",
-//                   "edge": "2"
-//               },
-//               {
-//                   "dieIndex": "7",
-//                   "face": "2",
-//                   "edge": "2"
-//               },
-//               {
-//                   "dieIndex": "4",
-//                   "face": "3",
-//                   "edge": "2"
-//               }
-//           ]
-//       },
-//       "1": {
-//           "name": "bingham",
-//           "pool": [
-//               {
-//                   "dieIndex": "9",
-//                   "face": "5",
-//                   "edge": "0"
-//               },
-//               {
-//                   "dieIndex": "12",
-//                   "face": "2",
-//                   "edge": "0"
-//               },
-//               {
-//                   "dieIndex": "14",
-//                   "face": "5",
-//                   "edge": "2"
-//               },
-//               {
-//                   "dieIndex": "15",
-//                   "face": "3",
-//                   "edge": "0"
-//               },
-//               {
-//                   "dieIndex": "1",
-//                   "face": "0",
-//                   "edge": "0"
-//               },
-//               {
-//                   "dieIndex": "16",
-//                   "face": "4",
-//                   "edge": "2"
-//               }
-//           ]
-//       },
-//       "2": {
-//           "name": "bryce",
-//           "pool": [
-//               {
-//                   "dieIndex": "6",
-//                   "face": "1",
-//                   "edge": "2"
-//               },
-//               {
-//                   "dieIndex": "0",
-//                   "face": "4",
-//                   "edge": "0"
-//               },
-//               {
-//                   "dieIndex": "11",
-//                   "face": "1",
-//                   "edge": "3"
-//               },
-//               {
-//                   "dieIndex": "13",
-//                   "face": "5",
-//                   "edge": "3"
-//               },
-//               {
-//                   "dieIndex": "19",
-//                   "face": "2",
-//                   "edge": "1"
-//               },
-//               {
-//                   "dieIndex": "3",
-//                   "face": "1",
-//                   "edge": "0"
-//               }
-//           ]
-//       },
-//       "3": {
-//           "name": "bradley",
-//           "pool": [
-//               {
-//                   "dieIndex": "8",
-//                   "face": "3",
-//                   "edge": "1"
-//               },
-//               {
-//                   "dieIndex": "17",
-//                   "face": "5",
-//                   "edge": "0"
-//               },
-//               {
-//                   "dieIndex": "undefined",
-//                   "face": "0",
-//                   "edge": "0"
-//               },
-//               {
-//                   "dieIndex": "undefined",
-//                   "face": "1",
-//                   "edge": "2"
-//               },
-//               {
-//                   "dieIndex": "undefined",
-//                   "face": "1",
-//                   "edge": "1"
-//               },
-//               {
-//                   "dieIndex": "undefined",
-//                   "face": "4",
-//                   "edge": "2"
-//               }
-//           ]
-//       }
-//   }
-// }

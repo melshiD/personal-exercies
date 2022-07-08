@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Show Off SVG</title>
+    <style>
+        svg{
+            width: 200px;
+
+        }
+        circle{
+            stroke: purple;
+            stroke-width: 2;
+        }
+        #defs_svg{
+            width: 0;
+            height: 0px;
+            display: inline-block;
+        }
+        .svg-text{
+            font-size:  70px;
+            text-shadow: 3px 2px purple;
+            color: transparent;
+        }
+        h2{
+            color: transparent;
+            text-shadow: 4px 5px rgba(199, 117, 130, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <h1>Showing off SVG</h1>
+    <svg viewBox="0 0 200 200" id="defs_svg">
+        <defs>
+            <symbol id="name">
+                <text x="20" y="50" class="svg-text">DEV!</text>
+            </symbol>
+            <linearGradient id="myGradient" gradientTransform="rotate(90)">
+                <stop offset="5%"  stop-color="green" />
+                <stop offset="40%"  stop-color="#0f4503" />
+                <stop offset="95%" stop-color="purple" />
+              </linearGradient>
+            <symbol id="poopers">
+                <circle cx="100" cy="100" r="50" fill="url(#myGradient)" ></circle>
+                <circle cx="140" cy="100" r="50" fill="url(#myGradient)" ></circle>
+                <circle cx="100" cy="50" r="50" fill="url(#myGradient)" stroke-width="4" ></circle>
+            </symbol>
+        </defs>
+    </svg>
+    <h2>After the defs</h2>
+    <svg viewBox="0 0 200 200">
+        <use href="#name"></use>
+        <use href="#poopers"></use>
+    </svg>
+</body>
+</html>

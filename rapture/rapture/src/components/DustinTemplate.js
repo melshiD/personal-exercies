@@ -38,12 +38,12 @@ function onSelectDie(index) {
 return (
 	<div>
 		{state.players.map(player => (
-			<Hand>
+			<Hand key={player}>
 				{player.hand.map(({ index, face }) => {
 					const die = dice[index];
 					const isSelected = selected === index;
 
-					return <DieDiv
+					return <DieDiv key={`player${player}_die${index}`}
 						selected={isSelected}
 						onSelect={onSelectDie.bind(this, isSelected ? null : index)}
 						face={face}
@@ -76,13 +76,14 @@ const state = {
 const players = ['bilbo', 'bingham', 'bryce', 'bradley'];
 const buildInitialState = (players, diceBag) =>{//players is array of player names maybe?  add player order to state at end?
     const initialState = {};
-    const availableDice = [...Array(diceBag.length).keys()].map( index => index.toString(10));
+    // const availableDice = [...Array(diceBag.length).keys()].map( index => index.toString(10));
+    const availableDice = [...Array(20).keys()].map( index => index.toString(10));
     players.map( (player, index) => {
         const thisPlayer = {};
         const playerPool = [];
         for(let i = 0; i < 6; i++){
             let die = {
-                'dieIndex': `${availableDice.splice(Math.floor((Math.random()*diceLeft)), 1)[0]}`,
+                'dieIndex': `${availableDice.splice(Math.floor((Math.random()*availableDice.length)), 1)[0]}`,
                 'face': `${Math.floor(Math.random()*6)}`,
                 'edge': `${Math.floor(Math.random()*4)}`
             }

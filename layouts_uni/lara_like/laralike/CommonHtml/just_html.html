@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Component build playground</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Almendra+SC&family=Poppins:wght@500&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 4rem;
+            font-family: 'Poppins', Helvetica, Arial, sans-serif;
+        }
+
+        .li-parent {
+            position: relative;
+            display: flex;
+            transition: background-color 300ms;
+            color: white;
+            background-color: #18273f;
+            border-radius: 14px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            padding: 2rem 4rem;
+            height: 145px;
+        }
+
+        .li-parent:hover {
+            background-color: #21395f;
+        }
+
+        .num-and-circle {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            padding-right: 0;
+            margin-right: 6rem;
+            font-weight: 800;
+        }
+
+        .circle {
+            display: flex;
+            align-items: center;
+        }
+
+        .progress-outer-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 999px;
+        }
+
+        .radial-progress-container {
+            border-radius: inherit;
+            height: 62px;
+            width: 62px;
+        }
+
+        .radial-progress-inner {
+            width: 58px;
+        }
+
+        .number-text-container {
+            /* this class is under question until further notice  */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            border-radius: 999px;
+        }
+
+        .class-number {
+            font-size: 1.7rem;
+        }
+
+        /* .radial-progress-bar{
+            align-self: center;
+        } */
+        .content-details {
+            display: flex;
+            flex-grow: 1;
+        }
+
+        .content-title-container {
+            margin-bottom: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .content-title {
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="li-parent">
+        <div class="num-and-circle">
+            <div class="namelessDiv">
+                <div class="anotherNamelessDiv">
+                    <div class="circle">
+                        <div class="unnamed-div">
+                            <a>
+                                <div class="progress-outer-container">
+                                    <div class="radial-progress-container">
+                                        <div class="radial-progress-inner">
+                                            <div class="number-text-container">
+                                                <span class="class-number">05</span>
+                                            </div>
+                                        </div>
+                                        <svg class="radial-progress-bar" width="62" height="62" version="1.1">
+                                            <defs>
+                                                <radialGradient id="radial-gradient94299.45209988467"
+                                                    fx="0.003253708598291216" fy="0.5569484150670467" cx="0.5" cy="0.5"
+                                                    r="0.65">
+                                                    <stop offset="30%" stop-color="#EC454F"></stop>
+                                                    <stop offset="100%" stop-color="#EC454F"></stop>
+                                                </radialGradient>
+                                            </defs>
+                                            <circle r="29" cx="31" cy="31" fill="transparent" stroke="rgba(0,0,0,.50)"
+                                                stroke-dasharray="182.212373908208" stroke-dashoffset="0"
+                                                stroke-linecap="round"
+                                                style="height: 62px; width: 62px; stroke-width: 2px;"></circle>
+                                            <circle transform="rotate(270, 31,31)" r="29" cx="31" cy="31"
+                                                fill="transparent" stroke="url(#radial-gradient94299.45209988467)"
+                                                stroke-dasharray="182.212373908208" stroke-dashoffset="182.212373908208"
+                                                stroke-linecap="round"
+                                                style="height: 62px; width: 62px; stroke-width: 2px; stroke-dashoffset: 92.9283; transition: stroke-dashoffset 1000ms linear 0s;">
+                                            </circle>
+                                        </svg>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-details">
+                <div>
+                    <div class="content-title-container">
+                        <h4 class="content-title">
+                            <a>
+                                Here is a title
+                            </a>
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</body>
+
+</html>

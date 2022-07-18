@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circ in circ flex test</title>
+    <style>
+        body {
+            padding: 4rem;
+            font-family: 'Poppins', Helvetica, Arial, sans-serif;
+        }
+
+        #episode-1993 {
+            position: relative;
+            display: flex;
+            transition: background-color 300ms;
+            color: white;
+            background-color: #18273f;
+            border-radius: 14px;
+            cursor: pointer;
+            margin-bottom: 10px;
+            padding: 1rem 2rem;
+            height: 145px;
+        }
+        .circ-and-num-container{
+            align-self: center;
+            position:relative;
+            padding-right: 0;
+            font-weight: 400;
+            margin-right: 1.7rem;
+        }
+        .circle{
+            display: flex;
+            align-items: center;
+        }
+        .inside-a{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: #2c4e82;
+        }
+        .radial-progress-container{
+            position: relative;
+            border-radius: 50%;
+            width: 62px;
+            height: 62px;
+            /* background-color: #1b3152; */
+;
+        }
+        .radial-progress-inner{
+            width: 58px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            left: 0;
+            margin: 0 auto;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+        .span-container{
+            width: 62px;
+            height: 62px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .text-2xl{
+            font-size: 1.5rem;
+            line-height: 2rem;
+        }
+        .radial-progress-bar{
+            color: inherit;
+            display: block;
+            vertical-align: middle;
+            width: 62px;
+            height: 62px;
+        }
+        circle{
+            stroke-width: 2px;
+            fill: #1b3152
+        }
+        .episode-list-details{
+            display: flex;
+            flex: 1 1 0%;
+            align-items: flex-start;
+            flex-direction: column;
+            justify-content: center;
+            padding-left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <li id="episode-1993">
+        <div class="circ-and-num-container">
+            <div>
+                <div>
+                    <div class="circle">
+                        <a class="inherits-color cursor-pointer">
+                            <div class="inside-a">
+                                <div class="radial-progress-container rounded-full">
+                                    <div class="radial-progress-inner">
+                                        <div class="span-container">
+                                            <span class="text-2xl">05</span>
+                                        </div>
+                                    </div>
+                                    <svg class="radial-progress-bar" width="62" height="62" version="1.1">
+                                        <defs>
+                                            <radialGradient id="radial-gradient64643.34973368262"
+                                                fx="0.003253708598291216" fy="0.5569484150670467" cx="0.5" cy="0.5"
+                                                r="0.65">
+                                                <stop offset="30%" stop-color="#EC454F"></stop>
+                                                <stop offset="100%" stop-color="#EC454F"></stop>
+                                            </radialGradient>
+                                        </defs>
+                                        <circle r="29" cx="31" cy="31" stroke="rgba(0,0,0,.50)"
+                                            stroke-dasharray="182.212373908208" stroke-dashoffset="0"
+                                            stroke-linecap="round">
+                                        </circle>
+                                        <circle transform="rotate(270, 31,31)" r="29" cx="31" cy="31"
+                                            stroke="url(#radial-gradient64643.34973368262)"
+                                            stroke-dasharray="182.212373908208" stroke-dashoffset="182.212373908208"
+                                            stroke-linecap="round"
+                                            style="stroke-dashoffset: 92.9283; transition: stroke-dashoffset 1000ms linear 0s;"
+                                            >
+                                        </circle>
+                                    </svg>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="episode-list-details flex flex-1 mobile:border-b-0">
+            <div>
+                <div class="items-center justify-between mb-3">
+                    <h4
+                        class="episode-list-title flex items-center link inherits-color text-xl font-bold md:text-lg lg:text-xl lg:leading-none">
+                        <a class="md:clamp one-line leading-normal inherits-color" title="How a Route Loads a View"
+                            href="/episodes/1993">How a Route Loads a View</a></h4>
+                </div>
+            </div>
+            <div class="episode-list-excerpt generic-content text-sm lg:block">
+                <p class="clamp two-lines font-normal">
+                    Let's begin with the basics. If you load the home page for any new Laravel app in the browser,
+                    you'll see a basic "welcome" splash page. In this lesson, we'll figure out how a route "listens" for
+                    a URI and then loads a view (or HTML) in response.
+                </p>
+            </div>
+            <div class="mt-auto w-full hidden md:flex md:items-center"><span
+                    class="text-3xs text-grey-800 mr-4 font-medium uppercase"> Episode 5</span><span
+                    class="mr-3 inline-flex items-center"><svg width="10" viewBox="0 0 10 10" class="text-grey-800">
+                        <g fill="none" fill-rule="evenodd">
+                            <g>
+                                <g>
+                                    <g>
+                                        <g>
+                                            <path class="fill-current"
+                                                d="M5 2C2.25 2 0 4.25 0 7s2.25 5 5 5 5-2.25 5-5-2.25-5-5-5zm2.282 6.923L4.615 7.318v-3.01h.77v2.608l2.307 1.355-.41.652z"
+                                                transform="translate(-978.000000, -378.000000) translate(330.000000, 364.000000) translate(444.000000, 8.000000) translate(204.000000, 4.000000)">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </svg><span class="ml-1 text-3xs text-grey-800 text-xs font-medium lg:text-2xs">4:32
+                        minutes</span></span>
+                <!---->
+            </div>
+        </div>
+    </li>
+</body>
+
+</html>

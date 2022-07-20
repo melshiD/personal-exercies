@@ -1,0 +1,30 @@
+.menu-row-container{
+    margin-top: 2rem;
+    width: 100%;
+    height: 60px;
+    padding: auto;
+}
+
+.list-container{
+    max-width: 1190px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.list{
+    width: 100%;
+    display: flex;
+    margin: 0 auto;
+    justify-content: space-between;
+    line-height: 1.4rem;
+}
+.list>li{
+    font-size: 1.3rem;
+    margin: 1rem 1.2rem;
+    color: #243142;
+    font-weight: 400;
+}
+.list>li:hover{
+    border-bottom: solid 2px red;
+    transition: border 300ms;
+}

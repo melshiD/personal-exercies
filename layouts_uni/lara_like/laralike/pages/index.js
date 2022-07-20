@@ -4,6 +4,8 @@ import Nav from '../components/Nav'
 import styles from '../styles/Home.module.css'
 import Card from '../components/Card';
 import PadRow from '../components/PadRow';
+import MenuRow from '../components/MenuRow';
+import Banner from '../components/Banner';
 
 export default function Home() {
   return (
@@ -17,6 +19,8 @@ export default function Home() {
     <Nav></Nav>
 
       <PadRow></PadRow>
+      <MenuRow></MenuRow>
+      <Banner image="../public/images/about-banner-desktop.jpg"></Banner>
       <main className={styles.main}>
         <h1 className={styles.title}>
           Welcome to <a href="https://nextjs.org">Next.js!</a>

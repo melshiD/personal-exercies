@@ -64,7 +64,7 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
     // vertical padding + font size from searchIcon
     paddingLeft: `calc(1em + ${theme.spacing(4)})`,
     transition: theme.transitions.create('width'),
-    width: '100%',
+    width: '50%',
     [theme.breakpoints.up('sm')]: {
       width: '12ch',
       '&:focus': {
@@ -79,23 +79,26 @@ const SearchAppBar = () => {
   return (
       <AppBar sx={{'background-color': '#990000'}} position="sticky">
         <Toolbar>
-          <IconButton
+          <Typography
+            variant="h5"
+            noWrap
+            component="div"
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' }, marginLeft: '2rem' }}
+          >
+            Indiana University Bloomington 
+          </Typography>
+                    <IconButton
             size="large"
             edge="start"
             // color = {theme.palette.common.red}
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-            <MenuIcon />
           </IconButton>
-          <Typography
-            variant="h5"
-            noWrap
-            component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
-          >
-            Indiana University Bloomington 
-          </Typography>
+          <MenuIcon 
+            sx={{ marginRight: '0.8125rem' }}
+          />
+
           <Search>
             <SearchIconWrapper>
               <SearchIcon />

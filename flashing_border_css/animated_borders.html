@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Underline animations</title>
+    <style>
+        html,
+        body {
+            background: rgb(20, 20, 20);
+            text-align: center;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .svg-wrapper {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            margin: 0 auto;
+            width: 320px;
+        }
+
+        .shape {
+            stroke-dasharray: 0 474;
+            /* stroke-dasharray: 140 540; */
+            stroke-dashoffset: -474;
+            stroke-width: 8px;
+            fill: transparent;
+            stroke: #19f6e8;
+            border-bottom: 5px solid black;
+            transition: stroke-width 1s, stroke-dashoffset 1s, stroke-dasharray 1s;
+        }
+
+        .text {
+            font-family: 'Roboto Condensed';
+            font-size: 22px;
+            line-height: 32px;
+            letter-spacing: 8px;
+            color: #fff;
+            top: -48px;
+            position: relative;
+        }
+
+        .svg-wrapper:hover .shape {
+            stroke-width: 2px;
+            stroke-dashoffset: 0;
+            stroke-dasharray: 760;
+        }
+        hr{
+            width: 300px;
+            background-color: red;
+            border-color: red;
+            transform: scale(.2);
+            transition: transform 2s;
+        }
+        hr:hover{
+            background-color: red;
+            transition: transform 2s;
+            transform: scale(1);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="svg-wrapper">
+        <svg viewBox="0 0 320 60" height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+            <text x="0" y="0" class="text">David Melsheimer</text>
+
+            <rect class="shape" height="60" width="320" />
+        </svg>
+    </div>
+    <div>
+        <hr>
+    </div>
+    
+    <div class="svg-wrapper">
+        <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+            <rect class="shape" height="60" width="320" />
+            <div x="0" y="0" class="text">Monty Carlo</div>
+        </svg>
+    </div>
+    <div class="svg-wrapper">
+        <svg height="60" width="320" xmlns="http://www.w3.org/2000/svg">
+            <rect class="shape" height="60" width="320" />
+            <div x="0" y="0" class="text">Mikes'</div>
+        </svg>
+    </div>
+</body>
+
+</html>

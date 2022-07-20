@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circ in circ flex test</title>
+    <title>Recreation test</title>
     <style>
         body {
             padding: 4rem;
@@ -86,11 +86,59 @@
         }
         .episode-list-details{
             display: flex;
-            flex: 1 1 0%;
+            /* flex: 1 1 1; */
             align-items: flex-start;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             padding-left: 0;
+        }
+        .nameless-2{
+            flex: 1;
+            padding: 0;
+            box-sizing: border-box;
+            /* display: inline-block; */
+        }
+        .episode-heading-container{
+            /* display: flex; */
+            justify-content: space-between;
+            background-color: purple;
+            align-items: center;
+            margin-bottom: 0 0 0.75rem 0;
+            line-height: 1rem;
+        }
+        .episode-list-title{
+            font-size: 1.333rem;
+            font-weight: 700;
+            font-family: Cabin, sans-serif;
+            letter-spacing: 0.02rem;
+        }
+        .episode-link{
+            color: inherit;
+            text-decoration: none;
+            cursor: pointer;
+            transition: background-color .3s, border .3s;
+            align-self: flex-start;
+        }
+        .episode-list-excerpt{
+            flex: 1;
+            display:block;
+            font-size: 0.867rem;
+            word-break: break-word;
+            -webkit-line-clamp: 2;
+            line-clamp: 2;
+            display: -webkit-box;
+            /* overflow: hidden; */
+            -webkit-box-orient: vertical;
+        }
+        .clamp-two-lines-font-normal{
+            font-weight: 500;
+            margin-bottom: 0;
+            letter-spacing: 0;
+
+        }
+        .name-and-length{
+            /* margin-top: auto; */
+            flex: 1;
         }
     </style>
 </head>
@@ -137,23 +185,24 @@
                 </div>
             </div>
         </div>
-        <div class="episode-list-details flex flex-1 mobile:border-b-0">
-            <div>
-                <div class="items-center justify-between mb-3">
-                    <h4
-                        class="episode-list-title flex items-center link inherits-color text-xl font-bold md:text-lg lg:text-xl lg:leading-none">
-                        <a class="md:clamp one-line leading-normal inherits-color" title="How a Route Loads a View"
-                            href="/episodes/1993">How a Route Loads a View</a></h4>
+        <div class="episode-list-details">
+            <div class="nameless-2">
+                <div class="episode-heading-container">
+                    <h4 class="episode-list-title">
+                        <a class="episode-link" title="How to milk a mountain"
+                            href="/episodes/1993">How to Milk a Mountain
+                        </a>
+                    </h4>
                 </div>
             </div>
-            <div class="episode-list-excerpt generic-content text-sm lg:block">
-                <p class="clamp two-lines font-normal">
-                    Let's begin with the basics. If you load the home page for any new Laravel app in the browser,
-                    you'll see a basic "welcome" splash page. In this lesson, we'll figure out how a route "listens" for
-                    a URI and then loads a view (or HTML) in response.
+            <div class="episode-list-excerpt">
+                <p class="clamp-two-lines-font-normal">
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Explicabo recusandae sunt, perspiciatis aliquam, aspernatur illum, asperiores quas ipsa ullam minima amet dignissimos voluptatibus.
                 </p>
             </div>
-            <div class="mt-auto w-full hidden md:flex md:items-center"><span
+            <!-- <div class="mt-auto w-full hidden md:flex md:items-center"> -->
+            <div class="name-and-length">
+                <span
                     class="text-3xs text-grey-800 mr-4 font-medium uppercase"> Episode 5</span><span
                     class="mr-3 inline-flex items-center"><svg width="10" viewBox="0 0 10 10" class="text-grey-800">
                         <g fill="none" fill-rule="evenodd">

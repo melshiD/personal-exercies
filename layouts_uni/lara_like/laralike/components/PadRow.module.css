@@ -1,0 +1,40 @@
+
+.row .pad{
+    margin-top: 3rem;
+}
+
+.row {
+    box-sizing: border-box;
+    padding: 2px 6rem;
+    max-width: 100%;
+    /* margin-left: auto;
+    margin-right: auto; */
+    position: relative;
+    border-top: #4A3C31 solid 2px;
+
+}
+
+.show-for-large{
+
+}
+
+.small-caps{
+    margin-top: 1.3rem;
+    font-family: "BentonSansRegular",Helvetica,Arial,sans-serif;
+    color: #6e635a;
+    font-size: 1rem;
+    line-height: rem;
+    text-transform: uppercase;
+}
+
+.title{
+    font-family: inherit;
+    color: #4A3C31;
+    font-size: 1.8125rem;
+    margin: 0 0;
+    line-height: 1.8125rem;
+}
+
+.titleLink{
+    font-weight: 700;
+}

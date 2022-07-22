@@ -6,6 +6,7 @@ import Card from '../components/Card';
 import PadRow from '../components/PadRow';
 import MenuRow from '../components/MenuRow';
 import Banner from '../components/Banner';
+import MenuAppBar from '../components/Nav2';
 
 export default function Home() {
   return (
@@ -16,8 +17,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-    <Nav></Nav>
-
+    {/* <Nav></Nav> */}
+    
+    <MenuAppBar></MenuAppBar>
       <PadRow></PadRow>
       <MenuRow></MenuRow>
       <Banner image="../public/images/about-banner-desktop.jpg"></Banner>

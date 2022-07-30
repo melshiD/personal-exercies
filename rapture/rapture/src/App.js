@@ -42,39 +42,6 @@ function App(props) {
     return positionObject;
   }
 
-  // const testPositions = {
-  //   "pos1_5": {
-  //     "dieNumber": "13",
-  //     "showing": "4",
-  //     "upEdge": "0"
-  //   },
-  //   "pos1_4": {
-  //     "dieNumber": "0",
-  //     "showing": "2",
-  //     "upEdge": "0"
-  //   },
-  //   "pos1_3": {
-  //     "dieNumber": "9",
-  //     "showing": "3",
-  //     "upEdge": "0"
-  //   },
-  //   "pos1_2": {
-  //     "dieNumber": "10",
-  //     "showing": "3",
-  //     "upEdge": "0"
-  //   },
-  //   "pos1_1": {
-  //     "dieNumber": "7",
-  //     "showing": "4",
-  //     "upEdge": "0"
-  //   },
-  //   "pos1_6": {
-  //     "dieNumber": "20",
-  //     "showing": "5",
-  //     "upEdge": "0"
-  //   }
-  // }
-
   const [dieDoubleClicked, setDieDoubleClicked] = useState({ 'die': '', 'doubleClicked': true });
   const [clickedDie, setClickedDie] = useState('1');
   const [clickedIsOwn, setClickedIsOwn] = useState(false);
@@ -164,12 +131,6 @@ function App(props) {
   );
 }
 export default App;
-
-
-
-
-
-
 
 export function AlternateApp(props) {
   const playerNames = ['bilbo', 'bingham', 'bryce', 'bradley'];

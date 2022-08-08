@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UnOffical Color Card</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+        html, body{
+            margin: 0;
+            font-family: 'Kanit', sans-serif;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+        .container{
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            transition: background-color 2s;
+        }
+        .green{
+            background-color: green;
+        }
+        .yellow{
+            background-color: yellow;
+        }
+        .red{
+            background-color: red;
+        }
+        .button-container{
+            margin: 4rem;
+            display: flex;
+            max-width: 700px;
+            justify-content: center;
+            
+        }
+        button{
+            font-family: inherit;
+            background-color: rgb(65, 132, 199);
+            margin: 1.2rem;
+            width: 5rem;
+            height: 5rem;
+            border-radius: 14px;
+        }
+        button:hover{
+            background-color: gray;
+        }
+        @media screen and (max-width: 500px){
+
+            button{
+                font-size: 0.75rem;
+                width: 55px;
+                height: 55px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container green" id="container">
+        <div class="button-container">
+            <button onClick="changeColor('green')">Green</button>
+            <button onClick="changeColor('yellow')">Yellow</button>
+            <button onClick="changeColor('red')">Red</button>
+        </div>
+    </div>
+    <script>
+        function changeColor(color){
+            console.log(color);
+            let changeElement = document.getElementById('container');
+            changeElement.classList.remove('red', 'green', 'yellow');
+            changeElement.classList.add(color);
+        }
+    </script>
+</body>
+</html>

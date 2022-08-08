@@ -87,14 +87,14 @@ const SearchAppBar = () => {
           >
             Indiana University Bloomington 
           </Typography>
-                    <IconButton
+                    {/* <IconButton
             size="large"
             edge="start"
             // color = {theme.palette.common.red}
             aria-label="open drawer"
             sx={{ mr: 2 }}
           >
-          </IconButton>
+          </IconButton> */}
           <MenuIcon 
             sx={{ marginRight: '0.8125rem' }}
           />

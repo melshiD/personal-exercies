@@ -1,0 +1,7 @@
+.container{
+    max-width: 947px;
+    margin-left: 4rem;
+    /* perspective: inherit; */
+    transform-style: preserve-3d;
+    border: black solid 2px;
+}

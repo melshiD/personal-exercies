@@ -4,6 +4,7 @@ import DieDiv from './components/DiceDivs';
 import {DieDiv as DieDiv2} from './components/DiceDivs2';
 import DiceContainer from './components/DiceContainer';
 import MainContainer from './components/MainContainer';
+import SubContainer from './components/SubContainer';
 import classes from './app.module.css';
 
 function App(props) {
@@ -174,24 +175,22 @@ export function AlternateApp(props) {
 
   return (
     <MainContainer>
-      <h1>Hello!</h1>
       <FaceImageDefinitions />
-      
-      {state.players.map(player => (
-        //Dustin, why is this arrow function having a paren and not a '{' at the start?
-        <DiceContainer key={player}>
-          {player.pool.map(({ dieIndex, face }) => {
-            // const isSelected = selected === index;
+        {state.players.map(player => (
+          //Dustin, why is this arrow function having a paren and not a '{' at the start?
+          <DiceContainer key={player}>
+            {player.pool.map(({ dieIndex, face }) => {
+              // const isSelected = selected === index;
 
-            return <DieDiv2 die={dieIndex}
-              // selected={isSelected}
-              // onSelect={onSelectDie.bind(this, isSelected ? null : index)}
-              // face={face}
-              // {...die}
-            />;
-          })}
-        </DiceContainer>
-      ))}
+              return <DieDiv2 die={dieIndex}
+                // selected={isSelected}
+                // onSelect={onSelectDie.bind(this, isSelected ? null : index)}
+                // face={face}
+                // {...die}
+              />;
+            })}
+          </DiceContainer>
+        ))}
     </MainContainer>
   );
 }

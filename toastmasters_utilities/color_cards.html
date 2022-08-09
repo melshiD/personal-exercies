@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>UnOffical Color Card</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Kanit&family=Luckiest+Guy&display=swap');
         html, body{
             margin: 0;
             font-family: 'Kanit', sans-serif;
@@ -14,6 +14,10 @@
             height: 100%;
             overflow: hidden;
             box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
         .container{
             display: flex;
@@ -21,7 +25,7 @@
             justify-content: center;
             width: 100%;
             height: 100%;
-            transition: background-color 2s;
+            transition: background-color 0.3s;
         }
         .green{
             background-color: green;
@@ -50,8 +54,21 @@
         button:hover{
             background-color: gray;
         }
+        .app-name{
+            position: absolute;
+        }
+        .color-name{
+            font-family: "Luckiest Guy";
+            margin: auto auto;
+            width: fit-content;
+            position: absolute;
+            top: 30%;
+            font-size: 15vh;
+        }
         @media screen and (max-width: 500px){
-
+            .color-name{
+                font-size: 80px;
+            }
             button{
                 font-size: 0.75rem;
                 width: 55px;
@@ -61,6 +78,12 @@
     </style>
 </head>
 <body>
+    <div class="app-name">
+        UnOffical Toastmasters Color Cards
+    </div>
+    <div class="color-name">
+        Green
+    </div>
     <div class="container green" id="container">
         <div class="button-container">
             <button onClick="changeColor('green')">Green</button>
@@ -74,6 +97,9 @@
             let changeElement = document.getElementById('container');
             changeElement.classList.remove('red', 'green', 'yellow');
             changeElement.classList.add(color);
+
+            let colorNameElement = document.querySelector('.color-name');
+            setTimeout( () => {colorNameElement.innerHTML = color}, 400);
         }
     </script>
 </body>

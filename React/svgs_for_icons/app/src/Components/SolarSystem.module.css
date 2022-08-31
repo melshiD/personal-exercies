@@ -1,0 +1,27 @@
+/* WHEN YOU SIT BACK DOWN, THE STYLES WILL NEED REDONE TO ALLOW CLASSES ALL OVER  */
+
+body{
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+    /* background: url('./start_night.svg'); */
+    box-sizing: border-box;
+}
+svg{
+    width: 52%;
+}
+.slider-container{
+    justify-content: center;
+    justify-self: center;
+    width: 80%;
+    display: flex;
+}
+#orbit_angle{
+    align-self: center;
+    width: 50%;
+}
